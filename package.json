@@ -1,0 +1,16 @@
+{
+  "name": "sd-cosplay-prompt-generator",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tenpaMk2 <wavyroom@gmail.com> (https://github.com/tenpaMk2)",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
