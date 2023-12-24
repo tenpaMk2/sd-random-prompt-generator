@@ -289,6 +289,7 @@ export const allFrontHeadFeatureTokens = [
   `pointy ears`,
 ] as const;
 export type FrontHeadFeatureToken = (typeof allFrontHeadFeatureTokens)[number];
+
 export const allBackHeadFeatureTokens = [
   // WIP: Copy from front head.
 ] as const;
@@ -325,17 +326,9 @@ export type WholeBodyFeatureToken = (typeof allWholeBodyFeatureTokens)[number];
 
 export type ArmpitsToken = `armpits`;
 
-export const allFrontUpperOutfitTokens = [
-  `collarbone`,
-  `cleavage`,
+const anyAngleUpperOutfitTokens = [
   `bare shoulders`,
   `bare arms`,
-  `midriff`,
-  `navel`,
-  `covered navel`,
-  `nipples`,
-  `covered nipples`,
-  `cleavage cutout`,
   `skindentation`, // for breasts
   `bikini`,
   `blue bikini`,
@@ -343,8 +336,6 @@ export const allFrontUpperOutfitTokens = [
   `white jacket`,
   `white dress`,
   `black collar`,
-  `neck ribbon`,
-  `blue ribbon`,
   `white shirt`,
   `long sleeves`,
   `white sleeves`,
@@ -353,78 +344,76 @@ export const allFrontUpperOutfitTokens = [
   `detached collar`,
   `detached sleeves`,
   `maid`,
-  `maid headdress`,
+  `maid headdress`, // TODO: Should be in head?
   `maid bikini`,
   `frills`,
-  `underbust`,
   `apron`,
   `frilled apron`,
   `maid apron`,
   `waist apron`,
 ] as const;
-export type FrontUpperOutfitToken = (typeof allFrontUpperOutfitTokens)[number];
-export const allBackUpperOutfitTokens = [
-  `bare shoulders`,
-  `bare arms`,
-  `shoulder blades`,
-  `skindentation`, // for breasts
-  `detached collar`,
-  `detached sleeves`,
-  `frills`,
-  `apron`,
-  `frilled apron`,
-  `maid apron`,
-  `waist apron`,
-  `maid`,
-  `maid headdress`,
-  `maid bikini`,
-  `bikini`,
-  `blue bikini`,
-  `school uniform`, // WIP
-  `white jacket`,
-  `white dress`,
-  `black collar`,
+
+export const allFrontUpperOutfitTokens = [
+  ...anyAngleUpperOutfitTokens,
+  `collarbone`,
+  `cleavage`,
+  `midriff`,
+  `navel`,
+  `covered navel`,
+  `nipples`,
+  `covered nipples`,
+  `cleavage cutout`,
   `neck ribbon`,
   `blue ribbon`,
-  `white shirt`,
-  `long sleeves`,
-  `white sleeves`,
-  `belt`,
-  `white belt`,
+  `underbust`,
+] as const;
+export type FrontUpperOutfitToken = (typeof allFrontUpperOutfitTokens)[number];
+
+export const allSideUpperOutfitTokens = [
+  ...anyAngleUpperOutfitTokens,
+  `sideboob`,
+] as const;
+export type SideUpperOutfitToken = (typeof allSideUpperOutfitTokens)[number];
+
+export const allBackUpperOutfitTokens = [
+  ...anyAngleUpperOutfitTokens,
+  `shoulder blades`,
 ] as const;
 export type BackUpperOutfitToken = (typeof allBackUpperOutfitTokens)[number];
 
+const anyAngleLowerOutfitTokens = [
+  `skindentation`, // for thighs
+  `bare legs`,
+  `bikini skirt`,
+  `skirt`,
+  `white skirt`,
+  `miniskirt`,
+  `red trim`,
+  `pantyhose`,
+  `thighhighs`,
+] as const;
+
 export const allFrontLowerOutfitTokens = [
+  ...anyAngleLowerOutfitTokens,
   `cameltoe`,
   `pussy`,
   `zettai ryouiki`,
   `thigh gap`,
   `ass visible through thighs`,
-  `skindentation`, // for thighs
-  `bare legs`,
-  `bikini skirt`,
   `thigh gap`,
-  `skirt`,
-  `white skirt`,
-  `miniskirt`,
-  `red trim`,
-  `pantyhose`,
-  `thighhighs`,
 ] as const;
 export type FrontLowerOutfitToken = (typeof allFrontLowerOutfitTokens)[number];
 
-export const allBackLowerOutfitTokens = [
+export const allSideLowerOutfitTokens = [
+  ...anyAngleLowerOutfitTokens,
   `ass`,
-  `skindentation`, // for thighs
-  `bare legs`,
-  `bikini skirt`,
+] as const;
+export type SideLowerOutfitToken = (typeof allSideLowerOutfitTokens)[number];
+
+export const allBackLowerOutfitTokens = [
+  ...anyAngleLowerOutfitTokens,
+  `ass`,
   `thigh gap`,
-  `skirt`,
-  `white skirt`,
-  `miniskirt`,
-  `red trim`,
-  `pantyhose`,
-  `thighhighs`,
 ] as const;
 export type BackLowerOutfitToken = (typeof allFrontLowerOutfitTokens)[number];
 
