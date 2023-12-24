@@ -29,8 +29,11 @@ type UpperOutfitToken =
 type LowerOutfitToken = FrontLowerOutfitToken | BackLowerOutfitToken;
 
 export type CharaDefine = {
+  // 身体的な特徴(例外的に頭部の飾りを含む)
   chara: CharacterFeatureToken[];
+  // 表情候補
   emotionCandidates: EmotionCandidate[];
+  // 服装と露出部位
   outfits: {
     backgroundDefine: BackgroundDefine;
     upperOutfit: UpperOutfitToken[];
@@ -39,7 +42,6 @@ export type CharaDefine = {
 };
 
 export const cecilia: CharaDefine = {
-  // 服装に依存しない身体的な特徴
   chara: [
     `aacecilia`,
     `cecilia alcott`,
@@ -62,7 +64,6 @@ export const cecilia: CharaDefine = {
     `thick thighs`,
   ],
 
-  // 表情候補
   emotionCandidates: [
     [`blush`, `smile`],
     [`blush`, `light smile`],
@@ -80,7 +81,6 @@ export const cecilia: CharaDefine = {
     [`blush`, `smile`, `one eye closed`, `;d`, `open mouth`],
   ],
 
-  // 服装と露出部位
   outfits: [
     {
       backgroundDefine: {
