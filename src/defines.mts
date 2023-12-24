@@ -451,18 +451,6 @@ export const allEmotionCandidates = [
 ] as const;
 export type EmotionCandidate = (typeof allEmotionCandidates)[number];
 
-export const allArmPoseCandidates = [
-  [`arms up`],
-  [`reaching towards viewer`],
-  [`v`],
-  [`hand up`],
-  [`hands on own chest`],
-  [`heart hands`],
-  [`own hands together`],
-  [`singing`, `holding microphone`],
-] as const;
-export type ArmPoseCandidate = (typeof allArmPoseCandidates)[number];
-
 export const allBackgrounds = {
   "from horizontal": [
     [`indoors`],
@@ -540,8 +528,6 @@ export type BackgroundDefine = {
   fromAbove: (typeof allBackgrounds)["from above"][number][];
   lying: (typeof allBackgrounds.lying)[number][];
 };
-
-export const armpitsVisibleTokens = [`arms up`, `arm up`, `w arms`] as const;
 
 export const BreastSizeOrder: { [k in BreastSizeToken]: number } = {
   "flat chest": 1,
