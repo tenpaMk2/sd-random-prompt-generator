@@ -10,6 +10,7 @@ const eachVisibleTokenInfos = parse(cecilia);
 const prompts = eachVisibleTokenInfos.map((info) =>
   generateDynamicPrompt(
     posePromptGenerators.map((promptGenerator) => promptGenerator(info)),
+    { lineBreak: true },
   ),
 );
 
