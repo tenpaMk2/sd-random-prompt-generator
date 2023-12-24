@@ -470,6 +470,7 @@ export const allArmPoseCandidates = [
   [`hands on own chest`],
   [`heart hands`],
   [`own hands together`],
+  [`singing`, `holding microphone`],
 ] as const;
 export type ArmPoseCandidate = (typeof allArmPoseCandidates)[number];
 
