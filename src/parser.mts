@@ -11,6 +11,8 @@ import {
   allProfileEmotionCandidates,
   allBackHeadFeatureTokens,
   allBackLowerOutfitTokens,
+  allSideUpperOutfitTokens,
+  allSideLowerOutfitTokens,
 } from "./defines.mjs";
 
 const isSameCandidate = (a: readonly string[], b: readonly string[]) => {
@@ -55,16 +57,29 @@ export const parse = (def: CharaDefine) => {
       ),
     ] as const;
 
+    const sideUpperBodyTokens = [
+      ...def.chara.filter((c) => allBreastSizeTokens.some((t) => t === c)),
+      ...upperOutfit.filter((c) =>
+        allSideUpperOutfitTokens.some((t) => t === c),
+      ),
+    ] as const;
+
     const backUpperBodyTokens = [
+      ...def.chara.filter((c) => allBreastSizeTokens.some((t) => t === c)),
       ...upperOutfit.filter((x) =>
         allFrontUpperOutfitTokens.some((y) => y === x),
       ),
     ] as const;
 
     const frontLowerBodyTokens = [
-      ...def.chara.filter((c) => allBreastSizeTokens.some((t) => t === c)),
       ...lowerOutfit.filter((c) =>
         allFrontLowerOutfitTokens.some((t) => t === c),
+      ),
+    ] as const;
+
+    const sideLowerBodyTokens = [
+      ...lowerOutfit.filter((c) =>
+        allSideLowerOutfitTokens.some((t) => t === c),
       ),
     ] as const;
 
@@ -81,8 +96,10 @@ export const parse = (def: CharaDefine) => {
       frontHeadTokens,
       backHeadTokens,
       frontUpperBodyTokens,
+      sideUpperBodyTokens,
       backUpperBodyTokens,
       frontLowerBodyTokens,
+      sideLowerBodyTokens,
       backLowerBodyTokens,
       isArmpitsExposure,
       profileEmotionCandidates,
