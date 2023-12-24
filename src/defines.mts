@@ -350,6 +350,17 @@ export const allFrontUpperOutfitTokens = [
   `white sleeves`,
   `belt`,
   `white belt`,
+  `detached collar`,
+  `detached sleeves`,
+  `maid`,
+  `maid headdress`,
+  `maid bikini`,
+  `frills`,
+  `underbust`,
+  `apron`,
+  `frilled apron`,
+  `maid apron`,
+  `waist apron`,
 ] as const;
 export type FrontUpperOutfitToken = (typeof allFrontUpperOutfitTokens)[number];
 export const allBackUpperOutfitTokens = [
@@ -357,6 +368,16 @@ export const allBackUpperOutfitTokens = [
   `bare arms`,
   `shoulder blades`,
   `skindentation`, // for breasts
+  `detached collar`,
+  `detached sleeves`,
+  `frills`,
+  `apron`,
+  `frilled apron`,
+  `maid apron`,
+  `waist apron`,
+  `maid`,
+  `maid headdress`,
+  `maid bikini`,
   `bikini`,
   `blue bikini`,
   `school uniform`, // WIP
@@ -468,6 +489,13 @@ export const allBackgrounds = {
     [`outdoors`, `forest`],
     [`outdoors`, `garden`],
     [`simple background`, `white background`],
+    [
+      `simple background`,
+      `white background`,
+      `heart background`,
+      `heart`,
+      `spoken heart`,
+    ],
     [`cave interior`],
   ],
   "from below": [
@@ -476,6 +504,13 @@ export const allBackgrounds = {
     [`outdoors`],
     [`outdoors`, `blue sky`],
     [`outdoors`, `sunset`, `orange sky`],
+    [
+      `simple background`,
+      `white background`,
+      `heart background`,
+      `heart`,
+      `spoken heart`,
+    ],
   ],
   "from above": [
     [`bed sheet`],
@@ -484,6 +519,13 @@ export const allBackgrounds = {
     [`outdoors`],
     [`outdoors`, `grass`],
     [`outdoors`, `ocean`],
+    [
+      `simple background`,
+      `white background`,
+      `heart background`,
+      `heart`,
+      `spoken heart`,
+    ],
   ],
   lying: [
     [`bed sheet`],
@@ -493,6 +535,13 @@ export const allBackgrounds = {
     [`simple background`, `pink background`],
     [`simple background`, `white background`, `heart background`],
     [`simple background`, `pink background`, `heart background`],
+    [
+      `simple background`,
+      `white background`,
+      `heart background`,
+      `heart`,
+      `spoken heart`,
+    ],
   ],
 } as const;
 export type BackgroundDefine = {
