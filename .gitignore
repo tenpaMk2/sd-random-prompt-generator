@@ -16,3 +16,6 @@ pnpm-debug.log*
 
 # VSCode
 .vscode
+
+# Custom
+outputs
