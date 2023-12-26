@@ -1,11 +1,11 @@
-import { cecilia } from "./chara-defines.mjs";
+import { cecilia, kafuuChino, yorBriar } from "./chara-defines.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
 import { posePromptGenerators } from "./poses.mjs";
 import { writeFile, mkdir } from "node:fs/promises";
 import { join } from "node:path";
 
-const eachVisibleTokenInfos = parse(cecilia);
+const eachVisibleTokenInfos = parse(yorBriar);
 
 const prompts = eachVisibleTokenInfos.map((info) =>
   generateDynamicPrompt(

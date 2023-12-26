@@ -2,6 +2,8 @@ export const allNameTokens = [
   `aacecilia`,
   `cecilia alcott`,
   `charlotte dunois`,
+  `kafuu chino`,
+  `yor briar`,
 ] as const;
 export type NameToken = (typeof allNameTokens)[number];
 
@@ -287,6 +289,7 @@ export const allFrontHeadFeatureTokens = [
   `animal ear fluff`,
   `fang`,
   `pointy ears`,
+  `earrings`,
 ] as const;
 export type FrontHeadFeatureToken = (typeof allFrontHeadFeatureTokens)[number];
 
@@ -310,7 +313,7 @@ export const allLowerBodyFeatureTokens = [
   `fox tail`,
   `thick thighs`,
   `wide hips`,
-];
+] as const;
 export type LowerBodyFeatureToken = (typeof allLowerBodyFeatureTokens)[number];
 
 export const allWholeBodyFeatureTokens = [
@@ -332,6 +335,7 @@ const anyAngleUpperOutfitTokens = [
   `skindentation`, // for breasts
   `bikini`,
   `blue bikini`,
+  `frilled bikini`,
   `school uniform`,
   `white jacket`,
   `white dress`,
@@ -351,6 +355,19 @@ const anyAngleUpperOutfitTokens = [
   `frilled apron`,
   `maid apron`,
   `waist apron`,
+  `shirt`,
+  `collared shirt`,
+  `vest`,
+  `blue vest`,
+  `dress`,
+  `red dress`,
+  `off shoulder`,
+  `off-shoulder dress`,
+  `off-shoulder sweater`,
+  `sweater`,
+  `red sweater`,
+  `sweater dress`,
+  `chino work`,
 ] as const;
 
 export const allFrontUpperOutfitTokens = [
@@ -366,6 +383,8 @@ export const allFrontUpperOutfitTokens = [
   `neck ribbon`,
   `blue ribbon`,
   `underbust`,
+  `bowtie`,
+  `blue bowtie`,
 ] as const;
 export type FrontUpperOutfitToken = (typeof allFrontUpperOutfitTokens)[number];
 
@@ -387,6 +406,7 @@ const anyAngleLowerOutfitTokens = [
   `bikini skirt`,
   `skirt`,
   `white skirt`,
+  `black skirt`,
   `miniskirt`,
   `red trim`,
   `pantyhose`,
@@ -454,6 +474,7 @@ export type EmotionCandidate = (typeof allEmotionCandidates)[number];
 export const allBackgrounds = {
   "from horizontal": [
     [`indoors`],
+    [`indoors`, `cafe`],
     [`indoors`, `bed`, `lamp`],
     [`indoors`, `window`],
     [`indoors`, `classroom`],

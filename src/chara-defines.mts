@@ -187,3 +187,146 @@ export const cecilia: CharaDefine = {
     generateMaidBkini({ breastSize: `large breasts` }),
   ],
 } as const;
+
+export const kafuuChino: CharaDefine = {
+  chara: [
+    `kafuu chino`,
+    `blue eyes`,
+    `light blue hair`,
+    `long hair`,
+    `straight hair`,
+    `hair between eyes`,
+    `hair ornament`,
+    `x hair ornament`,
+    `loli`,
+    `flat chest`,
+  ],
+
+  emotionCandidates: [
+    [`blush`, `smile`],
+    [`blush`, `light smile`],
+    [`blush`, `smile`, `parted lips`],
+    [`blush`, `smile`, `:d`, `open mouth`],
+    [`blush`, `smile`, `half-closed eyes`],
+    [`blush`, `expressionless`],
+    [`blush`, `surprised`, `:o`, `open mouth`],
+    [`blush`, `nose blush`, `embarrassed`],
+    [`blush`, `nose blush`, `nervous`],
+    [`blush`, `nose blush`, `flustered`],
+    [`blush`, `naughty face`, `smile`, `half-closed eyes`],
+    [`blush`, `nose blush`, `scowl`],
+    [`blush`, `smile`, `one eye closed`, `;)`, `closed mouth`],
+    [`blush`, `smile`, `one eye closed`, `;d`, `open mouth`],
+  ],
+
+  outfits: [
+    {
+      backgroundDefine: {
+        fromHorizontal: [[`indoors`, `cafe`]],
+        fromBelow: [[`indoors`, `ceiling`]],
+        fromAbove: [[`indoors`]],
+        lying: [
+          [`simple background`, `white background`],
+          [`simple background`, `pink background`],
+        ],
+      },
+      upperOutfit: [
+        `chino work`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `bowtie`,
+        `blue bowtie`,
+        `vest`,
+        `blue vest`,
+        `long sleeves`,
+      ],
+      lowerOutfit: [`skirt`, `black skirt`],
+    },
+    {
+      backgroundDefine: {
+        fromHorizontal: [[`outdoors`, `beach`]],
+        fromBelow: [[`outdoors`, `blue sky`]],
+        fromAbove: [[`outdoors`, `ocean`]],
+        lying: [[`outdoors`, `ocean`, `partially submerged`]],
+      },
+      upperOutfit: [
+        `bikini`,
+        `blue bikini`,
+        `frilled bikini`,
+        `collarbone`,
+        `bare arms`,
+        `navel`,
+        `armpits`,
+      ],
+      lowerOutfit: [`bikini skirt`, `bare legs`, `thigh gap`],
+    },
+    generateMaidBkini({ breastSize: `flat chest` }),
+  ],
+} as const;
+
+export const yorBriar: CharaDefine = {
+  chara: [
+    `yor briar`,
+    `red eyes`,
+    `tsurime`,
+    `eyelashes`,
+    `black hair`,
+    `long hair`,
+    `short hair with long locks`,
+    `hair between eyes`,
+    `sidelocks`,
+    `hairband`,
+    `white hairband`,
+    `earrings`,
+    `large breasts`,
+    `thick thighs`,
+  ],
+
+  emotionCandidates: [
+    [`blush`, `smile`],
+    [`blush`, `light smile`],
+    [`blush`, `smile`, `parted lips`],
+    [`blush`, `smile`, `:d`, `open mouth`],
+    [`blush`, `smile`, `half-closed eyes`],
+    [`blush`, `expressionless`],
+    [`blush`, `surprised`, `:o`, `open mouth`],
+    [`blush`, `nose blush`, `embarrassed`],
+    [`blush`, `nose blush`, `nervous`],
+    [`blush`, `nose blush`, `flustered`],
+    [`blush`, `naughty face`, `smile`, `half-closed eyes`],
+    [`blush`, `nose blush`, `scowl`],
+    [`blush`, `smile`, `one eye closed`, `;)`, `closed mouth`],
+    [`blush`, `smile`, `one eye closed`, `;d`, `open mouth`],
+  ],
+
+  outfits: [
+    {
+      backgroundDefine: {
+        fromHorizontal: [[`indoors`]],
+        fromBelow: [[`indoors`, `ceiling`]],
+        fromAbove: [[`indoors`]],
+        lying: [
+          [`simple background`, `white background`],
+          [`simple background`, `pink background`],
+        ],
+      },
+      upperOutfit: [
+        `bare shoulders`,
+        `collarbone`,
+        `cleavage`,
+        `armpits`,
+        `dress`,
+        `red dress`,
+        `long sleeves`,
+        `off shoulder`,
+        `off-shoulder dress`,
+        `off-shoulder sweater`,
+        `sweater`,
+        `red sweater`,
+        `sweater dress`,
+      ],
+      lowerOutfit: [`pantyhose`],
+    },
+  ],
+} as const;

@@ -57,6 +57,7 @@ const generateUpperBody = ({
 
   return [
     `upper body`,
+    `looking at viewer`,
     charaTokens.join(`, `),
     frontHeadTokens.join(`, `),
     frontUpperBodyTokens.join(`, `),
@@ -94,6 +95,7 @@ const generateCowboyShot = ({
 
   return [
     `cowboy shot`,
+    `looking at viewer`,
     charaTokens.join(`, `),
     frontHeadTokens.join(`, `),
     frontUpperBodyTokens.join(`, `),
