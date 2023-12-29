@@ -140,6 +140,7 @@ const generateAllFours: Generator = ({
       ...new Set([
         `all fours`,
         `looking at viewer`,
+        `breasts`,
         ...frontHeadTokens,
         ...frontPortraitTokens,
         ...frontMidriffTokens,
