@@ -16,70 +16,57 @@ const charaInfos = charas.map((chara) => ({
 // Generate
 type ResultLeaf = { key: string; prompt: string; childPrompts?: ResultLeaf[] };
 
-const resultTree: ResultLeaf[] = charaInfos.map(
-  ({ key, visibleTokenInfos }) => {
-    const situationPrompts = visibleTokenInfos.map((info) => {
-      const posePrompts = posePromptGenerators.map((promptGenerator) =>
-        promptGenerator(info),
-      );
-
-      return {
-        key: info.key,
-        prompt: generateDynamicPrompt(
-          posePrompts.map(({ prompt }) => prompt),
-          { lineBreak: true },
-        ),
-        childPrompts: posePrompts,
-      };
-    });
+const charaPrompts = charaInfos.map(({ key, visibleTokenInfos }) => {
+  const situationPrompts = visibleTokenInfos.map((info) => {
+    const posePrompts = posePromptGenerators.map((promptGenerator) =>
+      promptGenerator(info),
+    );
 
     return {
-      key,
+      key: info.key,
       prompt: generateDynamicPrompt(
-        situationPrompts.map(({ prompt }) => prompt),
+        posePrompts.map(({ prompt }) => prompt),
         { lineBreak: true },
       ),
-      childPrompts: situationPrompts,
+      childPrompts: posePrompts,
     };
-  },
-);
+  });
+
+  return {
+    key,
+    prompt: generateDynamicPrompt(
+      situationPrompts.map(({ prompt }) => prompt),
+      { lineBreak: true },
+    ),
+    childPrompts: situationPrompts,
+  };
+});
+
+const resultTree: ResultLeaf = {
+  key: `all`,
+  prompt: generateDynamicPrompt(
+    charaPrompts.map(({ prompt }) => prompt),
+    { lineBreak: true },
+  ),
+  childPrompts: charaPrompts,
+};
 
 // Save
 
-const outputsDir = join(`outputs`);
+const saveRecursively = async (
+  { key, prompt, childPrompts }: ResultLeaf,
+  parentDir: string,
+): Promise<unknown> => {
+  await mkdir(parentDir, { recursive: true });
+  console.log(`generate: ${parentDir}`);
+  const p = writeFile(join(parentDir, `${key}.txt`), prompt);
 
-const promises = resultTree.map(
-  async ({
-    key: charaKey,
-    prompt: charaPrompt,
-    childPrompts: situationPrompts,
-  }) => {
-    const dir = join(outputsDir, charaKey);
-    await mkdir(dir, { recursive: true });
-    const p = writeFile(join(dir, `prompt.txt`), charaPrompt);
+  if (!childPrompts) return p;
 
-    const promises = situationPrompts!.map(
-      async ({
-        key: situationKey,
-        prompt: situationPrompt,
-        childPrompts: posePrompts,
-      }) => {
-        const dir = join(outputsDir, charaKey, situationKey);
-        await mkdir(dir, { recursive: true });
-        const p = writeFile(join(dir, `prompt.txt`), situationPrompt);
+  const promises = childPrompts?.map((l) =>
+    saveRecursively(l, join(parentDir, l.key)),
+  );
+  return Promise.all([p, ...promises]);
+};
 
-        const promises = posePrompts!.map(async ({ key: poseKey, prompt }) => {
-          const dir = join(outputsDir, charaKey, situationKey, poseKey);
-          await mkdir(dir, { recursive: true });
-          return writeFile(join(dir, `prompt.txt`), prompt);
-        });
-
-        return Promise.all([p, ...promises]);
-      },
-    );
-
-    return Promise.all([p, ...promises]);
-  },
-);
-
-await Promise.all(promises);
+await saveRecursively(resultTree, join(`outputs`));
