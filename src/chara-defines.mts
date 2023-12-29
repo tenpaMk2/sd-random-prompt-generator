@@ -26,11 +26,11 @@ type Situation = Readonly<{
 export type CharaDefine = Readonly<{
   // Key that is used for filename.
   key: string;
-  // 身体的な特徴(例外的に頭部の飾りを含む)
+  // Character feature tokens.
   charaTokens: readonly CharacterFeatureToken[];
-  // 表情候補
+  // Emotion candidates that are specified in `token-defines.mts` .
   emotionCandidates: readonly EmotionCandidate[];
-  // 服装と露出部位
+  // Backgrounds, outfits and exposures.
   situations: readonly Situation[];
 }>;
 

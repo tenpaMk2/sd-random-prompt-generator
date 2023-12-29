@@ -60,7 +60,7 @@ export const parse = (def: CharaDefine) =>
     ] as ProfileEmotionCandidate[];
 
     return {
-      key,
+      key, // For filenames.
       frontHeadTokens,
       sideHeadTokens,
       backHeadTokens,
