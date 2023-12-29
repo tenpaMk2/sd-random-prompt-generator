@@ -18,13 +18,16 @@ type CharacterFeatureToken =
   | BodyFeatureToken;
 
 type Situation = Readonly<{
+  key: string;
   background: Background;
   outfitAndExposure: readonly OutfitAndExposureToken[];
 }>;
 
 export type CharaDefine = Readonly<{
+  // Key that is used for filename.
+  key: string;
   // 身体的な特徴(例外的に頭部の飾りを含む)
-  chara: readonly CharacterFeatureToken[];
+  charaTokens: readonly CharacterFeatureToken[];
   // 表情候補
   emotionCandidates: readonly EmotionCandidate[];
   // 服装と露出部位
@@ -36,6 +39,7 @@ const generateMaidBkini = ({
 }: {
   readonly breastSize: BreastSizeToken;
 }): Situation => ({
+  key: `maid-bikini`,
   background: {
     fromHorizontal: [
       [
@@ -400,7 +404,8 @@ const generateMaidBkini = ({
 // } as const;
 
 export const nishikigiChisato: CharaDefine = {
-  chara: [
+  key: `nishikigi-chisato-h-madoka`,
+  charaTokens: [
     `<lora:nishikigi_chisato_v1:0.75>`,
     `nishikigi chisato`,
     `red eyes`,
@@ -428,6 +433,7 @@ export const nishikigiChisato: CharaDefine = {
 
   situations: [
     {
+      key: `lycoris-uniform`,
       background: {
         fromHorizontal: [[`outdoors`, `city`]],
         fromBelow: [[`outdoors`, `blue sky`]],

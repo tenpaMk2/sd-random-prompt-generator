@@ -25,8 +25,8 @@ const filterByVisibility = (
 ) => tokens.filter((token) => allTokenVisibilities[token][part]);
 
 export const parse = (def: CharaDefine) =>
-  def.situations.map(({ background, outfitAndExposure }) => {
-    const charaTokens = [...def.chara, ...outfitAndExposure];
+  def.situations.map(({ key, background, outfitAndExposure }) => {
+    const charaTokens = [...def.charaTokens, ...outfitAndExposure];
 
     const frontHeadTokens = filterByVisibility(charaTokens, `frontHead`);
     const sideHeadTokens = filterByVisibility(charaTokens, `sideHead`);
@@ -60,6 +60,7 @@ export const parse = (def: CharaDefine) =>
     ] as ProfileEmotionCandidate[];
 
     return {
+      key,
       frontHeadTokens,
       sideHeadTokens,
       backHeadTokens,
