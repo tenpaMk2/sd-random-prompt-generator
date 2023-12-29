@@ -1,5 +1,6 @@
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { EachVisibleTokenInfo } from "./parser.mjs";
+import { Candidate } from "./token-defines.mjs";
 
 const allArmPoseCandidates = [
   [`arms up`],
@@ -10,7 +11,7 @@ const allArmPoseCandidates = [
   [`heart hands`],
   [`own hands together`],
   [`singing`, `holding microphone`],
-] as const;
+] as const satisfies readonly Candidate<string>[];
 type ArmPoseCandidate = (typeof allArmPoseCandidates)[number];
 
 const armpitsVisibleTokens = [`arms up`, `arm up`, `w arms`] as const;
@@ -30,17 +31,17 @@ const convertArmPoseCandidates = (
     return candidate;
   });
 
-const candidatesToPrompts = (candidates: readonly (readonly string[])[]) =>
+const candidatesToPrompts = (candidates: readonly Candidate<string>[]) =>
   candidates.map((tokens) => tokens.join(`, `));
 
 const generateUpperBody = ({
-  charaTokens,
   frontHeadTokens,
-  frontUpperBodyTokens,
+  frontPortraitTokens,
+  frontMidriffTokens,
   isArmpitsExposure,
   profileEmotionCandidates,
-  emotionCandidates,
-  backgroundDefine: { fromHorizontal },
+  frontEmotionCandidates,
+  background: { fromHorizontal },
 }: EachVisibleTokenInfo) => {
   const convertedArmPoseCandidates = convertArmPoseCandidates(
     allArmPoseCandidates,
@@ -52,33 +53,35 @@ const generateUpperBody = ({
     generateDynamicPrompt(candidatesToPrompts(profileEmotionCandidates)),
   ].join(`, `);
   const frontEmotionDynamicPrompt = generateDynamicPrompt(
-    candidatesToPrompts(emotionCandidates),
+    candidatesToPrompts(frontEmotionCandidates),
   );
 
   return [
-    `upper body`,
-    `looking at viewer`,
-    charaTokens.join(`, `),
-    frontHeadTokens.join(`, `),
-    frontUpperBodyTokens.join(`, `),
+    ...new Set([
+      `upper body`,
+      `looking at viewer`,
+      ...frontHeadTokens,
+      ...frontPortraitTokens,
+      ...frontMidriffTokens,
+    ]), // Remove dupe.
     generateDynamicPrompt(candidatesToPrompts(convertedArmPoseCandidates)),
     generateDynamicPrompt([
       `1::${profileEmotionDynamicPrompt}`,
       `3::${frontEmotionDynamicPrompt}`,
     ]),
     generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
-  ].join(`,\n`);
+  ].join(`, `);
 };
 
 const generateCowboyShot = ({
-  charaTokens,
   frontHeadTokens,
-  frontUpperBodyTokens,
-  frontLowerBodyTokens,
+  frontPortraitTokens,
+  frontMidriffTokens,
+  frontThighTokens,
   isArmpitsExposure,
   profileEmotionCandidates,
-  emotionCandidates,
-  backgroundDefine: { fromHorizontal },
+  frontEmotionCandidates,
+  background: { fromHorizontal },
 }: EachVisibleTokenInfo) => {
   const convertedArmPoseCandidates = convertArmPoseCandidates(
     allArmPoseCandidates,
@@ -90,85 +93,91 @@ const generateCowboyShot = ({
     generateDynamicPrompt(candidatesToPrompts(profileEmotionCandidates)),
   ].join(`, `);
   const frontEmotionDynamicPrompt = generateDynamicPrompt(
-    candidatesToPrompts(emotionCandidates),
+    candidatesToPrompts(frontEmotionCandidates),
   );
 
   return [
-    `cowboy shot`,
-    `looking at viewer`,
-    charaTokens.join(`, `),
-    frontHeadTokens.join(`, `),
-    frontUpperBodyTokens.join(`, `),
-    frontLowerBodyTokens.join(`, `),
+    ...new Set([
+      `cowboy shot`,
+      `looking at viewer`,
+      ...frontHeadTokens,
+      ...frontPortraitTokens,
+      ...frontMidriffTokens,
+      ...frontThighTokens,
+    ]), // Remove dupe.
     generateDynamicPrompt(candidatesToPrompts(convertedArmPoseCandidates)),
     generateDynamicPrompt([
       `1::${profileEmotionDynamicPrompt}`,
       `3::${frontEmotionDynamicPrompt}`,
     ]),
     generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
-  ].join(`,\n`);
+  ].join(`, `);
 };
 
 const generateAllFours = ({
-  charaTokens,
   frontHeadTokens,
-  frontUpperBodyTokens,
-  frontLowerBodyTokens,
-  emotionCandidates,
-  backgroundDefine: { fromHorizontal },
+  frontPortraitTokens,
+  frontMidriffTokens,
+  frontThighTokens,
+  footTokens,
+  frontEmotionCandidates,
+  background: { fromHorizontal },
 }: EachVisibleTokenInfo) => {
-  const frontEmotionDynamicPrompt = generateDynamicPrompt(
-    candidatesToPrompts(emotionCandidates),
-  );
-
   return [
-    `all fours`,
-    `looking at viewer`,
-    charaTokens.join(`, `),
-    frontHeadTokens.join(`, `),
-    frontUpperBodyTokens.join(`, `),
-    frontLowerBodyTokens.join(`, `),
-    ...(frontUpperBodyTokens.some((t) => t === `cleavage`)
+    ...new Set([
+      `all fours`,
+      `looking at viewer`,
+      ...frontHeadTokens,
+      ...frontPortraitTokens,
+      ...frontMidriffTokens,
+      ...frontThighTokens,
+      ...footTokens,
+    ]), // Remove dupe.
+    ...(frontPortraitTokens.some((t) => t === `cleavage`)
       ? [`hanging breasts`]
       : []),
-    frontEmotionDynamicPrompt,
+    generateDynamicPrompt(candidatesToPrompts(frontEmotionCandidates)),
     generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
-  ].join(`,\n`);
+  ].join(`, `);
 };
 
 const generateAllFoursFromBehind = ({
-  charaTokens,
   frontHeadTokens,
-  backUpperBodyTokens,
-  backLowerBodyTokens,
-  emotionCandidates,
+  backPortraitTokens,
+  backMidriffTokens,
+  backThighTokens,
+  footTokens,
   profileEmotionCandidates,
-  backgroundDefine: { fromHorizontal },
+  frontEmotionCandidates,
+  background: { fromHorizontal },
 }: EachVisibleTokenInfo) => {
   const profileEmotionDynamicPrompt = [
     `profile`,
     generateDynamicPrompt(candidatesToPrompts(profileEmotionCandidates)),
   ].join(`, `);
   const frontEmotionDynamicPrompt = generateDynamicPrompt(
-    candidatesToPrompts(emotionCandidates),
+    candidatesToPrompts(frontEmotionCandidates),
   );
 
   return [
-    `all fours`,
-    `looking at viewer`,
-    `from behind`,
-    `looking back`,
-    `ass`,
-    charaTokens.join(`, `),
-    frontHeadTokens.join(`, `),
-    backUpperBodyTokens.join(`, `),
-    backLowerBodyTokens.join(`, `),
+    ...new Set([
+      `all fours`,
+      `looking at viewer`,
+      `from behind`,
+      `looking back`,
+      `ass`,
+      ...frontHeadTokens,
+      ...backPortraitTokens,
+      ...backMidriffTokens,
+      ...backThighTokens,
+      ...footTokens,
+    ]), // Remove dupe.
     generateDynamicPrompt([
       `1::${profileEmotionDynamicPrompt}`,
       `3::${frontEmotionDynamicPrompt}`,
     ]),
     generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
-  ].join(`,\n`);
+  ].join(`, `);
 };
 
 export const posePromptGenerators = [

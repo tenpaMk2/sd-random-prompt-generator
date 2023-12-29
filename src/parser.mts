@@ -1,23 +1,16 @@
 import { CharaDefine } from "./chara-defines.mjs";
 import {
-  EmotionCandidate,
+  Candidate,
+  FrontEmotionCandidate,
+  PersonToken,
   ProfileEmotionCandidate,
-  allBreastSizeTokens,
-  allEmotionCandidates,
-  allFrontHeadFeatureTokens,
-  allFrontUpperOutfitTokens,
-  allFrontLowerOutfitTokens,
-  allNameTokens,
+  Visible,
+  allFrontEmotionCandidates,
   allProfileEmotionCandidates,
-  allBackUpperOutfitTokens,
-  allBackHeadFeatureTokens,
-  allBackLowerOutfitTokens,
-  allSideUpperOutfitTokens,
-  allSideLowerOutfitTokens,
-  allLoraTokens,
-} from "./defines.mjs";
+  allTokenVisibilities,
+} from "./token-defines.mjs";
 
-const isSameCandidate = (a: readonly string[], b: readonly string[]) => {
+const isSameCandidate = <T,>(a: Candidate<T>, b: Candidate<T>) => {
   if (a.length !== b.length) return false;
 
   for (let i = 0; i < a.length; ++i) {
@@ -26,93 +19,66 @@ const isSameCandidate = (a: readonly string[], b: readonly string[]) => {
   return true;
 };
 
-export const parse = (def: CharaDefine) => {
-  const charaTokens = [
-    ...def.chara.filter(
-      (x) =>
-        allNameTokens.some((y) => y === x) ||
-        allLoraTokens.some((y) => y === x),
-    ),
-  ] as const;
+const filterByVisibility = (
+  tokens: readonly PersonToken[],
+  part: keyof Visible,
+) => tokens.filter((token) => allTokenVisibilities[token][part]);
 
-  const frontHeadTokens = [
-    ...def.chara.filter((x) => allFrontHeadFeatureTokens.some((y) => y === x)),
-  ] as const;
+export const parse = (def: CharaDefine) =>
+  def.situations.map(({ background, outfitAndExposure }) => {
+    const charaTokens = [...def.chara, ...outfitAndExposure];
 
-  const backHeadTokens = [
-    ...def.chara.filter((x) => allBackHeadFeatureTokens.some((y) => y === x)),
-  ] as const;
+    const frontHeadTokens = filterByVisibility(charaTokens, `frontHead`);
+    const sideHeadTokens = filterByVisibility(charaTokens, `sideHead`);
+    const backHeadTokens = filterByVisibility(charaTokens, `backHead`);
+    const frontPortraitTokens = filterByVisibility(
+      charaTokens,
+      `frontPortrait`,
+    );
+    const sidePortraitTokens = filterByVisibility(charaTokens, `sidePortrait`);
+    const backPortraitTokens = filterByVisibility(charaTokens, `backPortrait`);
+    const frontMidriffTokens = filterByVisibility(charaTokens, `frontMidriff`);
+    const sideMidriffTokens = filterByVisibility(charaTokens, `sideMidriff`);
+    const backMidriffTokens = filterByVisibility(charaTokens, `backMidriff`);
+    const frontThighTokens = filterByVisibility(charaTokens, `frontThigh`);
+    const sideThighTokens = filterByVisibility(charaTokens, `sideThigh`);
+    const backThighTokens = filterByVisibility(charaTokens, `backThigh`);
+    const footTokens = filterByVisibility(charaTokens, `foot`);
+    const upskirtTokens = filterByVisibility(charaTokens, `upskirt`);
 
-  const profileEmotionCandidates = [
-    ...def.emotionCandidates.filter((x) =>
-      allProfileEmotionCandidates.some((y) => isSameCandidate(x, y)),
-    ),
-  ] as ProfileEmotionCandidate[];
+    const isArmpitsExposure = outfitAndExposure.some((t) => t === `armpits`);
 
-  const emotionCandidates = [
-    ...def.emotionCandidates.filter((x) =>
-      allEmotionCandidates.some((y) => isSameCandidate(x, y)),
-    ),
-  ] as EmotionCandidate[];
-
-  return def.outfits.map(({ backgroundDefine, upperOutfit, lowerOutfit }) => {
-    const frontUpperBodyTokens = [
-      ...def.chara.filter((c) => allBreastSizeTokens.some((t) => t === c)),
-      ...upperOutfit.filter((c) =>
-        allFrontUpperOutfitTokens.some((t) => t === c),
+    const frontEmotionCandidates = [
+      ...def.emotionCandidates.filter((x) =>
+        allFrontEmotionCandidates.some((y) => isSameCandidate(x, y)),
       ),
-    ] as const;
-
-    const sideUpperBodyTokens = [
-      ...def.chara.filter((c) => allBreastSizeTokens.some((t) => t === c)),
-      ...upperOutfit.filter((c) =>
-        allSideUpperOutfitTokens.some((t) => t === c),
+    ] as FrontEmotionCandidate[];
+    const profileEmotionCandidates = [
+      ...def.emotionCandidates.filter((x) =>
+        allProfileEmotionCandidates.some((y) => isSameCandidate(x, y)),
       ),
-    ] as const;
-
-    const backUpperBodyTokens = [
-      ...def.chara.filter((c) => allBreastSizeTokens.some((t) => t === c)),
-      ...upperOutfit.filter((x) =>
-        allBackUpperOutfitTokens.some((y) => y === x),
-      ),
-    ] as const;
-
-    const frontLowerBodyTokens = [
-      ...lowerOutfit.filter((c) =>
-        allFrontLowerOutfitTokens.some((t) => t === c),
-      ),
-    ] as const;
-
-    const sideLowerBodyTokens = [
-      ...lowerOutfit.filter((c) =>
-        allSideLowerOutfitTokens.some((t) => t === c),
-      ),
-    ] as const;
-
-    const backLowerBodyTokens = [
-      ...lowerOutfit.filter((x) =>
-        allBackLowerOutfitTokens.some((y) => y === x),
-      ),
-    ] as const;
-
-    const isArmpitsExposure = upperOutfit.some((t) => t === `armpits`);
+    ] as ProfileEmotionCandidate[];
 
     return {
-      charaTokens,
       frontHeadTokens,
+      sideHeadTokens,
       backHeadTokens,
-      frontUpperBodyTokens,
-      sideUpperBodyTokens,
-      backUpperBodyTokens,
-      frontLowerBodyTokens,
-      sideLowerBodyTokens,
-      backLowerBodyTokens,
-      isArmpitsExposure,
+      frontPortraitTokens,
+      sidePortraitTokens,
+      backPortraitTokens,
+      frontMidriffTokens,
+      sideMidriffTokens,
+      backMidriffTokens,
+      frontThighTokens,
+      sideThighTokens,
+      backThighTokens,
+      footTokens,
+      upskirtTokens,
       profileEmotionCandidates,
-      emotionCandidates,
-      backgroundDefine,
+      frontEmotionCandidates,
+      isArmpitsExposure,
+      background,
     } as const;
   });
-};
 
 export type EachVisibleTokenInfo = ReturnType<typeof parse>[number];

@@ -1,10 +1,4 @@
-import {
-  cecilia,
-  kafuuChino,
-  nishikigiChisato,
-  yorBriar,
-  yorBriarAssassin,
-} from "./chara-defines.mjs";
+import { nishikigiChisato } from "./chara-defines.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
 import { posePromptGenerators } from "./poses.mjs";
