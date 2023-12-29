@@ -132,7 +132,7 @@ const generateAllFours: Generator = ({
   frontThighTokens,
   footTokens,
   frontEmotionCandidates,
-  background: { fromHorizontal },
+  background: { clean },
 }) => {
   return {
     key: `all-fours`,
@@ -150,7 +150,7 @@ const generateAllFours: Generator = ({
         ? [`hanging breasts`]
         : []),
       generateDynamicPrompt(candidatesToPrompts(frontEmotionCandidates)),
-      generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
+      generateDynamicPrompt(candidatesToPrompts(clean)),
     ].join(`, `),
   };
 };
@@ -163,7 +163,7 @@ const generateAllFoursFromBehind: Generator = ({
   footTokens,
   profileEmotionCandidates,
   frontEmotionCandidates,
-  background: { fromHorizontal },
+  background: { clean },
 }) => {
   const profileEmotionDynamicPrompt = [
     `profile`,
@@ -192,7 +192,7 @@ const generateAllFoursFromBehind: Generator = ({
         `1::${profileEmotionDynamicPrompt}`,
         `3::${frontEmotionDynamicPrompt}`,
       ]),
-      generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
+      generateDynamicPrompt(candidatesToPrompts(clean)),
     ].join(`, `),
   };
 };

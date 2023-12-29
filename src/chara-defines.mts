@@ -53,6 +53,16 @@ const generateMaidBkini = ({
     fromBelow: [[`outdoors`, `blue sky`]],
     fromAbove: [[`outdoors`, `ocean`]],
     lying: [[`outdoors`, `ocean`, `partially submerged`]],
+    clean: [
+      [`indoors`, `bed sheet`, `window`],
+      [
+        `simple background`,
+        `white background`,
+        `heart background`,
+        `heart`,
+        `spoken heart`,
+      ],
+    ],
   },
   outfitAndExposure: [
     `maid`,
@@ -441,6 +451,17 @@ export const nishikigiChisato: CharaDefine = {
         lying: [
           [`simple background`, `white background`],
           [`simple background`, `pink background`],
+        ],
+        clean: [
+          [`indoors`, `bed sheet`, `window`],
+          [`outdoors`, `grass`, `blue sky`],
+          [
+            `simple background`,
+            `white background`,
+            `heart background`,
+            `heart`,
+            `spoken heart`,
+          ],
         ],
       },
       outfitAndExposure: [

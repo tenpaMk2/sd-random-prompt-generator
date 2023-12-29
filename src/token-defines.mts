@@ -541,6 +541,7 @@ export type Background = Readonly<{
   fromBelow: readonly Candidate<BackgroundToken>[];
   fromAbove: readonly Candidate<BackgroundToken>[];
   lying: readonly Candidate<BackgroundToken>[];
+  clean: readonly Candidate<BackgroundToken>[]; // For sitting or all fours.
 }>;
 
 export const allBackgrounds = {
@@ -608,6 +609,24 @@ export const allBackgrounds = {
   lying: [
     [`bed sheet`],
     [`outdoors`, `grass`],
+    [`outdoors`, `ocean`, `partially submerged`],
+    [`simple background`, `white background`],
+    [`simple background`, `pink background`],
+    [`simple background`, `white background`, `heart background`],
+    [`simple background`, `pink background`, `heart background`],
+    [
+      `simple background`,
+      `white background`,
+      `heart background`,
+      `heart`,
+      `spoken heart`,
+    ],
+  ],
+  clean: [
+    [`bed sheet`],
+    [`indoors`, `bed sheet`, `window`],
+    [`outdoors`, `grass`],
+    [`outdoors`, `grass`, `blue sky`],
     [`outdoors`, `ocean`, `partially submerged`],
     [`simple background`, `white background`],
     [`simple background`, `pink background`],
