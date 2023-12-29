@@ -417,6 +417,10 @@ const allOutfitAndExposureTokens = [
   `pantyhose`,
   `thighhighs`,
   `black thighhighs`,
+  `socks`,
+  `white socks`,
+  `black socks`,
+  `loafers`,
   // Upskirt tokens
   `panties`,
   `red panties`,
@@ -813,6 +817,11 @@ const panty = {
 const upskirt = {
   ...invisible,
   upskirt: true,
+} as const satisfies Visible;
+
+const foot = {
+  ...invisible,
+  foot: true,
 } as const satisfies Visible;
 
 export const allTokenVisibilities = {
@@ -1219,6 +1228,10 @@ export const allTokenVisibilities = {
   pantyhose: pantyhose,
   thighhighs: thighhighs,
   "black thighhighs": thighhighs,
+  socks: foot,
+  "white socks": foot,
+  "black socks": foot,
+  loafers: foot,
   panties: panty,
   "red panties": panty,
   "blue panties": panty,

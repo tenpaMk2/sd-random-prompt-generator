@@ -477,6 +477,8 @@ export const nishikigiChisato: CharaDefine = {
         `red belt`,
         `taut clothes`,
         `pleated dress`,
+        `socks`,
+        `loafers`,
       ],
     },
   ],
