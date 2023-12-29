@@ -417,6 +417,7 @@ export const nishikigiChisato: CharaDefine = {
   key: `nishikigi-chisato-h-madoka`,
   charaTokens: [
     `<lora:nishikigi_chisato_v1:0.75>`,
+    `lycoris recoil`,
     `nishikigi chisato`,
     `red eyes`,
     `blonde hair`,

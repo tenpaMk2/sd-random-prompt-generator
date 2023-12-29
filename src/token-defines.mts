@@ -9,6 +9,7 @@ const allNameTokens = [
   `charlotte dunois`,
   `kafuu chino`,
   `yor briar`,
+  `lycoris recoil`,
   `nishikigi chisato`,
 ] as const satisfies readonly string[];
 export type NameToken = (typeof allNameTokens)[number];
@@ -831,6 +832,7 @@ export const allTokenVisibilities = {
   "charlotte dunois": all,
   "kafuu chino": all,
   "yor briar": all,
+  "lycoris recoil": all,
   "nishikigi chisato": all,
   "aqua eyes": head,
   "black eyes": head,
