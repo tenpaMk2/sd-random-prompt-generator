@@ -1,9 +1,13 @@
+export const allLoraTokens = [`<lora:nishikigi_chisato_v1:0.75>`] as const;
+export type LoraToken = (typeof allLoraTokens)[number];
+
 export const allNameTokens = [
   `aacecilia`,
   `cecilia alcott`,
   `charlotte dunois`,
   `kafuu chino`,
   `yor briar`,
+  `nishikigi chisato`,
 ] as const;
 export type NameToken = (typeof allNameTokens)[number];
 
@@ -281,6 +285,7 @@ export const allFrontHeadFeatureTokens = [
   `lolita hairband`,
   `striped hairband`,
   `two-tone hairband`,
+  `gold hairband`,
   `facial mark`,
   `animal ears`,
   `cat ears`,
@@ -290,6 +295,7 @@ export const allFrontHeadFeatureTokens = [
   `fang`,
   `pointy ears`,
   `earrings`,
+  `gold earrings`,
 ] as const;
 export type FrontHeadFeatureToken = (typeof allFrontHeadFeatureTokens)[number];
 
@@ -345,6 +351,7 @@ const anyAngleUpperOutfitTokens = [
   `white sleeves`,
   `belt`,
   `white belt`,
+  `red belt`,
   `detached collar`,
   `detached sleeves`,
   `maid`,
@@ -358,22 +365,35 @@ const anyAngleUpperOutfitTokens = [
   `shirt`,
   `collared shirt`,
   `vest`,
+  `green vest`,
   `blue vest`,
   `dress`,
   `red dress`,
+  `black dress`,
+  `grey dress`,
+  `two-tone dress`,
   `off shoulder`,
   `off-shoulder dress`,
   `off-shoulder sweater`,
   `sweater`,
   `red sweater`,
   `sweater dress`,
+  `office lady`,
+  `choker`,
+  `strap`,
+  `gloves`,
+  `black gloves`,
+  `fingerless gloves`,
+  `lycoris uniform`,
   `chino work`,
+  `aachisato`,
 ] as const;
 
 export const allFrontUpperOutfitTokens = [
   ...anyAngleUpperOutfitTokens,
   `collarbone`,
   `cleavage`,
+  `taut clothes`,
   `midriff`,
   `navel`,
   `covered navel`,
@@ -385,6 +405,8 @@ export const allFrontUpperOutfitTokens = [
   `underbust`,
   `bowtie`,
   `blue bowtie`,
+  `buttons`,
+  `jewelry`,
 ] as const;
 export type FrontUpperOutfitToken = (typeof allFrontUpperOutfitTokens)[number];
 
@@ -403,14 +425,18 @@ export type BackUpperOutfitToken = (typeof allBackUpperOutfitTokens)[number];
 const anyAngleLowerOutfitTokens = [
   `skindentation`, // for thighs
   `bare legs`,
+  `pleated dress`,
   `bikini skirt`,
   `skirt`,
   `white skirt`,
   `black skirt`,
+  `green skirt`,
   `miniskirt`,
+  `pencil skirt`,
   `red trim`,
   `pantyhose`,
   `thighhighs`,
+  `black thighhighs`,
 ] as const;
 
 export const allFrontLowerOutfitTokens = [
@@ -478,6 +504,8 @@ export const allBackgrounds = {
     [`indoors`, `bed`, `lamp`],
     [`indoors`, `window`],
     [`indoors`, `classroom`],
+    [`indoors`, `office`],
+    [`indoors`, `night`, `window`],
     [`outdoors`],
     [`outdoors`, `beach`],
     [`outdoors`, `ocean`],
@@ -487,6 +515,7 @@ export const allBackgrounds = {
     [`outdoors`, `mountain`, `rock`],
     [`outdoors`, `forest`],
     [`outdoors`, `garden`],
+    [`outdoors`, `night`],
     [`simple background`, `white background`],
     [
       `simple background`,
@@ -500,9 +529,11 @@ export const allBackgrounds = {
   "from below": [
     [`indoors`],
     [`indoors`, `ceiling`],
+    [`indoors`, `ceiling`, `office`],
     [`outdoors`],
     [`outdoors`, `blue sky`],
     [`outdoors`, `sunset`, `orange sky`],
+    [`outdoors`, `night`, `night sky`],
     [
       `simple background`,
       `white background`,
@@ -515,9 +546,11 @@ export const allBackgrounds = {
     [`bed sheet`],
     [`indoors`],
     [`indoors`, `wooden floor`],
+    [`indoors`, `floor`, `office`],
     [`outdoors`],
     [`outdoors`, `grass`],
     [`outdoors`, `ocean`],
+    [`outdoors`, `night`],
     [
       `simple background`,
       `white background`,

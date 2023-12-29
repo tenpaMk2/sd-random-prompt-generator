@@ -109,4 +109,71 @@ const generateCowboyShot = ({
   ].join(`,\n`);
 };
 
-export const posePromptGenerators = [generateUpperBody, generateCowboyShot];
+const generateAllFours = ({
+  charaTokens,
+  frontHeadTokens,
+  frontUpperBodyTokens,
+  frontLowerBodyTokens,
+  emotionCandidates,
+  backgroundDefine: { fromHorizontal },
+}: EachVisibleTokenInfo) => {
+  const frontEmotionDynamicPrompt = generateDynamicPrompt(
+    candidatesToPrompts(emotionCandidates),
+  );
+
+  return [
+    `all fours`,
+    `looking at viewer`,
+    charaTokens.join(`, `),
+    frontHeadTokens.join(`, `),
+    frontUpperBodyTokens.join(`, `),
+    frontLowerBodyTokens.join(`, `),
+    ...(frontUpperBodyTokens.some((t) => t === `cleavage`)
+      ? [`hanging breasts`]
+      : []),
+    frontEmotionDynamicPrompt,
+    generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
+  ].join(`,\n`);
+};
+
+const generateAllFoursFromBehind = ({
+  charaTokens,
+  frontHeadTokens,
+  backUpperBodyTokens,
+  backLowerBodyTokens,
+  emotionCandidates,
+  profileEmotionCandidates,
+  backgroundDefine: { fromHorizontal },
+}: EachVisibleTokenInfo) => {
+  const profileEmotionDynamicPrompt = [
+    `profile`,
+    generateDynamicPrompt(candidatesToPrompts(profileEmotionCandidates)),
+  ].join(`, `);
+  const frontEmotionDynamicPrompt = generateDynamicPrompt(
+    candidatesToPrompts(emotionCandidates),
+  );
+
+  return [
+    `all fours`,
+    `looking at viewer`,
+    `from behind`,
+    `looking back`,
+    `ass`,
+    charaTokens.join(`, `),
+    frontHeadTokens.join(`, `),
+    backUpperBodyTokens.join(`, `),
+    backLowerBodyTokens.join(`, `),
+    generateDynamicPrompt([
+      `1::${profileEmotionDynamicPrompt}`,
+      `3::${frontEmotionDynamicPrompt}`,
+    ]),
+    generateDynamicPrompt(candidatesToPrompts(fromHorizontal)),
+  ].join(`,\n`);
+};
+
+export const posePromptGenerators = [
+  generateUpperBody,
+  generateCowboyShot,
+  generateAllFours,
+  generateAllFoursFromBehind,
+];

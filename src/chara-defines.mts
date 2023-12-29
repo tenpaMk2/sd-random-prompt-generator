@@ -10,6 +10,7 @@ import {
   FrontHeadFeatureToken,
   FrontLowerOutfitToken,
   FrontUpperOutfitToken,
+  LoraToken,
   LowerBodyFeatureToken,
   NameToken,
   SideUpperOutfitToken,
@@ -18,6 +19,7 @@ import {
 
 type CharacterFeatureToken =
   | NameToken
+  | LoraToken
   | FrontHeadFeatureToken
   | BackHeadFeatureToken
   | BreastSizeToken
@@ -327,6 +329,147 @@ export const yorBriar: CharaDefine = {
         `sweater dress`,
       ],
       lowerOutfit: [`pantyhose`],
+    },
+    {
+      backgroundDefine: {
+        fromHorizontal: [[`indoors`, `office`]],
+        fromBelow: [[`indoors`, `ceiling`, `office`]],
+        fromAbove: [[`indoors`, `floor`, `office`]],
+        lying: [
+          [`simple background`, `white background`],
+          [`simple background`, `pink background`],
+        ],
+      },
+      upperOutfit: [
+        `office lady`,
+        `collarbone`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `vest`,
+        `green vest`,
+        `long sleeves`,
+        `buttons`,
+      ],
+      lowerOutfit: [`skirt`, `green skirt`, `pencil skirt`, `pantyhose`],
+    },
+  ],
+} as const;
+
+export const yorBriarAssassin: CharaDefine = {
+  chara: [
+    `yor briar`,
+    `red eyes`,
+    `tsurime`,
+    `eyelashes`,
+    `black hair`,
+    `long hair`,
+    `short hair with long locks`,
+    `hair between eyes`,
+    `sidelocks`,
+    `hairband`,
+    `gold hairband`,
+    `earrings`,
+    `gold earrings`,
+    `large breasts`,
+    `thick thighs`,
+  ],
+
+  emotionCandidates: [
+    [`blush`, `smile`],
+    [`blush`, `light smile`],
+    [`blush`, `smile`, `parted lips`],
+    [`blush`, `smile`, `half-closed eyes`],
+    [`blush`, `expressionless`],
+    [`blush`, `surprised`, `:o`, `open mouth`],
+    [`blush`, `naughty face`, `smile`, `half-closed eyes`],
+    [`blush`, `nose blush`, `scowl`],
+  ],
+
+  outfits: [
+    {
+      backgroundDefine: {
+        fromHorizontal: [
+          [`outdoors`, `night`],
+          [`indoors`, `night`, `window`],
+        ],
+        fromBelow: [[`outdoors`, `night`, `night sky`]],
+        fromAbove: [[`outdoors`, `night`]],
+        lying: [
+          [`simple background`, `white background`],
+          [`simple background`, `pink background`],
+        ],
+      },
+      upperOutfit: [
+        `choker`,
+        `collarbone`,
+        `strap`,
+        `dress`,
+        `black dress`,
+        `cleavage`,
+        `jewelry`,
+        `bare shoulders`,
+        `gloves`,
+        `black gloves`,
+        `fingerless gloves`,
+      ],
+      lowerOutfit: [`thighhighs`, `black thighhighs`],
+    },
+  ],
+} as const;
+
+export const nishikigiChisato: CharaDefine = {
+  chara: [
+    `<lora:nishikigi_chisato_v1:0.75>`,
+    `nishikigi chisato`,
+    `red eyes`,
+    `blonde hair`,
+    `short hair`,
+    `bob cut`,
+    `hair ribbon`,
+    `large breasts`,
+  ],
+
+  emotionCandidates: [
+    [`blush`, `smile`],
+    [`blush`, `light smile`],
+    [`blush`, `smile`, `parted lips`],
+    [`blush`, `smile`, `:d`, `open mouth`],
+    [`blush`, `smile`, `half-closed eyes`],
+    [`blush`, `expressionless`],
+    [`blush`, `surprised`, `:o`, `open mouth`],
+    [`blush`, `nose blush`, `embarrassed`],
+    [`blush`, `nose blush`, `nervous`],
+    [`blush`, `nose blush`, `flustered`],
+    [`blush`, `naughty face`, `smile`, `half-closed eyes`],
+    [`blush`, `nose blush`, `scowl`],
+  ],
+
+  outfits: [
+    {
+      backgroundDefine: {
+        fromHorizontal: [[`outdoors`, `city`]],
+        fromBelow: [[`outdoors`, `blue sky`]],
+        fromAbove: [[`outdoors`, `grass`]],
+        lying: [
+          [`simple background`, `white background`],
+          [`simple background`, `pink background`],
+        ],
+      },
+      upperOutfit: [
+        `aachisato`,
+        `lycoris uniform`,
+        `neck ribbon`,
+        `blue ribbon`,
+        `collared shirt`,
+        `two-tone dress`,
+        `red dress`,
+        `grey dress`,
+        `long sleeves`,
+        `red belt`,
+        `taut clothes`,
+      ],
+      lowerOutfit: [`pleated dress`],
     },
   ],
 } as const;
