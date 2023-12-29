@@ -72,3 +72,12 @@ const saveRecursively = async (
 const outputsDir = `outputs` as const;
 await rm(outputsDir, { recursive: true, force: true });
 await saveRecursively(resultTree, join(outputsDir));
+
+const parsedDir = join(outputsDir, `parsed`);
+await mkdir(parsedDir, { recursive: true });
+await Promise.all(
+  charaInfos.map(({ key, visibleTokenInfos }) => {
+    const json = JSON.stringify(visibleTokenInfos, null, 2);
+    return writeFile(join(parsedDir, `${key}.json`), json);
+  }),
+);
