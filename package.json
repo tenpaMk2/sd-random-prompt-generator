@@ -1,7 +1,7 @@
 {
-  "name": "sd-cosplay-prompt-generator",
+  "name": "sd-random-prompt-generator",
   "version": "0.1.0",
-  "description": "",
+  "description": "Generater random prompt (Dynamic prompts) for Stable Diffusion.",
   "main": "index.js",
   "scripts": {
     "exe": "node --loader ts-node/esm --nolazy -r ts-node/register/transpile-only src/index.mts"
