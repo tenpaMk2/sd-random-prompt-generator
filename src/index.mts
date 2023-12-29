@@ -2,7 +2,7 @@ import { nishikigiChisato } from "./chara-defines.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
 import { posePromptGenerators } from "./poses.mjs";
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile, mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 
 // Parse
@@ -69,4 +69,6 @@ const saveRecursively = async (
   return Promise.all([p, ...promises]);
 };
 
-await saveRecursively(resultTree, join(`outputs`));
+const outputsDir = `outputs` as const;
+await rm(outputsDir, { recursive: true, force: true });
+await saveRecursively(resultTree, join(outputsDir));
