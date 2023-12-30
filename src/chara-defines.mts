@@ -482,5 +482,6 @@ export const nishikigiChisato: CharaDefine = {
         `loafers`,
       ],
     },
+    generateMaidBkini({ breastSize: "large breasts" }),
   ],
 } as const;
