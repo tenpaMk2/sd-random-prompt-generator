@@ -1,4 +1,6 @@
+import { getKeys } from "../libs/utility.mjs";
 import { Tag } from "./all.mjs";
+import { createWriteStream } from "node:fs";
 
 export type Visible = Readonly<{
   frontHead: boolean;
@@ -678,3 +680,21 @@ export const tagVisibilities = {
   "partially submerged": visibleType.all,
   "bed sheet": visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
+
+export const writeAsCSV = (path: string) => {
+  const ws = createWriteStream(path);
+
+  const parts = getKeys(visibleType.all);
+  ws.write([`tag`, ...parts.map((part) => `"${part}"`)].join(`,`) + `\n`); // Write header
+
+  const tags = getKeys(tagVisibilities);
+  for (const tag of tags) {
+    const line = [
+      `"${tag}"`,
+      parts.map((part) => (tagVisibilities[tag][part] ? `"O"` : ``)),
+    ].join(`,`);
+    ws.write(line + `\n`);
+  }
+
+  ws.end();
+};

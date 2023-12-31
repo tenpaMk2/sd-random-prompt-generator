@@ -4,6 +4,7 @@ import { parse } from "./parser.mjs";
 import { posePromptGenerators } from "./poses.mjs";
 import { writeFile, mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
+import { writeAsCSV } from "./tag-defines/visible.mjs";
 
 // Parse
 
@@ -81,3 +82,6 @@ await Promise.all(
     return writeFile(join(parsedDir, `${key}.json`), json);
   }),
 );
+
+// Output tag visibility as CSV
+writeAsCSV(join(outputsDir, `tag-visibility.csv`));
