@@ -1,4 +1,4 @@
-import { backgroundCandidates } from "./background-candidates.mjs";
+import { Background, backgroundCandidates } from "./background-candidates.mjs";
 import { emotionPreset } from "./emotion-candidates.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { BackgroundTag } from "./tag-defines/background.mjs";
@@ -19,14 +19,6 @@ const BackgroundS = SingleTagToken<BackgroundTag>;
 const BackgroundD = DynamicPrompt<BackgroundTag>;
 const OutfitAndExposureS = SingleTagToken<OutfitAndExposureTag>;
 const OutfitAndExposureD = DynamicPrompt<OutfitAndExposureTag>;
-
-type Background = Readonly<{
-  fromHorizontal: readonly Token<BackgroundTag>[];
-  fromBelow: readonly Token<BackgroundTag>[];
-  fromAbove: readonly Token<BackgroundTag>[];
-  lying: readonly Token<BackgroundTag>[];
-  clean: readonly Token<BackgroundTag>[]; // For sitting or all fours.
-}>;
 
 export type CharaDefine = Readonly<{
   // Key that is used for filename.

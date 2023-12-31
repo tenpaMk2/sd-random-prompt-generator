@@ -1,5 +1,18 @@
 import { BackgroundTag } from "./tag-defines/background.mjs";
-import { DynamicCandidate, DynamicPrompt, SingleTagToken } from "./token.mjs";
+import {
+  DynamicCandidate,
+  DynamicPrompt,
+  SingleTagToken,
+  Token,
+} from "./token.mjs";
+
+export type Background = Readonly<{
+  fromHorizontal: readonly Token<BackgroundTag>[];
+  fromBelow: readonly Token<BackgroundTag>[];
+  fromAbove: readonly Token<BackgroundTag>[];
+  lying: readonly Token<BackgroundTag>[];
+  clean: readonly Token<BackgroundTag>[]; // For sitting or all fours.
+}>;
 
 const s = SingleTagToken<BackgroundTag>;
 const c = DynamicCandidate<BackgroundTag>;
@@ -126,5 +139,7 @@ export const backgroundCandidates = {
     ]),
   },
 } as const satisfies {
-  [camera: string]: { [k: string]: DynamicCandidate<BackgroundTag> };
+  [camera in keyof Background]: {
+    [k: string]: DynamicCandidate<BackgroundTag>;
+  };
 };

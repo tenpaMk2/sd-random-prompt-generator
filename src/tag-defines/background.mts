@@ -37,11 +37,3 @@ const allBackgroundTags = [
   `bed sheet`,
 ] as const satisfies readonly string[];
 export type BackgroundTag = (typeof allBackgroundTags)[number];
-
-export type Background = Readonly<{
-  fromHorizontal: readonly (readonly BackgroundTag[])[];
-  fromBelow: readonly (readonly BackgroundTag[])[];
-  fromAbove: readonly (readonly BackgroundTag[])[];
-  lying: readonly (readonly BackgroundTag[])[];
-  clean: readonly (readonly BackgroundTag[])[]; // For sitting or all fours.
-}>;
