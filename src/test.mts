@@ -118,6 +118,12 @@ const info = parse({
         new SingleTagToken<OutfitAndExposureTag>(`armpits`),
       ],
       upskirtTokens: [new SingleTagToken<OutfitAndExposureTag>(`crotch seam`)],
+      whenRemoveShoes: {
+        excludeTokens: [new SingleTagToken<OutfitAndExposureTag>(`thighhighs`)],
+        additionalFootTokensAfterRemoving: [
+          new SingleTagToken<OutfitAndExposureTag>(`socks`),
+        ],
+      },
     },
   ],
 });
@@ -165,6 +171,10 @@ assert(
 assert(
   info[0].footTokens.join(`, `) === `thighhighs, pantyhose, barefoot`,
   `parse: ${info[0].footTokens.join(`, `)}`,
+);
+assert(
+  info[0].removedShoesFootTokens.join(`, `) === `pantyhose, barefoot, socks`,
+  `parse: ${info[0].removedShoesFootTokens.join(`, `)}`,
 );
 assert(
   info[0].upskirtTokens.join(`, `) === `crotch seam`,

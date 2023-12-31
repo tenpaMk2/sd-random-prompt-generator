@@ -1,7 +1,9 @@
 import { armposePreset } from "./arm-pose-candidates.mjs";
+import { backgroundCandidates } from "./background-candidates.mjs";
 import { EachVisibleTokenInfo } from "./parser.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { ArmPoseTag, armpitsVisibleTags } from "./tag-defines/arm-pose.mjs";
+import { BackgroundTag } from "./tag-defines/background.mjs";
 import {
   DynamicCandidate,
   DynamicPrompt,
@@ -192,9 +194,56 @@ const generateAllFoursFromBehind: Generator = ({
   };
 };
 
+const generateAllFoursFromBehindOnBed: Generator = ({
+  frontHeadTokens,
+  backBreastTokens,
+  backMidriffTokens,
+  backHipAndThighTokens,
+  removedShoesFootTokens,
+  upskirtTokens,
+  frontEmotionTokens,
+  profileEmotionTokens,
+}) => {
+  return {
+    key: `all-fours-from-behind-on-bed`,
+    prompt: removeDuplicateSingleTagToken<Tag>([
+      new s(`all fours`),
+      new s(`looking at viewer`),
+      new s(`from behind`),
+      new s(`looking back`),
+      new s(`ass`),
+      ...frontHeadTokens,
+      ...backBreastTokens,
+      ...backMidriffTokens,
+      ...backHipAndThighTokens,
+      ...removedShoesFootTokens,
+      new d(`smile`, [
+        new c(profileEmotionTokens, {
+          multiplier: 1,
+        }),
+        new c(frontEmotionTokens, {
+          multiplier: 1,
+        }),
+      ]),
+      new d(`upskirt`, [
+        new c([]),
+        new c([new s(`upskirt`), ...upskirtTokens]),
+      ]),
+      new s(`on bed`),
+      new d(`indoors`, [
+        backgroundCandidates.clean.bedSheet,
+        backgroundCandidates.clean.bedSheetWindow,
+        backgroundCandidates.clean.bedSheetLamp,
+        backgroundCandidates.clean.bedSheetPillow,
+      ]),
+    ] satisfies Token<Tag>[]).join(`, `),
+  };
+};
+
 export const posePromptGenerators = [
   generateUpperBody,
   generateCowboyShot,
   generateAllFours,
   generateAllFoursFromBehind,
+  generateAllFoursFromBehindOnBed,
 ];

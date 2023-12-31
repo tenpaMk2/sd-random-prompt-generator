@@ -602,6 +602,7 @@ export const tagVisibilities = {
   socks: visibleType.foot,
   "white socks": visibleType.foot,
   "black socks": visibleType.foot,
+  shoes: visibleType.foot,
   loafers: visibleType.foot,
   underwear: visibleType.underwear,
   panties: visibleType.panty,
@@ -664,6 +665,7 @@ export const tagVisibilities = {
   "all fours": visibleType.all,
   "from behind": visibleType.all,
   upskirt: visibleType.upskirt,
+  "on bed": visibleType.all,
   // Background
   indoors: visibleType.all,
   cafe: visibleType.all,
@@ -701,6 +703,7 @@ export const tagVisibilities = {
   "wooden floor": visibleType.all,
   "partially submerged": visibleType.all,
   "bed sheet": visibleType.all,
+  pillow: visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

@@ -33,6 +33,10 @@ export type CharaDefine = Readonly<{
     backgroundTokens: Background;
     outfitAndExposureTokens: readonly Token<OutfitAndExposureTag>[];
     upskirtTokens: readonly Token<OutfitAndExposureTag>[];
+    whenRemoveShoes: {
+      excludeTokens: readonly SingleTagToken<OutfitAndExposureTag>[];
+      additionalFootTokensAfterRemoving: readonly Token<OutfitAndExposureTag>[]; // Eg: `barefoot` or `no shoes` .
+    };
   }>[];
 }>;
 
@@ -114,6 +118,10 @@ const generateMaidBkini = ({
     new OutfitAndExposureS(`zettai ryouiki`),
   ],
   upskirtTokens: preset.upskirtPanties,
+  whenRemoveShoes: {
+    excludeTokens: [],
+    additionalFootTokensAfterRemoving: [],
+  },
 });
 
 // export const cecilia: CharaDefine = {
@@ -495,10 +503,18 @@ export const nishikigiChisato = {
         new OutfitAndExposureS(`taut clothes`),
         new OutfitAndExposureS(`pleated dress`),
         new OutfitAndExposureS(`socks`),
+        new OutfitAndExposureS(`shoes`),
         new OutfitAndExposureS(`loafers`),
       ],
 
       upskirtTokens: preset.upskirtPanties,
+      whenRemoveShoes: {
+        excludeTokens: [
+          new OutfitAndExposureS(`shoes`),
+          new OutfitAndExposureS(`loafers`),
+        ],
+        additionalFootTokensAfterRemoving: [new OutfitAndExposureS(`no shoes`)],
+      },
     },
     generateMaidBkini({ breastSize: `large breasts` }),
   ],

@@ -98,6 +98,7 @@ const allOutfitTags = [
   `socks`,
   `white socks`,
   `black socks`,
+  `shoes`,
   `loafers`,
   `underwear`,
   `panties`,

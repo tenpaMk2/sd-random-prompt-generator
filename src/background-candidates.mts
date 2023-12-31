@@ -111,6 +111,8 @@ export const backgroundCandidates = {
   clean: {
     bedSheet: new c([`bed sheet`]),
     bedSheetWindow: new c([`indoors`, `bed sheet`, `window`]),
+    bedSheetLamp: new c([`indoors`, `bed sheet`, `lamp`]),
+    bedSheetPillow: new c([`indoors`, `bed sheet`, `pillow`]),
     grass: new c([`outdoors`, `grass`]),
     grassBlueSky: new c([`outdoors`, `grass`, `blue sky`]),
     oceanPartiallySubmerged: new c([

@@ -12,7 +12,13 @@ const filterByVisibility = (
 
 export const parse = (def: CharaDefine) =>
   def.situations.map(
-    ({ key, backgroundTokens, outfitAndExposureTokens, upskirtTokens }) => {
+    ({
+      key,
+      backgroundTokens,
+      outfitAndExposureTokens,
+      upskirtTokens,
+      whenRemoveShoes,
+    }) => {
       const charaTokens = [
         ...def.characterFeatureTokens,
         ...outfitAndExposureTokens,
@@ -43,6 +49,18 @@ export const parse = (def: CharaDefine) =>
         `backHipAndThigh`,
       );
       const footTokens = filterByVisibility(charaTokens, `foot`);
+
+      const excludedFootTokens = footTokens.filter((token) => {
+        if (isSingleTagToken(token)) {
+          return !whenRemoveShoes.excludeTokens.some(
+            (ex) => ex.tag === token.tag,
+          );
+        } else return true; // Dynamic prompts is not excluded.
+      });
+      const removedShoesFootTokens = [
+        ...excludedFootTokens,
+        ...whenRemoveShoes.additionalFootTokensAfterRemoving,
+      ];
 
       const isArmpitsExposure = outfitAndExposureTokens.some(
         (token) => token.representativeTag === `armpits`,
@@ -76,6 +94,7 @@ export const parse = (def: CharaDefine) =>
         sideHipAndThighTokens,
         backHipAndThighTokens,
         footTokens,
+        removedShoesFootTokens,
         upskirtTokens,
         frontEmotionTokens,
         profileEmotionTokens,
