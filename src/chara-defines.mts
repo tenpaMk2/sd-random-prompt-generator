@@ -1,94 +1,99 @@
+import { backgroundCandidates } from "./background-candidates.mjs";
+import { emotionPreset } from "./emotion-candidates.mjs";
+import { BackgroundTag } from "./tag-defines/background.mjs";
 import {
-  Background,
-  BodyFeatureToken,
   BreastSizeOrder,
-  BreastSizeToken,
-  EmotionCandidate,
-  HeadFeatureToken,
-  LoraToken,
-  NameToken,
-  OutfitAndExposureToken,
-} from "./token-defines.mjs";
+  BreastSizeTag,
+  CharacterFeatureTag,
+} from "./tag-defines/character-feature.mjs";
+import { EmotionTag } from "./tag-defines/emotion.mjs";
+import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
+import { DynamicPrompt, SingleTagToken, Token } from "./token.mjs";
 
-type CharacterFeatureToken =
-  | NameToken
-  | LoraToken
-  | HeadFeatureToken
-  | BreastSizeToken
-  | BodyFeatureToken;
+const CharaS = SingleTagToken<CharacterFeatureTag>;
+const CharaD = DynamicPrompt<CharacterFeatureTag>;
+const EmotionS = SingleTagToken<EmotionTag>;
+const EmotionD = DynamicPrompt<EmotionTag>;
+const BackgroundS = SingleTagToken<BackgroundTag>;
+const BackgroundD = DynamicPrompt<BackgroundTag>;
+const OutfitAndExposureS = SingleTagToken<OutfitAndExposureTag>;
+const OutfitAndExposureD = DynamicPrompt<OutfitAndExposureTag>;
 
-type Situation = Readonly<{
-  key: string;
-  background: Background;
-  outfitAndExposure: readonly OutfitAndExposureToken[];
+type Background = Readonly<{
+  fromHorizontal: readonly Token<BackgroundTag>[];
+  fromBelow: readonly Token<BackgroundTag>[];
+  fromAbove: readonly Token<BackgroundTag>[];
+  lying: readonly Token<BackgroundTag>[];
+  clean: readonly Token<BackgroundTag>[]; // For sitting or all fours.
 }>;
 
 export type CharaDefine = Readonly<{
   // Key that is used for filename.
   key: string;
   // Character feature tokens.
-  charaTokens: readonly CharacterFeatureToken[];
+  characterFeatureTokens: readonly Token<CharacterFeatureTag>[];
   // Emotion candidates that are specified in `token-defines.mts` .
-  emotionCandidates: readonly EmotionCandidate[];
+  emotionTokens: readonly Token<EmotionTag>[];
   // Backgrounds, outfits and exposures.
-  situations: readonly Situation[];
+  situations: readonly Readonly<{
+    key: string;
+    backgroundTokens: Background;
+    outfitAndExposureTokens: readonly Token<OutfitAndExposureTag>[];
+  }>[];
 }>;
 
 const generateMaidBkini = ({
   breastSize,
 }: {
-  readonly breastSize: BreastSizeToken;
-}): Situation => ({
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
   key: `maid-bikini`,
-  background: {
+  backgroundTokens: {
     fromHorizontal: [
-      [
-        `simple background`,
-        `white background`,
-        `heart background`,
-        `heart`,
-        `spoken heart`,
-      ],
+      new BackgroundD(`indoors`, [backgroundCandidates.fromHorizontal.cafe]),
     ],
-    fromBelow: [[`outdoors`, `blue sky`]],
-    fromAbove: [[`outdoors`, `ocean`]],
-    lying: [[`outdoors`, `ocean`, `partially submerged`]],
+    fromBelow: [
+      new BackgroundD(`indoors`, [
+        backgroundCandidates.fromBelow.heartBackground,
+        backgroundCandidates.fromBelow.ceiling,
+      ]),
+    ],
+    fromAbove: [
+      new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.woodenFloor]),
+    ],
+    lying: [new BackgroundD(`indoors`, [backgroundCandidates.lying.bedSheet])],
     clean: [
-      [`indoors`, `bed sheet`, `window`],
-      [
-        `simple background`,
-        `white background`,
-        `heart background`,
-        `heart`,
-        `spoken heart`,
-      ],
+      new BackgroundD(`indoors`, [
+        backgroundCandidates.clean.bedSheetWindow,
+        backgroundCandidates.clean.heartBackground,
+      ]),
     ],
   },
-  outfitAndExposure: [
-    `maid`,
-    `maid headdress`,
-    `detached collar`,
-    `bikini`,
-    `maid bikini`,
-    `frills`,
-    `apron`,
-    `frilled apron`,
-    `maid apron`,
-    `waist apron`,
-    `detached sleeves`,
-    `collarbone`,
-    `shoulder blades`,
-    `armpits`,
-    `navel`,
-    `sideboob`,
+  outfitAndExposureTokens: [
+    new OutfitAndExposureS(`maid`),
+    new OutfitAndExposureS(`maid headdress`),
+    new OutfitAndExposureS(`detached collar`),
+    new OutfitAndExposureS(`bikini`),
+    new OutfitAndExposureS(`maid bikini`),
+    new OutfitAndExposureS(`frills`),
+    new OutfitAndExposureS(`apron`),
+    new OutfitAndExposureS(`frilled apron`),
+    new OutfitAndExposureS(`maid apron`),
+    new OutfitAndExposureS(`waist apron`),
+    new OutfitAndExposureS(`detached sleeves`),
+    new OutfitAndExposureS(`collarbone`),
+    new OutfitAndExposureS(`shoulder blades`),
+    new OutfitAndExposureS(`armpits`),
+    new OutfitAndExposureS(`navel`),
+    new OutfitAndExposureS(`sideboob`),
     ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
-      ? ([`cleavage`] as const)
-      : ([] as const)),
-    `skirt`,
-    `miniskirt`,
-    `thighhighs`,
-    `thigh gap`,
-    `zettai ryouiki`,
+      ? [new OutfitAndExposureS(`sideboob`)]
+      : []),
+    new OutfitAndExposureS(`skirt`),
+    new OutfitAndExposureS(`miniskirt`),
+    new OutfitAndExposureS(`thighhighs`),
+    new OutfitAndExposureS(`thigh gap`),
+    new OutfitAndExposureS(`zettai ryouiki`),
   ],
 });
 
@@ -413,75 +418,67 @@ const generateMaidBkini = ({
 //   ],
 // } as const;
 
-export const nishikigiChisato: CharaDefine = {
+export const nishikigiChisato = {
   key: `nishikigi-chisato-h-madoka`,
-  charaTokens: [
-    `<lora:nishikigi_chisato_v1:0.75>`,
-    `lycoris recoil`,
-    `nishikigi chisato`,
-    `red eyes`,
-    `blonde hair`,
-    `short hair`,
-    `bob cut`,
-    `hair ribbon`,
-    `large breasts`,
+  characterFeatureTokens: [
+    new CharaS(`<lora:nishikigi_chisato_v1:0.75>`),
+    new CharaS(`lycoris recoil`),
+    new CharaS(`nishikigi chisato`),
+    new CharaS(`red eyes`),
+    new CharaS(`blonde hair`),
+    new CharaS(`short hair`),
+    new CharaS(`bob cut`),
+    new CharaS(`hair ribbon`),
+    new CharaS(`large breasts`),
   ],
-
-  emotionCandidates: [
-    [`blush`, `smile`],
-    [`blush`, `light smile`],
-    [`blush`, `smile`, `parted lips`],
-    [`blush`, `smile`, `:d`, `open mouth`],
-    [`blush`, `smile`, `half-closed eyes`],
-    [`blush`, `expressionless`],
-    [`blush`, `surprised`, `:o`, `open mouth`],
-    [`blush`, `nose blush`, `embarrassed`],
-    [`blush`, `nose blush`, `nervous`],
-    [`blush`, `nose blush`, `flustered`],
-    [`blush`, `naughty face`, `smile`, `half-closed eyes`],
-    [`blush`, `nose blush`, `scowl`],
-  ],
-
+  emotionTokens: emotionPreset.chisato,
   situations: [
     {
       key: `lycoris-uniform`,
-      background: {
-        fromHorizontal: [[`outdoors`, `city`]],
-        fromBelow: [[`outdoors`, `blue sky`]],
-        fromAbove: [[`outdoors`, `grass`]],
+      backgroundTokens: {
+        fromHorizontal: [
+          new BackgroundD(`indoors`, [
+            backgroundCandidates.fromHorizontal.city,
+          ]),
+        ],
+        fromBelow: [
+          new BackgroundD(`indoors`, [backgroundCandidates.fromBelow.blueSky]),
+        ],
+        fromAbove: [
+          new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.grass]),
+        ],
         lying: [
-          [`simple background`, `white background`],
-          [`simple background`, `pink background`],
+          new BackgroundD(`indoors`, [
+            backgroundCandidates.lying.whiteBackground,
+            backgroundCandidates.lying.pinkBackground,
+          ]),
         ],
         clean: [
-          [`indoors`, `bed sheet`, `window`],
-          [`outdoors`, `grass`, `blue sky`],
-          [
-            `simple background`,
-            `white background`,
-            `heart background`,
-            `heart`,
-            `spoken heart`,
-          ],
+          new BackgroundD(`indoors`, [
+            backgroundCandidates.clean.bedSheetWindow,
+            backgroundCandidates.clean.grassBlueSky,
+            backgroundCandidates.clean.heartBackground,
+          ]),
         ],
       },
-      outfitAndExposure: [
-        `aachisato`,
-        `lycoris uniform`,
-        `neck ribbon`,
-        `blue ribbon`,
-        `collared shirt`,
-        `two-tone dress`,
-        `red dress`,
-        `grey dress`,
-        `long sleeves`,
-        `red belt`,
-        `taut clothes`,
-        `pleated dress`,
-        `socks`,
-        `loafers`,
+
+      outfitAndExposureTokens: [
+        new OutfitAndExposureS(`aachisato`),
+        new OutfitAndExposureS(`lycoris uniform`),
+        new OutfitAndExposureS(`neck ribbon`),
+        new OutfitAndExposureS(`blue ribbon`),
+        new OutfitAndExposureS(`collared shirt`),
+        new OutfitAndExposureS(`two-tone dress`),
+        new OutfitAndExposureS(`red dress`),
+        new OutfitAndExposureS(`grey dress`),
+        new OutfitAndExposureS(`long sleeves`),
+        new OutfitAndExposureS(`red belt`),
+        new OutfitAndExposureS(`taut clothes`),
+        new OutfitAndExposureS(`pleated dress`),
+        new OutfitAndExposureS(`socks`),
+        new OutfitAndExposureS(`loafers`),
       ],
     },
-    generateMaidBkini({ breastSize: "large breasts" }),
+    generateMaidBkini({ breastSize: `large breasts` }),
   ],
-} as const;
+} as const satisfies CharaDefine;
