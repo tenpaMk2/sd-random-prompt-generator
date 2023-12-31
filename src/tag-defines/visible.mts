@@ -195,6 +195,8 @@ export const tagVisibilities = {
   "toaru kagaku no railgun": visibleType.all,
   "shokuhou misaki": visibleType.all,
 
+  "sparkling eyes": visibleType.face,
+  "star-shaped pupils": visibleType.face,
   "+ +": visibleType.face,
   "symbol-shaped pupils": visibleType.face,
   "aqua eyes": visibleType.face,

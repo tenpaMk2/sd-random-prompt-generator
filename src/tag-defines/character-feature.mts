@@ -18,6 +18,8 @@ const allProperNouns = [
 type ProperNoun = (typeof allProperNouns)[number];
 
 const allHeadFeatureTags = [
+  `sparkling eyes`,
+  `star-shaped pupils`,
   `+ +`,
   `symbol-shaped pupils`,
   `aqua eyes`,
