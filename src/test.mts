@@ -117,6 +117,7 @@ const info = parse({
         new SingleTagToken<OutfitAndExposureTag>(`barefoot`),
         new SingleTagToken<OutfitAndExposureTag>(`armpits`),
       ],
+      upskirtTokens: [new SingleTagToken<OutfitAndExposureTag>(`crotch seam`)],
     },
   ],
 });
@@ -135,15 +136,15 @@ assert(
 );
 assert(info[0].backBreastTokens.join(`, `) === `shirt, dress`, `parse`);
 assert(
-  info[0].frontMidriffTokens.join(`, `) === `shirt, dress, skirt, panties`,
+  info[0].frontMidriffTokens.join(`, `) === `shirt, dress, skirt`,
   `parse: ${info[0].frontMidriffTokens.join(`, `)}`,
 );
 assert(
-  info[0].sideMidriffTokens.join(`, `) === `shirt, dress, skirt, panties`,
+  info[0].sideMidriffTokens.join(`, `) === `shirt, dress, skirt`,
   `parse: ${info[0].sideMidriffTokens.join(`, `)}`,
 );
 assert(
-  info[0].backMidriffTokens.join(`, `) === `shirt, dress, skirt, panties`,
+  info[0].backMidriffTokens.join(`, `) === `shirt, dress, skirt`,
   `parse: ${info[0].backMidriffTokens.join(`, `)}`,
 );
 assert(
@@ -166,7 +167,7 @@ assert(
   `parse: ${info[0].footTokens.join(`, `)}`,
 );
 assert(
-  info[0].upskirtTokens.join(`, `) === `pantyhose, panties`,
+  info[0].upskirtTokens.join(`, `) === `crotch seam`,
   `parse: ${info[0].upskirtTokens.join(`, `)}`,
 );
 
@@ -187,8 +188,8 @@ assert(
 );
 
 assert(
-  `${info[0].background.fromHorizontal}` === `beach`,
-  `parse.background.fromHorizontal: ${info[0].background.fromHorizontal}`,
+  `${info[0].backgroundTokens.fromHorizontal}` === `beach`,
+  `parse.background.fromHorizontal: ${info[0].backgroundTokens.fromHorizontal}`,
 );
 
 const unique = removeDuplicateSingleTagToken([

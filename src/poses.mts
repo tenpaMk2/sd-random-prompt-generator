@@ -45,7 +45,7 @@ const generateUpperBody: Generator = ({
   isArmpitsExposure,
   frontEmotionTokens,
   profileEmotionTokens,
-  background: { fromHorizontal },
+  backgroundTokens: { fromHorizontal },
 }) => {
   const armPoseTokens = armposePreset.all;
   const armPoseTokensWithArmPits = isArmpitsExposure
@@ -86,7 +86,7 @@ const generateCowboyShot: Generator = ({
   isArmpitsExposure,
   frontEmotionTokens,
   profileEmotionTokens,
-  background: { fromHorizontal },
+  backgroundTokens: { fromHorizontal },
 }) => {
   const armPoseTokens = armposePreset.all;
   const armPoseTokensWithArmPits = isArmpitsExposure
@@ -127,7 +127,7 @@ const generateAllFours: Generator = ({
   frontHipAndThighTokens,
   footTokens,
   frontEmotionTokens,
-  background: { clean },
+  backgroundTokens: { clean },
 }) => {
   return {
     key: `all-fours`,
@@ -157,9 +157,10 @@ const generateAllFoursFromBehind: Generator = ({
   backMidriffTokens,
   backHipAndThighTokens,
   footTokens,
+  upskirtTokens,
   frontEmotionTokens,
   profileEmotionTokens,
-  background: { clean },
+  backgroundTokens: { clean },
 }) => {
   return {
     key: `all-fours-from-behind`,
@@ -181,6 +182,10 @@ const generateAllFoursFromBehind: Generator = ({
         new c(frontEmotionTokens, {
           multiplier: 1,
         }),
+      ]),
+      new d(`upskirt`, [
+        new c([]),
+        new c([new s(`upskirt`), ...upskirtTokens]),
       ]),
       ...clean,
     ] satisfies Token<Tag>[]).join(`, `),

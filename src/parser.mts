@@ -12,14 +12,10 @@ const filterByVisibility = (
 
 export const parse = (def: CharaDefine) =>
   def.situations.map(
-    ({
-      key,
-      backgroundTokens: background,
-      outfitAndExposureTokens: outfitAndExposures,
-    }) => {
+    ({ key, backgroundTokens, outfitAndExposureTokens, upskirtTokens }) => {
       const charaTokens = [
         ...def.characterFeatureTokens,
-        ...outfitAndExposures,
+        ...outfitAndExposureTokens,
       ] satisfies Token<Tag>[];
 
       const frontHeadTokens = filterByVisibility(charaTokens, `frontHead`);
@@ -47,9 +43,8 @@ export const parse = (def: CharaDefine) =>
         `backHipAndThigh`,
       );
       const footTokens = filterByVisibility(charaTokens, `foot`);
-      const upskirtTokens = filterByVisibility(charaTokens, `upskirt`);
 
-      const isArmpitsExposure = outfitAndExposures.some(
+      const isArmpitsExposure = outfitAndExposureTokens.some(
         (token) => token.representativeTag === `armpits`,
       );
 
@@ -84,8 +79,8 @@ export const parse = (def: CharaDefine) =>
         upskirtTokens,
         frontEmotionTokens,
         profileEmotionTokens,
+        backgroundTokens,
         isArmpitsExposure,
-        background,
       } as const;
     },
   );

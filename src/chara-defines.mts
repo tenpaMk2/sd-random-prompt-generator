@@ -1,5 +1,6 @@
 import { backgroundCandidates } from "./background-candidates.mjs";
 import { emotionPreset } from "./emotion-candidates.mjs";
+import { Tag } from "./tag-defines/all.mjs";
 import { BackgroundTag } from "./tag-defines/background.mjs";
 import {
   BreastSizeOrder,
@@ -39,8 +40,33 @@ export type CharaDefine = Readonly<{
     key: string;
     backgroundTokens: Background;
     outfitAndExposureTokens: readonly Token<OutfitAndExposureTag>[];
+    upskirtTokens: readonly Token<OutfitAndExposureTag>[];
   }>[];
 }>;
+
+const preset = {
+  upskirtPanties: [
+    new OutfitAndExposureS(`underwear`),
+    new OutfitAndExposureS(`panties`),
+    new OutfitAndExposureD(
+      `panties`,
+      [
+        [`red panties`],
+        [`blue panties`],
+        [`green panties`],
+        [`yellow panties`],
+        [`orange panties`],
+        [`aqua panties`],
+        [`white panties`],
+        [`black panties`],
+        [`pink panties`],
+        [`purple panties`],
+      ],
+      { weight: 1.2 },
+    ),
+    new OutfitAndExposureS(`crotch seam`),
+  ],
+} as const satisfies { [k in string]: readonly Token<Tag>[] };
 
 const generateMaidBkini = ({
   breastSize,
@@ -95,6 +121,7 @@ const generateMaidBkini = ({
     new OutfitAndExposureS(`thigh gap`),
     new OutfitAndExposureS(`zettai ryouiki`),
   ],
+  upskirtTokens: preset.upskirtPanties,
 });
 
 // export const cecilia: CharaDefine = {
@@ -478,6 +505,8 @@ export const nishikigiChisato = {
         new OutfitAndExposureS(`socks`),
         new OutfitAndExposureS(`loafers`),
       ],
+
+      upskirtTokens: preset.upskirtPanties,
     },
     generateMaidBkini({ breastSize: `large breasts` }),
   ],
