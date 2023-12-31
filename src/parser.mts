@@ -25,27 +25,27 @@ export const parse = (def: CharaDefine) =>
       const frontHeadTokens = filterByVisibility(charaTokens, `frontHead`);
       const sideHeadTokens = filterByVisibility(charaTokens, `sideHead`);
       const backHeadTokens = filterByVisibility(charaTokens, `backHead`);
-      const frontPortraitTokens = filterByVisibility(
-        charaTokens,
-        `frontPortrait`,
-      );
-      const sidePortraitTokens = filterByVisibility(
-        charaTokens,
-        `sidePortrait`,
-      );
-      const backPortraitTokens = filterByVisibility(
-        charaTokens,
-        `backPortrait`,
-      );
+      const frontBreastTokens = filterByVisibility(charaTokens, `frontBreast`);
+      const sideBreastTokens = filterByVisibility(charaTokens, `sideBreast`);
+      const backBreastTokens = filterByVisibility(charaTokens, `backBreast`);
       const frontMidriffTokens = filterByVisibility(
         charaTokens,
         `frontMidriff`,
       );
       const sideMidriffTokens = filterByVisibility(charaTokens, `sideMidriff`);
       const backMidriffTokens = filterByVisibility(charaTokens, `backMidriff`);
-      const frontThighTokens = filterByVisibility(charaTokens, `frontThigh`);
-      const sideThighTokens = filterByVisibility(charaTokens, `sideThigh`);
-      const backThighTokens = filterByVisibility(charaTokens, `backThigh`);
+      const frontHipAndThighTokens = filterByVisibility(
+        charaTokens,
+        `frontHipAndThigh`,
+      );
+      const sideHipAndThighTokens = filterByVisibility(
+        charaTokens,
+        `sideHipAndThigh`,
+      );
+      const backHipAndThighTokens = filterByVisibility(
+        charaTokens,
+        `backHipAndThigh`,
+      );
       const footTokens = filterByVisibility(charaTokens, `foot`);
       const upskirtTokens = filterByVisibility(charaTokens, `upskirt`);
 
@@ -71,15 +71,15 @@ export const parse = (def: CharaDefine) =>
         frontHeadTokens,
         sideHeadTokens,
         backHeadTokens,
-        frontPortraitTokens,
-        sidePortraitTokens,
-        backPortraitTokens,
+        frontBreastTokens,
+        sideBreastTokens,
+        backBreastTokens,
         frontMidriffTokens,
         sideMidriffTokens,
         backMidriffTokens,
-        frontThighTokens,
-        sideThighTokens,
-        backThighTokens,
+        frontHipAndThighTokens,
+        sideHipAndThighTokens,
+        backHipAndThighTokens,
         footTokens,
         upskirtTokens,
         frontEmotionTokens,

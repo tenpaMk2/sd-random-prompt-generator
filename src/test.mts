@@ -74,15 +74,15 @@ const t8 = tokenTest8.representativeTag;
 assert(!tagVisibilities[t8].frontHead, `DynamicPrompt`);
 assert(!tagVisibilities[t8].sideHead, `DynamicPrompt`);
 assert(!tagVisibilities[t8].backHead, `DynamicPrompt`);
-assert(tagVisibilities[t8].frontPortrait, `DynamicPrompt`);
-assert(tagVisibilities[t8].sidePortrait, `DynamicPrompt`);
-assert(!tagVisibilities[t8].backPortrait, `DynamicPrompt`);
+assert(tagVisibilities[t8].frontBreast, `DynamicPrompt`);
+assert(tagVisibilities[t8].sideBreast, `DynamicPrompt`);
+assert(!tagVisibilities[t8].backBreast, `DynamicPrompt`);
 assert(!tagVisibilities[t8].frontMidriff, `DynamicPrompt`);
 assert(!tagVisibilities[t8].sideMidriff, `DynamicPrompt`);
 assert(!tagVisibilities[t8].backMidriff, `DynamicPrompt`);
-assert(tagVisibilities[t8].frontThigh, `DynamicPrompt`);
-assert(tagVisibilities[t8].sideThigh, `DynamicPrompt`);
-assert(tagVisibilities[t8].backThigh, `DynamicPrompt`);
+assert(tagVisibilities[t8].frontHipAndThigh, `DynamicPrompt`);
+assert(tagVisibilities[t8].sideHipAndThigh, `DynamicPrompt`);
+assert(tagVisibilities[t8].backHipAndThigh, `DynamicPrompt`);
 assert(!tagVisibilities[t8].foot, `DynamicPrompt`);
 assert(!tagVisibilities[t8].upskirt, `DynamicPrompt`);
 
@@ -126,14 +126,14 @@ assert(`${info[0].sideHeadTokens}` === `red eyes`, `parse`);
 assert(`${info[0].backHeadTokens}` === ``, `parse`);
 
 assert(
-  info[0].frontPortraitTokens.join(`, `) === `collarbone, shirt, dress`,
+  info[0].frontBreastTokens.join(`, `) === `collarbone, shirt, dress`,
   `parse`,
 );
 assert(
-  info[0].sidePortraitTokens.join(`, `) === `collarbone, shirt, dress`,
+  info[0].sideBreastTokens.join(`, `) === `collarbone, shirt, dress`,
   `parse`,
 );
-assert(info[0].backPortraitTokens.join(`, `) === `shirt, dress`, `parse`);
+assert(info[0].backBreastTokens.join(`, `) === `shirt, dress`, `parse`);
 assert(
   info[0].frontMidriffTokens.join(`, `) === `shirt, dress, skirt, panties`,
   `parse: ${info[0].frontMidriffTokens.join(`, `)}`,
@@ -147,19 +147,19 @@ assert(
   `parse: ${info[0].backMidriffTokens.join(`, `)}`,
 );
 assert(
-  info[0].frontThighTokens.join(`, `) ===
+  info[0].frontHipAndThighTokens.join(`, `) ===
     `dress, skirt, thighhighs, pantyhose, panties`,
-  `parse: ${info[0].frontThighTokens.join(`, `)}`,
+  `parse: ${info[0].frontHipAndThighTokens.join(`, `)}`,
 );
 assert(
-  info[0].sideThighTokens.join(`, `) ===
+  info[0].sideHipAndThighTokens.join(`, `) ===
     `dress, skirt, thighhighs, pantyhose, panties`,
-  `parse: ${info[0].sideThighTokens.join(`, `)}`,
+  `parse: ${info[0].sideHipAndThighTokens.join(`, `)}`,
 );
 assert(
-  info[0].backThighTokens.join(`, `) ===
+  info[0].backHipAndThighTokens.join(`, `) ===
     `dress, skirt, thighhighs, pantyhose, panties`,
-  `parse: ${info[0].backThighTokens.join(`, `)}`,
+  `parse: ${info[0].backHipAndThighTokens.join(`, `)}`,
 );
 assert(
   info[0].footTokens.join(`, `) === `thighhighs, pantyhose, barefoot`,

@@ -40,7 +40,7 @@ type Generator = (info: EachVisibleTokenInfo) => {
 
 const generateUpperBody: Generator = ({
   frontHeadTokens,
-  frontPortraitTokens,
+  frontBreastTokens,
   frontMidriffTokens,
   isArmpitsExposure,
   frontEmotionTokens,
@@ -60,7 +60,7 @@ const generateUpperBody: Generator = ({
           new s(`upper body`),
           new s(`looking at viewer`),
           ...frontHeadTokens,
-          ...frontPortraitTokens,
+          ...frontBreastTokens,
           ...frontMidriffTokens,
           ...armPoseTokensWithArmPits,
           new d(`smile`, [
@@ -80,9 +80,9 @@ const generateUpperBody: Generator = ({
 
 const generateCowboyShot: Generator = ({
   frontHeadTokens,
-  frontPortraitTokens,
+  frontBreastTokens,
   frontMidriffTokens,
-  frontThighTokens,
+  frontHipAndThighTokens,
   isArmpitsExposure,
   frontEmotionTokens,
   profileEmotionTokens,
@@ -101,9 +101,9 @@ const generateCowboyShot: Generator = ({
           new s(`upper body`),
           new s(`looking at viewer`),
           ...frontHeadTokens,
-          ...frontPortraitTokens,
+          ...frontBreastTokens,
           ...frontMidriffTokens,
-          ...frontThighTokens,
+          ...frontHipAndThighTokens,
           ...armPoseTokensWithArmPits,
           new d(`smile`, [
             new c(profileEmotionTokens, {
@@ -122,9 +122,9 @@ const generateCowboyShot: Generator = ({
 
 const generateAllFours: Generator = ({
   frontHeadTokens,
-  frontPortraitTokens,
+  frontBreastTokens,
   frontMidriffTokens,
-  frontThighTokens,
+  frontHipAndThighTokens,
   footTokens,
   frontEmotionTokens,
   background: { clean },
@@ -136,14 +136,14 @@ const generateAllFours: Generator = ({
       new s(`breasts`),
       new s(`looking at viewer`),
       ...frontHeadTokens,
-      ...frontPortraitTokens,
-      ...(frontPortraitTokens.some(
+      ...frontBreastTokens,
+      ...(frontBreastTokens.some(
         (token) => token.representativeTag === `cleavage`,
       )
         ? [new s(`hanging breasts`)]
         : []),
       ...frontMidriffTokens,
-      ...frontThighTokens,
+      ...frontHipAndThighTokens,
       ...footTokens,
       ...frontEmotionTokens,
       ...clean,
@@ -153,9 +153,9 @@ const generateAllFours: Generator = ({
 
 const generateAllFoursFromBehind: Generator = ({
   frontHeadTokens,
-  backPortraitTokens,
+  backBreastTokens,
   backMidriffTokens,
-  backThighTokens,
+  backHipAndThighTokens,
   footTokens,
   frontEmotionTokens,
   profileEmotionTokens,
@@ -170,9 +170,9 @@ const generateAllFoursFromBehind: Generator = ({
       new s(`looking back`),
       new s(`ass`),
       ...frontHeadTokens,
-      ...backPortraitTokens,
+      ...backBreastTokens,
       ...backMidriffTokens,
-      ...backThighTokens,
+      ...backHipAndThighTokens,
       ...footTokens,
       new d(`smile`, [
         new c(profileEmotionTokens, {
