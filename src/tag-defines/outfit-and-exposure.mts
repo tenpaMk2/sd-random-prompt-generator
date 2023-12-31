@@ -24,6 +24,7 @@ const allExposureTags = [
   `ass visible through thighs`,
   `ass`,
   `barefoot`,
+  `no shoes`,
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 
@@ -122,3 +123,37 @@ const allLoraTriggerTags = [
 type LoraTriggerTag = (typeof allLoraTriggerTags)[number];
 
 export type OutfitAndExposureTag = ExposureTag | OutfitTag | LoraTriggerTag;
+
+// export const allOutdoorFootwearTags = [
+//   `shoes`,
+//   `colored shoe soles`,
+//   `aqua footwear`,
+//   `black footwear`,
+//   `blue footwear`,
+//   `brown footwear`,
+//   `green footwear`,
+//   `grey footwear`,
+//   `orange footwear`,
+//   `pink footwear`,
+//   `purple footwear`,
+//   `red footwear`,
+//   `white footwear`,
+//   `yellow footwear`,
+//   `flats`,
+//   `high heels`,
+//   `loafers`,
+//   `mary janes`,
+//   `oxfords`,
+//   `pointy footwear`,
+//   `rudder footwear`,
+//   `slippers`,
+//   `sneakers`,
+//   `high tops`,
+//   `toeless footwear`,
+//   `uwabaki`,
+//   `winged footwear`,
+//   `footwear bow`,
+//   `footwear ribbon`,
+//   `shoe soles`,
+// ] as const satisfies string[];
+// type OutdoorFootwearTag = (typeof allOutdoorFootwearTags)[number];

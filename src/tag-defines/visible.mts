@@ -534,6 +534,7 @@ export const tagVisibilities = {
   "ass visible through thighs": visibleType.all,
   ass: visibleType.all,
   barefoot: visibleType.foot,
+  "no shoes": visibleType.foot,
   "cleavage cutout": { ...invisible, frontBreast: true, sideBreast: true },
   "neck ribbon": { ...invisible, frontBreast: true, sideBreast: true },
   underbust: visibleType.midriff,
