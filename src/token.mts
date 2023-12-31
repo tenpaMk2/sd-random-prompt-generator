@@ -5,6 +5,7 @@ type CanBeToken = {
   readonly visible: Visible;
   readonly representativeTag: Tag;
   toString(): string;
+  toJSON(): unknown;
 };
 
 export class SingleTagToken<T extends Tag> implements CanBeToken {
@@ -22,6 +23,10 @@ export class SingleTagToken<T extends Tag> implements CanBeToken {
     return this.options.weight === 1.0
       ? `${this.tag}`
       : `(${this.tag}:${this.options.weight})`;
+  }
+
+  toJSON() {
+    return `(${this.tag}:${this.options.weight})`;
   }
 }
 
@@ -52,6 +57,10 @@ export class DynamicCandidate<T extends Tag> {
     return this.options.multiplier === 1
       ? prompt
       : `${this.options.multiplier}::${prompt}`;
+  }
+
+  toJSON() {
+    return this.tokens;
   }
 
   has(tag: T) {
@@ -100,6 +109,13 @@ export class DynamicPrompt<T extends Tag> implements CanBeToken {
     return this.options.weight === 1
       ? `{${content}}`
       : `({${content}}:${this.options.weight})`;
+  }
+
+  toJSON() {
+    return {
+      candidates: this.candidates,
+      weight: this.options.weight,
+    };
   }
 
   createExcluded(list: T[], options = { inverted: false }) {

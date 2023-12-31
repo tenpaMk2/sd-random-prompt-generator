@@ -74,6 +74,7 @@ const outputsDir = `outputs` as const;
 await rm(outputsDir, { recursive: true, force: true });
 await saveRecursively(resultTree, join(outputsDir));
 
+// Output parsed info.
 const parsedDir = join(outputsDir, `parsed`);
 await mkdir(parsedDir, { recursive: true });
 await Promise.all(
