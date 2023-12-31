@@ -1,5 +1,6 @@
 const allLoraNames = [
   `<lora:nishikigi_chisato_v1:0.75>`, // https://civitai.com/models/235178/nishikigi-chisato-lycoris-recoil
+  `<lora:shokuhou_misaki_v2:0.7>`, // https://civitai.com/models/19948/shokuhou-misaki-toaru-kagaku-no-railgun
 ] as const satisfies readonly string[];
 type LoraName = (typeof allLoraNames)[number];
 
@@ -11,10 +12,14 @@ const allProperNouns = [
   `yor briar`,
   `lycoris recoil`,
   `nishikigi chisato`,
+  `toaru kagaku no railgun`,
+  `shokuhou misaki`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
 const allHeadFeatureTags = [
+  `+ +`,
+  `symbol-shaped pupils`,
   `aqua eyes`,
   `black eyes`,
   `blue eyes`,

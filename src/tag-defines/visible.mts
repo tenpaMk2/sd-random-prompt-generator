@@ -184,6 +184,7 @@ export const visibleType = {
 export const tagVisibilities = {
   // Character feature
   "<lora:nishikigi_chisato_v1:0.75>": visibleType.all,
+  "<lora:shokuhou_misaki_v2:0.7>": visibleType.all,
   aacecilia: visibleType.all,
   "cecilia alcott": visibleType.all,
   "charlotte dunois": visibleType.all,
@@ -191,6 +192,11 @@ export const tagVisibilities = {
   "yor briar": visibleType.all,
   "lycoris recoil": visibleType.all,
   "nishikigi chisato": visibleType.all,
+  "toaru kagaku no railgun": visibleType.all,
+  "shokuhou misaki": visibleType.all,
+
+  "+ +": visibleType.face,
+  "symbol-shaped pupils": visibleType.face,
   "aqua eyes": visibleType.face,
   "black eyes": visibleType.face,
   "blue eyes": visibleType.face,
@@ -492,6 +498,7 @@ export const tagVisibilities = {
   "dog girl": visibleType.all,
   "fox girl": visibleType.all,
   elf: visibleType.all,
+
   // Outfit and exposures
   collarbone: {
     ...invisible,
@@ -620,6 +627,15 @@ export const tagVisibilities = {
   "lace panties": visibleType.panty,
   "chino work": visibleType.all,
   aachisato: visibleType.all,
+  hmmisaki: visibleType.all,
+  "tokiwadai school uniform": visibleType.all,
+  "sweater vest": visibleType.shirt,
+  "short sleeves": visibleType.aroundBreast,
+  "white gloves": visibleType.aroundBreast,
+  "elbow gloves": visibleType.aroundBreast,
+  "pleated skirt": visibleType.skirt,
+  "white thighhighs": visibleType.thighhighs,
+
   // Emotion
   blush: visibleType.face,
   "nose blush": visibleType.face,

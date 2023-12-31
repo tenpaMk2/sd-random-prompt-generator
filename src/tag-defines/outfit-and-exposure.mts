@@ -114,12 +114,20 @@ const allOutfitTags = [
   `purple panties`,
   `crotch seam`,
   `lace panties`,
+  `tokiwadai school uniform`,
+  `sweater vest`,
+  `short sleeves`,
+  `white gloves`,
+  `elbow gloves`,
+  `pleated skirt`,
+  `white thighhighs`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
 const allLoraTriggerTags = [
   `chino work`,
   `aachisato`,
+  `hmmisaki`,
 ] as const satisfies readonly string[];
 type LoraTriggerTag = (typeof allLoraTriggerTags)[number];
 

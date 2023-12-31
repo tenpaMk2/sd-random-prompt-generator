@@ -519,3 +519,76 @@ export const nishikigiChisato = {
     generateMaidBkini({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const shokuhoMisaki = {
+  key: `shokuho-misaki-h-madoka`,
+  characterFeatureTokens: [
+    new CharaS(`<lora:shokuhou_misaki_v2:0.7>`),
+    new CharaS(`toaru kagaku no railgun`),
+    new CharaS(`shokuhou misaki`),
+    new CharaS(`yellow eyes`),
+    new CharaS(`+ +`),
+    new CharaS(`symbol-shaped pupils`),
+    new CharaS(`blonde hair`),
+    new CharaS(`long hair`),
+    new CharaS(`straight hair`),
+    new CharaS(`hair between eyes`),
+    new CharaS(`large breasts`),
+  ],
+  emotionTokens: emotionPreset.chisato,
+  situations: [
+    {
+      key: `tokiwadai-school-uniform`,
+      backgroundTokens: {
+        fromHorizontal: [
+          new BackgroundD(`indoors`, [
+            backgroundCandidates.fromHorizontal.city,
+          ]),
+        ],
+        fromBelow: [
+          new BackgroundD(`indoors`, [backgroundCandidates.fromBelow.blueSky]),
+        ],
+        fromAbove: [
+          new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.grass]),
+        ],
+        lying: [
+          new BackgroundD(`indoors`, [
+            backgroundCandidates.lying.whiteBackground,
+            backgroundCandidates.lying.pinkBackground,
+          ]),
+        ],
+        clean: [
+          new BackgroundD(`indoors`, [
+            backgroundCandidates.clean.bedSheetWindow,
+            backgroundCandidates.clean.grassBlueSky,
+            backgroundCandidates.clean.heartBackground,
+          ]),
+        ],
+      },
+
+      outfitAndExposureTokens: [
+        new OutfitAndExposureS(`hmmisaki`),
+        new OutfitAndExposureS(`tokiwadai school uniform`),
+        new OutfitAndExposureS(`school uniform`),
+        new OutfitAndExposureS(`shirt`),
+        new OutfitAndExposureS(`white shirt`),
+        new OutfitAndExposureS(`collared shirt`),
+        new OutfitAndExposureS(`sweater vest`),
+        new OutfitAndExposureS(`short sleeves`),
+        new OutfitAndExposureS(`white gloves`),
+        new OutfitAndExposureS(`elbow gloves`),
+        new OutfitAndExposureS(`skirt`),
+        new OutfitAndExposureS(`pleated skirt`),
+        new OutfitAndExposureS(`thighhighs`),
+        new OutfitAndExposureS(`white thighhighs`),
+      ],
+
+      upskirtTokens: preset.upskirtPanties,
+      whenRemoveShoes: {
+        excludeTokens: [],
+        additionalFootTokensAfterRemoving: [],
+      },
+    },
+    generateMaidBkini({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;

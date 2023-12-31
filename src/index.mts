@@ -1,4 +1,4 @@
-import { nishikigiChisato } from "./chara-defines.mjs";
+import { nishikigiChisato, shokuhoMisaki } from "./chara-defines.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
 import { posePromptGenerators } from "./poses.mjs";
@@ -8,7 +8,7 @@ import { writeAsCSV } from "./tag-defines/visible.mjs";
 
 // Parse
 
-const charas = [nishikigiChisato];
+const charas = [nishikigiChisato, shokuhoMisaki];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,
   visibleTokenInfos: parse(chara),
