@@ -56,6 +56,24 @@ export const emotionPreset = {
       preset.oneEyeClosed,
     ],
   }),
+  shokuhoMisaki: new TagLeaf({
+    tagEntries: [],
+    children: [
+      preset.smile,
+      preset.lightSmile,
+      preset.smilePartedLips,
+      preset.smileOpenMouth,
+      preset.smileHalfClosedEyes,
+      preset.expressionless,
+      preset.surprised,
+      preset.embarrassed,
+      preset.nervous,
+      preset.flustered,
+      preset.naughtyFace,
+      preset.scowl,
+      preset.oneEyeClosed,
+    ],
+  }),
 };
 
 export const profileExcludeTags = [

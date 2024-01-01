@@ -587,14 +587,7 @@ export const shokuhoMisaki = {
     ],
   }),
 
-  emotionTree: new TagLeaf({
-    tagEntries: [],
-    children: [
-      new TagLeaf({ tagEntries: [`smile`], probability: 3 }),
-      new TagLeaf({ tagEntries: [`one eye closed`] }),
-      new TagLeaf({ tagEntries: [`blush`, `embarrassed`] }),
-    ],
-  }),
+  emotionTree: emotionPreset.shokuhoMisaki,
   situations: [
     {
       key: `tokiwadai-school-uniform`,
