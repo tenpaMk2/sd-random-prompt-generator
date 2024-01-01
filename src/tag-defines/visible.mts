@@ -123,9 +123,6 @@ export const visibleType = {
   },
   skirt: {
     ...invisible,
-    frontMidriff: true,
-    sideMidriff: true,
-    backMidriff: true,
     frontHipAndThigh: true,
     sideHipAndThigh: true,
     backHipAndThigh: true,
