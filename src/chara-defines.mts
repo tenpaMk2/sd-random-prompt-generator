@@ -108,9 +108,12 @@ const generateMaidBkini = ({
     new OutfitAndExposureS(`shoulder blades`),
     new OutfitAndExposureS(`armpits`),
     new OutfitAndExposureS(`navel`),
-    new OutfitAndExposureS(`sideboob`),
     ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
-      ? [new OutfitAndExposureS(`sideboob`)]
+      ? [
+          new OutfitAndExposureS(`cleavage`),
+          new OutfitAndExposureS(`sideboob`),
+          new OutfitAndExposureS(`backboob`),
+        ]
       : []),
     new OutfitAndExposureS(`skirt`),
     new OutfitAndExposureS(`miniskirt`),
@@ -119,6 +122,67 @@ const generateMaidBkini = ({
     new OutfitAndExposureS(`zettai ryouiki`),
   ],
   upskirtTokens: preset.upskirtPanties,
+  whenRemoveShoes: {
+    excludeTokens: [],
+    additionalFootTokensAfterRemoving: [],
+  },
+});
+
+const generateSchoolSwimsuit = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `school-swimsuit`,
+  backgroundTokens: {
+    fromHorizontal: [
+      new BackgroundD(`indoors`, [
+        backgroundCandidates.fromHorizontal.poolside,
+      ]),
+    ],
+    fromBelow: [
+      new BackgroundD(`indoors`, [
+        backgroundCandidates.fromBelow.heartBackground,
+        backgroundCandidates.fromBelow.ceiling,
+      ]),
+    ],
+    fromAbove: [
+      new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.poolside]),
+    ],
+    lying: [new BackgroundD(`indoors`, [backgroundCandidates.lying.bedSheet])],
+    clean: [
+      new BackgroundD(`indoors`, [
+        backgroundCandidates.clean.bedSheetWindow,
+        backgroundCandidates.clean.heartBackground,
+      ]),
+    ],
+  },
+  outfitAndExposureTokens: [
+    new OutfitAndExposureS(`school swimsuit`),
+    new OutfitAndExposureS(`blue one-piece swimsuit`), // TODO: FIXME
+    // new OutfitAndExposureD(`school swimsuit`, [
+    //   [`black one-piece swimsuit`],
+    //   [`blue one-piece swimsuit`],
+    //   [`white one-piece swimsuit`],
+    // ]),
+    new OutfitAndExposureS(`collarbone`),
+    new OutfitAndExposureS(`bare shoulders`),
+    new OutfitAndExposureS(`armpits`),
+    new OutfitAndExposureS(`cleavage`),
+    new OutfitAndExposureS(`bare arms`),
+    new OutfitAndExposureS(`covered navel`),
+    new OutfitAndExposureS(`bare legs`),
+    new OutfitAndExposureS(`barefoot`),
+    new OutfitAndExposureS(`shoulder blades`),
+    new OutfitAndExposureS(`skindentation`),
+    new OutfitAndExposureS(`skin tight`),
+    new OutfitAndExposureS(`taut clothes`),
+    ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
+      ? [new OutfitAndExposureS(`sideboob`), new OutfitAndExposureS(`backboob`)]
+      : []),
+    new OutfitAndExposureS(`thigh gap`),
+  ],
+  upskirtTokens: [],
   whenRemoveShoes: {
     excludeTokens: [],
     additionalFootTokensAfterRemoving: [],
@@ -596,5 +660,6 @@ export const shokuhoMisaki = {
       },
     },
     generateMaidBkini({ breastSize: `large breasts` }),
+    generateSchoolSwimsuit({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;

@@ -30,6 +30,7 @@ export const backgroundCandidates = {
     outdoors: new c([`outdoors`]),
     beach: new c([`outdoors`, `beach`]),
     ocean: new c([`outdoors`, `ocean`]),
+    poolside: new c([`outdoors`, `poolside`]),
     city: new c([`outdoors`, `city`]),
     rooftop: new c([`outdoors`, `rooftop`, `cityscape`]),
     confetti: new c([`outdoors`, `confetti`, `blue sky`]),
@@ -71,6 +72,7 @@ export const backgroundCandidates = {
     outdoors: new c([`outdoors`]),
     grass: new c([`outdoors`, `grass`]),
     ocean: new c([`outdoors`, `ocean`]),
+    poolside: new c([`outdoors`, `poolside`]),
     night: new c([`outdoors`, `night`]),
     heartBackground: new c([
       `simple background`,

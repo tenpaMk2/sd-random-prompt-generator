@@ -10,6 +10,7 @@ const allBackgroundTags = [
   `outdoors`,
   `beach`,
   `ocean`,
+  `poolside`,
   `city`,
   `rooftop`,
   `cityscape`,
