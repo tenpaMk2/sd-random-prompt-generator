@@ -2,7 +2,8 @@ import { armPosePreset } from "./arm-pose-candidates.mjs";
 import { backgroundPreset } from "./background-candidates.mjs";
 import { EachVisibleTokenInfo } from "./parser.mjs";
 import { Tag } from "./tag-defines/all.mjs";
-import { armpitsVisibleTags } from "./tag-defines/arm-pose.mjs";
+import { ArmPoseTag, armpitsVisibleTags } from "./tag-defines/arm-pose.mjs";
+import { Visible } from "./tag-defines/visible.mjs";
 import { Candidate, Candidates, TagLeaf, Token } from "./tag-tree.mjs";
 
 type Generator = (info: EachVisibleTokenInfo) => {
@@ -10,36 +11,36 @@ type Generator = (info: EachVisibleTokenInfo) => {
   prompt: string;
 };
 
-export const removeDuplicateTokens = (tokens: Token<Tag>[]) => [
+const removeDuplicateTokens = (tokens: Token<Tag>[]) => [
   ...new Map(tokens.map((token) => [token.tag, token])).values(),
 ];
 
-const generateUpperBody: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
-  profileEmotionCandidates,
-  background: { fromHorizontalCandidates },
-}) => {
+const getPersonCandidate = (
+  personCandidateInfos: EachVisibleTokenInfo["personCandidateInfos"],
+  parts: (keyof Visible | `removedShoesFoot`)[],
+) => {
   const personCandidateArr = personCandidateInfos.map(
-    ({
-      visibleTokens: { frontHead, frontBreast, frontMidriff },
-      probability,
-    }) => {
-      const c = new Candidate(
-        removeDuplicateTokens([...frontHead, ...frontBreast, ...frontMidriff]),
+    ({ visibleTokens, removedShoesFootTokens, probability }) => {
+      const all = {
+        ...visibleTokens,
+        removedShoesFoot: removedShoesFootTokens,
+      };
+      return new Candidate(
+        removeDuplicateTokens(parts.map((part) => all[part]).flat()),
         { probability },
       );
-
-      return c;
     },
   );
-  const personCandidates = new Candidates(personCandidateArr);
+  return new Candidates(personCandidateArr);
+};
 
-  const armPoseWithoutArmpitsCandidates = armPosePreset.all.toCandidates();
-
+const makeArmPoseCombination = (
+  personCandidates: Candidates<Tag>,
+  armPoseCandidates: Candidates<ArmPoseTag>,
+) => {
   const personAndArmPoseCandidates = Candidates.makeCombination([
     personCandidates,
-    armPoseWithoutArmpitsCandidates,
+    armPoseCandidates,
   ]);
 
   const addedArmpitsCandidates = personAndArmPoseCandidates.map((candidate) => {
@@ -57,25 +58,41 @@ const generateUpperBody: Generator = ({
     return candidate.filter((token) => token.tag !== `armpits`);
   });
 
+  return addedArmpitsCandidates;
+};
+
+const generateUpperBody: Generator = ({
+  personCandidateInfos,
+  frontEmotionCandidates,
+  profileEmotionCandidates,
+  background: { fromHorizontalCandidates },
+}) => {
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `frontBreast`,
+    `frontMidriff`,
+  ]);
+
+  const personAndArmpitsCandidates = makeArmPoseCombination(
+    personCandidates,
+    armPosePreset.all.toCandidates(),
+  );
+
   const singleCandidates = new TagLeaf({
     tagEntries: [`upper body`, `looking at viewer`],
   }).toCandidates();
 
-  const frontCandidates = Candidates.makeCombination([
-    singleCandidates,
-    addedArmpitsCandidates,
-    frontEmotionCandidates,
-    fromHorizontalCandidates,
-  ]);
-
-  const profileCandidates = Candidates.makeCombination([
-    singleCandidates,
-    addedArmpitsCandidates,
+  const emotionCandidates = frontEmotionCandidates.concat(
     profileEmotionCandidates,
+    0.3,
+  );
+
+  const all = Candidates.makeCombination([
+    personAndArmpitsCandidates,
+    singleCandidates,
+    emotionCandidates,
     fromHorizontalCandidates,
   ]);
-
-  const all = frontCandidates.concat(profileCandidates, 0.3);
 
   return {
     key: `upper-body`,
@@ -83,119 +100,140 @@ const generateUpperBody: Generator = ({
   };
 };
 
-// const generateCowboyShot: Generator = ({
-//   frontHeadTokens,
-//   frontBreastTokens,
-//   frontMidriffTokens,
-//   frontHipAndThighTokens,
-//   isArmpitsExposure,
-//   frontEmotionTokens,
-//   profileEmotionTokens,
-//   backgroundTokens: { fromHorizontal },
-// }) => {
-//   const armPoseTokens = armposePreset.all;
-//   const armPoseTokensWithArmPits = isArmpitsExposure
-//     ? addArmpits(armPoseTokens)
-//     : armPoseTokens;
+const generateCowboyShot: Generator = ({
+  personCandidateInfos,
+  frontEmotionCandidates,
+  profileEmotionCandidates,
+  background: { fromHorizontalCandidates },
+}) => {
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `frontBreast`,
+    `frontMidriff`,
+    `frontHipAndThigh`,
+  ]);
 
-//   return {
-//     key: `cowboy-shot`,
-//     prompt: (
-//       [
-//         ...removeDuplicateSingleTagToken<Tag>([
-//           new s(`upper body`),
-//           new s(`looking at viewer`),
-//           ...frontHeadTokens,
-//           ...frontBreastTokens,
-//           ...frontMidriffTokens,
-//           ...frontHipAndThighTokens,
-//           ...armPoseTokensWithArmPits,
-//           new d(`smile`, [
-//             new c(profileEmotionTokens, {
-//               multiplier: 1,
-//             }),
-//             new c(frontEmotionTokens, {
-//               multiplier: 4,
-//             }),
-//           ]),
-//         ]),
-//         ...fromHorizontal,
-//       ] satisfies Token<Tag>[]
-//     ).join(`, `),
-//   };
-// };
+  const personAndArmpitsCandidates = makeArmPoseCombination(
+    personCandidates,
+    armPosePreset.all.toCandidates(),
+  );
 
-// const generateAllFours: Generator = ({
-//   frontHeadTokens,
-//   frontBreastTokens,
-//   frontMidriffTokens,
-//   frontHipAndThighTokens,
-//   footTokens,
-//   frontEmotionTokens,
-//   backgroundTokens: { clean },
-// }) => {
-//   return {
-//     key: `all-fours`,
-//     prompt: removeDuplicateSingleTagToken<Tag>([
-//       new s(`all fours`),
-//       new s(`breasts`),
-//       new s(`looking at viewer`),
-//       ...frontHeadTokens,
-//       ...frontBreastTokens,
-//       ...(frontBreastTokens.some(
-//         (token) => token.representativeTag === `cleavage`,
-//       )
-//         ? [new s(`hanging breasts`)]
-//         : []),
-//       ...frontMidriffTokens,
-//       ...frontHipAndThighTokens,
-//       ...footTokens,
-//       ...frontEmotionTokens,
-//       ...clean,
-//     ] satisfies Token<Tag>[]).join(`, `),
-//   };
-// };
+  const singleCandidates = new TagLeaf({
+    tagEntries: [`cowboy shot`, `looking at viewer`],
+  }).toCandidates();
 
-// const generateAllFoursFromBehind: Generator = ({
-//   frontHeadTokens,
-//   backBreastTokens,
-//   backMidriffTokens,
-//   backHipAndThighTokens,
-//   footTokens,
-//   upskirtTokens,
-//   frontEmotionTokens,
-//   profileEmotionTokens,
-//   backgroundTokens: { clean },
-// }) => {
-//   return {
-//     key: `all-fours-from-behind`,
-//     prompt: removeDuplicateSingleTagToken<Tag>([
-//       new s(`all fours`),
-//       new s(`looking at viewer`),
-//       new s(`from behind`),
-//       new s(`looking back`),
-//       new s(`ass`),
-//       ...frontHeadTokens,
-//       ...backBreastTokens,
-//       ...backMidriffTokens,
-//       ...backHipAndThighTokens,
-//       ...footTokens,
-//       new d(`smile`, [
-//         new c(profileEmotionTokens, {
-//           multiplier: 1,
-//         }),
-//         new c(frontEmotionTokens, {
-//           multiplier: 1,
-//         }),
-//       ]),
-//       new d(`upskirt`, [
-//         new c([]),
-//         new c([new s(`upskirt`), ...upskirtTokens]),
-//       ]),
-//       ...clean,
-//     ] satisfies Token<Tag>[]).join(`, `),
-//   };
-// };
+  const emotionCandidates = frontEmotionCandidates.concat(
+    profileEmotionCandidates,
+    0.3,
+  );
+
+  const all = Candidates.makeCombination([
+    personAndArmpitsCandidates,
+    singleCandidates,
+    emotionCandidates,
+    fromHorizontalCandidates,
+  ]);
+
+  return {
+    key: `cowboy-shot`,
+    prompt: `${all}`,
+  };
+};
+
+const generateAllFours: Generator = ({
+  personCandidateInfos,
+  frontEmotionCandidates,
+  profileEmotionCandidates,
+  background: { cleanCandidates },
+}) => {
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `frontBreast`,
+    `frontMidriff`,
+    `frontHipAndThigh`,
+    `foot`,
+  ]);
+
+  const personCandidatesWithHangingBreasts = personCandidates.map(
+    (candidate) => {
+      if (candidate.tokens.some(({ tag }) => tag === `cleavage`)) {
+        candidate.tokens.push(new Token<Tag>(`hanging breasts`));
+        return candidate;
+      }
+      return candidate;
+    },
+  );
+
+  const singleCandidates = new TagLeaf({
+    tagEntries: [`all fours`, `looking at viewer`, `breasts`],
+  }).toCandidates();
+
+  const emotionCandidates = frontEmotionCandidates.concat(
+    profileEmotionCandidates,
+    0.2,
+  );
+
+  const all = Candidates.makeCombination([
+    personCandidatesWithHangingBreasts,
+    singleCandidates,
+    emotionCandidates,
+    cleanCandidates,
+  ]);
+
+  return {
+    key: `all-fours`,
+    prompt: `${all}`,
+  };
+};
+
+const generateAllFoursFromBehind: Generator = ({
+  personCandidateInfos,
+  frontEmotionCandidates,
+  profileEmotionCandidates,
+  upskirtCandidates,
+  background: { cleanCandidates },
+}) => {
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `backBreast`,
+    `backMidriff`,
+    `backHipAndThigh`,
+    `foot`,
+  ]);
+
+  const singleCandidates = new TagLeaf({
+    tagEntries: [
+      `all fours`,
+      `looking at viewer`,
+      `from behind`,
+      `looking back`,
+      `ass`,
+    ],
+  }).toCandidates();
+
+  const emotionCandidates = frontEmotionCandidates.concat(
+    profileEmotionCandidates,
+    0.5,
+  );
+
+  const upskirtOnOffCandidates = upskirtCandidates.concat(
+    new TagLeaf({ tagEntries: [] }).toCandidates(),
+    0.5,
+  );
+
+  const all = Candidates.makeCombination([
+    personCandidates,
+    singleCandidates,
+    emotionCandidates,
+    upskirtOnOffCandidates,
+    cleanCandidates,
+  ]);
+
+  return {
+    key: `all-fours-from-behind`,
+    prompt: `${all}`,
+  };
+};
 
 const generateAllFoursFromBehindOnBed: Generator = ({
   personCandidateInfos,
@@ -203,24 +241,13 @@ const generateAllFoursFromBehindOnBed: Generator = ({
   profileEmotionCandidates,
   upskirtCandidates,
 }) => {
-  const personCandidateArr = personCandidateInfos.map(
-    ({
-      visibleTokens: { frontHead, backBreast, backMidriff, backHipAndThigh },
-      removedShoesFootTokens,
-      probability,
-    }) =>
-      new Candidate(
-        removeDuplicateTokens([
-          ...frontHead,
-          ...backBreast,
-          ...backMidriff,
-          ...backHipAndThigh,
-          ...removedShoesFootTokens,
-        ]),
-        { probability },
-      ),
-  );
-  const personCandidates = new Candidates(personCandidateArr);
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `backBreast`,
+    `backMidriff`,
+    `backHipAndThigh`,
+    `removedShoesFoot`,
+  ]);
 
   const singleCandidates = new TagLeaf({
     tagEntries: [
@@ -269,8 +296,8 @@ const generateAllFoursFromBehindOnBed: Generator = ({
 
 export const posePromptGenerators = [
   generateUpperBody,
-  // generateCowboyShot,
-  // generateAllFours,
-  // generateAllFoursFromBehind,
+  generateCowboyShot,
+  generateAllFours,
+  generateAllFoursFromBehind,
   generateAllFoursFromBehindOnBed,
 ];
