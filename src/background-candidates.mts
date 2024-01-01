@@ -129,6 +129,7 @@ export const backgroundPreset = {
     oceanPartiallySubmerged: new TagLeaf({
       tagEntries: [`outdoors`, `ocean`, `partially submerged`],
     }),
+    poolside: new TagLeaf({ tagEntries: [`outdoors`, `poolside`] }),
     whiteBackground: new TagLeaf({
       tagEntries: [`simple background`, `white background`],
     }),
