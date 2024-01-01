@@ -1,105 +1,85 @@
 import { CharaDefine } from "./chara-defines.mjs";
 import { profileExcludeTags } from "./emotion-candidates.mjs";
+import { getKeys } from "./libs/utility.mjs";
 import { Tag } from "./tag-defines/all.mjs";
-import { EmotionTag } from "./tag-defines/emotion.mjs";
-import { Visible, tagVisibilities } from "./tag-defines/visible.mjs";
-import { SingleTagToken, Token, isSingleTagToken } from "./token.mjs";
+import {
+  Visible,
+  tagVisibilities,
+  visibleType,
+} from "./tag-defines/visible.mjs";
+import { Candidates, TagLeaf, Token } from "./tag-tree.mjs";
 
-const filterByVisibility = (
-  tokens: readonly Token<Tag>[],
-  part: keyof Visible,
-) => tokens.filter((token) => tagVisibilities[token.representativeTag][part]);
+const extractByVisibility = (tokens: Token<Tag>[]) => {
+  const allParts = getKeys(visibleType.all);
+  return allParts.reduce(
+    (prev, part) => ({
+      ...prev,
+      [part]: tokens.filter(({ tag }) => tagVisibilities[tag][part]),
+    }),
+    {},
+  ) as { [k in keyof Visible]: Token<Tag>[] };
+};
 
 export const parse = (def: CharaDefine) =>
   def.situations.map(
     ({
       key,
-      backgroundTokens,
-      outfitAndExposureTokens,
-      upskirtTokens,
+      background,
+      outfitAndExposureTree,
+      upskirtTree,
       whenRemoveShoes,
     }) => {
-      const charaTokens = [
-        ...def.characterFeatureTokens,
-        ...outfitAndExposureTokens,
-      ] satisfies Token<Tag>[];
+      const charaCandidates = Candidates.makeCombination([
+        def.characterFeatureTree.toCandidates(),
+        outfitAndExposureTree.toCandidates(),
+      ]);
 
-      const frontHeadTokens = filterByVisibility(charaTokens, `frontHead`);
-      const sideHeadTokens = filterByVisibility(charaTokens, `sideHead`);
-      const backHeadTokens = filterByVisibility(charaTokens, `backHead`);
-      const frontBreastTokens = filterByVisibility(charaTokens, `frontBreast`);
-      const sideBreastTokens = filterByVisibility(charaTokens, `sideBreast`);
-      const backBreastTokens = filterByVisibility(charaTokens, `backBreast`);
-      const frontMidriffTokens = filterByVisibility(
-        charaTokens,
-        `frontMidriff`,
-      );
-      const sideMidriffTokens = filterByVisibility(charaTokens, `sideMidriff`);
-      const backMidriffTokens = filterByVisibility(charaTokens, `backMidriff`);
-      const frontHipAndThighTokens = filterByVisibility(
-        charaTokens,
-        `frontHipAndThigh`,
-      );
-      const sideHipAndThighTokens = filterByVisibility(
-        charaTokens,
-        `sideHipAndThigh`,
-      );
-      const backHipAndThighTokens = filterByVisibility(
-        charaTokens,
-        `backHipAndThigh`,
-      );
-      const footTokens = filterByVisibility(charaTokens, `foot`);
+      const personCandidateInfos = charaCandidates.arr.map((candidate) => {
+        const visibility = extractByVisibility(candidate.tokens);
 
-      const excludedFootTokens = footTokens.filter((token) => {
-        if (isSingleTagToken(token)) {
-          return !whenRemoveShoes.excludeTokens.some(
-            (ex) => ex.tag === token.tag,
-          );
-        } else return true; // Dynamic prompts is not excluded.
+        const excludedFootTokens = visibility.foot.filter(({ tag }) =>
+          whenRemoveShoes.excludeTags.every((t) => t !== tag),
+        );
+        const removedShoesFootTokens = [
+          ...excludedFootTokens,
+          ...whenRemoveShoes.additionalFootTokensAfterRemoving,
+        ];
+        return {
+          visibleTokens: visibility,
+          removedShoesFootTokens,
+          probability: candidate.probability,
+        } as const;
       });
-      const removedShoesFootTokens = [
-        ...excludedFootTokens,
-        ...whenRemoveShoes.additionalFootTokensAfterRemoving,
-      ];
 
-      const isArmpitsExposure = outfitAndExposureTokens.some(
-        (token) => token.representativeTag === `armpits`,
-      );
+      const frontEmotionCandidates = def.emotionTree.toCandidates();
+      const profileEmotionCandidates = Candidates.makeCombination([
+        new TagLeaf({ tagEntries: [`profile`] }).toCandidates(),
+        frontEmotionCandidates.filter((candidate) =>
+          candidate.tokens.some(
+            (token) => !profileExcludeTags.some((t) => t === token.tag),
+          ),
+        ),
+      ]);
 
-      const frontEmotionTokens =
-        def.emotionTokens satisfies readonly Token<Tag>[];
-      const profileEmotionTokens = [
-        ...def.emotionTokens.map((token) => {
-          if (isSingleTagToken(token)) {
-            return token;
-          } else {
-            return token.createExcluded(profileExcludeTags);
-          }
-        }),
-        new SingleTagToken<EmotionTag>(`profile`),
-      ] satisfies Token<Tag>[];
+      const upskirtCandidates = Candidates.makeCombination([
+        new TagLeaf({ tagEntries: [`upskirt`] }).toCandidates(),
+        upskirtTree.toCandidates(),
+      ]);
 
       return {
         key, // For filenames.
-        frontHeadTokens,
-        sideHeadTokens,
-        backHeadTokens,
-        frontBreastTokens,
-        sideBreastTokens,
-        backBreastTokens,
-        frontMidriffTokens,
-        sideMidriffTokens,
-        backMidriffTokens,
-        frontHipAndThighTokens,
-        sideHipAndThighTokens,
-        backHipAndThighTokens,
-        footTokens,
-        removedShoesFootTokens,
-        upskirtTokens,
-        frontEmotionTokens,
-        profileEmotionTokens,
-        backgroundTokens,
-        isArmpitsExposure,
+        personCandidateInfos,
+        frontEmotionCandidates,
+        profileEmotionCandidates,
+        upskirtCandidates,
+        background: {
+          fromHorizontalCandidates:
+            background.fromHorizontalTree.toCandidates(),
+          fromBelowCandidates: background.fromBelowTree.toCandidates(),
+          fromAboveCandidates: background.fromAboveTree.toCandidates(),
+          lyingCandidates: background.lyingTree.toCandidates(),
+          cleanCandidates: background.cleanTree.toCandidates(),
+        },
       } as const;
     },
   );

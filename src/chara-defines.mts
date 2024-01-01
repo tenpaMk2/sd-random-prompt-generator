@@ -1,4 +1,4 @@
-import { Background, backgroundCandidates } from "./background-candidates.mjs";
+import { Background, backgroundPreset } from "./background-candidates.mjs";
 import { emotionPreset } from "./emotion-candidates.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { BackgroundTag } from "./tag-defines/background.mjs";
@@ -9,60 +9,45 @@ import {
 } from "./tag-defines/character-feature.mjs";
 import { EmotionTag } from "./tag-defines/emotion.mjs";
 import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
-import { DynamicPrompt, SingleTagToken, Token } from "./token.mjs";
-
-const CharaS = SingleTagToken<CharacterFeatureTag>;
-const CharaD = DynamicPrompt<CharacterFeatureTag>;
-const EmotionS = SingleTagToken<EmotionTag>;
-const EmotionD = DynamicPrompt<EmotionTag>;
-const BackgroundS = SingleTagToken<BackgroundTag>;
-const BackgroundD = DynamicPrompt<BackgroundTag>;
-const OutfitAndExposureS = SingleTagToken<OutfitAndExposureTag>;
-const OutfitAndExposureD = DynamicPrompt<OutfitAndExposureTag>;
+import { TagLeaf, Token } from "./tag-tree.mjs";
 
 export type CharaDefine = Readonly<{
   // Key that is used for filename.
   key: string;
   // Character feature tokens.
-  characterFeatureTokens: readonly Token<CharacterFeatureTag>[];
+  characterFeatureTree: TagLeaf<CharacterFeatureTag>;
   // Emotion candidates that are specified in `token-defines.mts` .
-  emotionTokens: readonly Token<EmotionTag>[];
+  emotionTree: TagLeaf<EmotionTag>;
   // Backgrounds, outfits and exposures.
   situations: readonly Readonly<{
     key: string;
-    backgroundTokens: Background;
-    outfitAndExposureTokens: readonly Token<OutfitAndExposureTag>[];
-    upskirtTokens: readonly Token<OutfitAndExposureTag>[];
+    background: Background;
+    outfitAndExposureTree: TagLeaf<OutfitAndExposureTag>;
+    upskirtTree: TagLeaf<OutfitAndExposureTag>;
     whenRemoveShoes: {
-      excludeTokens: readonly SingleTagToken<OutfitAndExposureTag>[];
-      additionalFootTokensAfterRemoving: readonly Token<OutfitAndExposureTag>[]; // Eg: `barefoot` or `no shoes` .
+      excludeTags: readonly OutfitAndExposureTag[];
+      additionalFootTokensAfterRemoving: Token<OutfitAndExposureTag>[]; // Eg: `barefoot` or `no shoes` .
     };
   }>[];
 }>;
 
 const preset = {
-  upskirtPanties: [
-    new OutfitAndExposureS(`underwear`),
-    new OutfitAndExposureS(`panties`),
-    new OutfitAndExposureD(
-      `panties`,
-      [
-        [`red panties`],
-        [`blue panties`],
-        [`green panties`],
-        [`yellow panties`],
-        [`orange panties`],
-        [`aqua panties`],
-        [`white panties`],
-        [`black panties`],
-        [`pink panties`],
-        [`purple panties`],
-      ],
-      { weight: 1.2 },
-    ),
-    new OutfitAndExposureS(`crotch seam`),
-  ],
-} as const satisfies { [k in string]: readonly Token<Tag>[] };
+  upskirtPanties: new TagLeaf<OutfitAndExposureTag>({
+    tagEntries: [`underwear`, `panties`, `crotch seam`],
+    children: [
+      new TagLeaf({ tagEntries: [`red panties`] }),
+      new TagLeaf({ tagEntries: [`blue panties`] }),
+      new TagLeaf({ tagEntries: [`green panties`] }),
+      new TagLeaf({ tagEntries: [`yellow panties`] }),
+      new TagLeaf({ tagEntries: [`orange panties`] }),
+      new TagLeaf({ tagEntries: [`aqua panties`] }),
+      new TagLeaf({ tagEntries: [`white panties`] }),
+      new TagLeaf({ tagEntries: [`black panties`] }),
+      new TagLeaf({ tagEntries: [`pink panties`] }),
+      new TagLeaf({ tagEntries: [`purple panties`] }),
+    ],
+  }),
+} as const satisfies { [k in string]: TagLeaf<OutfitAndExposureTag> };
 
 const generateMaidBkini = ({
   breastSize,
@@ -70,124 +55,120 @@ const generateMaidBkini = ({
   readonly breastSize: BreastSizeTag;
 }): CharaDefine["situations"][number] => ({
   key: `maid-bikini`,
-  backgroundTokens: {
-    fromHorizontal: [
-      new BackgroundD(`indoors`, [backgroundCandidates.fromHorizontal.cafe]),
-    ],
-    fromBelow: [
-      new BackgroundD(`indoors`, [
-        backgroundCandidates.fromBelow.heartBackground,
-        backgroundCandidates.fromBelow.ceiling,
-      ]),
-    ],
-    fromAbove: [
-      new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.woodenFloor]),
-    ],
-    lying: [new BackgroundD(`indoors`, [backgroundCandidates.lying.bedSheet])],
-    clean: [
-      new BackgroundD(`indoors`, [
-        backgroundCandidates.clean.bedSheetWindow,
-        backgroundCandidates.clean.heartBackground,
-      ]),
-    ],
+  background: {
+    fromHorizontalTree: backgroundPreset.fromHorizontalTree.cafe,
+    fromBelowTree: new TagLeaf<BackgroundTag>({
+      tagEntries: [],
+      children: [
+        backgroundPreset.fromBelowTree.heartBackground,
+        backgroundPreset.fromBelowTree.ceiling,
+      ],
+    }),
+    fromAboveTree: backgroundPreset.fromAboveTree.woodenFloor,
+    lyingTree: backgroundPreset.lyingTree.whiteBackground,
+    cleanTree: new TagLeaf<BackgroundTag>({
+      tagEntries: [],
+      children: [
+        backgroundPreset.cleanTree.bedSheetWindow,
+        backgroundPreset.cleanTree.heartBackground,
+      ],
+    }),
   },
-  outfitAndExposureTokens: [
-    new OutfitAndExposureS(`maid`),
-    new OutfitAndExposureS(`maid headdress`),
-    new OutfitAndExposureS(`detached collar`),
-    new OutfitAndExposureS(`bikini`),
-    new OutfitAndExposureS(`maid bikini`),
-    new OutfitAndExposureS(`skindentation`),
-    new OutfitAndExposureS(`frills`),
-    new OutfitAndExposureS(`apron`),
-    new OutfitAndExposureS(`frilled apron`),
-    new OutfitAndExposureS(`maid apron`),
-    new OutfitAndExposureS(`waist apron`),
-    new OutfitAndExposureS(`detached sleeves`),
-    new OutfitAndExposureS(`collarbone`),
-    new OutfitAndExposureS(`shoulder blades`),
-    new OutfitAndExposureS(`armpits`),
-    new OutfitAndExposureS(`navel`),
-    ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
-      ? [
-          new OutfitAndExposureS(`cleavage`),
-          new OutfitAndExposureS(`sideboob`),
-          new OutfitAndExposureS(`backboob`),
-        ]
-      : []),
-    new OutfitAndExposureS(`skirt`),
-    new OutfitAndExposureS(`miniskirt`),
-    new OutfitAndExposureS(`thighhighs`),
-    new OutfitAndExposureS(`thigh gap`),
-    new OutfitAndExposureS(`zettai ryouiki`),
-  ],
-  upskirtTokens: preset.upskirtPanties,
+  outfitAndExposureTree: new TagLeaf({
+    tagEntries: [
+      `maid`,
+      `maid headdress`,
+      `detached collar`,
+      `bikini`,
+      `maid bikini`,
+      `skindentation`,
+      `frills`,
+      `apron`,
+      `frilled apron`,
+      `maid apron`,
+      `waist apron`,
+      `detached sleeves`,
+      `collarbone`,
+      `shoulder blades`,
+      `armpits`,
+      `navel`,
+      ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
+        ? ([`cleavage`, `sideboob`, `backboob`] as const)
+        : []),
+      `skirt`,
+      `miniskirt`,
+      `thighhighs`,
+      `thigh gap`,
+      `zettai ryouiki`,
+    ],
+  }),
+  upskirtTree: preset.upskirtPanties,
   whenRemoveShoes: {
-    excludeTokens: [],
+    excludeTags: [],
     additionalFootTokensAfterRemoving: [],
   },
 });
 
-const generateSchoolSwimsuit = ({
-  breastSize,
-}: {
-  readonly breastSize: BreastSizeTag;
-}): CharaDefine["situations"][number] => ({
-  key: `school-swimsuit`,
-  backgroundTokens: {
-    fromHorizontal: [
-      new BackgroundD(`indoors`, [
-        backgroundCandidates.fromHorizontal.poolside,
-      ]),
-    ],
-    fromBelow: [
-      new BackgroundD(`indoors`, [
-        backgroundCandidates.fromBelow.heartBackground,
-        backgroundCandidates.fromBelow.ceiling,
-      ]),
-    ],
-    fromAbove: [
-      new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.poolside]),
-    ],
-    lying: [new BackgroundD(`indoors`, [backgroundCandidates.lying.bedSheet])],
-    clean: [
-      new BackgroundD(`indoors`, [
-        backgroundCandidates.clean.bedSheetWindow,
-        backgroundCandidates.clean.heartBackground,
-      ]),
-    ],
-  },
-  outfitAndExposureTokens: [
-    new OutfitAndExposureS(`school swimsuit`),
-    new OutfitAndExposureS(`blue one-piece swimsuit`), // TODO: FIXME
-    // new OutfitAndExposureD(`school swimsuit`, [
-    //   [`black one-piece swimsuit`],
-    //   [`blue one-piece swimsuit`],
-    //   [`white one-piece swimsuit`],
-    // ]),
-    new OutfitAndExposureS(`collarbone`),
-    new OutfitAndExposureS(`bare shoulders`),
-    new OutfitAndExposureS(`armpits`),
-    new OutfitAndExposureS(`cleavage`),
-    new OutfitAndExposureS(`bare arms`),
-    new OutfitAndExposureS(`covered navel`),
-    new OutfitAndExposureS(`bare legs`),
-    new OutfitAndExposureS(`barefoot`),
-    new OutfitAndExposureS(`shoulder blades`),
-    new OutfitAndExposureS(`skindentation`),
-    new OutfitAndExposureS(`skin tight`),
-    new OutfitAndExposureS(`taut clothes`),
-    ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
-      ? [new OutfitAndExposureS(`sideboob`), new OutfitAndExposureS(`backboob`)]
-      : []),
-    new OutfitAndExposureS(`thigh gap`),
-  ],
-  upskirtTokens: [],
-  whenRemoveShoes: {
-    excludeTokens: [],
-    additionalFootTokensAfterRemoving: [],
-  },
-});
+// const generateSchoolSwimsuit = ({
+//   breastSize,
+// }: {
+//   readonly breastSize: BreastSizeTag;
+// }): CharaDefine["situations"][number] => ({
+//   key: `school-swimsuit`,
+//   backgroundTokens: {
+//     fromHorizontal: [
+//       new BackgroundD(`indoors`, [
+//         backgroundCandidates.fromHorizontal.poolside,
+//       ]),
+//     ],
+//     fromBelow: [
+//       new BackgroundD(`indoors`, [
+//         backgroundCandidates.fromBelow.heartBackground,
+//         backgroundCandidates.fromBelow.ceiling,
+//       ]),
+//     ],
+//     fromAbove: [
+//       new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.poolside]),
+//     ],
+//     lying: [new BackgroundD(`indoors`, [backgroundCandidates.lying.bedSheet])],
+//     clean: [
+//       new BackgroundD(`indoors`, [
+//         backgroundCandidates.clean.bedSheetWindow,
+//         backgroundCandidates.clean.heartBackground,
+//       ]),
+//     ],
+//   },
+//   outfitAndExposureTokens: [
+//     new OutfitAndExposureS(`school swimsuit`),
+//     new OutfitAndExposureS(`blue one-piece swimsuit`), // TODO: FIXME
+//     // new OutfitAndExposureD(`school swimsuit`, [
+//     //   [`black one-piece swimsuit`],
+//     //   [`blue one-piece swimsuit`],
+//     //   [`white one-piece swimsuit`],
+//     // ]),
+//     new OutfitAndExposureS(`collarbone`),
+//     new OutfitAndExposureS(`bare shoulders`),
+//     new OutfitAndExposureS(`armpits`),
+//     new OutfitAndExposureS(`cleavage`),
+//     new OutfitAndExposureS(`bare arms`),
+//     new OutfitAndExposureS(`covered navel`),
+//     new OutfitAndExposureS(`bare legs`),
+//     new OutfitAndExposureS(`barefoot`),
+//     new OutfitAndExposureS(`shoulder blades`),
+//     new OutfitAndExposureS(`skindentation`),
+//     new OutfitAndExposureS(`skin tight`),
+//     new OutfitAndExposureS(`taut clothes`),
+//     ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
+//       ? [new OutfitAndExposureS(`sideboob`), new OutfitAndExposureS(`backboob`)]
+//       : []),
+//     new OutfitAndExposureS(`thigh gap`),
+//   ],
+//   upskirtTokens: [],
+//   whenRemoveShoes: {
+//     excludeTokens: [],
+//     additionalFootTokensAfterRemoving: [],
+//   },
+// });
 
 // export const cecilia: CharaDefine = {
 //   chara: [
@@ -510,156 +491,162 @@ const generateSchoolSwimsuit = ({
 //   ],
 // } as const;
 
-export const nishikigiChisato = {
-  key: `nishikigi-chisato-h-madoka`,
-  characterFeatureTokens: [
-    new CharaS(`<lora:nishikigi_chisato_v1:0.75>`),
-    new CharaS(`lycoris recoil`),
-    new CharaS(`nishikigi chisato`),
-    new CharaS(`red eyes`),
-    new CharaS(`blonde hair`),
-    new CharaS(`short hair`),
-    new CharaS(`bob cut`),
-    new CharaS(`hair ribbon`),
-    new CharaS(`large breasts`),
-  ],
-  emotionTokens: emotionPreset.chisato,
-  situations: [
-    {
-      key: `lycoris-uniform`,
-      backgroundTokens: {
-        fromHorizontal: [
-          new BackgroundD(`indoors`, [
-            backgroundCandidates.fromHorizontal.city,
-          ]),
-        ],
-        fromBelow: [
-          new BackgroundD(`indoors`, [backgroundCandidates.fromBelow.blueSky]),
-        ],
-        fromAbove: [
-          new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.grass]),
-        ],
-        lying: [
-          new BackgroundD(`indoors`, [
-            backgroundCandidates.lying.whiteBackground,
-            backgroundCandidates.lying.pinkBackground,
-          ]),
-        ],
-        clean: [
-          new BackgroundD(`indoors`, [
-            backgroundCandidates.clean.bedSheetWindow,
-            backgroundCandidates.clean.grassBlueSky,
-            backgroundCandidates.clean.heartBackground,
-          ]),
-        ],
-      },
+// export const nishikigiChisato = {
+//   key: `nishikigi-chisato-h-madoka`,
+//   characterFeatureTree: [
+//     new CharaS(`<lora:nishikigi_chisato_v1:0.75>`),
+//     new CharaS(`lycoris recoil`),
+//     new CharaS(`nishikigi chisato`),
+//     new CharaS(`red eyes`),
+//     new CharaS(`blonde hair`),
+//     new CharaS(`short hair`),
+//     new CharaS(`bob cut`),
+//     new CharaS(`hair ribbon`),
+//     new CharaS(`large breasts`),
+//   ],
+//   emotionTokens: emotionPreset.chisato,
+//   situations: [
+//     {
+//       key: `lycoris-uniform`,
+//       backgroundTokens: {
+//         fromHorizontal: [
+//           new BackgroundD(`indoors`, [
+//             backgroundCandidates.fromHorizontal.city,
+//           ]),
+//         ],
+//         fromBelow: [
+//           new BackgroundD(`indoors`, [backgroundCandidates.fromBelow.blueSky]),
+//         ],
+//         fromAbove: [
+//           new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.grass]),
+//         ],
+//         lying: [
+//           new BackgroundD(`indoors`, [
+//             backgroundCandidates.lying.whiteBackground,
+//             backgroundCandidates.lying.pinkBackground,
+//           ]),
+//         ],
+//         clean: [
+//           new BackgroundD(`indoors`, [
+//             backgroundCandidates.clean.bedSheetWindow,
+//             backgroundCandidates.clean.grassBlueSky,
+//             backgroundCandidates.clean.heartBackground,
+//           ]),
+//         ],
+//       },
 
-      outfitAndExposureTokens: [
-        new OutfitAndExposureS(`aachisato`),
-        new OutfitAndExposureS(`lycoris uniform`),
-        new OutfitAndExposureS(`neck ribbon`),
-        new OutfitAndExposureS(`blue ribbon`),
-        new OutfitAndExposureS(`collared shirt`),
-        new OutfitAndExposureS(`two-tone dress`),
-        new OutfitAndExposureS(`red dress`),
-        new OutfitAndExposureS(`grey dress`),
-        new OutfitAndExposureS(`long sleeves`),
-        new OutfitAndExposureS(`red belt`),
-        new OutfitAndExposureS(`taut clothes`),
-        new OutfitAndExposureS(`pleated dress`),
-        new OutfitAndExposureS(`socks`),
-        new OutfitAndExposureS(`shoes`),
-        new OutfitAndExposureS(`loafers`),
-      ],
+//       outfitAndExposureTokens: [
+//         new OutfitAndExposureS(`aachisato`),
+//         new OutfitAndExposureS(`lycoris uniform`),
+//         new OutfitAndExposureS(`neck ribbon`),
+//         new OutfitAndExposureS(`blue ribbon`),
+//         new OutfitAndExposureS(`collared shirt`),
+//         new OutfitAndExposureS(`two-tone dress`),
+//         new OutfitAndExposureS(`red dress`),
+//         new OutfitAndExposureS(`grey dress`),
+//         new OutfitAndExposureS(`long sleeves`),
+//         new OutfitAndExposureS(`red belt`),
+//         new OutfitAndExposureS(`taut clothes`),
+//         new OutfitAndExposureS(`pleated dress`),
+//         new OutfitAndExposureS(`socks`),
+//         new OutfitAndExposureS(`shoes`),
+//         new OutfitAndExposureS(`loafers`),
+//       ],
 
-      upskirtTokens: preset.upskirtPanties,
-      whenRemoveShoes: {
-        excludeTokens: [
-          new OutfitAndExposureS(`shoes`),
-          new OutfitAndExposureS(`loafers`),
-        ],
-        additionalFootTokensAfterRemoving: [new OutfitAndExposureS(`no shoes`)],
-      },
-    },
-    generateMaidBkini({ breastSize: `large breasts` }),
-  ],
-} as const satisfies CharaDefine;
+//       upskirtTokens: preset.upskirtPanties,
+//       whenRemoveShoes: {
+//         excludeTokens: [
+//           new OutfitAndExposureS(`shoes`),
+//           new OutfitAndExposureS(`loafers`),
+//         ],
+//         additionalFootTokensAfterRemoving: [new OutfitAndExposureS(`no shoes`)],
+//       },
+//     },
+//     generateMaidBkini({ breastSize: `large breasts` }),
+//   ],
+// } as const satisfies CharaDefine;
 
 export const shokuhoMisaki = {
   key: `shokuho-misaki-h-madoka`,
-  characterFeatureTokens: [
-    new CharaS(`<lora:shokuhou_misaki_v2:0.7>`),
-    new CharaS(`toaru kagaku no railgun`),
-    new CharaS(`shokuhou misaki`),
-    new CharaS(`yellow eyes`),
-    new CharaS(`sparkling eyes`, { weight: 1.5 }),
-    new CharaS(`star-shaped pupils`, { weight: 1.5 }),
-    new CharaS(`+ +`, { weight: 1.5 }),
-    new CharaS(`symbol-shaped pupils`),
-    new CharaS(`blonde hair`),
-    new CharaS(`long hair`),
-    new CharaS(`straight hair`),
-    new CharaS(`hair between eyes`),
-    new CharaS(`large breasts`),
-    new CharaS(`thick thighs`),
-  ],
-  emotionTokens: emotionPreset.chisato,
+  characterFeatureTree: new TagLeaf({
+    tagEntries: [
+      `<lora:shokuhou_misaki_v2:0.7>`,
+      `toaru kagaku no railgun`,
+      `shokuhou misaki`,
+      `yellow eyes`,
+      { tag: `sparkling eyes`, weight: 1.5 },
+      { tag: `star-shaped pupils`, weight: 1.5 },
+      { tag: `+ +`, weight: 1.5 },
+      `symbol-shaped pupils`,
+      `blonde hair`,
+      `long hair`,
+      `straight hair`,
+      `hair between eyes`,
+      `large breasts`,
+      `thick thighs`,
+    ],
+  }),
+
+  emotionTree: new TagLeaf({
+    tagEntries: [],
+    children: [
+      new TagLeaf({ tagEntries: [`smile`], probability: 3 }),
+      new TagLeaf({ tagEntries: [`one eye closed`] }),
+      new TagLeaf({ tagEntries: [`blush`, `embarrassed`] }),
+    ],
+  }),
   situations: [
     {
       key: `tokiwadai-school-uniform`,
-      backgroundTokens: {
-        fromHorizontal: [
-          new BackgroundD(`indoors`, [
-            backgroundCandidates.fromHorizontal.city,
-          ]),
-        ],
-        fromBelow: [
-          new BackgroundD(`indoors`, [backgroundCandidates.fromBelow.blueSky]),
-        ],
-        fromAbove: [
-          new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.grass]),
-        ],
-        lying: [
-          new BackgroundD(`indoors`, [
-            backgroundCandidates.lying.whiteBackground,
-            backgroundCandidates.lying.pinkBackground,
-          ]),
-        ],
-        clean: [
-          new BackgroundD(`indoors`, [
-            backgroundCandidates.clean.bedSheetWindow,
-            backgroundCandidates.clean.grassBlueSky,
-            backgroundCandidates.clean.heartBackground,
-          ]),
-        ],
+      background: {
+        fromHorizontalTree: backgroundPreset.fromHorizontalTree.city,
+        fromBelowTree: backgroundPreset.fromBelowTree.blueSky,
+        fromAboveTree: backgroundPreset.fromAboveTree.grass,
+        lyingTree: new TagLeaf<BackgroundTag>({
+          tagEntries: [],
+          children: [
+            backgroundPreset.lyingTree.whiteBackground,
+            backgroundPreset.lyingTree.pinkBackground,
+          ],
+        }),
+        cleanTree: new TagLeaf<BackgroundTag>({
+          tagEntries: [],
+          children: [
+            backgroundPreset.cleanTree.bedSheetWindow,
+            backgroundPreset.cleanTree.grassBlueSky,
+            backgroundPreset.cleanTree.heartBackground,
+          ],
+        }),
       },
 
-      outfitAndExposureTokens: [
-        new OutfitAndExposureS(`hmmisaki`),
-        new OutfitAndExposureS(`tokiwadai school uniform`),
-        new OutfitAndExposureS(`school uniform`),
-        new OutfitAndExposureS(`shirt`),
-        new OutfitAndExposureS(`white shirt`),
-        new OutfitAndExposureS(`collared shirt`),
-        new OutfitAndExposureS(`sweater vest`),
-        new OutfitAndExposureS(`short sleeves`),
-        new OutfitAndExposureS(`white gloves`),
-        new OutfitAndExposureS(`elbow gloves`),
-        new OutfitAndExposureS(`skirt`),
-        new OutfitAndExposureS(`pleated skirt`),
-        new OutfitAndExposureS(`thighhighs`),
-        new OutfitAndExposureS(`white thighhighs`),
-        new OutfitAndExposureS(`taut clothes`),
-        new OutfitAndExposureS(`skindentation`),
-      ],
-
-      upskirtTokens: preset.upskirtPanties,
+      outfitAndExposureTree: new TagLeaf({
+        tagEntries: [
+          `hmmisaki`,
+          `tokiwadai school uniform`,
+          `school uniform`,
+          `shirt`,
+          `white shirt`,
+          `collared shirt`,
+          `sweater vest`,
+          `short sleeves`,
+          `white gloves`,
+          `elbow gloves`,
+          `skirt`,
+          `pleated skirt`,
+          `thighhighs`,
+          `white thighhighs`,
+          `taut clothes`,
+          `skindentation`,
+          `socks`,
+          `loafers`,
+        ],
+      }),
+      upskirtTree: preset.upskirtPanties,
       whenRemoveShoes: {
-        excludeTokens: [],
-        additionalFootTokensAfterRemoving: [],
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [new Token(`no shoes`)],
       },
     },
     generateMaidBkini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;

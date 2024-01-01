@@ -508,8 +508,8 @@ export const tagVisibilities = {
     sideBreast: true,
   },
   "bare shoulders": visibleType.aroundBreast,
-  armpits: visibleType.invisible, // `armpits` is visible only when arm pose show armpits.
-  "bare arms": visibleType.all,
+  armpits: visibleType.aroundBreast,
+  "bare arms": visibleType.aroundBreast,
   cleavage: { ...invisible, frontBreast: true },
   breasts: { ...invisible, frontBreast: true, sideBreast: true },
   sideboob: { ...invisible, sideBreast: true },

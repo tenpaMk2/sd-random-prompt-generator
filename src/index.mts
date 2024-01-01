@@ -1,4 +1,4 @@
-import { nishikigiChisato, shokuhoMisaki } from "./chara-defines.mjs";
+import { shokuhoMisaki } from "./chara-defines.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
 import { posePromptGenerators } from "./poses.mjs";
@@ -7,16 +7,13 @@ import { join } from "node:path";
 import { writeAsCSV } from "./tag-defines/visible.mjs";
 
 // Parse
-
-const charas = [nishikigiChisato, shokuhoMisaki];
+const charas = [shokuhoMisaki];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,
   visibleTokenInfos: parse(chara),
 }));
 
 // Generate
-type ResultLeaf = { key: string; prompt: string; childPrompts?: ResultLeaf[] };
-
 const charaPrompts = charaInfos.map(({ key, visibleTokenInfos }) => {
   const situationPrompts = visibleTokenInfos.map((info) => {
     const posePrompts = posePromptGenerators.map((promptGenerator) =>
@@ -43,7 +40,12 @@ const charaPrompts = charaInfos.map(({ key, visibleTokenInfos }) => {
   };
 });
 
-const resultTree: ResultLeaf = {
+type ResultTree = {
+  key: string;
+  prompt: string;
+  childPrompts?: ResultTree[];
+};
+const resultTree: ResultTree = {
   key: `all`,
   prompt: generateDynamicPrompt(
     charaPrompts.map(({ prompt }) => prompt),
@@ -53,9 +55,8 @@ const resultTree: ResultLeaf = {
 };
 
 // Save
-
 const saveRecursively = async (
-  { key, prompt, childPrompts }: ResultLeaf,
+  { key, prompt, childPrompts }: typeof resultTree,
   parentDir: string,
 ): Promise<unknown> => {
   await mkdir(parentDir, { recursive: true });
@@ -64,8 +65,8 @@ const saveRecursively = async (
 
   if (!childPrompts) return p;
 
-  const promises = childPrompts?.map((l) =>
-    saveRecursively(l, join(parentDir, l.key)),
+  const promises = childPrompts?.map((child) =>
+    saveRecursively(child, join(parentDir, child.key)),
   );
   return Promise.all([p, ...promises]);
 };

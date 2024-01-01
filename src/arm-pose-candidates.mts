@@ -1,35 +1,19 @@
 import { ArmPoseTag } from "./tag-defines/arm-pose.mjs";
-import {
-  DynamicCandidate,
-  DynamicPrompt,
-  SingleTagToken,
-  Token,
-} from "./token.mjs";
+import { TagLeaf } from "./tag-tree.mjs";
 
-const s = SingleTagToken<ArmPoseTag>;
-const c = DynamicCandidate<ArmPoseTag>;
-const d = DynamicPrompt<ArmPoseTag>;
+const preset = {
+  armsUp: new TagLeaf({ tagEntries: [`arms up`] }),
+  reachingTowardsViewer: new TagLeaf({
+    tagEntries: [`reaching towards viewer`],
+  }),
+  v: new TagLeaf({ tagEntries: [`v`] }),
+  handUp: new TagLeaf({ tagEntries: [`hand up`] }),
+  handsOnOwnChest: new TagLeaf({ tagEntries: [`hands on own chest`] }),
+  heartHands: new TagLeaf({ tagEntries: [`heart hands`] }),
+  ownHandsTogether: new TagLeaf({ tagEntries: [`own hands together`] }),
+} as const satisfies { [k: string]: TagLeaf<ArmPoseTag> };
 
-export const armposeCandidates = {
-  armsUp: new c([`arms up`]),
-  reachingTowardsViewer: new c([`reaching towards viewer`]),
-  v: new c([`v`]),
-  handUp: new c([`hand up`]),
-  handsOnOwnChest: new c([`hands on own chest`]),
-  heartHands: new c([`heart hands`]),
-  ownHandsTogether: new c([`own hands together`]),
-} as const satisfies { [k: string]: DynamicCandidate<ArmPoseTag> };
-
-export const armposePreset = {
-  all: [
-    new d(`arms up`, [
-      armposeCandidates.armsUp,
-      armposeCandidates.reachingTowardsViewer,
-      armposeCandidates.v,
-      armposeCandidates.handUp,
-      armposeCandidates.handsOnOwnChest,
-      armposeCandidates.heartHands,
-      armposeCandidates.ownHandsTogether,
-    ]),
-  ] as Token<ArmPoseTag>[],
-} as const satisfies { [k: string]: readonly Token<ArmPoseTag>[] };
+export const armPosePreset = {
+  ...preset,
+  all: new TagLeaf({ tagEntries: [], children: Object.values(preset) }),
+};
