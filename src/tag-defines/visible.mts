@@ -634,6 +634,7 @@ export const tagVisibilities = {
   hmmisaki: visibleType.all,
   "tokiwadai school uniform": visibleType.all,
   "sweater vest": visibleType.shirt,
+  "brown sweater vest": visibleType.shirt,
   "short sleeves": visibleType.aroundBreast,
   "white gloves": visibleType.aroundBreast,
   "elbow gloves": visibleType.aroundBreast,
@@ -685,6 +686,8 @@ export const tagVisibilities = {
   "all fours": visibleType.all,
   "from behind": visibleType.all,
   upskirt: visibleType.upskirt,
+  lying: visibleType.all,
+  "on back": visibleType.all,
   "on bed": visibleType.all,
   // Background
   indoors: visibleType.all,

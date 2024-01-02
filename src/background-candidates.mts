@@ -87,6 +87,7 @@ export const backgroundPreset = {
   },
   lyingTree: {
     bedSheet: new TagLeaf({ tagEntries: [`bed sheet`] }),
+    bedSheetPillow: new TagLeaf({ tagEntries: [`bed sheet`, `pillow`] }),
     grass: new TagLeaf({ tagEntries: [`outdoors`, `grass`] }),
     oceanPartiallySubmerged: new TagLeaf({
       tagEntries: [`outdoors`, `ocean`, `partially submerged`],

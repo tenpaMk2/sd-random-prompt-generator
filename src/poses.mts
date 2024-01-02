@@ -1,6 +1,5 @@
 import { armPosePreset } from "./arm-pose-candidates.mjs";
 import { backgroundPreset } from "./background-candidates.mjs";
-import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { EachVisibleTokenInfo } from "./parser.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { ArmPoseTag, armpitsVisibleTags } from "./tag-defines/arm-pose.mjs";
@@ -290,10 +289,44 @@ const generateAllFoursFromBehindOnBed: Generator = ({
   };
 };
 
+const generateUpperBodyLyingOnBed: Generator = ({
+  personCandidateInfos,
+  frontEmotionCandidates,
+}) => {
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `frontBreast`,
+    `frontMidriff`,
+  ]);
+
+  const singleCandidates = new TagLeaf({
+    tagEntries: [`lying`, `looking at viewer`, `on back`, `on bed`],
+  }).toCandidates();
+
+  const backgroundCandidates = new TagLeaf({
+    tagEntries: [],
+    children: [
+      backgroundPreset.lyingTree.bedSheet,
+      backgroundPreset.lyingTree.bedSheetPillow,
+    ],
+  }).toCandidates();
+
+  return {
+    key: `upper-body-lying-on-on-bed`,
+    prompt: finilize([
+      personCandidates,
+      singleCandidates,
+      frontEmotionCandidates,
+      backgroundCandidates,
+    ]),
+  };
+};
+
 export const posePromptGenerators = [
   generateUpperBody,
   generateCowboyShot,
   generateAllFours,
   generateAllFoursFromBehind,
   generateAllFoursFromBehindOnBed,
+  generateUpperBodyLyingOnBed,
 ];

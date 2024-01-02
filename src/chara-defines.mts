@@ -612,6 +612,7 @@ export const shokuhoMisaki = {
           `white shirt`,
           `collared shirt`,
           `sweater vest`,
+          `brown sweater vest`,
           `short sleeves`,
           `white gloves`,
           `elbow gloves`,

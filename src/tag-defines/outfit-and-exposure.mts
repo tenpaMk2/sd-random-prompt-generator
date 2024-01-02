@@ -121,6 +121,7 @@ const allOutfitTags = [
   `lace panties`,
   `tokiwadai school uniform`,
   `sweater vest`,
+  `brown sweater vest`,
   `short sleeves`,
   `white gloves`,
   `elbow gloves`,
