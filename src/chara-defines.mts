@@ -23,7 +23,7 @@ export type CharaDefine = Readonly<{
     key: string;
     background: Background;
     outfitAndExposureTree: TagLeaf<OutfitAndExposureTag>;
-    upskirtTree: TagLeaf<OutfitAndExposureTag>;
+    upskirtTree?: TagLeaf<OutfitAndExposureTag>;
     whenRemoveShoes: {
       excludeTags: readonly OutfitAndExposureTag[];
       additionalFootTokensAfterRemoving: Token<OutfitAndExposureTag>[]; // Eg: `barefoot` or `no shoes` .
@@ -155,7 +155,6 @@ const generateSchoolSwimsuit = ({
         : []),
     ],
   }),
-  upskirtTree: new TagLeaf({ tagEntries: [] }),
   whenRemoveShoes: {
     excludeTags: [],
     additionalFootTokensAfterRemoving: [],

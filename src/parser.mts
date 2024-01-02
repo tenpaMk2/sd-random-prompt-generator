@@ -61,10 +61,12 @@ export const parse = (def: CharaDefine) =>
         ),
       ]);
 
-      const upskirtCandidates = Candidates.makeCombination([
-        new TagLeaf({ tagEntries: [`upskirt`] }).toCandidates(),
-        upskirtTree.toCandidates(),
-      ]);
+      const upskirtCandidates = upskirtTree
+        ? Candidates.makeCombination([
+            new TagLeaf({ tagEntries: [`upskirt`] }).toCandidates(),
+            upskirtTree.toCandidates(),
+          ])
+        : new TagLeaf({ tagEntries: [] }).toCandidates();
 
       return {
         key, // For filenames.
