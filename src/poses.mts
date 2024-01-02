@@ -1,15 +1,11 @@
 import { armPosePreset } from "./arm-pose-candidates.mjs";
 import { backgroundPreset } from "./background-candidates.mjs";
+import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { EachVisibleTokenInfo } from "./parser.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { ArmPoseTag, armpitsVisibleTags } from "./tag-defines/arm-pose.mjs";
 import { Visible } from "./tag-defines/visible.mjs";
 import { Candidate, Candidates, TagLeaf, Token } from "./tag-tree.mjs";
-
-type Generator = (info: EachVisibleTokenInfo) => {
-  key: string;
-  prompt: string;
-};
 
 const removeDuplicateTokens = (tokens: Token<Tag>[]) => [
   ...new Map(tokens.map((token) => [token.tag, token])).values(),
@@ -61,6 +57,16 @@ const makeArmPoseCombination = (
   return addedArmpitsCandidates;
 };
 
+const finilize = (independentCandidatesList: Candidates<Tag>[]) =>
+  generateDynamicPrompt(
+    independentCandidatesList.map((candidates) => candidates.toString()),
+  );
+
+type Generator = (info: EachVisibleTokenInfo) => {
+  key: string;
+  prompt: string;
+};
+
 const generateUpperBody: Generator = ({
   personCandidateInfos,
   frontEmotionCandidates,
@@ -87,16 +93,14 @@ const generateUpperBody: Generator = ({
     0.3,
   );
 
-  const all = Candidates.makeCombination([
-    personAndArmpitsCandidates,
-    singleCandidates,
-    emotionCandidates,
-    fromHorizontalCandidates,
-  ]);
-
   return {
     key: `upper-body`,
-    prompt: `${all}`,
+    prompt: finilize([
+      personAndArmpitsCandidates,
+      singleCandidates,
+      emotionCandidates,
+      fromHorizontalCandidates,
+    ]),
   };
 };
 
@@ -127,16 +131,14 @@ const generateCowboyShot: Generator = ({
     0.3,
   );
 
-  const all = Candidates.makeCombination([
-    personAndArmpitsCandidates,
-    singleCandidates,
-    emotionCandidates,
-    fromHorizontalCandidates,
-  ]);
-
   return {
     key: `cowboy-shot`,
-    prompt: `${all}`,
+    prompt: finilize([
+      personAndArmpitsCandidates,
+      singleCandidates,
+      emotionCandidates,
+      fromHorizontalCandidates,
+    ]),
   };
 };
 
@@ -173,16 +175,14 @@ const generateAllFours: Generator = ({
     0.2,
   );
 
-  const all = Candidates.makeCombination([
-    personCandidatesWithHangingBreasts,
-    singleCandidates,
-    emotionCandidates,
-    cleanCandidates,
-  ]);
-
   return {
     key: `all-fours`,
-    prompt: `${all}`,
+    prompt: finilize([
+      personCandidatesWithHangingBreasts,
+      singleCandidates,
+      emotionCandidates,
+      cleanCandidates,
+    ]),
   };
 };
 
@@ -221,17 +221,15 @@ const generateAllFoursFromBehind: Generator = ({
     0.5,
   );
 
-  const all = Candidates.makeCombination([
-    personCandidates,
-    singleCandidates,
-    emotionCandidates,
-    upskirtOnOffCandidates,
-    cleanCandidates,
-  ]);
-
   return {
     key: `all-fours-from-behind`,
-    prompt: `${all}`,
+    prompt: finilize([
+      personCandidates,
+      singleCandidates,
+      emotionCandidates,
+      upskirtOnOffCandidates,
+      cleanCandidates,
+    ]),
   };
 };
 
@@ -280,17 +278,15 @@ const generateAllFoursFromBehindOnBed: Generator = ({
     ],
   }).toCandidates();
 
-  const all = Candidates.makeCombination([
-    personCandidates,
-    singleCandidates,
-    emotionCandidates,
-    upskirtOnOffCandidates,
-    backgroundCandidates,
-  ]);
-
   return {
     key: `all-fours-from-behind-on-bed`,
-    prompt: `${all}`,
+    prompt: finilize([
+      personCandidates,
+      singleCandidates,
+      emotionCandidates,
+      upskirtOnOffCandidates,
+      backgroundCandidates,
+    ]),
   };
 };
 

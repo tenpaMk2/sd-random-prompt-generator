@@ -41,7 +41,6 @@ export class Candidates<T extends Tag> {
   toString() {
     return generateDynamicPrompt(
       this.arr.map((candidate) => candidate.toString()),
-      { lineBreak: true },
     );
   }
 

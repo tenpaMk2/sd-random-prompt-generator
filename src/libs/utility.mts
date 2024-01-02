@@ -1,6 +1,6 @@
 export const generateDynamicPrompt = (
   prompts: readonly string[],
-  options?: { lineBreak?: boolean },
+  options: { lineBreak?: boolean } = { lineBreak: false },
 ) => `{${prompts.join(` |${options?.lineBreak ? `\n` : ``}`)}}`;
 
 export const getKeys = <T extends { [key: string]: unknown }>(
