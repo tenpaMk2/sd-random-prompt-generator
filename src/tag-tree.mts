@@ -74,7 +74,7 @@ export class Candidates<T extends Tag> {
     return new Candidates(normalized);
   }
 
-  multiply(weight: number) {
+  multiplyProbability(weight: number) {
     const arr = this.arr.map((candidate) => {
       const temp = new Candidate<T>(candidate.tokens, {
         probability: candidate.probability * weight,
@@ -86,8 +86,8 @@ export class Candidates<T extends Tag> {
 
   concat(target: Candidates<T>, weight: number) {
     const arr = [
-      ...this.multiply(1 - weight).arr,
-      ...target.multiply(weight).arr,
+      ...this.multiplyProbability(1 - weight).arr,
+      ...target.multiplyProbability(weight).arr,
     ];
     return new Candidates(arr);
   }
