@@ -58,9 +58,9 @@ const makeArmPoseCombination = (
 };
 
 const finilize = (independentCandidatesList: Candidates<Tag>[]) =>
-  generateDynamicPrompt(
-    independentCandidatesList.map((candidates) => candidates.toString()),
-  );
+  independentCandidatesList
+    .map((candidates) => candidates.toString())
+    .join(`, `);
 
 type Generator = (info: EachVisibleTokenInfo) => {
   key: string;
