@@ -56,6 +56,20 @@ const makeArmPoseCombination = (
   return addedArmpitsCandidates;
 };
 
+const addLift = (personAndUpskirtCandidates: Candidates<Tag>) => {
+  const added = personAndUpskirtCandidates.map((candidate) => {
+    candidate.tokens.push(new Token<Tag>(`clothes lift`));
+    if (candidate.tokens.some(({ tag }) => tag === `skirt`)) {
+      candidate.tokens.push(new Token<Tag>(`skirt lift`));
+    }
+    if (candidate.tokens.some(({ tag }) => tag === `dress`)) {
+      candidate.tokens.push(new Token<Tag>(`dress lift`));
+    }
+    return candidate;
+  });
+  return added;
+};
+
 const finilize = (independentCandidatesList: Candidates<Tag>[]) =>
   independentCandidatesList
     .map((candidates) => candidates.toString())
@@ -289,6 +303,45 @@ const generateAllFoursFromBehindOnBed: Generator = ({
   };
 };
 
+const generatePortraitLyingOnBed: Generator = ({
+  personCandidateInfos,
+  frontEmotionCandidates,
+}) => {
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `frontBreast`,
+  ]);
+
+  const singleCandidates = new TagLeaf({
+    tagEntries: [
+      `portrait`,
+      `lying`,
+      `looking at viewer`,
+      `portrait`,
+      `on back`,
+      `on bed`,
+    ],
+  }).toCandidates();
+
+  const backgroundCandidates = new TagLeaf({
+    tagEntries: [],
+    children: [
+      backgroundPreset.lyingTree.bedSheet,
+      backgroundPreset.lyingTree.bedSheetPillow,
+    ],
+  }).toCandidates();
+
+  return {
+    key: `portrait-lying-on-on-bed`,
+    prompt: finilize([
+      personCandidates,
+      singleCandidates,
+      frontEmotionCandidates,
+      backgroundCandidates,
+    ]),
+  };
+};
+
 const generateUpperBodyLyingOnBed: Generator = ({
   personCandidateInfos,
   frontEmotionCandidates,
@@ -300,7 +353,13 @@ const generateUpperBodyLyingOnBed: Generator = ({
   ]);
 
   const singleCandidates = new TagLeaf({
-    tagEntries: [`lying`, `looking at viewer`, `on back`, `on bed`],
+    tagEntries: [
+      `upper body`,
+      `lying`,
+      `looking at viewer`,
+      `on back`,
+      `on bed`,
+    ],
   }).toCandidates();
 
   const backgroundCandidates = new TagLeaf({
@@ -322,11 +381,76 @@ const generateUpperBodyLyingOnBed: Generator = ({
   };
 };
 
+const generateCowboyShotLyingOnBed: Generator = ({
+  personCandidateInfos,
+  upskirtCandidates,
+  frontEmotionCandidates,
+  profileEmotionCandidates,
+}) => {
+  const personCandidates = getPersonCandidate(personCandidateInfos, [
+    `frontHead`,
+    `frontBreast`,
+    `frontMidriff`,
+    `frontHipAndThigh`,
+  ]);
+
+  const personAndUpskirtCandidates = Candidates.makeCombination([
+    personCandidates,
+    upskirtCandidates,
+  ]);
+
+  const personUpskirtLegsCandidates = Candidates.makeCombination([
+    addLift(personAndUpskirtCandidates),
+    new TagLeaf({
+      tagEntries: [],
+      children: [
+        new TagLeaf({ tagEntries: [`spread legs`] }),
+        new TagLeaf({ tagEntries: [`legs up`] }),
+      ],
+    }).toCandidates(),
+  ]);
+
+  const singleCandidates = new TagLeaf({
+    tagEntries: [
+      `cowboy shot`,
+      `lying`,
+      `looking at viewer`,
+      `on back`,
+      `on bed`,
+    ],
+  }).toCandidates();
+
+  const emotionCandidates = frontEmotionCandidates.concat(
+    profileEmotionCandidates,
+    0.2,
+  );
+
+  const backgroundCandidates = new TagLeaf({
+    tagEntries: [],
+    children: [
+      backgroundPreset.lyingTree.bedSheet,
+      backgroundPreset.lyingTree.bedSheetPillow,
+    ],
+  }).toCandidates();
+
+  return {
+    key: `cowboy-shot-lying-on-on-bed`,
+    prompt: finilize([
+      personUpskirtLegsCandidates,
+      singleCandidates,
+      emotionCandidates,
+      backgroundCandidates,
+    ]),
+  };
+};
+
 export const posePromptGenerators = [
   generateUpperBody,
   generateCowboyShot,
   generateAllFours,
   generateAllFoursFromBehind,
   generateAllFoursFromBehindOnBed,
+  generatePortraitLyingOnBed,
   generateUpperBodyLyingOnBed,
+  generateCowboyShotLyingOnBed,
 ];

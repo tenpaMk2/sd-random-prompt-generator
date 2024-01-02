@@ -2,6 +2,7 @@ const allPoseTags = [
   `looking at viewer`,
   `looking back`,
   `looking up`,
+  `portrait`,
   `upper body`,
   `cowboy shot`,
   `all fours`,
@@ -10,5 +11,10 @@ const allPoseTags = [
   `lying`,
   `on back`,
   `on bed`,
+  `legs up`,
+  `spread legs`,
+  `clothes lift`,
+  `dress lift`,
+  `skirt lift`,
 ] as const satisfies readonly string[];
 export type PoseTag = (typeof allPoseTags)[number];

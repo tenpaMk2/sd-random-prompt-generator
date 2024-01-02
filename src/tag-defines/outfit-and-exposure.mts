@@ -94,6 +94,7 @@ const allOutfitTags = [
   `white skirt`,
   `black skirt`,
   `green skirt`,
+  `grey skirt`,
   `miniskirt`,
   `pencil skirt`,
   `red trim`,
