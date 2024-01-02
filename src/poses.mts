@@ -313,14 +313,7 @@ const generatePortraitLyingOnBed: Generator = ({
   ]);
 
   const singleCandidates = new TagLeaf({
-    tagEntries: [
-      `portrait`,
-      `lying`,
-      `looking at viewer`,
-      `portrait`,
-      `on back`,
-      `on bed`,
-    ],
+    tagEntries: [`portrait`, `lying`, `looking at viewer`, `on back`, `on bed`],
   }).toCandidates();
 
   const backgroundCandidates = new TagLeaf({
