@@ -32,7 +32,7 @@ export type CharaDefine = Readonly<{
 }>;
 
 const preset = {
-  upskirtPanties: new TagLeaf<OutfitAndExposureTag>({
+  panties: new TagLeaf<OutfitAndExposureTag>({
     tagEntries: [`underwear`, `panties`, `crotch seam`],
     children: [
       new TagLeaf({ tagEntries: [`red panties`] }),
@@ -47,7 +47,7 @@ const preset = {
       new TagLeaf({ tagEntries: [`purple panties`] }),
     ],
   }),
-  upskirtColorfulPantiesStrong: new TagLeaf<OutfitAndExposureTag>({
+  colorfulPantiesStrong: new TagLeaf<OutfitAndExposureTag>({
     tagEntries: [`underwear`, `panties`, `crotch seam`],
     children: [
       new TagLeaf({ tagEntries: [{ tag: `red panties`, weight: 1.3 }] }),
@@ -60,7 +60,7 @@ const preset = {
       new TagLeaf({ tagEntries: [{ tag: `purple panties`, weight: 1.3 }] }),
     ],
   }),
-  upskirtPantiesStrong: new TagLeaf<OutfitAndExposureTag>({
+  pantiesStrong: new TagLeaf<OutfitAndExposureTag>({
     tagEntries: [`underwear`, `panties`, `crotch seam`],
     children: [
       new TagLeaf({ tagEntries: [{ tag: `red panties`, weight: 1.3 }] }),
@@ -179,7 +179,7 @@ const generateMaidBkini = ({
       `zettai ryouiki`,
     ],
   }),
-  upskirtTree: preset.upskirtPanties,
+  upskirtTree: preset.panties,
   whenRemoveShoes: {
     excludeTags: [],
     additionalFootTokensAfterRemoving: [],
@@ -704,7 +704,7 @@ export const shokuhoMisaki = {
           `loafers`,
         ],
       }),
-      upskirtTree: preset.upskirtColorfulPantiesStrong,
+      upskirtTree: preset.colorfulPantiesStrong,
       whenRemoveShoes: {
         excludeTags: [`loafers`],
         additionalFootTokensAfterRemoving: [new Token(`no shoes`)],
