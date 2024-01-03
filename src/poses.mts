@@ -12,7 +12,7 @@ const removeDuplicateTokens = (tokens: Token<Tag>[]) => [
 
 const getPersonCandidate = (
   personCandidateInfos: EachVisibleTokenInfo["personCandidateInfos"],
-  parts: (keyof Visible | `removedShoesFoot`)[],
+  parts: (keyof Visible | `removedShoesFoot` | `armpit`)[],
 ) => {
   const personCandidateArr = personCandidateInfos.map(
     ({ visibleTokens, removedShoesFootTokens, probability }) => {
@@ -90,6 +90,7 @@ const generateUpperBody: Generator = ({
     `frontHead`,
     `frontBreast`,
     `frontMidriff`,
+    `armpit`,
   ]);
 
   const personAndArmpitsCandidates = makeArmPoseCombination(
@@ -128,6 +129,7 @@ const generateCowboyShot: Generator = ({
     `frontBreast`,
     `frontMidriff`,
     `frontHipAndThigh`,
+    `armpit`,
   ]);
 
   const personAndArmpitsCandidates = makeArmPoseCombination(

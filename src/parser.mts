@@ -10,14 +10,19 @@ import {
 import { Candidates, TagLeaf, Token } from "./tag-tree.mjs";
 
 const extractByVisibility = (tokens: Token<Tag>[]) => {
+  const armpit = tokens.filter(({ tag }) => tag === `armpits`);
+  const noArmpit = tokens.filter(({ tag }) => tag !== `armpits`);
+
   const allParts = getKeys(visibleType.all);
-  return allParts.reduce(
+  const o = allParts.reduce(
     (prev, part) => ({
       ...prev,
-      [part]: tokens.filter(({ tag }) => tagVisibilities[tag][part]),
+      [part]: noArmpit.filter(({ tag }) => tagVisibilities[tag][part]),
     }),
     {},
   ) as { [k in keyof Visible]: Token<Tag>[] };
+
+  return { ...o, armpit } as const;
 };
 
 export const parse = (def: CharaDefine) =>
@@ -35,9 +40,9 @@ export const parse = (def: CharaDefine) =>
       ]);
 
       const personCandidateInfos = charaCandidates.arr.map((candidate) => {
-        const visibility = extractByVisibility(candidate.tokens);
+        const visibleTokens = extractByVisibility(candidate.tokens);
 
-        const excludedFootTokens = visibility.foot.filter(({ tag }) =>
+        const excludedFootTokens = visibleTokens.foot.filter(({ tag }) =>
           whenRemoveShoes.excludeTags.every((t) => t !== tag),
         );
         const removedShoesFootTokens = [
@@ -45,7 +50,7 @@ export const parse = (def: CharaDefine) =>
           ...whenRemoveShoes.additionalFootTokensAfterRemoving,
         ];
         return {
-          visibleTokens: visibility,
+          visibleTokens,
           removedShoesFootTokens,
           probability: candidate.probability,
         } as const;
