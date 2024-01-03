@@ -75,6 +75,21 @@ const preset = {
       new TagLeaf({ tagEntries: [{ tag: `purple panties`, weight: 1.3 }] }),
     ],
   }),
+  bikiniColorStrong: new TagLeaf<OutfitAndExposureTag>({
+    tagEntries: [],
+    children: [
+      new TagLeaf({ tagEntries: [{ tag: `red bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `blue bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `green bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `yellow bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `orange bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `aqua bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `white bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `black bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `pink bikini`, weight: 1.3 }] }),
+      new TagLeaf({ tagEntries: [{ tag: `purple bikini`, weight: 1.3 }] }),
+    ],
+  }),
 } as const satisfies { [k in string]: TagLeaf<OutfitAndExposureTag> };
 
 const generateBikini = ({
@@ -118,6 +133,7 @@ const generateBikini = ({
         ? ([`cleavage`, `sideboob`, `backboob`] as const)
         : []),
     ],
+    children: [preset.bikiniColorStrong],
   }),
   whenRemoveShoes: {
     excludeTags: [],
