@@ -73,6 +73,9 @@ export const backgroundPreset = {
     outdoors: new TagLeaf({ tagEntries: [`outdoors`] }),
     grass: new TagLeaf({ tagEntries: [`outdoors`, `grass`] }),
     ocean: new TagLeaf({ tagEntries: [`outdoors`, `ocean`] }),
+    oceanPartiallySubmerged: new TagLeaf({
+      tagEntries: [`outdoors`, `ocean`, `partially submerged`],
+    }),
     poolside: new TagLeaf({ tagEntries: [`outdoors`, `poolside`] }),
     night: new TagLeaf({ tagEntries: [`outdoors`, `night`] }),
     heartBackground: new TagLeaf({

@@ -77,7 +77,56 @@ const preset = {
   }),
 } as const satisfies { [k in string]: TagLeaf<OutfitAndExposureTag> };
 
+const generateBikini = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `bikini`,
+  background: {
+    fromHorizontalTree: backgroundPreset.fromHorizontalTree.beach,
+    fromBelowTree: new TagLeaf<BackgroundTag>({
+      tagEntries: [],
+      children: [
+        backgroundPreset.fromBelowTree.heartBackground,
+        backgroundPreset.fromBelowTree.blueSky,
+      ],
+    }),
+    fromAboveTree: backgroundPreset.fromAboveTree.oceanPartiallySubmerged,
+    lyingTree: backgroundPreset.lyingTree.oceanPartiallySubmerged,
+    cleanTree: new TagLeaf<BackgroundTag>({
+      tagEntries: [],
+      children: [
+        backgroundPreset.cleanTree.oceanPartiallySubmerged,
+        backgroundPreset.cleanTree.heartBackground,
+      ],
+    }),
+  },
+  outfitAndExposureTree: new TagLeaf({
+    tagEntries: [
+      `bikini`,
+      `skindentation`,
+      `collarbone`,
+      `shoulder blades`,
+      `armpits`,
+      `navel`,
+      `thigh gap`,
+      `bare arms`,
+      `bare legs`,
+      `barefoot`,
+      ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+        ? ([`cleavage`, `sideboob`, `backboob`] as const)
+        : []),
+    ],
+  }),
+  whenRemoveShoes: {
+    excludeTags: [],
+    additionalFootTokensAfterRemoving: [],
+  },
+});
+
 const generateMaidBkini = ({
+  // TDOO: Typo: `Bkini` .
   breastSize,
 }: {
   readonly breastSize: BreastSizeTag;
@@ -120,7 +169,7 @@ const generateMaidBkini = ({
       `shoulder blades`,
       `armpits`,
       `navel`,
-      ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
+      ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize] // TODO: `<` → `<=` .
         ? ([`cleavage`, `sideboob`, `backboob`] as const)
         : []),
       `skirt`,
@@ -661,6 +710,7 @@ export const shokuhoMisaki = {
         additionalFootTokensAfterRemoving: [new Token(`no shoes`)],
       },
     },
+    generateBikini({ breastSize: `large breasts` }),
     generateMaidBkini({ breastSize: `large breasts` }),
     generateSchoolSwimsuit({ breastSize: `large breasts` }),
   ],
