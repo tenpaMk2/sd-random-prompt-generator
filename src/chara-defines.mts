@@ -1,6 +1,5 @@
 import { Background, backgroundPreset } from "./background-candidates.mjs";
 import { emotionPreset } from "./emotion-candidates.mjs";
-import { Tag } from "./tag-defines/all.mjs";
 import { BackgroundTag } from "./tag-defines/background.mjs";
 import {
   BreastSizeOrder,
@@ -11,22 +10,55 @@ import { EmotionTag } from "./tag-defines/emotion.mjs";
 import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
 import { TagLeaf, Token } from "./tag-tree.mjs";
 
+/**
+ * Character define.
+ */
 export type CharaDefine = Readonly<{
-  // Key that is used for filename.
+  /**
+   * Key used for filename.
+   */
   key: string;
-  // Character feature tokens.
+  /**
+   * Character feature defines.
+   */
   characterFeatureTree: TagLeaf<CharacterFeatureTag>;
-  // Emotion candidates that are specified in `token-defines.mts` .
+  /**
+   * Emotion defines.
+   */
   emotionTree: TagLeaf<EmotionTag>;
-  // Backgrounds, outfits and exposures.
+  /**
+   * Situation defines that are consists of background, outfit and exposure defines.
+   */
   situations: readonly Readonly<{
+    /**
+     * Key used for filename.
+     */
     key: string;
+    /**
+     * Background defines.
+     */
     background: Background;
+    /**
+     * Outfit and exposure defines such as `red shirt` , `collarbone` and `thigh gap` .
+     */
     outfitAndExposureTree: TagLeaf<OutfitAndExposureTag>;
+    /**
+     * Outfit and exposure defines in the skirt for when `upskirt` is specified.
+     */
     upskirtTree?: TagLeaf<OutfitAndExposureTag>;
+    /**
+     * Outfit and exposure defines at foot for when footwear should be removed.
+     */
     whenRemoveShoes: {
+      /**
+       * Exclude tags that is in the `outfitAndExposureTree` .
+       */
       excludeTags: readonly OutfitAndExposureTag[];
-      additionalFootTokensAfterRemoving: Token<OutfitAndExposureTag>[]; // Eg: `barefoot` or `no shoes` .
+      /**
+       * Tokens for when footwear is removed.
+       * @example `[new Token(\`no shoes\`)]` , `[new Token(\`barefoor\`)]`
+       */
+      additionalFootTokensAfterRemoving: Token<OutfitAndExposureTag>[];
     };
   }>[];
 }>;
