@@ -197,7 +197,7 @@ const generateMaidBikini = ({
   ]),
   isArmpitsVisible: true,
   liftType: `skirt`,
-  upskirt: new PromptDefine(upskirtPreset.colorfulPantiesStrong),
+  upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
 });
 
 const generateSchoolSwimsuit = ({

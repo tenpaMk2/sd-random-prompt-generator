@@ -173,6 +173,29 @@ export const allOutfitWildcards = {
     `purple bikini`,
   ],
   "__monochrome_color__ bikini": [`black bikini`, `white bikini`],
+  "__color__ panties": [
+    `red panties`,
+    `blue panties`,
+    `green panties`,
+    `yellow panties`,
+    `orange panties`,
+    `aqua panties`,
+    `white panties`,
+    `black panties`,
+    `pink panties`,
+    `purple panties`,
+  ],
+  "__vivid_color__ panties": [
+    `red panties`,
+    `blue panties`,
+    `green panties`,
+    `yellow panties`,
+    `orange panties`,
+    `aqua panties`,
+    `pink panties`,
+    `purple panties`,
+  ],
+  "__monochrome_color__ panties": [`black panties`, `white panties`],
 } as const satisfies { [key: string]: readonly OutfitTag[] };
 export type OutfitWildcard = keyof typeof allOutfitWildcards;
 
