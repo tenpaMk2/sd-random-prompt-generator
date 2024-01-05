@@ -1,5 +1,6 @@
-import { Background, backgroundPreset } from "./background-candidates.mjs";
-import { emotionPreset } from "./emotion-candidates.mjs";
+import { backgroundPreset } from "./background-preset.mjs";
+import { emotionPreset } from "./emotion-preset.mjs";
+import { PromptDefine, SimpleToken } from "./prompt-define.mjs";
 import { BackgroundTag } from "./tag-defines/background.mjs";
 import {
   BreastSizeOrder,
@@ -8,7 +9,7 @@ import {
 } from "./tag-defines/character-feature.mjs";
 import { EmotionTag } from "./tag-defines/emotion.mjs";
 import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
-import { TagLeaf, Token } from "./tag-tree.mjs";
+import { upskirtPreset } from "./upskirt-preset.mjs";
 
 /**
  * Character define.
@@ -21,11 +22,11 @@ export type CharaDefine = Readonly<{
   /**
    * Character feature defines.
    */
-  characterFeatureTree: TagLeaf<CharacterFeatureTag>;
+  characterFeature: PromptDefine<CharacterFeatureTag>;
   /**
    * Emotion defines.
    */
-  emotionTree: TagLeaf<EmotionTag>;
+  emotion: PromptDefine<EmotionTag>;
   /**
    * Situation defines that are consists of background, outfit and exposure defines.
    */
@@ -37,19 +38,34 @@ export type CharaDefine = Readonly<{
     /**
      * Background defines.
      */
-    background: Background;
+    background: {
+      fromHorizontal: PromptDefine<BackgroundTag>;
+      fromBelow: PromptDefine<BackgroundTag>;
+      fromAbove: PromptDefine<BackgroundTag>;
+      lying: PromptDefine<BackgroundTag>;
+      clean: PromptDefine<BackgroundTag>; // For sitting or all fours.
+    };
     /**
      * Outfit and exposure defines such as `red shirt` , `collarbone` and `thigh gap` .
      */
-    outfitAndExposureTree: TagLeaf<OutfitAndExposureTag>;
+    outfitAndExposure: PromptDefine<OutfitAndExposureTag>;
+    /**
+     * Visibility of armpits.
+     * You cannot define variations of armpits visibility at the same situation.
+     */
+    isArmpitsVisible?: boolean;
+    /**
+     * Lift type for clothes lift.
+     */
+    liftType?: `none` | `skirt` | `dress`;
     /**
      * Outfit and exposure defines in the skirt for when `upskirt` is specified.
      */
-    upskirtTree?: TagLeaf<OutfitAndExposureTag>;
+    upskirt?: PromptDefine<OutfitAndExposureTag>;
     /**
      * Outfit and exposure defines at foot for when footwear should be removed.
      */
-    whenRemoveShoes: {
+    whenRemoveShoes?: {
       /**
        * Exclude tags that is in the `outfitAndExposureTree` .
        */
@@ -58,71 +74,25 @@ export type CharaDefine = Readonly<{
        * Tokens for when footwear is removed.
        * @example `[new Token(\`no shoes\`)]` , `[new Token(\`barefoor\`)]`
        */
-      additionalFootTokensAfterRemoving: Token<OutfitAndExposureTag>[];
+      additionalFootTokensAfterRemoving: SimpleToken<OutfitAndExposureTag>[];
     };
   }>[];
 }>;
-
-const preset = {
-  panties: new TagLeaf<OutfitAndExposureTag>({
-    tagEntries: [`underwear`, `panties`, `crotch seam`],
-    children: [
-      new TagLeaf({ tagEntries: [`red panties`] }),
-      new TagLeaf({ tagEntries: [`blue panties`] }),
-      new TagLeaf({ tagEntries: [`green panties`] }),
-      new TagLeaf({ tagEntries: [`yellow panties`] }),
-      new TagLeaf({ tagEntries: [`orange panties`] }),
-      new TagLeaf({ tagEntries: [`aqua panties`] }),
-      new TagLeaf({ tagEntries: [`white panties`] }),
-      new TagLeaf({ tagEntries: [`black panties`] }),
-      new TagLeaf({ tagEntries: [`pink panties`] }),
-      new TagLeaf({ tagEntries: [`purple panties`] }),
-    ],
-  }),
-  colorfulPantiesStrong: new TagLeaf<OutfitAndExposureTag>({
-    tagEntries: [`underwear`, `panties`, `crotch seam`],
-    children: [
-      new TagLeaf({ tagEntries: [{ tag: `red panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `blue panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `green panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `yellow panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `orange panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `aqua panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `pink panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `purple panties`, weight: 1.3 }] }),
-    ],
-  }),
-  pantiesStrong: new TagLeaf<OutfitAndExposureTag>({
-    tagEntries: [`underwear`, `panties`, `crotch seam`],
-    children: [
-      new TagLeaf({ tagEntries: [{ tag: `red panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `blue panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `green panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `yellow panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `orange panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `aqua panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `white panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `black panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `pink panties`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `purple panties`, weight: 1.3 }] }),
-    ],
-  }),
-  bikiniColorStrong: new TagLeaf<OutfitAndExposureTag>({
-    tagEntries: [],
-    children: [
-      new TagLeaf({ tagEntries: [{ tag: `red bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `blue bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `green bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `yellow bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `orange bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `aqua bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `white bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `black bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `pink bikini`, weight: 1.3 }] }),
-      new TagLeaf({ tagEntries: [{ tag: `purple bikini`, weight: 1.3 }] }),
-    ],
-  }),
-} as const satisfies { [k in string]: TagLeaf<OutfitAndExposureTag> };
+// bikiniColorStrong: ({
+//   tagEntries: [],
+//   children: [
+//     new TagLeaf({ tagEntries: [{ tag: `red bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `blue bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `green bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `yellow bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `orange bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `aqua bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `white bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `black bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `pink bikini`, weight: 1.3 }] }),
+//     new TagLeaf({ tagEntries: [{ tag: `purple bikini`, weight: 1.3 }] }),
+//   ],
+// }),
 
 const generateBikini = ({
   breastSize,
@@ -131,107 +101,114 @@ const generateBikini = ({
 }): CharaDefine["situations"][number] => ({
   key: `bikini`,
   background: {
-    fromHorizontalTree: backgroundPreset.fromHorizontalTree.beach,
-    fromBelowTree: new TagLeaf<BackgroundTag>({
-      tagEntries: [],
-      children: [
-        backgroundPreset.fromBelowTree.heartBackground,
-        backgroundPreset.fromBelowTree.blueSky,
+    fromHorizontal: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromHorizontalEntries.ocean,
+    ),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromBelowEntries.heartBackground },
+        { entries: backgroundPreset.fromBelowEntries.blueSky },
       ],
-    }),
-    fromAboveTree: backgroundPreset.fromAboveTree.oceanPartiallySubmerged,
-    lyingTree: backgroundPreset.lyingTree.oceanPartiallySubmerged,
-    cleanTree: new TagLeaf<BackgroundTag>({
-      tagEntries: [],
-      children: [
-        backgroundPreset.cleanTree.oceanPartiallySubmerged,
-        backgroundPreset.cleanTree.heartBackground,
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromAboveEntries.oceanPartiallySubmerged,
+    ),
+    lying: new PromptDefine<BackgroundTag>(
+      backgroundPreset.lyingEntries.oceanPartiallySubmerged,
+    ),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.oceanPartiallySubmerged },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
       ],
-    }),
+    ]),
   },
-  outfitAndExposureTree: new TagLeaf({
-    tagEntries: [
-      `bikini`,
-      `skindentation`,
-      `collarbone`,
-      `shoulder blades`,
-      `armpits`,
-      `navel`,
-      `thigh gap`,
-      `bare arms`,
-      `bare legs`,
-      `barefoot`,
-      ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
-        ? ([`cleavage`, `sideboob`, `backboob`] as const)
-        : []),
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `bikini`,
+    `skindentation`,
+    `collarbone`,
+    `shoulder blades`,
+    `navel`,
+    `thigh gap`,
+    `bare arms`,
+    `bare legs`,
+    `barefoot`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+    [
+      { entries: [{ tag: `red bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `blue bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `green bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `yellow bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `orange bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `aqua bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `white bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `black bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `pink bikini`, weight: 1.3 }] },
+      { entries: [{ tag: `purple bikini`, weight: 1.3 }] },
     ],
-    children: [preset.bikiniColorStrong],
-  }),
-  whenRemoveShoes: {
-    excludeTags: [],
-    additionalFootTokensAfterRemoving: [],
-  },
+  ]),
+  isArmpitsVisible: true,
 });
 
-const generateMaidBkini = ({
-  // TDOO: Typo: `Bkini` .
+const generateMaidBikini = ({
   breastSize,
 }: {
   readonly breastSize: BreastSizeTag;
 }): CharaDefine["situations"][number] => ({
   key: `maid-bikini`,
   background: {
-    fromHorizontalTree: backgroundPreset.fromHorizontalTree.cafe,
-    fromBelowTree: new TagLeaf<BackgroundTag>({
-      tagEntries: [],
-      children: [
-        backgroundPreset.fromBelowTree.heartBackground,
-        backgroundPreset.fromBelowTree.ceiling,
+    fromHorizontal: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromHorizontalEntries.cafe,
+    ),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromBelowEntries.heartBackground },
+        { entries: backgroundPreset.fromBelowEntries.ceiling },
       ],
-    }),
-    fromAboveTree: backgroundPreset.fromAboveTree.woodenFloor,
-    lyingTree: backgroundPreset.lyingTree.whiteBackground,
-    cleanTree: new TagLeaf<BackgroundTag>({
-      tagEntries: [],
-      children: [
-        backgroundPreset.cleanTree.bedSheetWindow,
-        backgroundPreset.cleanTree.heartBackground,
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromAboveEntries.woodenFloor,
+    ),
+    lying: new PromptDefine<BackgroundTag>(
+      backgroundPreset.lyingEntries.whiteBackground,
+    ),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.bedSheetWindow },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
       ],
-    }),
+    ]),
   },
-  outfitAndExposureTree: new TagLeaf({
-    tagEntries: [
-      `maid`,
-      `maid headdress`,
-      `detached collar`,
-      `bikini`,
-      `maid bikini`,
-      `skindentation`,
-      `frills`,
-      `apron`,
-      `frilled apron`,
-      `maid apron`,
-      `waist apron`,
-      `detached sleeves`,
-      `collarbone`,
-      `shoulder blades`,
-      `armpits`,
-      `navel`,
-      ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize] // TODO: `<` → `<=` .
-        ? ([`cleavage`, `sideboob`, `backboob`] as const)
-        : []),
-      `skirt`,
-      `miniskirt`,
-      `thighhighs`,
-      `thigh gap`,
-      `zettai ryouiki`,
-    ],
-  }),
-  upskirtTree: preset.panties,
-  whenRemoveShoes: {
-    excludeTags: [],
-    additionalFootTokensAfterRemoving: [],
-  },
+  outfitAndExposure: new PromptDefine([
+    `maid`,
+    `maid headdress`,
+    `detached collar`,
+    `bikini`,
+    `maid bikini`,
+    `skindentation`,
+    `frills`,
+    `apron`,
+    `frilled apron`,
+    `maid apron`,
+    `waist apron`,
+    `detached sleeves`,
+    `collarbone`,
+    `shoulder blades`,
+    `navel`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+    `skirt`,
+    `miniskirt`,
+    `thighhighs`,
+    `thigh gap`,
+    `zettai ryouiki`,
+  ]),
+  isArmpitsVisible: true,
+  liftType: `skirt`,
+  upskirt: new PromptDefine(upskirtPreset.colorfulPantiesStrong),
 });
 
 const generateSchoolSwimsuit = ({
@@ -241,49 +218,50 @@ const generateSchoolSwimsuit = ({
 }): CharaDefine["situations"][number] => ({
   key: `school-swimsuit`,
   background: {
-    fromHorizontalTree: backgroundPreset.fromHorizontalTree.poolside,
-    fromBelowTree: new TagLeaf<BackgroundTag>({
-      tagEntries: [],
-      children: [
-        backgroundPreset.fromBelowTree.heartBackground,
-        backgroundPreset.fromBelowTree.blueSky,
+    fromHorizontal: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromHorizontalEntries.poolside,
+    ),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromBelowEntries.heartBackground },
+        { entries: backgroundPreset.fromBelowEntries.blueSky },
       ],
-    }),
-    fromAboveTree: backgroundPreset.fromAboveTree.poolside,
-    lyingTree: backgroundPreset.lyingTree.whiteBackground,
-    cleanTree: new TagLeaf<BackgroundTag>({
-      tagEntries: [],
-      children: [
-        backgroundPreset.cleanTree.poolside,
-        backgroundPreset.cleanTree.heartBackground,
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromAboveEntries.poolside,
+    ),
+    lying: new PromptDefine<BackgroundTag>(
+      backgroundPreset.lyingEntries.whiteBackground,
+    ),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.poolside },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
       ],
-    }),
+    ]),
   },
-  outfitAndExposureTree: new TagLeaf({
-    tagEntries: [
-      `school swimsuit`,
-      `blue one-piece swimsuit`, // TODO: FIXME
-      `collarbone`,
-      `bare shoulders`,
-      `armpits`,
-      `cleavage`,
-      `bare arms`,
-      `covered navel`,
-      `bare legs`,
-      `barefoot`,
-      `shoulder blades`,
-      `skindentation`,
-      `skin tight`,
-      `taut clothes`,
-      ...(BreastSizeOrder[`medium breasts`] < BreastSizeOrder[breastSize]
-        ? ([`cleavage`, `sideboob`, `backboob`] as const)
-        : []),
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `school swimsuit`,
+    [
+      { entries: [`black one-piece swimsuit`] },
+      { entries: [`blue one-piece swimsuit`] },
+      { entries: [`white one-piece swimsuit`] },
     ],
-  }),
-  whenRemoveShoes: {
-    excludeTags: [],
-    additionalFootTokensAfterRemoving: [],
-  },
+    `collarbone`,
+    `bare shoulders`,
+    `bare arms`,
+    `covered navel`,
+    `bare legs`,
+    `barefoot`,
+    `shoulder blades`,
+    `skindentation`,
+    `skin tight`,
+    `taut clothes`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
 });
 
 // export const cecilia: CharaDefine = {
@@ -684,82 +662,123 @@ const generateSchoolSwimsuit = ({
 
 export const shokuhoMisaki = {
   key: `shokuho-misaki-h-madoka`,
-  characterFeatureTree: new TagLeaf({
-    tagEntries: [
-      `<lora:shokuhou_misaki_v2:0.7>`,
-      `toaru kagaku no railgun`,
-      `shokuhou misaki`,
-      `yellow eyes`,
-      { tag: `sparkling eyes`, weight: 1.3 },
-      { tag: `star-shaped pupils`, weight: 1.3 },
-      { tag: `+ +`, weight: 1.3 },
-      `symbol-shaped pupils`,
-      `blonde hair`,
-      `long hair`,
-      `straight hair`,
-      `hair between eyes`,
-      `large breasts`,
-      `thick thighs`,
-    ],
-  }),
-
-  emotionTree: emotionPreset.shokuhoMisaki,
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `<lora:shokuhou_misaki_v2:0.7>`,
+    `toaru kagaku no railgun`,
+    `shokuhou misaki`,
+    `yellow eyes`,
+    { tag: `sparkling eyes`, weight: 1.3 },
+    { tag: `star-shaped pupils`, weight: 1.3 },
+    { tag: `+ +`, weight: 1.3 },
+    `symbol-shaped pupils`,
+    `blonde hair`,
+    `long hair`,
+    `straight hair`,
+    `hair between eyes`,
+    `large breasts`,
+    `thick thighs`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.shokuhoMisaki),
   situations: [
     {
       key: `tokiwadai-school-uniform`,
       background: {
-        fromHorizontalTree: backgroundPreset.fromHorizontalTree.city,
-        fromBelowTree: backgroundPreset.fromBelowTree.blueSky,
-        fromAboveTree: backgroundPreset.fromAboveTree.grass,
-        lyingTree: new TagLeaf<BackgroundTag>({
-          tagEntries: [],
-          children: [
-            backgroundPreset.lyingTree.whiteBackground,
-            backgroundPreset.lyingTree.pinkBackground,
-          ],
-        }),
-        cleanTree: new TagLeaf<BackgroundTag>({
-          tagEntries: [],
-          children: [
-            backgroundPreset.cleanTree.bedSheetWindow,
-            backgroundPreset.cleanTree.grassBlueSky,
-            backgroundPreset.cleanTree.heartBackground,
-          ],
-        }),
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.city,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.grass,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.whiteBackground,
+        ),
+        clean: new PromptDefine<BackgroundTag>(
+          backgroundPreset.cleanEntries.heartBackground,
+        ),
       },
-
-      outfitAndExposureTree: new TagLeaf({
-        tagEntries: [
-          `hmmisaki`,
-          `tokiwadai school uniform`,
-          `school uniform`,
-          `shirt`,
-          `white shirt`,
-          `collared shirt`,
-          `sweater vest`,
-          `brown sweater vest`,
-          `short sleeves`,
-          `white gloves`,
-          `elbow gloves`,
-          `skirt`,
-          `grey skirt`,
-          `pleated skirt`,
-          `thighhighs`,
-          `white thighhighs`,
-          `taut clothes`,
-          `skindentation`,
-          `socks`,
-          `loafers`,
-        ],
-      }),
-      upskirtTree: preset.colorfulPantiesStrong,
-      whenRemoveShoes: {
-        excludeTags: [`loafers`],
-        additionalFootTokensAfterRemoving: [new Token(`no shoes`)],
-      },
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `hmmisaki`,
+        `tokiwadai school uniform`,
+        `school uniform`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `sweater vest`,
+        `brown sweater vest`,
+        `short sleeves`,
+        `white gloves`,
+        `elbow gloves`,
+        `skirt`,
+        `grey skirt`,
+        `pleated skirt`,
+        `thighhighs`,
+        `white thighhighs`,
+        `taut clothes`,
+        `skindentation`,
+        `socks`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
     },
     generateBikini({ breastSize: `large breasts` }),
-    generateMaidBkini({ breastSize: `large breasts` }),
+    generateMaidBikini({ breastSize: `large breasts` }),
     generateSchoolSwimsuit({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
+export const minimumTest = {
+  key: `minimum-test`,
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `red eyes`,
+    `small breasts`,
+    `thick thighs`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>([
+    [{ entries: [`smile`] }, { entries: [`scowl`] }],
+  ]),
+  situations: [
+    {
+      key: `test-outfit1`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          `indoors`,
+          `classroom`,
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>([`pink background`]),
+        fromAbove: new PromptDefine<BackgroundTag>([`simple background`]),
+        lying: new PromptDefine<BackgroundTag>([`heart background`]),
+        clean: new PromptDefine<BackgroundTag>([`bed`]),
+      },
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `bikini`,
+        [{ entries: [`red bikini`] }, { entries: [`blue bikini`] }],
+        [
+          { entries: [`maid bikini`], probability: 2 },
+          { entries: [`frilled bikini`] },
+        ],
+        `bikini skirt`,
+        `collarbone`,
+        `bare shoulders`,
+        `bare arms`,
+        `navel`,
+        `shoulder blades`,
+        `thigh gap`,
+        `bare legs`,
+        `shoes`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `dress`,
+      upskirt: new PromptDefine<OutfitAndExposureTag>([`panties`]),
+      whenRemoveShoes: {
+        excludeTags: [`shoes`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot`, weight: 1.5 }),
+        ],
+      },
+    },
   ],
 } as const satisfies CharaDefine;

@@ -1,7 +1,9 @@
+const allArmpitsTags = [`armpits`] as const satisfies readonly string[];
+export type ArmpitsTag = (typeof allArmpitsTags)[number];
+
 const allExposureTags = [
   `collarbone`,
   `bare shoulders`,
-  `armpits`,
   `bare arms`,
   `cleavage`,
   `breasts`,

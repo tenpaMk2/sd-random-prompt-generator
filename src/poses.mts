@@ -1,79 +1,114 @@
-import { armPosePreset } from "./arm-pose-candidates.mjs";
-import { backgroundPreset } from "./background-candidates.mjs";
+import { armPosePreset } from "./arm-pose-preset.mjs";
+import { backgroundPreset } from "./background-preset.mjs";
 import { EachVisibleTokenInfo } from "./parser.mjs";
+import {
+  Pattern,
+  PatternCollection,
+  PromptDefine,
+  SimpleToken,
+} from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { ArmPoseTag, armpitsVisibleTags } from "./tag-defines/arm-pose.mjs";
+import { ArmpitsTag } from "./tag-defines/outfit-and-exposure.mjs";
 import { Visible } from "./tag-defines/visible.mjs";
-import { Candidate, Candidates, TagLeaf, Token } from "./tag-tree.mjs";
 
-const removeDuplicateTokens = (tokens: Token<Tag>[]) => [
-  ...new Map(tokens.map((token) => [token.tag, token])).values(),
-];
-
-const getPersonCandidate = (
-  personCandidateInfos: EachVisibleTokenInfo["personCandidateInfos"],
-  parts: (keyof Visible | `removedShoesFoot` | `armpit`)[],
+/**
+ * Get person pattern collection that matches specified parts.
+ * @param personInfoPatterns
+ * @param parts
+ * @returns Person pattern collection.
+ */
+const getPersonPatternCollection = (
+  personInfoPatterns: EachVisibleTokenInfo["personInfoPatterns"],
+  parts: (keyof Visible | `removedShoesFoot`)[],
 ) => {
-  const personCandidateArr = personCandidateInfos.map(
-    ({ visibleTokens, removedShoesFootTokens, probability }) => {
+  const personPatterns = personInfoPatterns.map(
+    ({ visibility, removedShoesFootPattern, probability }) => {
       const all = {
-        ...visibleTokens,
-        removedShoesFoot: removedShoesFootTokens,
+        ...visibility,
+        removedShoesFoot: removedShoesFootPattern,
       };
-      return new Candidate(
-        removeDuplicateTokens(parts.map((part) => all[part]).flat()),
-        { probability },
+
+      const specifiedPatterns = parts.map((part) => all[part]);
+      const concattedPattern = specifiedPatterns.reduce(
+        (acc, cur) => acc.concat(cur.simpleTokens),
+        new Pattern({ simpleTokens: [], probability }),
       );
+      return concattedPattern;
     },
   );
-  return new Candidates(personCandidateArr);
+  return new PatternCollection(personPatterns);
 };
 
-const makeArmPoseCombination = (
-  personCandidates: Candidates<Tag>,
-  armPoseCandidates: Candidates<ArmPoseTag>,
+/**
+ * Add `armpits` to arm pose pattern collection only if `armpitsVisibleTags` are included.
+ * @param armPosePatternCollection
+ * @returns Added pattern collection.
+ */
+const addArmpits = (
+  armPosePatternCollection: PatternCollection<ArmPoseTag>,
 ) => {
-  const personAndArmPoseCandidates = Candidates.makeCombination([
-    personCandidates,
-    armPoseCandidates,
-  ]);
+  const added = armPosePatternCollection.map<ArmPoseTag | ArmpitsTag>(
+    (pattern) => {
+      if (
+        pattern.simpleTokens.some(({ tag }) =>
+          armpitsVisibleTags.some((t) => t === tag),
+        )
+      ) {
+        return pattern.concat([
+          new SimpleToken<ArmpitsTag>({ tag: `armpits` }),
+        ]);
+      }
 
-  const addedArmpitsCandidates = personAndArmPoseCandidates.map((candidate) => {
-    if (candidate.tokens.every(({ tag }) => tag !== `armpits`)) {
-      return candidate;
-    }
-    if (
-      candidate.tokens.some(({ tag }) =>
-        armpitsVisibleTags.some((t) => t === tag),
-      )
-    ) {
-      return candidate;
-    }
-
-    return candidate.filter((token) => token.tag !== `armpits`);
-  });
-
-  return addedArmpitsCandidates;
+      return pattern;
+    },
+  );
+  return added;
 };
 
-const addLift = (personAndUpskirtCandidates: Candidates<Tag>) => {
-  const added = personAndUpskirtCandidates.map((candidate) => {
-    candidate.tokens.push(new Token<Tag>(`clothes lift`));
-    if (candidate.tokens.some(({ tag }) => tag === `skirt`)) {
-      candidate.tokens.push(new Token<Tag>(`skirt lift`));
+/**
+ * Add `hanging breasts` to person pattern collection.
+ * @param personPatternCollection Person pattern collection.
+ * @returns Added pattern collection.
+ */
+const addHangingBreasts = (personPatternCollection: PatternCollection<Tag>) => {
+  const added = personPatternCollection.map((pattern) => {
+    if (pattern.simpleTokens.some(({ tag }) => tag === `cleavage`)) {
+      return pattern.concat([new SimpleToken<Tag>({ tag: `hanging breasts` })]);
     }
-    if (candidate.tokens.some(({ tag }) => tag === `dress`)) {
-      candidate.tokens.push(new Token<Tag>(`dress lift`));
-    }
-    return candidate;
+
+    return pattern;
   });
   return added;
 };
 
-const finilize = (independentCandidatesList: Candidates<Tag>[]) =>
-  independentCandidatesList
-    .map((candidates) => candidates.toString())
-    .join(`, `);
+const addLift = (
+  upskirtPatternCollection: PatternCollection<Tag>,
+  liftType: EachVisibleTokenInfo["liftType"],
+) => {
+  const added = upskirtPatternCollection.map((pattern) => {
+    switch (liftType) {
+      case `dress`:
+        return pattern.concat([
+          new SimpleToken<Tag>({ tag: `clothes lift` }),
+          new SimpleToken<Tag>({ tag: `dress lift` }),
+        ]);
+      case `skirt`:
+        return pattern.concat([
+          new SimpleToken<Tag>({ tag: `clothes lift` }),
+          new SimpleToken<Tag>({ tag: `skirt lift` }),
+        ]);
+      case `none`:
+        return pattern;
+    }
+  });
+  return added;
+};
+
+const finilize = (independentPatternCollections: PatternCollection<Tag>[]) =>
+  independentPatternCollections
+    .map((patternCollection) => patternCollection.toString())
+    .join(`,\n`);
 
 type Generator = (info: EachVisibleTokenInfo) => {
   key: string;
@@ -81,363 +116,338 @@ type Generator = (info: EachVisibleTokenInfo) => {
 };
 
 const generateUpperBody: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
-  profileEmotionCandidates,
-  background: { fromHorizontalCandidates },
+  personInfoPatterns,
+  isArmpitsVisible,
+  frontEmotionPatternCollection,
+  profileEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `frontBreast`,
-    `frontMidriff`,
-    `armpit`,
-  ]);
-
-  const personAndArmpitsCandidates = makeArmPoseCombination(
-    personCandidates,
-    armPosePreset.all.toCandidates(),
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`],
   );
 
-  const singleCandidates = new TagLeaf({
-    tagEntries: [`upper body`, `looking at viewer`],
-  }).toCandidates();
+  const armPosePatternCollection = isArmpitsVisible
+    ? addArmpits(
+        new PromptDefine<ArmPoseTag>(
+          armPosePreset.all,
+        ).convertToPatternCollection(),
+      )
+    : new PromptDefine([]).convertToPatternCollection();
 
-  const emotionCandidates = frontEmotionCandidates.concat(
-    profileEmotionCandidates,
+  const posePatternCollection = new PromptDefine([
+    `upper body`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  const emotionPatternCollection = frontEmotionPatternCollection.join(
+    profileEmotionPatternCollection,
     0.3,
   );
 
   return {
     key: `upper-body`,
     prompt: finilize([
-      personAndArmpitsCandidates,
-      singleCandidates,
-      emotionCandidates,
-      fromHorizontalCandidates,
+      personPatternCollection,
+      armPosePatternCollection,
+      posePatternCollection,
+      emotionPatternCollection,
+      fromHorizontalPatternCollection,
     ]),
   };
 };
 
 const generateCowboyShot: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
-  profileEmotionCandidates,
-  background: { fromHorizontalCandidates },
+  personInfoPatterns,
+  isArmpitsVisible,
+  frontEmotionPatternCollection,
+  profileEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `frontBreast`,
-    `frontMidriff`,
-    `frontHipAndThigh`,
-    `armpit`,
-  ]);
-
-  const personAndArmpitsCandidates = makeArmPoseCombination(
-    personCandidates,
-    armPosePreset.all.toCandidates(),
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
   );
 
-  const singleCandidates = new TagLeaf({
-    tagEntries: [`cowboy shot`, `looking at viewer`],
-  }).toCandidates();
+  const armPosePatternCollection = isArmpitsVisible
+    ? addArmpits(
+        new PromptDefine<ArmPoseTag>(
+          armPosePreset.all,
+        ).convertToPatternCollection(),
+      )
+    : new PromptDefine([]).convertToPatternCollection();
 
-  const emotionCandidates = frontEmotionCandidates.concat(
-    profileEmotionCandidates,
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  const emotionPatternCollection = frontEmotionPatternCollection.join(
+    profileEmotionPatternCollection,
     0.3,
   );
 
   return {
     key: `cowboy-shot`,
     prompt: finilize([
-      personAndArmpitsCandidates,
-      singleCandidates,
-      emotionCandidates,
-      fromHorizontalCandidates,
+      personPatternCollection,
+      armPosePatternCollection,
+      posePatternCollection,
+      emotionPatternCollection,
+      fromHorizontalPatternCollection,
     ]),
   };
 };
 
 const generateAllFours: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
-  profileEmotionCandidates,
-  background: { cleanCandidates },
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  profileEmotionPatternCollection,
+  background: { cleanPatternCollection },
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `frontBreast`,
-    `frontMidriff`,
-    `frontHipAndThigh`,
-    `foot`,
-  ]);
-
-  const personCandidatesWithHangingBreasts = personCandidates.map(
-    (candidate) => {
-      if (candidate.tokens.some(({ tag }) => tag === `cleavage`)) {
-        candidate.tokens.push(new Token<Tag>(`hanging breasts`));
-        return candidate;
-      }
-      return candidate;
-    },
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`, `foot`],
   );
 
-  const singleCandidates = new TagLeaf({
-    tagEntries: [`all fours`, `looking at viewer`, `breasts`],
-  }).toCandidates();
+  const personPatternCollectionWithHangingBreasts = addHangingBreasts(
+    personPatternCollection,
+  );
 
-  const emotionCandidates = frontEmotionCandidates.concat(
-    profileEmotionCandidates,
+  const posePatternCollection = new PromptDefine([
+    `all fours`,
+    `looking at viewer`,
+    `breasts`,
+  ]).convertToPatternCollection();
+
+  const emotionPatternCollection = frontEmotionPatternCollection.join(
+    profileEmotionPatternCollection,
     0.2,
   );
 
   return {
     key: `all-fours`,
     prompt: finilize([
-      personCandidatesWithHangingBreasts,
-      singleCandidates,
-      emotionCandidates,
-      cleanCandidates,
+      personPatternCollectionWithHangingBreasts,
+      posePatternCollection,
+      emotionPatternCollection,
+      cleanPatternCollection,
     ]),
   };
 };
 
 const generateAllFoursFromBehind: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
-  profileEmotionCandidates,
-  upskirtCandidates,
-  background: { cleanCandidates },
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  profileEmotionPatternCollection,
+  upskirtPatternCollection,
+  background: { cleanPatternCollection },
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `backBreast`,
-    `backMidriff`,
-    `backHipAndThigh`,
-    `foot`,
-  ]);
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `backBreast`, `backMidriff`, `backHipAndThigh`, `foot`],
+  );
 
-  const singleCandidates = new TagLeaf({
-    tagEntries: [
-      `all fours`,
-      `looking at viewer`,
-      `from behind`,
-      `looking back`,
-      `ass`,
-    ],
-  }).toCandidates();
+  const posePatternCollection = new PromptDefine([
+    `all fours`,
+    `looking at viewer`,
+    `from behind`,
+    `looking back`,
+    `ass`,
+  ]).convertToPatternCollection();
 
-  const emotionCandidates = frontEmotionCandidates.concat(
-    profileEmotionCandidates,
+  const emotionPatternCollection = frontEmotionPatternCollection.join(
+    profileEmotionPatternCollection,
     0.5,
   );
 
-  const upskirtOnOffCandidates = upskirtCandidates.concat(
-    new TagLeaf({ tagEntries: [] }).toCandidates(),
+  const upskirtOnOffPatternCollection = upskirtPatternCollection.join(
+    new PromptDefine([]).convertToPatternCollection(),
     0.5,
   );
 
   return {
     key: `all-fours-from-behind`,
     prompt: finilize([
-      personCandidates,
-      singleCandidates,
-      emotionCandidates,
-      upskirtOnOffCandidates,
-      cleanCandidates,
+      personPatternCollection,
+      posePatternCollection,
+      emotionPatternCollection,
+      upskirtOnOffPatternCollection,
+      cleanPatternCollection,
     ]),
   };
 };
 
 const generateAllFoursFromBehindOnBed: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
-  profileEmotionCandidates,
-  upskirtCandidates,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  profileEmotionPatternCollection,
+  upskirtPatternCollection,
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `backBreast`,
-    `backMidriff`,
-    `backHipAndThigh`,
-    `removedShoesFoot`,
-  ]);
-
-  const singleCandidates = new TagLeaf({
-    tagEntries: [
-      `all fours`,
-      `looking at viewer`,
-      `from behind`,
-      `looking back`,
-      `ass`,
-      `on bed`,
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [
+      `frontHead`,
+      `backBreast`,
+      `backMidriff`,
+      `backHipAndThigh`,
+      `removedShoesFoot`,
     ],
-  }).toCandidates();
+  );
 
-  const emotionCandidates = frontEmotionCandidates.concat(
-    profileEmotionCandidates,
+  const posePatternCollection = new PromptDefine([
+    `all fours`,
+    `looking at viewer`,
+    `from behind`,
+    `looking back`,
+    `ass`,
+    `on bed`,
+  ]).convertToPatternCollection();
+
+  const emotionPatternCollection = frontEmotionPatternCollection.join(
+    profileEmotionPatternCollection,
     0.5,
   );
 
-  const upskirtOnOffCandidates = upskirtCandidates.concat(
-    new TagLeaf({ tagEntries: [] }).toCandidates(),
+  const upskirtOnOffPatternCollection = upskirtPatternCollection.join(
+    new PromptDefine([]).convertToPatternCollection(),
     0.5,
   );
 
-  const backgroundCandidates = new TagLeaf({
-    tagEntries: [],
-    children: [
-      backgroundPreset.cleanTree.bedSheet,
-      backgroundPreset.cleanTree.bedSheetWindow,
-      backgroundPreset.cleanTree.bedSheetLamp,
-      backgroundPreset.cleanTree.bedSheetPillow,
+  const backgroundPatternCollection = new PromptDefine([
+    [
+      { entries: backgroundPreset.cleanEntries.bedSheetLamp },
+      { entries: backgroundPreset.cleanEntries.bedSheetPillow },
     ],
-  }).toCandidates();
+  ]).convertToPatternCollection();
 
   return {
     key: `all-fours-from-behind-on-bed`,
     prompt: finilize([
-      personCandidates,
-      singleCandidates,
-      emotionCandidates,
-      upskirtOnOffCandidates,
-      backgroundCandidates,
+      personPatternCollection,
+      posePatternCollection,
+      emotionPatternCollection,
+      upskirtOnOffPatternCollection,
+      backgroundPatternCollection,
     ]),
   };
 };
 
 const generatePortraitLyingOnBed: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `frontBreast`,
-  ]);
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`],
+  );
 
-  const singleCandidates = new TagLeaf({
-    tagEntries: [`portrait`, `lying`, `looking at viewer`, `on back`, `on bed`],
-  }).toCandidates();
+  const posePatternCollection = new PromptDefine([
+    `portrait`,
+    `lying`,
+    `looking at viewer`,
+    `on back`,
+    `on bed`,
+  ]).convertToPatternCollection();
 
-  const backgroundCandidates = new TagLeaf({
-    tagEntries: [],
-    children: [
-      backgroundPreset.lyingTree.bedSheet,
-      backgroundPreset.lyingTree.bedSheetPillow,
+  const backgroundPatternCollection = new PromptDefine([
+    [
+      { entries: backgroundPreset.lyingEntries.bedSheet },
+      { entries: backgroundPreset.lyingEntries.bedSheetPillow },
     ],
-  }).toCandidates();
+  ]).convertToPatternCollection();
 
   return {
     key: `portrait-lying-on-on-bed`,
     prompt: finilize([
-      personCandidates,
-      singleCandidates,
-      frontEmotionCandidates,
-      backgroundCandidates,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      backgroundPatternCollection,
     ]),
   };
 };
 
 const generateUpperBodyLyingOnBed: Generator = ({
-  personCandidateInfos,
-  frontEmotionCandidates,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `frontBreast`,
-    `frontMidriff`,
-  ]);
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`],
+  );
 
-  const singleCandidates = new TagLeaf({
-    tagEntries: [
-      `upper body`,
-      `lying`,
-      `looking at viewer`,
-      `on back`,
-      `on bed`,
-    ],
-  }).toCandidates();
+  const posePatternCollection = new PromptDefine([
+    `upper body`,
+    `lying`,
+    `looking at viewer`,
+    `on back`,
+    `on bed`,
+  ]).convertToPatternCollection();
 
-  const backgroundCandidates = new TagLeaf({
-    tagEntries: [],
-    children: [
-      backgroundPreset.lyingTree.bedSheet,
-      backgroundPreset.lyingTree.bedSheetPillow,
+  const backgroundPatternCollection = new PromptDefine([
+    [
+      { entries: backgroundPreset.lyingEntries.bedSheet },
+      { entries: backgroundPreset.lyingEntries.bedSheetPillow },
     ],
-  }).toCandidates();
+  ]).convertToPatternCollection();
 
   return {
     key: `upper-body-lying-on-on-bed`,
     prompt: finilize([
-      personCandidates,
-      singleCandidates,
-      frontEmotionCandidates,
-      backgroundCandidates,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      backgroundPatternCollection,
     ]),
   };
 };
 
 const generateCowboyShotLyingOnBed: Generator = ({
-  personCandidateInfos,
-  upskirtCandidates,
-  frontEmotionCandidates,
-  profileEmotionCandidates,
+  personInfoPatterns,
+  upskirtPatternCollection,
+  liftType,
+  frontEmotionPatternCollection,
 }) => {
-  const personCandidates = getPersonCandidate(personCandidateInfos, [
-    `frontHead`,
-    `frontBreast`,
-    `frontMidriff`,
-    `frontHipAndThigh`,
-  ]);
-
-  const personAndUpskirtCandidates = Candidates.makeCombination([
-    personCandidates,
-    upskirtCandidates,
-  ]);
-
-  const personUpskirtLegsCandidates = Candidates.makeCombination([
-    addLift(personAndUpskirtCandidates),
-    new TagLeaf({
-      tagEntries: [],
-      children: [
-        new TagLeaf({ tagEntries: [`spread legs`] }),
-        new TagLeaf({ tagEntries: [`legs up`] }),
-      ],
-    }).toCandidates(),
-  ]);
-
-  const singleCandidates = new TagLeaf({
-    tagEntries: [
-      `cowboy shot`,
-      `lying`,
-      `looking at viewer`,
-      `on back`,
-      `on bed`,
-    ],
-  }).toCandidates();
-
-  const emotionCandidates = frontEmotionCandidates.concat(
-    profileEmotionCandidates,
-    0.2,
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
   );
 
-  const backgroundCandidates = new TagLeaf({
-    tagEntries: [],
-    children: [
-      backgroundPreset.lyingTree.bedSheet,
-      backgroundPreset.lyingTree.bedSheetPillow,
+  const upskirtPatternCollectionWithLift = addLift(
+    upskirtPatternCollection,
+    liftType,
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `lying`,
+    `looking at viewer`,
+    `on back`,
+    `on bed`,
+  ]).convertToPatternCollection();
+
+  const backgroundPatternCollection = new PromptDefine([
+    [
+      { entries: backgroundPreset.lyingEntries.bedSheet },
+      { entries: backgroundPreset.lyingEntries.bedSheetPillow },
     ],
-  }).toCandidates();
+  ]).convertToPatternCollection();
 
   return {
     key: `cowboy-shot-lying-on-on-bed`,
     prompt: finilize([
-      personUpskirtLegsCandidates,
-      singleCandidates,
-      emotionCandidates,
-      backgroundCandidates,
+      personPatternCollection,
+      upskirtPatternCollectionWithLift,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      backgroundPatternCollection,
     ]),
   };
 };
+
+// TODO:        new TagLeaf({ tagEntries: [`spread legs`] }),
+// TODO:        new TagLeaf({ tagEntries: [`legs up`] }),
 
 export const posePromptGenerators = [
   generateUpperBody,

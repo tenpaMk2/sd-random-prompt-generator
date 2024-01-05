@@ -1,28 +1,24 @@
-import { CharaDefine } from "./chara-defines.mjs";
-import { profileExcludeTags } from "./emotion-candidates.mjs";
+import { CharaDefine } from "./characters.mjs";
 import { getKeys } from "./libs/utility.mjs";
+import { Pattern, PatternCollection, PromptDefine } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
+import { profileExcludeTags } from "./tag-defines/emotion.mjs";
 import {
   Visible,
   tagVisibilities,
   visibleType,
 } from "./tag-defines/visible.mjs";
-import { Candidates, TagLeaf, Token } from "./tag-tree.mjs";
 
-const extractByVisibility = (tokens: Token<Tag>[]) => {
-  const armpit = tokens.filter(({ tag }) => tag === `armpits`);
-  const noArmpit = tokens.filter(({ tag }) => tag !== `armpits`);
-
+const extractByVisibility = (pattern: Pattern<Tag>) => {
   const allParts = getKeys(visibleType.all);
   const o = allParts.reduce(
     (prev, part) => ({
       ...prev,
-      [part]: noArmpit.filter(({ tag }) => tagVisibilities[tag][part]),
+      [part]: pattern.filter(({ tag }) => tagVisibilities[tag][part]),
     }),
     {},
-  ) as { [k in keyof Visible]: Token<Tag>[] };
-
-  return { ...o, armpit } as const;
+  ) as { [k in keyof Visible]: Pattern<Tag> };
+  return { ...o } as const;
 };
 
 export const parse = (def: CharaDefine) =>
@@ -30,62 +26,77 @@ export const parse = (def: CharaDefine) =>
     ({
       key,
       background,
-      outfitAndExposureTree,
-      upskirtTree,
+      outfitAndExposure,
+      isArmpitsVisible,
+      liftType,
+      upskirt,
       whenRemoveShoes,
     }) => {
-      const charaCandidates = Candidates.makeCombination([
-        def.characterFeatureTree.toCandidates(),
-        outfitAndExposureTree.toCandidates(),
+      const charaPatternCollection = PatternCollection.makeCombination([
+        def.characterFeature.convertToPatternCollection(),
+        outfitAndExposure.convertToPatternCollection(),
       ]);
 
-      const personCandidateInfos = charaCandidates.arr.map((candidate) => {
-        const visibleTokens = extractByVisibility(candidate.tokens);
+      const personInfoPatterns = charaPatternCollection.patterns.map(
+        (pattern) => {
+          const visibility = extractByVisibility(pattern);
 
-        const excludedFootTokens = visibleTokens.foot.filter(({ tag }) =>
-          whenRemoveShoes.excludeTags.every((t) => t !== tag),
-        );
-        const removedShoesFootTokens = [
-          ...excludedFootTokens,
-          ...whenRemoveShoes.additionalFootTokensAfterRemoving,
-        ];
-        return {
-          visibleTokens,
-          removedShoesFootTokens,
-          probability: candidate.probability,
-        } as const;
-      });
+          const excludedFootPattern = whenRemoveShoes
+            ? visibility.foot.filter(({ tag }) =>
+                whenRemoveShoes.excludeTags.every((t) => t !== tag),
+              )
+            : visibility.foot;
 
-      const frontEmotionCandidates = def.emotionTree.toCandidates();
-      const profileEmotionCandidates = Candidates.makeCombination([
-        new TagLeaf({ tagEntries: [`profile`] }).toCandidates(),
-        frontEmotionCandidates.filter((candidate) =>
-          candidate.tokens.some(
-            (token) => !profileExcludeTags.some((t) => t === token.tag),
+          const removedShoesFootPattern = excludedFootPattern.concat(
+            whenRemoveShoes?.additionalFootTokensAfterRemoving ?? [],
+          );
+          return {
+            visibility,
+            removedShoesFootPattern,
+            probability: pattern.probability,
+          } as const;
+        },
+      );
+
+      const frontEmotionPatternCollection =
+        def.emotion.convertToPatternCollection();
+      const profileEmotionPatternCollection = PatternCollection.makeCombination(
+        [
+          new PromptDefine([`profile`]).convertToPatternCollection(),
+          frontEmotionPatternCollection.filter(({ simpleTokens }) =>
+            simpleTokens.some(({ tag }) =>
+              profileExcludeTags.every((t) => t !== tag),
+            ),
           ),
-        ),
-      ]);
+        ],
+      );
 
-      const upskirtCandidates = upskirtTree
-        ? Candidates.makeCombination([
-            new TagLeaf({ tagEntries: [`upskirt`] }).toCandidates(),
-            upskirtTree.toCandidates(),
+      const upskirtPatternCollection = upskirt
+        ? PatternCollection.makeCombination([
+            new PromptDefine([`upskirt`]).convertToPatternCollection(),
+            upskirt.convertToPatternCollection(),
           ])
-        : new TagLeaf({ tagEntries: [] }).toCandidates();
+        : new PromptDefine([]).convertToPatternCollection();
+
+      // TODO: Validate whether there are `cleavage` and `small breasts` at the same time.
 
       return {
         key, // For filenames.
-        personCandidateInfos,
-        frontEmotionCandidates,
-        profileEmotionCandidates,
-        upskirtCandidates,
+        personInfoPatterns,
+        isArmpitsVisible,
+        liftType: liftType ?? `none`,
+        frontEmotionPatternCollection,
+        profileEmotionPatternCollection,
+        upskirtPatternCollection,
         background: {
-          fromHorizontalCandidates:
-            background.fromHorizontalTree.toCandidates(),
-          fromBelowCandidates: background.fromBelowTree.toCandidates(),
-          fromAboveCandidates: background.fromAboveTree.toCandidates(),
-          lyingCandidates: background.lyingTree.toCandidates(),
-          cleanCandidates: background.cleanTree.toCandidates(),
+          fromHorizontalPatternCollection:
+            background.fromHorizontal.convertToPatternCollection(),
+          fromBelowPatternCollection:
+            background.fromBelow.convertToPatternCollection(),
+          fromAbovePatternCollection:
+            background.fromAbove.convertToPatternCollection(),
+          lyingPatternCollection: background.lying.convertToPatternCollection(),
+          cleanPatternCollection: background.clean.convertToPatternCollection(),
         },
       } as const;
     },

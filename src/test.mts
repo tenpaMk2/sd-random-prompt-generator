@@ -78,14 +78,14 @@ import assert from "node:assert";
 
 const info = parse({
   key: `test-chara-key`,
-  characterFeatureTree: new TagLeaf({
+  characterFeature: new TagLeaf({
     tagEntries: [
       `red eyes`,
       { tag: `sparkling eyes`, weight: 1.5 },
       `thick thighs`,
     ],
   }),
-  emotionTree: new TagLeaf({
+  emotion: new TagLeaf({
     tagEntries: [],
     children: [
       new TagLeaf({ tagEntries: [`smile`], probability: 3 }),
@@ -97,16 +97,16 @@ const info = parse({
     {
       key: `test-situation-key`,
       background: {
-        fromHorizontalTree: new TagLeaf({ tagEntries: [`beach`] }),
-        fromBelowTree: new TagLeaf({ tagEntries: [`beach`] }),
-        fromAboveTree: new TagLeaf({ tagEntries: [`beach`] }),
-        lyingTree: new TagLeaf({ tagEntries: [`beach`] }),
-        cleanTree: new TagLeaf({ tagEntries: [`beach`] }),
+        fromHorizontal: new TagLeaf({ tagEntries: [`beach`] }),
+        fromBelow: new TagLeaf({ tagEntries: [`beach`] }),
+        fromAbove: new TagLeaf({ tagEntries: [`beach`] }),
+        lying: new TagLeaf({ tagEntries: [`beach`] }),
+        clean: new TagLeaf({ tagEntries: [`beach`] }),
       },
-      outfitAndExposureTree: new TagLeaf({
+      outfitAndExposure: new TagLeaf({
         tagEntries: [`tokiwadai school uniform`, `skirt`, `socks`],
       }),
-      upskirtTree: new TagLeaf({
+      upskirt: new TagLeaf({
         tagEntries: [],
       }),
       whenRemoveShoes: {
