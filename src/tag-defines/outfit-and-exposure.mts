@@ -149,7 +149,38 @@ const allLoraTriggerTags = [
 ] as const satisfies readonly string[];
 type LoraTriggerTag = (typeof allLoraTriggerTags)[number];
 
-export type OutfitAndExposureTag = ExposureTag | OutfitTag | LoraTriggerTag;
+export const allOutfitWildcards = {
+  "__color__ bikini": [
+    `red bikini`,
+    `blue bikini`,
+    `green bikini`,
+    `yellow bikini`,
+    `orange bikini`,
+    `aqua bikini`,
+    `white bikini`,
+    `black bikini`,
+    `pink bikini`,
+    `purple bikini`,
+  ],
+  "__vivid_color__ bikini": [
+    `red bikini`,
+    `blue bikini`,
+    `green bikini`,
+    `yellow bikini`,
+    `orange bikini`,
+    `aqua bikini`,
+    `pink bikini`,
+    `purple bikini`,
+  ],
+  "__monochrome_color__ bikini": [`black bikini`, `white bikini`],
+} as const satisfies { [key: string]: readonly OutfitTag[] };
+export type OutfitWildcard = keyof typeof allOutfitWildcards;
+
+export type OutfitAndExposureTag =
+  | ExposureTag
+  | OutfitTag
+  | LoraTriggerTag
+  | OutfitWildcard;
 
 // export const allOutdoorFootwearTags = [
 //   `shoes`,

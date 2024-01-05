@@ -1,5 +1,10 @@
-import { generateDynamicPrompt, getCombinations } from "./libs/utility.mjs";
+import {
+  generateDynamicPrompt,
+  getCombinations,
+  getKeys,
+} from "./libs/utility.mjs";
 import { Tag } from "./tag-defines/all.mjs";
+import { allOutfitWildcards } from "./tag-defines/outfit-and-exposure.mjs";
 
 export class SimpleToken<T extends Tag> {
   readonly tag: T;
@@ -10,7 +15,14 @@ export class SimpleToken<T extends Tag> {
   }
 
   toString() {
-    return this.weight === 1.0 ? this.tag : `(${this.tag}:${this.weight})`;
+    const wildcardKeys = getKeys(allOutfitWildcards);
+    const str = wildcardKeys.some((k) => k === this.tag)
+      ? generateDynamicPrompt(
+          allOutfitWildcards[this.tag as (typeof wildcardKeys)[number]],
+        )
+      : this.tag;
+
+    return this.weight === 1.0 ? str : `(${str}:${this.weight})`;
   }
 }
 

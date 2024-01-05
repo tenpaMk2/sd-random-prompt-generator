@@ -136,18 +136,7 @@ const generateBikini = ({
     ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
       ? ([`cleavage`, `sideboob`, `backboob`] as const)
       : []),
-    [
-      { entries: [{ tag: `red bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `blue bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `green bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `yellow bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `orange bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `aqua bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `white bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `black bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `pink bikini`, weight: 1.3 }] },
-      { entries: [{ tag: `purple bikini`, weight: 1.3 }] },
-    ],
+    { tag: `__vivid_color__ bikini`, weight: 1.2 },
   ]),
   isArmpitsVisible: true,
 });
