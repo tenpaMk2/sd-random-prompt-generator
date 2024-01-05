@@ -182,6 +182,8 @@ export const tagVisibilities = {
   // Character feature
   "<lora:nishikigi_chisato_v1:0.75>": visibleType.all,
   "<lora:shokuhou_misaki_v2:0.7>": visibleType.all,
+  "<lora:OGT_Cecilia_Alcott-v1:0.8>": visibleType.all,
+  "infinite stratos": visibleType.all,
   aacecilia: visibleType.all,
   "cecilia alcott": visibleType.all,
   "charlotte dunois": visibleType.all,
@@ -616,6 +618,7 @@ export const tagVisibilities = {
   gloves: visibleType.all,
   "black gloves": visibleType.all,
   "fingerless gloves": visibleType.all,
+  "infinite stratos academy school uniform": visibleType.all,
   "lycoris uniform": visibleType.all,
   "pleated dress": visibleType.dress,
   "bikini skirt": visibleType.skirt,

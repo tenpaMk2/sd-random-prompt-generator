@@ -59,4 +59,21 @@ export const emotionPreset = {
       { entries: preset.oneEyeClosed },
     ],
   ],
+  ceciliaAlcott: [
+    [
+      { entries: preset.smile },
+      { entries: preset.lightSmile },
+      { entries: preset.smilePartedLips },
+      { entries: preset.smileOpenMouth },
+      { entries: preset.smileHalfClosedEyes },
+      { entries: preset.expressionless },
+      { entries: preset.surprised },
+      { entries: preset.embarrassed },
+      { entries: preset.nervous },
+      { entries: preset.flustered },
+      { entries: preset.naughtyFace },
+      { entries: preset.scowl },
+      { entries: preset.oneEyeClosed },
+    ],
+  ],
 } as const satisfies { [k: string]: Entry<EmotionTag>[] };

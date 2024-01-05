@@ -712,6 +712,7 @@ export const shokuhoMisaki = {
       ]),
       isArmpitsVisible: false,
       liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
     },
     generateBikini({ breastSize: `large breasts` }),
     generateMaidBikini({ breastSize: `large breasts` }),
@@ -769,5 +770,83 @@ export const minimumTest = {
         ],
       },
     },
+  ],
+} as const satisfies CharaDefine;
+
+export const ceciliaAlcottOGTurles = {
+  key: `cecilia-alcott-og-turles`,
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `<lora:OGT_Cecilia_Alcott-v1:0.8>`,
+    `infinite stratos`,
+    `cecilia alcott`,
+    `blue eyes`,
+    `tareme`,
+    `eyelashes`,
+    `long eyelashes`,
+    `blonde hair`,
+    `long hair`,
+    `curly hair`,
+    `drill hair`,
+    `twin drills`,
+    `hair between eyes`,
+    `sidelocks`,
+    `drill sidelocks`,
+    `hairband`,
+    `blue hairband`,
+    `lace-trimmed hairband`,
+    `large breasts`,
+    `thick thighs`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.ceciliaAlcott),
+  situations: [
+    {
+      key: `infinite-stratos-academy-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.city,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.grass,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.whiteBackground,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `infinite stratos academy school uniform`,
+        `school uniform`,
+        `white jacket`,
+        `white dress`,
+        `black collar`,
+        `neck ribbon`,
+        `blue ribbon`,
+        `white shirt`,
+        `long sleeves`,
+        `white sleeves`,
+        `belt`,
+        `white belt`,
+        `skirt`,
+        `white skirt`,
+        `miniskirt`,
+        `red trim`,
+        `pantyhose`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+    },
+    generateBikini({ breastSize: `large breasts` }),
+    generateMaidBikini({ breastSize: `large breasts` }),
+    generateSchoolSwimsuit({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;

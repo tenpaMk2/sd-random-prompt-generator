@@ -98,6 +98,7 @@ const allOutfitTags = [
   `gloves`,
   `black gloves`,
   `fingerless gloves`,
+  `infinite stratos academy school uniform`,
   `lycoris uniform`,
   `pleated dress`,
   `bikini skirt`,

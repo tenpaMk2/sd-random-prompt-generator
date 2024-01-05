@@ -1,4 +1,8 @@
-import { minimumTest, shokuhoMisaki } from "./characters.mjs";
+import {
+  ceciliaAlcottOGTurles,
+  minimumTest,
+  shokuhoMisaki,
+} from "./characters.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
 import { posePromptGenerators } from "./poses.mjs";
@@ -7,7 +11,7 @@ import { join } from "node:path";
 import { writeAsCSV } from "./tag-defines/visible.mjs";
 
 // Parse
-const charas = [minimumTest, shokuhoMisaki];
+const charas = [minimumTest, shokuhoMisaki, ceciliaAlcottOGTurles];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,
   visibleTokenInfos: parse(chara),
