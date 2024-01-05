@@ -29,7 +29,7 @@ export const backgroundPreset = {
       `heart`,
       `spoken heart`,
     ],
-    cageInterior: [`cave interior`],
+    caveInterior: [`cave interior`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],
