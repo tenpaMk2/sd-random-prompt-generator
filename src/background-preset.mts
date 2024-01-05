@@ -30,6 +30,7 @@ export const backgroundPreset = {
       `spoken heart`,
     ],
     caveInterior: [`cave interior`],
+    amusementPark: [`outdoors`, `amusement park`, `blue sky`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],

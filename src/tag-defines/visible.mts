@@ -183,6 +183,7 @@ export const tagVisibilities = {
   "<lora:nishikigi_chisato_v1:0.75>": visibleType.all,
   "<lora:shokuhou_misaki_v2:0.7>": visibleType.all,
   "<lora:OGT_Cecilia_Alcott-v1:0.8>": visibleType.all,
+  "<lora:AmagiBrilliantPark_SentoIsuzu:0.7>": visibleType.all,
   "infinite stratos": visibleType.all,
   aacecilia: visibleType.all,
   "cecilia alcott": visibleType.all,
@@ -193,6 +194,8 @@ export const tagVisibilities = {
   "nishikigi chisato": visibleType.all,
   "toaru kagaku no railgun": visibleType.all,
   "shokuhou misaki": visibleType.all,
+  "amagi brilliant park": visibleType.all,
+  "sento isuzu": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -553,6 +556,7 @@ export const tagVisibilities = {
   underbust: visibleType.midriff,
   bowtie: { ...invisible, frontBreast: true, sideBreast: true },
   "blue bowtie": { ...invisible, frontBreast: true, sideBreast: true },
+  "white bowtie": { ...invisible, frontBreast: true, sideBreast: true },
   buttons: visibleType.all,
   jewelry: visibleType.all,
   bikini: visibleType.dress,
@@ -581,6 +585,7 @@ export const tagVisibilities = {
   "white jacket": visibleType.shirt,
   "white dress": visibleType.dress,
   "black collar": visibleType.collar,
+  "red shirt": visibleType.shirt,
   "white shirt": visibleType.shirt,
   "long sleeves": visibleType.all,
   "white sleeves": visibleType.all,
@@ -638,6 +643,7 @@ export const tagVisibilities = {
   "black socks": visibleType.foot,
   shoes: visibleType.foot,
   loafers: visibleType.foot,
+  boots: visibleType.foot,
   underwear: visibleType.underwear,
   panties: visibleType.panty,
   "red panties": visibleType.panty,
@@ -655,6 +661,7 @@ export const tagVisibilities = {
   "chino work": visibleType.all,
   aachisato: visibleType.all,
   hmmisaki: visibleType.all,
+  SentoVest: visibleType.all,
   "tokiwadai school uniform": visibleType.all,
   "sweater vest": visibleType.shirt,
   "brown sweater vest": visibleType.shirt,
@@ -662,7 +669,15 @@ export const tagVisibilities = {
   "white gloves": visibleType.aroundBreast,
   "elbow gloves": visibleType.aroundBreast,
   "pleated skirt": visibleType.skirt,
+  "frilled skirt": visibleType.skirt,
   "white thighhighs": visibleType.thighhighs,
+  sleeveless: visibleType.aroundBreast,
+  "sleeveless shirt": visibleType.shirt,
+  aiguillette: { ...invisible, frontBreast: true, sideBreast: true },
+  epaulettes: visibleType.aroundBreast,
+  jacket: visibleType.shirt,
+  "red jacket": visibleType.shirt,
+  "military jacket": visibleType.shirt,
 
   // Emotion
   blush: visibleType.face,
@@ -757,6 +772,7 @@ export const tagVisibilities = {
   "partially submerged": visibleType.all,
   "bed sheet": visibleType.all,
   pillow: visibleType.all,
+  "amusement park": visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

@@ -38,6 +38,7 @@ const allOutfitTags = [
   `underbust`,
   `bowtie`,
   `blue bowtie`,
+  `white bowtie`,
   `buttons`,
   `jewelry`,
   `bikini`,
@@ -60,7 +61,6 @@ const allOutfitTags = [
   `white jacket`,
   `white dress`,
   `black collar`,
-  `white shirt`,
   `long sleeves`,
   `white sleeves`,
   `belt`,
@@ -77,6 +77,8 @@ const allOutfitTags = [
   `maid apron`,
   `waist apron`,
   `shirt`,
+  `red shirt`,
+  `white shirt`,
   `collared shirt`,
   `vest`,
   `green vest`,
@@ -118,6 +120,7 @@ const allOutfitTags = [
   `black socks`,
   `shoes`,
   `loafers`,
+  `boots`,
   `underwear`,
   `panties`,
   `red panties`,
@@ -139,7 +142,15 @@ const allOutfitTags = [
   `white gloves`,
   `elbow gloves`,
   `pleated skirt`,
+  `frilled skirt`,
   `white thighhighs`,
+  `sleeveless`,
+  `sleeveless shirt`,
+  `aiguillette`,
+  `epaulettes`,
+  `jacket`,
+  `red jacket`,
+  `military jacket`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
@@ -147,6 +158,7 @@ const allLoraTriggerTags = [
   `chino work`,
   `aachisato`,
   `hmmisaki`,
+  `SentoVest`,
 ] as const satisfies readonly string[];
 type LoraTriggerTag = (typeof allLoraTriggerTags)[number];
 

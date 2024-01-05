@@ -850,3 +850,90 @@ export const ceciliaAlcottOGTurles = {
     generateSchoolSwimsuit({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const sentoIsuzuLittleJellyV2 = {
+  key: `sento-isuzu-little-jelly-v2`,
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `<lora:AmagiBrilliantPark_SentoIsuzu:0.7>`,
+    `amagi brilliant park`,
+    `sento isuzu`,
+    `brown eyes`,
+    `brown hair`,
+    `long hair`,
+    `ponytail`,
+    `hair between eyes`,
+    `hair intakes`,
+    `sidelocks`,
+    `antenna hair`,
+    `hair bow`,
+    `white bow`,
+    `curvy`,
+    `large breasts`,
+    `thick thighs`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.serious),
+  situations: [
+    {
+      key: `uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.amusementPark,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.grass,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoVest`,
+        `military jacket`,
+        `red jacket`,
+        `shirt`,
+        `red shirt`,
+        `sleeveless`,
+        `sleeveless shirt`,
+        `aiguillette`,
+        `epaulettes`,
+        `bowtie`,
+        `white bowtie`,
+        `skirt`,
+        `black skirt`,
+        `miniskirt`,
+        `pleated skirt`,
+        `frilled skirt`,
+        `frills`,
+        `thighhighs`,
+        `white thighhighs`,
+        `boots`,
+        `zettai ryouiki`,
+        `taut clothes`,
+        `bare shoulders`,
+        `bare arms`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`boots`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `large breasts` }),
+    generateMaidBikini({ breastSize: `large breasts` }),
+    generateSchoolSwimsuit({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;
