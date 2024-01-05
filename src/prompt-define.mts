@@ -203,7 +203,6 @@ export class Pattern<T extends Tag> {
 
 export class PatternCollection<T extends Tag> {
   constructor(readonly patterns: Pattern<T>[]) {
-    // Cannot use `multiplyProbability()` .
     const totalProbability = patterns.reduce(
       (prev, current) => prev + current.probability,
       0,
@@ -253,17 +252,6 @@ export class PatternCollection<T extends Tag> {
         }),
     );
     return new PatternCollection(normalized);
-  }
-
-  private multiplyProbability(multiplier: number) {
-    const temp = this.map(({ simpleTokens, probability }) => {
-      const temp = new Pattern<T>({
-        simpleTokens,
-        probability: probability * multiplier,
-      });
-      return temp;
-    });
-    return temp;
   }
 
   join<U extends Tag>(target: PatternCollection<U>, probability: number) {
