@@ -873,7 +873,61 @@ export const sentoIsuzuLittleJellyV2 = {
   emotion: new PromptDefine<EmotionTag>(emotionPreset.serious),
   situations: [
     {
-      key: `uniform`,
+      key: `sento-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.amusementPark,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.grass,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoUniform`,
+        `military jacket`,
+        `red jacket`,
+        `long sleeves`,
+        `aiguillette`,
+        `epaulettes`,
+        `bowtie`,
+        `white bowtie`,
+        `skirt`,
+        `black skirt`,
+        `miniskirt`,
+        `pleated skirt`,
+        `frilled skirt`,
+        `frills`,
+        `thighhighs`,
+        `white thighhighs`,
+        `boots`,
+        `zettai ryouiki`,
+        `taut clothes`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`boots`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `sento-vest`,
       background: {
         fromHorizontal: new PromptDefine<BackgroundTag>(
           backgroundPreset.fromHorizontalEntries.amusementPark,
@@ -932,8 +986,307 @@ export const sentoIsuzuLittleJellyV2 = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
+    {
+      key: `sento-school-uniform-winter`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.classroom,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.bedSheetWindow },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoSchoolUniform`,
+        `school uniform`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `bowtie`,
+        `red bowtie`,
+        `blazer`,
+        `black jacket`,
+        `long sleeves`,
+        `skirt`,
+        `red skirt`,
+        `plaid skirt`,
+        `pleated skirt`,
+        `thighhighs`,
+        `white thighhighs`,
+        `loafers`,
+        `zettai ryouiki`,
+        `taut clothes`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `sento-school-uniform-summer`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.classroom,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.bedSheetWindow },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoSchoolUniform`,
+        `school uniform`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `bowtie`,
+        `red bowtie`,
+        `vest`,
+        `black vest`,
+        `short sleeves`,
+        `skirt`,
+        `red skirt`,
+        `plaid skirt`,
+        `pleated skirt`,
+        `thighhighs`,
+        `white thighhighs`,
+        `loafers`,
+        `zettai ryouiki`,
+        `taut clothes`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `sento-suit`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.office,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.officeFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.bedSheet,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoSuit`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `suit`,
+        `business suit`,
+        `pinstripe pattern`,
+        `long sleeves`,
+        `skirt`,
+        `pencil skirt`,
+        `miniskirt`,
+        `bare legs`,
+        `pumps`,
+        `taut clothes`,
+        `socks`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`pumps`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `sento-casual`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.city,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.outdoors,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoCasual`,
+        `collarbone`,
+        `shirt`,
+        `pink shirt`,
+        `jacket`,
+        `pink jacket`,
+        `open clothes`,
+        `open jacket`,
+        `long sleeves`,
+        `skirt`,
+        `orange skirt`,
+        `pleated skirt`,
+        `thighhighs`,
+        `white thighhighs`,
+        `skindentation`,
+        `shoes`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`shoes`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `sento-bikini`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.dayPool,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.poolside,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.oceanPartiallySubmerged,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.oceanPartiallySubmerged },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoBikini`,
+        `bikini`,
+        `red bikini`,
+        `o-ring bikini`,
+        `skindentation`,
+        `collarbone`,
+        `shoulder blades`,
+        `navel`,
+        `bare arms`,
+        `bare legs`,
+        `barefoot`,
+        `cleavage`,
+        `sideboob`,
+        `backboob`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `none`,
+    },
+    {
+      key: `sento-pirate`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.amusementPark,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.poolside,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.poolside },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `SentoPirate`,
+        `pirate`,
+        `pirate hat`,
+        `eyepatch`,
+        `collarbone`,
+        `ascot`,
+        `bikini`,
+        `red bikini`,
+        `print bikini`,
+        `cleavage`,
+        `sideboob`,
+        `backboob`,
+        `skindentation`,
+        `jacket`,
+        `red jacket`,
+        `open jacket`,
+        `long sleeves`,
+        `gold trim`,
+        `navel`,
+        { tag: `belt`, weight: 1.2 },
+        `white belt`,
+        `bare legs`,
+        `thigh boots`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `none`,
+    },
   ],
 } as const satisfies CharaDefine;

@@ -31,6 +31,7 @@ export const backgroundPreset = {
     ],
     caveInterior: [`cave interior`],
     amusementPark: [`outdoors`, `amusement park`, `blue sky`],
+    dayPool: [`outdoors`, `day`, `pool`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],

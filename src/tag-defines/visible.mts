@@ -557,6 +557,7 @@ export const tagVisibilities = {
   bowtie: { ...invisible, frontBreast: true, sideBreast: true },
   "blue bowtie": { ...invisible, frontBreast: true, sideBreast: true },
   "white bowtie": { ...invisible, frontBreast: true, sideBreast: true },
+  "red bowtie": { ...invisible, frontBreast: true, sideBreast: true },
   buttons: visibleType.all,
   jewelry: visibleType.all,
   bikini: visibleType.dress,
@@ -577,6 +578,10 @@ export const tagVisibilities = {
   "pink bikini": visibleType.dress,
   "purple bikini": visibleType.dress,
   "frilled bikini": visibleType.dress,
+  "print bikini": visibleType.dress,
+  "o-ring bikini": visibleType.dress,
+  "o-ring top": { ...invisible, frontBreast: true, sideBreast: true },
+  "o-ring bottom": visibleType.aroundHip,
   "school uniform": visibleType.dress,
   "school swimsuit": visibleType.dress,
   "black one-piece swimsuit": visibleType.dress,
@@ -587,6 +592,7 @@ export const tagVisibilities = {
   "black collar": visibleType.collar,
   "red shirt": visibleType.shirt,
   "white shirt": visibleType.shirt,
+  "pink shirt": visibleType.shirt,
   "long sleeves": visibleType.all,
   "white sleeves": visibleType.all,
   belt: visibleType.skirt,
@@ -606,6 +612,7 @@ export const tagVisibilities = {
   vest: visibleType.shirt,
   "green vest": visibleType.shirt,
   "blue vest": visibleType.shirt,
+  "black vest": visibleType.shirt,
   dress: visibleType.dress,
   "red dress": visibleType.dress,
   "black dress": visibleType.dress,
@@ -632,7 +639,10 @@ export const tagVisibilities = {
   "black skirt": visibleType.skirt,
   "green skirt": visibleType.skirt,
   "grey skirt": visibleType.skirt,
+  "red skirt": visibleType.skirt,
+  "orange skirt": visibleType.skirt,
   miniskirt: visibleType.skirt,
+  "plaid skirt": visibleType.skirt,
   "pencil skirt": visibleType.skirt,
   "red trim": visibleType.all,
   pantyhose: visibleType.pantyhose,
@@ -661,7 +671,13 @@ export const tagVisibilities = {
   "chino work": visibleType.all,
   aachisato: visibleType.all,
   hmmisaki: visibleType.all,
+  SentoUniform: visibleType.all,
   SentoVest: visibleType.all,
+  SentoSchoolUniform: visibleType.all,
+  SentoSuit: visibleType.all,
+  SentoCasual: visibleType.all,
+  SentoBikini: visibleType.all,
+  SentoPirate: visibleType.all,
   "tokiwadai school uniform": visibleType.all,
   "sweater vest": visibleType.shirt,
   "brown sweater vest": visibleType.shirt,
@@ -677,8 +693,22 @@ export const tagVisibilities = {
   epaulettes: visibleType.aroundBreast,
   jacket: visibleType.shirt,
   "red jacket": visibleType.shirt,
+  "black jacket": visibleType.shirt,
+  "pink jacket": visibleType.shirt,
   "sleeveless jacket": visibleType.shirt,
   "military jacket": visibleType.shirt,
+  blazer: visibleType.shirt,
+  suit: visibleType.shirt,
+  "business suit": visibleType.shirt,
+  "pinstripe pattern": visibleType.shirt, // TODO: Separate to `pinstripe pattern shirt` and `pinstripe pattern skirt` .
+  pumps: visibleType.foot,
+  "open clothes": visibleType.shirt, // Visible from back. Assume when all fours.
+  "open jacket": visibleType.shirt, // Visible from back. Assume when all fours.
+  pirate: visibleType.all,
+  "pirate hat": visibleType.head,
+  ascot: { ...invisible, frontBreast: true, sideBreast: true },
+  "gold trim": visibleType.all, // TODO: `gold trim shirt` and `gold trim skirt` .
+  "thigh boots": visibleType.foot,
 
   // Emotion
   blush: visibleType.face,
@@ -774,6 +804,8 @@ export const tagVisibilities = {
   "bed sheet": visibleType.all,
   pillow: visibleType.all,
   "amusement park": visibleType.all,
+  day: visibleType.all,
+  pool: visibleType.all, // TODO: Make all background tags invisible for safety.
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {
