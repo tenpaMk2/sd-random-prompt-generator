@@ -150,6 +150,7 @@ const allOutfitTags = [
   `epaulettes`,
   `jacket`,
   `red jacket`,
+  `sleeveless jacket`,
   `military jacket`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];

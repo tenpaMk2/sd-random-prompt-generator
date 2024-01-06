@@ -854,7 +854,7 @@ export const ceciliaAlcottOGTurles = {
 export const sentoIsuzuLittleJellyV2 = {
   key: `sento-isuzu-little-jelly-v2`,
   characterFeature: new PromptDefine<CharacterFeatureTag>([
-    `<lora:AmagiBrilliantPark_SentoIsuzu:0.7>`,
+    `<lora:AmagiBrilliantPark_SentoIsuzu:0.9>`,
     `amagi brilliant park`,
     `sento isuzu`,
     `brown eyes`,
@@ -867,7 +867,6 @@ export const sentoIsuzuLittleJellyV2 = {
     `antenna hair`,
     `hair bow`,
     `white bow`,
-    `curvy`,
     `large breasts`,
     `thick thighs`,
   ]),
@@ -900,6 +899,7 @@ export const sentoIsuzuLittleJellyV2 = {
         `SentoVest`,
         `military jacket`,
         `red jacket`,
+        `sleeveless jacket`,
         `shirt`,
         `red shirt`,
         `sleeveless`,

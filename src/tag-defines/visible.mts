@@ -183,7 +183,7 @@ export const tagVisibilities = {
   "<lora:nishikigi_chisato_v1:0.75>": visibleType.all,
   "<lora:shokuhou_misaki_v2:0.7>": visibleType.all,
   "<lora:OGT_Cecilia_Alcott-v1:0.8>": visibleType.all,
-  "<lora:AmagiBrilliantPark_SentoIsuzu:0.7>": visibleType.all,
+  "<lora:AmagiBrilliantPark_SentoIsuzu:0.9>": visibleType.all,
   "infinite stratos": visibleType.all,
   aacecilia: visibleType.all,
   "cecilia alcott": visibleType.all,
@@ -677,6 +677,7 @@ export const tagVisibilities = {
   epaulettes: visibleType.aroundBreast,
   jacket: visibleType.shirt,
   "red jacket": visibleType.shirt,
+  "sleeveless jacket": visibleType.shirt,
   "military jacket": visibleType.shirt,
 
   // Emotion
