@@ -3,6 +3,7 @@ import {
   minimumTest,
   sentoIsuzuLittleJellyV2,
   shokuhoMisaki,
+  suzukazeAobaNarugo1992,
 } from "./characters.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
@@ -17,6 +18,7 @@ const charas = [
   shokuhoMisaki,
   ceciliaAlcottOGTurles,
   sentoIsuzuLittleJellyV2,
+  suzukazeAobaNarugo1992,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

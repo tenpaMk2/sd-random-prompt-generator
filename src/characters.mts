@@ -854,7 +854,7 @@ export const ceciliaAlcottOGTurles = {
 export const sentoIsuzuLittleJellyV2 = {
   key: `sento-isuzu-little-jelly-v2`,
   characterFeature: new PromptDefine<CharacterFeatureTag>([
-    `<lora:AmagiBrilliantPark_SentoIsuzu:0.9>`,
+    `<lora:AmagiBrilliantPark_SentoIsuzu:0.8>`,
     `amagi brilliant park`,
     `sento isuzu`,
     `brown eyes`,
@@ -1223,6 +1223,7 @@ export const sentoIsuzuLittleJellyV2 = {
         `bikini`,
         `red bikini`,
         `o-ring bikini`,
+        `o-ring top`,
         `skindentation`,
         `collarbone`,
         `shoulder blades`,
@@ -1288,5 +1289,78 @@ export const sentoIsuzuLittleJellyV2 = {
       isArmpitsVisible: false,
       liftType: `none`,
     },
+  ],
+} as const satisfies CharaDefine;
+
+export const suzukazeAobaNarugo1992 = {
+  key: `suzukaze-aoba-narugo-1992`,
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `<lora:suzukaze_aoba_newgame:0.75>`,
+    `new game!`,
+    `suzukaze aoba`,
+    `suzukaze_aoba_newgame`,
+    `purple eyes`,
+    `purple hair`,
+    `long hair`,
+    `twintails`,
+    `blunt bangs`,
+    `blunt ends`,
+    `hair ornament`,
+    `hair flower`,
+    `small breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
+  situations: [
+    {
+      key: `suit`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.office,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.officeCeiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.officeFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `suit`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `neck ribbon`,
+        `jacket`,
+        `purple jacket`,
+        `skirt`,
+        `purple skirt`,
+        `miniskirt`,
+        `bare legs`,
+        `socks`,
+        `shoes`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`shoes`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `small breasts` }),
+    generateMaidBikini({ breastSize: `small breasts` }),
+    generateSchoolSwimsuit({ breastSize: `small breasts` }),
   ],
 } as const satisfies CharaDefine;
