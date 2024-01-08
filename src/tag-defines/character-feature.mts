@@ -1,12 +1,3 @@
-const allLoraNames = [
-  `<lora:nishikigi_chisato_v1:0.75>`, // https://civitai.com/models/235178/nishikigi-chisato-lycoris-recoil
-  `<lora:shokuhou_misaki_v2:0.7>`, // https://civitai.com/models/19948/shokuhou-misaki-toaru-kagaku-no-railgun
-  `<lora:OGT_Cecilia_Alcott-v1:0.8>`, // https://civitai.com/models/250377/cecilia-alcott-or-infinite-stratos
-  `<lora:AmagiBrilliantPark_SentoIsuzu:0.8>`, // https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park
-  `<lora:suzukaze_aoba_newgame:0.75>`, // https://civitai.com/models/227219/suzukaze-aoba-new-game
-] as const satisfies readonly string[];
-type LoraName = (typeof allLoraNames)[number];
-
 const allProperNouns = [
   `infinite stratos`,
   `aacecilia`,
@@ -344,7 +335,6 @@ const allBodyFeatureTags = [
 type BodyFeatureTag = (typeof allBodyFeatureTags)[number];
 
 export type CharacterFeatureTag =
-  | LoraName
   | ProperNoun
   | HeadFeatureTag
   | BreastSizeTag

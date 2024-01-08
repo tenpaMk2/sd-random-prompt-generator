@@ -105,10 +105,9 @@ const addLift = (
   return added;
 };
 
-const finilize = (independentPatternCollections: PatternCollection<Tag>[]) =>
-  independentPatternCollections
-    .map((patternCollection) => patternCollection.toString())
-    .join(`,\n`);
+type ToStringable = { toString: () => string };
+const finilize = (items: ToStringable[]) =>
+  items.map((item) => item.toString()).join(`,\n`);
 
 type Generator = (info: EachVisibleTokenInfo) => {
   key: string;
@@ -116,6 +115,7 @@ type Generator = (info: EachVisibleTokenInfo) => {
 };
 
 const generateUpperBody: Generator = ({
+  loraToken,
   personInfoPatterns,
   isArmpitsVisible,
   frontEmotionPatternCollection,
@@ -148,6 +148,7 @@ const generateUpperBody: Generator = ({
   return {
     key: `upper-body`,
     prompt: finilize([
+      loraToken,
       personPatternCollection,
       armPosePatternCollection,
       posePatternCollection,
@@ -158,6 +159,7 @@ const generateUpperBody: Generator = ({
 };
 
 const generateCowboyShot: Generator = ({
+  loraToken,
   personInfoPatterns,
   isArmpitsVisible,
   frontEmotionPatternCollection,
@@ -190,6 +192,7 @@ const generateCowboyShot: Generator = ({
   return {
     key: `cowboy-shot`,
     prompt: finilize([
+      loraToken,
       personPatternCollection,
       armPosePatternCollection,
       posePatternCollection,
@@ -200,6 +203,7 @@ const generateCowboyShot: Generator = ({
 };
 
 const generateAllFours: Generator = ({
+  loraToken,
   personInfoPatterns,
   frontEmotionPatternCollection,
   profileEmotionPatternCollection,
@@ -228,6 +232,7 @@ const generateAllFours: Generator = ({
   return {
     key: `all-fours`,
     prompt: finilize([
+      loraToken,
       personPatternCollectionWithHangingBreasts,
       posePatternCollection,
       emotionPatternCollection,
@@ -237,6 +242,7 @@ const generateAllFours: Generator = ({
 };
 
 const generateAllFoursFromBehind: Generator = ({
+  loraToken,
   personInfoPatterns,
   frontEmotionPatternCollection,
   profileEmotionPatternCollection,
@@ -269,6 +275,7 @@ const generateAllFoursFromBehind: Generator = ({
   return {
     key: `all-fours-from-behind`,
     prompt: finilize([
+      loraToken,
       personPatternCollection,
       posePatternCollection,
       emotionPatternCollection,
@@ -279,6 +286,7 @@ const generateAllFoursFromBehind: Generator = ({
 };
 
 const generateAllFoursFromBehindOnBed: Generator = ({
+  loraToken,
   personInfoPatterns,
   frontEmotionPatternCollection,
   profileEmotionPatternCollection,
@@ -324,6 +332,7 @@ const generateAllFoursFromBehindOnBed: Generator = ({
   return {
     key: `all-fours-from-behind-on-bed`,
     prompt: finilize([
+      loraToken,
       personPatternCollection,
       posePatternCollection,
       emotionPatternCollection,
@@ -334,6 +343,7 @@ const generateAllFoursFromBehindOnBed: Generator = ({
 };
 
 const generatePortraitLyingOnBed: Generator = ({
+  loraToken,
   personInfoPatterns,
   frontEmotionPatternCollection,
 }) => {
@@ -360,6 +370,7 @@ const generatePortraitLyingOnBed: Generator = ({
   return {
     key: `portrait-lying-on-on-bed`,
     prompt: finilize([
+      loraToken,
       personPatternCollection,
       posePatternCollection,
       frontEmotionPatternCollection,
@@ -369,6 +380,7 @@ const generatePortraitLyingOnBed: Generator = ({
 };
 
 const generateUpperBodyLyingOnBed: Generator = ({
+  loraToken,
   personInfoPatterns,
   frontEmotionPatternCollection,
 }) => {
@@ -395,6 +407,7 @@ const generateUpperBodyLyingOnBed: Generator = ({
   return {
     key: `upper-body-lying-on-on-bed`,
     prompt: finilize([
+      loraToken,
       personPatternCollection,
       posePatternCollection,
       frontEmotionPatternCollection,
@@ -404,6 +417,7 @@ const generateUpperBodyLyingOnBed: Generator = ({
 };
 
 const generateCowboyShotLyingOnBed: Generator = ({
+  loraToken,
   personInfoPatterns,
   upskirtPatternCollection,
   liftType,
@@ -437,6 +451,7 @@ const generateCowboyShotLyingOnBed: Generator = ({
   return {
     key: `cowboy-shot-lying-on-on-bed`,
     prompt: finilize([
+      loraToken,
       personPatternCollection,
       upskirtPatternCollectionWithLift,
       posePatternCollection,

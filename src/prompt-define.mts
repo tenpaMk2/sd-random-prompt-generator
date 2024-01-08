@@ -4,6 +4,7 @@ import {
   getKeys,
 } from "./libs/utility.mjs";
 import { Tag } from "./tag-defines/all.mjs";
+import { LoraNameTag } from "./tag-defines/lora.mjs";
 import { allOutfitWildcards } from "./tag-defines/outfit-and-exposure.mjs";
 
 export class SimpleToken<T extends Tag> {
@@ -23,6 +24,40 @@ export class SimpleToken<T extends Tag> {
       : this.tag;
 
     return this.weight === 1.0 ? str : `(${str}:${this.weight})`;
+  }
+}
+
+/**
+ * For Lora token definition.
+ * The weights can be specified as arrays and will be converted to dynamic prompt.
+ */
+export class LoraToken {
+  readonly tag: LoraNameTag;
+  readonly weights: number[];
+  constructor({
+    tag,
+    weights,
+  }: {
+    tag: LoraNameTag;
+    weights?: number | number[];
+  }) {
+    this.tag = tag;
+    this.weights = typeof weights === `number` ? [weights] : weights ?? [1.0];
+
+    // Vadidation
+    for (const weight of this.weights) {
+      if (weight < 0) throw new Error(`Invalid weight: ${weight}`);
+    }
+  }
+
+  toString() {
+    if (this.weights.length === 1) {
+      return `<lora:${this.tag}:${this.weights[0]}>`;
+    } else {
+      return generateDynamicPrompt(
+        this.weights.map((w) => `<lora:${this.tag}:${w}>`),
+      );
+    }
   }
 }
 

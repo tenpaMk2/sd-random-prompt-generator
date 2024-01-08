@@ -1,6 +1,6 @@
 import { backgroundPreset } from "./background-preset.mjs";
 import { emotionPreset } from "./emotion-preset.mjs";
-import { PromptDefine, SimpleToken } from "./prompt-define.mjs";
+import { LoraToken, PromptDefine, SimpleToken } from "./prompt-define.mjs";
 import { BackgroundTag } from "./tag-defines/background.mjs";
 import {
   BreastSizeOrder,
@@ -19,6 +19,10 @@ export type CharaDefine = Readonly<{
    * Key used for filename.
    */
   key: string;
+  /**
+   * Lora define.
+   */
+  lora: LoraToken | null;
   /**
    * Character feature defines.
    */
@@ -651,8 +655,8 @@ const generateSchoolSwimsuit = ({
 
 export const shokuhoMisaki = {
   key: `shokuho-misaki-h-madoka`,
+  lora: new LoraToken({ tag: `shokuhou_misaki_v2`, weights: 0.7 }),
   characterFeature: new PromptDefine<CharacterFeatureTag>([
-    `<lora:shokuhou_misaki_v2:0.7>`,
     `toaru kagaku no railgun`,
     `shokuhou misaki`,
     `yellow eyes`,
@@ -722,6 +726,7 @@ export const shokuhoMisaki = {
 
 export const minimumTest = {
   key: `minimum-test`,
+  lora: null,
   characterFeature: new PromptDefine<CharacterFeatureTag>([
     `red eyes`,
     `small breasts`,
@@ -775,8 +780,8 @@ export const minimumTest = {
 
 export const ceciliaAlcottOGTurles = {
   key: `cecilia-alcott-og-turles`,
+  lora: new LoraToken({ tag: `OGT_Cecilia_Alcott-v1`, weights: 0.8 }),
   characterFeature: new PromptDefine<CharacterFeatureTag>([
-    `<lora:OGT_Cecilia_Alcott-v1:0.8>`,
     `infinite stratos`,
     `cecilia alcott`,
     `blue eyes`,
@@ -853,8 +858,8 @@ export const ceciliaAlcottOGTurles = {
 
 export const sentoIsuzuLittleJellyV2 = {
   key: `sento-isuzu-little-jelly-v2`,
+  lora: new LoraToken({ tag: `AmagiBrilliantPark_SentoIsuzu`, weights: 0.8 }),
   characterFeature: new PromptDefine<CharacterFeatureTag>([
-    `<lora:AmagiBrilliantPark_SentoIsuzu:0.8>`,
     `amagi brilliant park`,
     `sento isuzu`,
     `brown eyes`,
@@ -1294,8 +1299,11 @@ export const sentoIsuzuLittleJellyV2 = {
 
 export const suzukazeAobaNarugo1992 = {
   key: `suzukaze-aoba-narugo-1992`,
+  lora: new LoraToken({
+    tag: `suzukaze_aoba_newgame`,
+    weights: [0.5, 0.6, 0.7, 0.8],
+  }),
   characterFeature: new PromptDefine<CharacterFeatureTag>([
-    `<lora:suzukaze_aoba_newgame:0.75>`,
     `new game!`,
     `suzukaze aoba`,
     `suzukaze_aoba_newgame`,

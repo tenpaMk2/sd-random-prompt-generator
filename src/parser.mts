@@ -82,6 +82,7 @@ export const parse = (def: CharaDefine) =>
 
       return {
         key, // For filenames.
+        loraToken: def.lora ?? ``,
         personInfoPatterns,
         isArmpitsVisible,
         liftType: liftType ?? `none`,

@@ -180,11 +180,6 @@ export const visibleType = {
 
 export const tagVisibilities = {
   // Character feature
-  "<lora:nishikigi_chisato_v1:0.75>": visibleType.all,
-  "<lora:shokuhou_misaki_v2:0.7>": visibleType.all,
-  "<lora:OGT_Cecilia_Alcott-v1:0.8>": visibleType.all,
-  "<lora:AmagiBrilliantPark_SentoIsuzu:0.8>": visibleType.all,
-  "<lora:suzukaze_aoba_newgame:0.75>": visibleType.all,
   "infinite stratos": visibleType.all,
   aacecilia: visibleType.all,
   "cecilia alcott": visibleType.all,
