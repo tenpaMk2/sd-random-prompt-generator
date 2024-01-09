@@ -14,6 +14,8 @@ const allProperNouns = [
   `new game!`,
   `suzukaze aoba`,
   `suzukaze_aoba_newgame`,
+  `takimoto hifumi`,
+  `takimoto_hifumi_newgame`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 

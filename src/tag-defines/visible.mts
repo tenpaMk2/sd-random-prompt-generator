@@ -195,6 +195,8 @@ export const tagVisibilities = {
   "new game!": visibleType.all,
   "suzukaze aoba": visibleType.all,
   suzukaze_aoba_newgame: visibleType.all,
+  "takimoto hifumi": visibleType.all,
+  takimoto_hifumi_newgame: visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -589,6 +591,7 @@ export const tagVisibilities = {
   "white jacket": visibleType.shirt,
   "white dress": visibleType.dress,
   "black collar": visibleType.collar,
+  "red collar": visibleType.collar,
   "red shirt": visibleType.shirt,
   "white shirt": visibleType.shirt,
   "pink shirt": visibleType.shirt,

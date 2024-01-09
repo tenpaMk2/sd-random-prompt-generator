@@ -1372,3 +1372,82 @@ export const suzukazeAobaNarugo1992 = {
     generateSchoolSwimsuit({ breastSize: `small breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const takimotoHifumiNarugo1992 = {
+  key: `takimoto-hifumi-narugo-1992`,
+  lora: new LoraToken({
+    tag: `takimoto_hifumi_newgame`,
+    weights: [0.6, 0.7],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `new game!`,
+    `takimoto hifumi`,
+    `takimoto_hifumi_newgame`,
+    `blue eyes`,
+    `tsurime`,
+    `brown hair`,
+    `long hair`,
+    `ponytail`,
+    `blunt bangs`,
+    `sidelocks`,
+    `hair bow`,
+    `red bow`,
+    `large breasts`,
+    `thick thighs`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
+  situations: [
+    {
+      key: `main`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.office,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.officeCeiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.officeFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `red collar`,
+        `neck ribbon`,
+        `black ribbon`,
+        `collarbone`,
+        `long sleeves`,
+        `skirt`,
+        `red skirt`,
+        `pleated skirt`,
+        `thighhighs`,
+        `black thighhighs`,
+        `shoes`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      whenRemoveShoes: {
+        excludeTags: [`shoes`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `large breasts` }),
+    generateMaidBikini({ breastSize: `large breasts` }),
+    generateSchoolSwimsuit({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;
