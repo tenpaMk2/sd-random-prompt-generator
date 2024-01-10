@@ -28,6 +28,9 @@ const allExposureTags = [
   `ass`,
   `barefoot`,
   `no shoes`,
+  `partially unbuttoned`,
+  `partially undressed`,
+  `nsfw`,
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 

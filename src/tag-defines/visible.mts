@@ -552,6 +552,10 @@ export const tagVisibilities = {
   ass: { ...invisible, sideHipAndThigh: true, backHipAndThigh: true },
   barefoot: visibleType.foot,
   "no shoes": visibleType.foot,
+  "partially unbuttoned": { ...invisible, frontBreast: true, sideBreast: true },
+  "partially undressed": visibleType.dress,
+  nsfw: visibleType.all,
+
   "cleavage cutout": { ...invisible, frontBreast: true, sideBreast: true },
   "neck ribbon": { ...invisible, frontBreast: true, sideBreast: true },
   underbust: visibleType.midriff,
@@ -737,7 +741,10 @@ export const tagVisibilities = {
   "naughty face": visibleType.face,
   scowl: visibleType.face,
   "one eye closed": visibleType.face,
+  torogao: visibleType.face,
+  "heavy breathing": visibleType.face,
   profile: visibleType.face,
+
   // Arm pose
   "arms up": visibleType.aroundBreast,
   "arm up": visibleType.aroundBreast,
