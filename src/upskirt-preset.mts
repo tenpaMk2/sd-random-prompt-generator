@@ -3,6 +3,12 @@ import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
 
 const preset = {
   colorfulPanties: [`underwear`, `panties`, `crotch seam`, `__color__ panties`],
+  vividPanties: [
+    `underwear`,
+    `panties`,
+    `crotch seam`,
+    `__vivid_color__ panties`,
+  ],
   vividPantiesStrong: [
     `underwear`,
     `panties`,

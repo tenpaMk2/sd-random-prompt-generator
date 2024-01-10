@@ -201,7 +201,7 @@ const generateMaidBikini = ({
   ]),
   isArmpitsVisible: true,
   liftType: `skirt`,
-  upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+  upskirt: new PromptDefine(upskirtPreset.vividPanties),
 });
 
 const generateSchoolSwimsuit = ({
@@ -1424,7 +1424,6 @@ export const takimotoHifumiNarugo1992 = {
         `shirt`,
         `white shirt`,
         `collared shirt`,
-        `red collar`,
         `neck ribbon`,
         `black ribbon`,
         `collarbone`,
@@ -1438,7 +1437,7 @@ export const takimotoHifumiNarugo1992 = {
       ]),
       isArmpitsVisible: false,
       liftType: `skirt`,
-      upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
+      upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
       whenRemoveShoes: {
         excludeTags: [`shoes`],
         additionalFootTokensAfterRemoving: [
