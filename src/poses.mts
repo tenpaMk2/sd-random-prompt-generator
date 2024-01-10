@@ -522,6 +522,8 @@ const generateLeaningForwardVArms: Generator = ({
     `cowboy shot`,
     `leaning forward`,
     `v arms`,
+    `from above`,
+    `looking up`,
     `looking at viewer`,
   ]).convertToPatternCollection();
 

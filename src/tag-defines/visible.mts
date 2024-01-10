@@ -758,6 +758,7 @@ export const tagVisibilities = {
   singing: visibleType.aroundBreast,
   "holding microphone": visibleType.aroundBreast,
   "v arms": visibleType.aroundBreast,
+
   // Pose
   "looking at viewer": visibleType.head,
   "looking back": visibleType.head,
@@ -766,8 +767,6 @@ export const tagVisibilities = {
   "upper body": visibleType.all,
   "cowboy shot": visibleType.all,
   "all fours": visibleType.all,
-  "from behind": visibleType.all,
-  upskirt: visibleType.upskirt,
   lying: visibleType.all,
   "on back": visibleType.all,
   "on bed": visibleType.all,
@@ -777,6 +776,12 @@ export const tagVisibilities = {
   "dress lift": visibleType.all,
   "skirt lift": visibleType.all,
   "leaning forward": visibleType.all,
+  "from behind": visibleType.all,
+  "from above": visibleType.all,
+  "from below": visibleType.all,
+  "from side": visibleType.all,
+  upskirt: visibleType.upskirt,
+  pantyshot: visibleType.upskirt,
 
   // Background
   indoors: visibleType.all,
