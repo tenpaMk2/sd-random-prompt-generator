@@ -9,6 +9,11 @@ import {
 } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { ArmPoseTag, armpitsVisibleTags } from "./tag-defines/arm-pose.mjs";
+import {
+  BreastSizeOrder,
+  BreastSizeTag,
+  allBreastSizeTags,
+} from "./tag-defines/character-feature.mjs";
 import { ArmpitsTag } from "./tag-defines/outfit-and-exposure.mjs";
 import { Visible } from "./tag-defines/visible.mjs";
 
@@ -82,6 +87,12 @@ const addHangingBreasts = (personPatternCollection: PatternCollection<Tag>) => {
   return added;
 };
 
+/**
+ * Add lift tokens by each lift type.
+ * @param upskirtPatternCollection
+ * @param liftType
+ * @returns Pattern collection added lift tokens
+ */
 const addLift = (
   upskirtPatternCollection: PatternCollection<Tag>,
   liftType: EachVisibleTokenInfo["liftType"],
@@ -102,6 +113,37 @@ const addLift = (
         return pattern;
     }
   });
+  return added;
+};
+
+/**
+ * Add `breasts` tag if breast size is bigger than or equal to `medium breasts`.
+ * @param personPatternCollection
+ * @returns Pattern collection added `breasts` tag if breast size is bigger than or equal to `medium breasts`.
+ */
+const addBreasts = (personPatternCollection: PatternCollection<Tag>) => {
+  const added = personPatternCollection.map((pattern) => {
+    const breastSizeTokens = pattern.filter(({ tag }) =>
+      allBreastSizeTags.some((t) => t === tag),
+    ).simpleTokens as SimpleToken<BreastSizeTag>[];
+
+    if (breastSizeTokens.length !== 1) {
+      throw new Error(
+        `No breast size token or multiple breast size tokens are included in pattern.`,
+      );
+    }
+
+    if (
+      BreastSizeOrder["medium breasts"] <=
+      BreastSizeOrder[breastSizeTokens[0].tag]
+    ) {
+      // Add `breasts` tag if breast size is bigger than or equal to `medium breasts`.
+      return pattern.concat([new SimpleToken<Tag>({ tag: `breasts` })]);
+    }
+
+    return pattern;
+  });
+
   return added;
 };
 
@@ -461,6 +503,40 @@ const generateCowboyShotLyingOnBed: Generator = ({
   };
 };
 
+const generateLeaningForwardVArms: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromAbovePatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const breastsAddedPersonPatternCollection = addBreasts(
+    personPatternCollection,
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `leaning forward`,
+    `v arms`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `leaning-forward-v-arms`,
+    prompt: finilize([
+      loraToken,
+      breastsAddedPersonPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromAbovePatternCollection,
+    ]),
+  };
+};
+
 // TODO:        new TagLeaf({ tagEntries: [`spread legs`] }),
 // TODO:        new TagLeaf({ tagEntries: [`legs up`] }),
 
@@ -473,4 +549,5 @@ export const posePromptGenerators = [
   generatePortraitLyingOnBed,
   generateUpperBodyLyingOnBed,
   generateCowboyShotLyingOnBed,
+  generateLeaningForwardVArms,
 ];

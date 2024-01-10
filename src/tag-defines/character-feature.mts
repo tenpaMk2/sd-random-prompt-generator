@@ -311,7 +311,7 @@ const allHeadFeatureTags = [
 ] as const satisfies readonly string[];
 type HeadFeatureTag = (typeof allHeadFeatureTags)[number];
 
-const allBreastSizeTags = [
+export const allBreastSizeTags = [
   `flat chest`,
   `small breasts`,
   `medium breasts`,

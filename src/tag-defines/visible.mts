@@ -757,6 +757,7 @@ export const tagVisibilities = {
   "own hands together": visibleType.aroundBreast,
   singing: visibleType.aroundBreast,
   "holding microphone": visibleType.aroundBreast,
+  "v arms": visibleType.aroundBreast,
   // Pose
   "looking at viewer": visibleType.head,
   "looking back": visibleType.head,
@@ -775,6 +776,8 @@ export const tagVisibilities = {
   "clothes lift": visibleType.all,
   "dress lift": visibleType.all,
   "skirt lift": visibleType.all,
+  "leaning forward": visibleType.all,
+
   // Background
   indoors: visibleType.all,
   cafe: visibleType.all,
