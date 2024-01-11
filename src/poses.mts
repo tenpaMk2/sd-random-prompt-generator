@@ -539,6 +539,42 @@ const generateLeaningForwardVArms: Generator = ({
   };
 };
 
+const generateWariza: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromAbovePatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`, `foot`],
+  );
+
+  const breastsAddedPersonPatternCollection = addBreasts(
+    personPatternCollection,
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `wariza`,
+    `sitting`,
+    `hands on lap`,
+    `from above`,
+    `looking up`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `wariza`,
+    prompt: finilize([
+      loraToken,
+      breastsAddedPersonPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromAbovePatternCollection,
+    ]),
+  };
+};
+
 // TODO:        new TagLeaf({ tagEntries: [`spread legs`] }),
 // TODO:        new TagLeaf({ tagEntries: [`legs up`] }),
 
@@ -552,4 +588,5 @@ export const posePromptGenerators = [
   generateUpperBodyLyingOnBed,
   generateCowboyShotLyingOnBed,
   generateLeaningForwardVArms,
+  generateWariza,
 ];

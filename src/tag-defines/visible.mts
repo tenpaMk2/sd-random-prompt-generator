@@ -758,6 +758,7 @@ export const tagVisibilities = {
   singing: visibleType.aroundBreast,
   "holding microphone": visibleType.aroundBreast,
   "v arms": visibleType.aroundBreast,
+  "hands on lap": visibleType.aroundBreast,
 
   // Pose
   "looking at viewer": visibleType.head,
@@ -782,6 +783,8 @@ export const tagVisibilities = {
   "from side": visibleType.all,
   upskirt: visibleType.upskirt,
   pantyshot: visibleType.upskirt,
+  wariza: visibleType.all,
+  sitting: visibleType.all,
 
   // Background
   indoors: visibleType.all,

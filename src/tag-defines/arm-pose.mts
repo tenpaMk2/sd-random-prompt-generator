@@ -11,6 +11,7 @@ const allArmPoseTags = [
   `singing`,
   `holding microphone`,
   `v arms`,
+  `hands on lap`,
 ] as const satisfies string[];
 export type ArmPoseTag = (typeof allArmPoseTags)[number];
 
