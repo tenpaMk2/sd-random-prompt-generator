@@ -257,6 +257,71 @@ const generateSchoolSwimsuit = ({
   isArmpitsVisible: true,
 });
 
+const generatePlayboyBunny = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `playboy-bunny`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromHorizontalEntries.casino,
+    ),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromBelowEntries.heartBackground },
+        { entries: backgroundPreset.fromBelowEntries.ceiling },
+      ],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>(
+      backgroundPreset.fromAboveEntries.woodenFloor,
+    ),
+    lying: new PromptDefine<BackgroundTag>(
+      backgroundPreset.lyingEntries.pinkBackground,
+    ),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartWhiteBackground },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `playboy bunny`,
+    `rabbit ears`,
+    `fake animal ears`,
+    `rabbit tail`,
+    `detached collar`,
+    `bare shoulders`,
+    `bare arms`,
+    `collarbone`,
+    `leotard`,
+    `latex leotard`,
+    `wrist cuffs`,
+    `covered navel`,
+    [
+      { entries: [`bare legs`] },
+      { entries: [`pantyhose`] },
+      { entries: [`thighhighs`] },
+    ],
+    `pumps`,
+    `shoulder blades`,
+    `skindentation`,
+    `skin tight`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+  whenRemoveShoes: {
+    excludeTags: [`pumps`],
+    additionalFootTokensAfterRemoving: [
+      new SimpleToken<OutfitAndExposureTag>({ tag: `no shoes` }),
+    ],
+  },
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -1450,5 +1515,6 @@ export const takimotoHifumiNarugo1992 = {
     generateBikini({ breastSize: `large breasts` }),
     generateMaidBikini({ breastSize: `large breasts` }),
     generateSchoolSwimsuit({ breastSize: `large breasts` }),
+    generatePlayboyBunny({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;

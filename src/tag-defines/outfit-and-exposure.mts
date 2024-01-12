@@ -184,6 +184,23 @@ const allOutfitTags = [
   `ascot`,
   `gold trim`,
   `thigh boots`,
+  `playboy bunny`,
+  `rabbit ears`,
+  `fake animal ears`,
+  `latex leotard`,
+  `wrist cuffs`,
+  `leotard`,
+  `red leotard`,
+  `pink leotard`,
+  `orange leotard`,
+  `yellow leotard`,
+  `green leotard`,
+  `blue leotard`,
+  `purple leotard`,
+  `black leotard`,
+  `white leotard`,
+  `brown leotard`,
+  `rabbit tail`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
@@ -248,6 +265,13 @@ export const allOutfitWildcards = {
     `purple panties`,
   ],
   "__monochrome_color__ panties": [`black panties`, `white panties`],
+  __color_leotards__: [
+    `black leotard`,
+    `white leotard`,
+    `red leotard`,
+    `blue leotard`,
+    `pink leotard`,
+  ],
 } as const satisfies { [key: string]: readonly OutfitTag[] };
 export type OutfitWildcard = keyof typeof allOutfitWildcards;
 

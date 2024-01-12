@@ -10,6 +10,7 @@ export const backgroundPreset = {
     classroom: [`indoors`, `classroom`],
     office: [`indoors`, `office`],
     nightRoom: [`indoors`, `night`, `window`],
+    casino: [`indoors`, `casino`],
     outdoors: [`outdoors`],
     beach: [`outdoors`, `beach`],
     ocean: [`outdoors`, `ocean`],

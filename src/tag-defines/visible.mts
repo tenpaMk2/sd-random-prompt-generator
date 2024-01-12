@@ -717,6 +717,24 @@ export const tagVisibilities = {
   ascot: { ...invisible, frontBreast: true, sideBreast: true },
   "gold trim": visibleType.all, // TODO: `gold trim shirt` and `gold trim skirt` .
   "thigh boots": visibleType.foot,
+  "playboy bunny": visibleType.dress,
+  "rabbit ears": visibleType.head,
+  "fake animal ears": visibleType.head,
+  "latex leotard": visibleType.dress,
+  "wrist cuffs": visibleType.aroundBreast,
+  leotard: visibleType.dress,
+  __color_leotards__: visibleType.dress,
+  "red leotard": visibleType.dress,
+  "pink leotard": visibleType.dress,
+  "orange leotard": visibleType.dress,
+  "yellow leotard": visibleType.dress,
+  "green leotard": visibleType.dress,
+  "blue leotard": visibleType.dress,
+  "purple leotard": visibleType.dress,
+  "black leotard": visibleType.dress,
+  "white leotard": visibleType.dress,
+  "brown leotard": visibleType.dress,
+  "rabbit tail": { ...invisible, sideHipAndThigh: true, backHipAndThigh: true },
 
   // Emotion
   blush: visibleType.face,
@@ -828,6 +846,7 @@ export const tagVisibilities = {
   "amusement park": visibleType.all,
   day: visibleType.all,
   pool: visibleType.all, // TODO: Make all background tags invisible for safety.
+  casino: visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {
