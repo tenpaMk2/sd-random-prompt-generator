@@ -1435,6 +1435,7 @@ export const suzukazeAobaNarugo1992 = {
     generateBikini({ breastSize: `small breasts` }),
     generateMaidBikini({ breastSize: `small breasts` }),
     generateSchoolSwimsuit({ breastSize: `small breasts` }),
+    generatePlayboyBunny({ breastSize: `small breasts` }),
   ],
 } as const satisfies CharaDefine;
 
