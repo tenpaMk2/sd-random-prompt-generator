@@ -1519,3 +1519,86 @@ export const takimotoHifumiNarugo1992 = {
     generatePlayboyBunny({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const momoVeliaDevilukeEft = {
+  key: `momo-velia-deviluke-eft`,
+  lora: new LoraToken({
+    tag: `momo-loveru-01`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `to love-ru`,
+    `to love-ru darkness`,
+    `momo velia deviluke`,
+    `momo belia deviluke`,
+    `purple eyes`,
+    `pink hair`,
+    `short hair`,
+    `bob cut`,
+    `hair between eyes`,
+    `hair ornament`,
+    `hair flower`,
+    `tail`,
+    `demon tail`,
+    `large breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
+  situations: [
+    {
+      key: `school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.classroom,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.heartBackground,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `school uniform`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `bowtie`,
+        `green bowtie`,
+        `sweater vest`,
+        `yellow sweater vest`,
+        `short sleeves`,
+        `skirt`,
+        `green skirt`,
+        `pleated skirt`,
+        `plaid skirt`,
+        `thighhighs`,
+        `black thighhighs`,
+        `skindentation`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `large breasts` }),
+    generateMaidBikini({ breastSize: `large breasts` }),
+    generateSchoolSwimsuit({ breastSize: `large breasts` }),
+    generatePlayboyBunny({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;

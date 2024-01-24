@@ -16,6 +16,10 @@ const allProperNouns = [
   `suzukaze_aoba_newgame`,
   `takimoto hifumi`,
   `takimoto_hifumi_newgame`,
+  `to love-ru`,
+  `to love-ru darkness`,
+  `momo velia deviluke`,
+  `momo belia deviluke`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
@@ -321,9 +325,11 @@ export const allBreastSizeTags = [
 export type BreastSizeTag = (typeof allBreastSizeTags)[number];
 
 const allBodyFeatureTags = [
+  `tail`,
   `cat tail`,
   `dog tail`,
   `fox tail`,
+  `demon tail`,
   `thick thighs`,
   `wide hips`,
   `mature female`,
