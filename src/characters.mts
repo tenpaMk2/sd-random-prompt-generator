@@ -1542,7 +1542,7 @@ export const momoVeliaDevilukeEft = {
     `demon tail`,
     `large breasts`,
   ]),
-  emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
   situations: [
     {
       key: `school-uniform`,

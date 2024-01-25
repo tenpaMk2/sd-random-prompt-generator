@@ -770,6 +770,10 @@ export const tagVisibilities = {
   "one eye closed": visibleType.face,
   torogao: visibleType.face,
   "heavy breathing": visibleType.face,
+  "!": visibleType.face,
+  "?": visibleType.face,
+  confused: visibleType.face,
+  "seductive smile": visibleType.face,
   profile: visibleType.face,
 
   // Arm pose

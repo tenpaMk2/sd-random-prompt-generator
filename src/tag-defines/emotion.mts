@@ -23,6 +23,10 @@ const allEmotionTags = [
   `one eye closed`,
   `torogao`,
   `heavy breathing`,
+  `!`,
+  `?`,
+  `confused`,
+  `seductive smile`,
 ] as const satisfies readonly string[];
 export type EmotionTag = (typeof allEmotionTags)[number];
 
