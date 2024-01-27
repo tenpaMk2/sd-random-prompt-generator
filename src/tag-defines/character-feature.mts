@@ -20,6 +20,9 @@ const allProperNouns = [
   `to love-ru darkness`,
   `momo velia deviluke`,
   `momo belia deviluke`,
+  `magia record: mahou shoujo madoka magica gaiden`,
+  `iroha tamaki`,
+  `tamaki iroha`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
@@ -138,6 +141,7 @@ const allHeadFeatureTags = [
   `bow-shaped hair`,
   `braid`,
   `braided bangs`,
+  `braided ponytail`,
   `front braid`,
   `side braid`,
   `frentch braid`,

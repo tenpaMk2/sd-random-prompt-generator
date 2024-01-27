@@ -6,6 +6,7 @@ import {
   shokuhoMisaki,
   suzukazeAobaNarugo1992,
   takimotoHifumiNarugo1992,
+  tamakiIrohaEft,
 } from "./characters.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
@@ -23,6 +24,7 @@ const charas = [
   suzukazeAobaNarugo1992,
   takimotoHifumiNarugo1992,
   momoVeliaDevilukeEft,
+  tamakiIrohaEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

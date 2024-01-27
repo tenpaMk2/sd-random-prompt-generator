@@ -21,6 +21,12 @@ const preset = {
     `crotch seam`,
     { tag: `__color__ panties`, weight: 1.3 },
   ],
+  pantiesUnderPantyhose: [
+    `panties under pantyhose`,
+    `underwear`,
+    `panties`,
+    `crotch seam`,
+  ],
 } as const satisfies { [k: string]: Entry<OutfitAndExposureTag>[] };
 
 export const upskirtPreset = {

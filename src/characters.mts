@@ -1602,3 +1602,90 @@ export const momoVeliaDevilukeEft = {
     generatePlayboyBunny({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const tamakiIrohaEft = {
+  key: `tamaki-iroha-eft`,
+  lora: new LoraToken({
+    tag: `iroha-madomagi`,
+    weights: [0.6, 0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `magia record: mahou shoujo madoka magica gaiden`,
+    `iroha tamaki`,
+    `tamaki iroha`,
+    `pink eyes`,
+    `tareme`,
+    `pink hair`,
+    `long hair`,
+    `braid`,
+    `frentch braid`,
+    `half updo`,
+    `braided ponytail`,
+    `blunt bangs`,
+    `hair intakes`,
+    `blunt ends`,
+    `sidelocks`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
+  situations: [
+    {
+      key: `magical-girl`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `magical girl`,
+        `cloak`,
+        `white cloak`,
+        `hood`,
+        `hood up`,
+        `hooded cloak`,
+        `bodystocking`,
+        `gloves`,
+        `black gloves`,
+        `covered navel`,
+        `belt`,
+        `pink belt`,
+        `skirt`,
+        `pink skirt`,
+        `miniskirt`,
+        `pleated skirt`,
+        `boots`,
+        `black footwear`,
+        `cross-laced footwear`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.pantiesUnderPantyhose),
+      whenRemoveShoes: {
+        excludeTags: [`boots`, `black footwear`, `cross-laced footwear`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `medium breasts` }),
+    generateMaidBikini({ breastSize: `medium breasts` }),
+    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
+    generatePlayboyBunny({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;

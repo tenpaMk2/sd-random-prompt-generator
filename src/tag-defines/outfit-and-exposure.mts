@@ -77,6 +77,7 @@ const allOutfitTags = [
   `belt`,
   `white belt`,
   `red belt`,
+  `pink belt`,
   `detached collar`,
   `detached sleeves`,
   `maid`,
@@ -126,6 +127,7 @@ const allOutfitTags = [
   `red skirt`,
   `orange skirt`,
   `purple skirt`,
+  `pink skirt`,
   `miniskirt`,
   `plaid skirt`,
   `pencil skirt`,
@@ -204,6 +206,16 @@ const allOutfitTags = [
   `white leotard`,
   `brown leotard`,
   `rabbit tail`,
+  `magical girl`,
+  `cloak`,
+  `white cloak`,
+  `hood`,
+  `hood up`,
+  `hooded cloak`,
+  `bodystocking`,
+  `black footwear`,
+  `cross-laced footwear`,
+  `panties under pantyhose`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
