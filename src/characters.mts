@@ -322,6 +322,83 @@ const generatePlayboyBunny = ({
   },
 });
 
+const generateSleevelessSerafuku = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `sleeveless-serafuku`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromHorizontalEntries.classroom },
+        { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+      ],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromBelowEntries.heartBackground },
+        { entries: backgroundPreset.fromBelowEntries.ceiling },
+      ],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromAboveEntries.woodenFloor },
+        { entries: backgroundPreset.fromAboveEntries.grass },
+      ],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+        { entries: backgroundPreset.lyingEntries.grass },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartWhiteBackground },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `school uniform`,
+    `serafuku`,
+    `collarbone`,
+    `sailor collar`,
+    `blue sailor collar`,
+    `neckerchief`,
+    `red neckerchief`,
+    `sleeveless`,
+    `sleeveless shirt`,
+    `white shirt`,
+    `bare arms`,
+    `crop top`,
+    `crop top overhang`,
+    `cropped shirt`,
+    `midriff`,
+    `navel`,
+    `skirt`,
+    `blue skirt`,
+    `miniskirt`,
+    `pleated skirt`,
+    `thighhighs`,
+    `zettai ryouiki`,
+    `skindentation`,
+    `loafers`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `taut clothes`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `skirt`,
+  whenRemoveShoes: {
+    excludeTags: [`loafers`],
+    additionalFootTokensAfterRemoving: [
+      new SimpleToken<OutfitAndExposureTag>({ tag: `no shoes` }),
+    ],
+  },
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -1600,6 +1677,7 @@ export const momoVeliaDevilukeEft = {
     generateMaidBikini({ breastSize: `large breasts` }),
     generateSchoolSwimsuit({ breastSize: `large breasts` }),
     generatePlayboyBunny({ breastSize: `large breasts` }),
+    generateSleevelessSerafuku({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 

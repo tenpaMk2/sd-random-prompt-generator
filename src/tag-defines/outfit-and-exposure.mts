@@ -9,6 +9,7 @@ const allExposureTags = [
   `breasts`,
   `sideboob`,
   `backboob`,
+  `underboob`,
   `hanging breasts`,
   `nipples`,
   `covered niples`,
@@ -128,6 +129,7 @@ const allOutfitTags = [
   `orange skirt`,
   `purple skirt`,
   `pink skirt`,
+  `blue skirt`,
   `miniskirt`,
   `plaid skirt`,
   `pencil skirt`,
@@ -216,6 +218,14 @@ const allOutfitTags = [
   `black footwear`,
   `cross-laced footwear`,
   `panties under pantyhose`,
+  `serafuku`,
+  `sailor collar`,
+  `blue sailor collar`,
+  `neckerchief`,
+  `red neckerchief`,
+  `crop top`,
+  `crop top overhang`,
+  `cropped shirt`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
