@@ -201,6 +201,8 @@ export const tagVisibilities = {
   "to love-ru darkness": visibleType.all,
   "momo velia deviluke": visibleType.all,
   "momo belia deviluke": visibleType.all,
+  "mea kurosaki": visibleType.all,
+  "kurosaki mea": visibleType.all,
   "magia record: mahou shoujo madoka magica gaiden": visibleType.all,
   "iroha tamaki": visibleType.all,
   "tamaki iroha": visibleType.all,

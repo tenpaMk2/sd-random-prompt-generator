@@ -20,6 +20,8 @@ const allProperNouns = [
   `to love-ru darkness`,
   `momo velia deviluke`,
   `momo belia deviluke`,
+  `mea kurosaki`,
+  `kurosaki mea`,
   `magia record: mahou shoujo madoka magica gaiden`,
   `iroha tamaki`,
   `tamaki iroha`,

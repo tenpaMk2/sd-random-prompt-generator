@@ -1681,6 +1681,87 @@ export const momoVeliaDevilukeEft = {
   ],
 } as const satisfies CharaDefine;
 
+export const kurosakiMeaEft = {
+  key: `kurosaki-mea-eft`,
+  lora: new LoraToken({
+    tag: `mea-loveru`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `to love-ru`,
+    `to love-ru darkness`,
+    `mea kurosaki`,
+    `kurosaki mea`,
+    `blue eyes`,
+    `red hair`,
+    `long hair`,
+    `braid`,
+    `single braid`,
+    `ahoge`,
+    `hair ornament`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.classroom,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.heartBackground,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `school uniform`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `bowtie`,
+        `green bowtie`,
+        `sweater vest`,
+        `yellow sweater vest`,
+        `short sleeves`,
+        `skirt`,
+        `green skirt`,
+        `pleated skirt`,
+        `plaid skirt`,
+        `socks`,
+        `black socks`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `medium breasts` }),
+    generateMaidBikini({ breastSize: `medium breasts` }),
+    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
+    generatePlayboyBunny({ breastSize: `medium breasts` }),
+    generateSleevelessSerafuku({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
 export const tamakiIrohaEft = {
   key: `tamaki-iroha-eft`,
   lora: new LoraToken({

@@ -6,6 +6,7 @@ const allLoraNameTags = [
   `suzukaze_aoba_newgame`, // 0.70, <https://civitai.com/models/227219/suzukaze-aoba-new-game>
   `takimoto_hifumi_newgame`, // 0.70, <https://civitai.com/models/227280/takimoto-hifumi-new-game>
   `momo-loveru-01`, // 0.8, <https://civitai.com/models/258472/momo-belia-deviluke-to-love-ru>
+  `mea-loveru`, // 0.8, <https://civitai.com/models/258474/mea-kurosaki-to-love-ru>
   `iroha-madomagi`, // 0.8, <https://civitai.com/models/271627/iroha-tamaki-magia-record>
 ] as const satisfies readonly string[];
 export type LoraNameTag = (typeof allLoraNameTags)[number];
