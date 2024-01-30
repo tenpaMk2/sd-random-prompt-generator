@@ -731,6 +731,7 @@ export const tagVisibilities = {
   pumps: visibleType.foot,
   "open clothes": visibleType.shirt, // Visible from back. Assume when all fours.
   "open jacket": visibleType.shirt, // Visible from back. Assume when all fours.
+  "open shirt": visibleType.shirt,
   pirate: visibleType.all,
   "pirate hat": visibleType.head,
   ascot: { ...invisible, frontBreast: true, sideBreast: true },
@@ -772,6 +773,10 @@ export const tagVisibilities = {
   "crop top": visibleType.shirt,
   "crop top overhang": { ...invisible, frontBreast: true, sideBreast: true },
   "cropped shirt": visibleType.shirt,
+  "naked shirt": visibleType.shirt,
+  "dress shirt": visibleType.shirt,
+  "no bra": { ...invisible, frontBreast: true, sideBreast: true },
+  bottomless: visibleType.pantyhose,
 
   // Emotion
   blush: visibleType.face,

@@ -185,6 +185,7 @@ const allOutfitTags = [
   `pumps`,
   `open clothes`,
   `open jacket`,
+  `open shirt`,
   `pirate`,
   `pirate hat`,
   `eyepatch`, // TODO: Decide where `eyepatch` belongs. Outfit? Character feature?
@@ -226,6 +227,10 @@ const allOutfitTags = [
   `crop top`,
   `crop top overhang`,
   `cropped shirt`,
+  `naked shirt`,
+  `dress shirt`,
+  `no bra`,
+  `bottomless`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

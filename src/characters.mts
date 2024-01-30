@@ -399,6 +399,68 @@ const generateSleevelessSerafuku = ({
   },
 });
 
+const generateNakedShirt = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `naked-shirt`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromHorizontalEntries.window },
+        { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+      ],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromBelowEntries.heartBackground },
+        { entries: backgroundPreset.fromBelowEntries.ceiling },
+      ],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromAboveEntries.bedSheet },
+        { entries: backgroundPreset.fromAboveEntries.heartBackground },
+      ],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+        { entries: backgroundPreset.lyingEntries.bedSheetPillow },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartWhiteBackground },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
+        { entries: backgroundPreset.cleanEntries.bedSheetWindow },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `naked shirt`,
+    `shirt`,
+    `white shirt`,
+    `collared shirt`,
+    `dress shirt`,
+    `no bra`,
+    [
+      { entries: [`partially unbuttoned`] },
+      { entries: [`open clothes`, `open shirt`] },
+    ],
+    `bottomless`,
+    `collarbone`,
+    `bare legs`,
+    `barefoot`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: false,
+  liftType: `none`,
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -1759,6 +1821,7 @@ export const kurosakiMeaEft = {
     generateSchoolSwimsuit({ breastSize: `medium breasts` }),
     generatePlayboyBunny({ breastSize: `medium breasts` }),
     generateSleevelessSerafuku({ breastSize: `medium breasts` }),
+    generateNakedShirt({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -1846,5 +1909,6 @@ export const tamakiIrohaEft = {
     generateMaidBikini({ breastSize: `medium breasts` }),
     generateSchoolSwimsuit({ breastSize: `medium breasts` }),
     generatePlayboyBunny({ breastSize: `medium breasts` }),
+    generateNakedShirt({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
