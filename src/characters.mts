@@ -461,6 +461,66 @@ const generateNakedShirt = ({
   liftType: `none`,
 });
 
+const generateUnderwearOnly = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `underwear-only`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromHorizontalEntries.bed },
+        { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+      ],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromBelowEntries.heartBackground },
+        { entries: backgroundPreset.fromBelowEntries.ceiling },
+      ],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromAboveEntries.bedSheet },
+        { entries: backgroundPreset.fromAboveEntries.heartBackground },
+      ],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+        { entries: backgroundPreset.lyingEntries.bedSheetPillow },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartWhiteBackground },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
+        { entries: backgroundPreset.cleanEntries.bedSheetWindow },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `underwear`,
+    `underwear only`,
+    `bra`,
+    `panties`,
+    `lingerie`,
+    `collarbone`,
+    `bare shoulders`,
+    `bare arms`,
+    `shoulder blades`,
+    `butt crack`,
+    `bare legs`,
+    `barefoot`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -1822,6 +1882,7 @@ export const kurosakiMeaEft = {
     generatePlayboyBunny({ breastSize: `medium breasts` }),
     generateSleevelessSerafuku({ breastSize: `medium breasts` }),
     generateNakedShirt({ breastSize: `medium breasts` }),
+    generateUnderwearOnly({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
