@@ -235,6 +235,19 @@ const allOutfitTags = [
   `dress shirt`,
   `no bra`,
   `bottomless`,
+  `camisole`,
+  `red camisole`,
+  `blue camisole`,
+  `green camisole`,
+  `yellow camisole`,
+  `orange camisole`,
+  `aqua camisole`,
+  `white camisole`,
+  `black camisole`,
+  `pink camisole`,
+  `purple camisole`,
+  `shorts`,
+  `denim shorts`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
@@ -306,6 +319,19 @@ export const allOutfitWildcards = {
     `blue leotard`,
     `pink leotard`,
   ],
+  "__color__ camisole": [
+    `red camisole`,
+    `blue camisole`,
+    `green camisole`,
+    `yellow camisole`,
+    `orange camisole`,
+    `aqua camisole`,
+    `white camisole`,
+    `black camisole`,
+    `pink camisole`,
+    `purple camisole`,
+  ],
+  "__monochrome_color__ camisole": [`black camisole`, `white camisole`],
 } as const satisfies { [key: string]: readonly OutfitTag[] };
 export type OutfitWildcard = keyof typeof allOutfitWildcards;
 

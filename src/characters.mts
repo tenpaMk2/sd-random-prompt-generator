@@ -521,6 +521,67 @@ const generateUnderwearOnly = ({
   liftType: `none`,
 });
 
+const generateCamisoleDenimShorts = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `camisole-denim-shorts`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromHorizontalEntries.city }],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.blueSky }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromAboveEntries.outdoors },
+        { entries: backgroundPreset.fromAboveEntries.heartBackground },
+      ],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+        { entries: backgroundPreset.lyingEntries.bedSheetPillow },
+        { entries: backgroundPreset.lyingEntries.grass },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartWhiteBackground },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
+        { entries: backgroundPreset.cleanEntries.bedSheetWindow },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `camisole`,
+    { tag: `__color__ camisole`, weight: 1.2 },
+    `crop top`,
+    `shorts`,
+    `denim shorts`,
+    `thighhighs`,
+    `skindentation`,
+    `shoes`,
+    `collarbone`,
+    `bare arms`,
+    `midriff`,
+    `navel`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+  whenRemoveShoes: {
+    excludeTags: [`shoes`],
+    additionalFootTokensAfterRemoving: [
+      new SimpleToken<OutfitAndExposureTag>({ tag: `no shoes` }),
+    ],
+  },
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -1883,6 +1944,7 @@ export const kurosakiMeaEft = {
     generateSleevelessSerafuku({ breastSize: `medium breasts` }),
     generateNakedShirt({ breastSize: `medium breasts` }),
     generateUnderwearOnly({ breastSize: `medium breasts` }),
+    generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
