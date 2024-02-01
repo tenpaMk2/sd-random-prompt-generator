@@ -796,6 +796,10 @@ export const tagVisibilities = {
   "purple camisole": visibleType.shirt,
   shorts: visibleType.skirt,
   "denim shorts": visibleType.skirt,
+  "gym uniform": visibleType.dress,
+  "gym shirt": visibleType.shirt,
+  buruma: visibleType.aroundHip,
+  sweat: visibleType.all,
 
   // Emotion
   blush: visibleType.face,

@@ -582,6 +582,70 @@ const generateCamisoleDenimShorts = ({
   },
 });
 
+const generateGymUniform = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `gym-uniform`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromHorizontalEntries.outdoors },
+        { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+      ],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.blueSky }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromAboveEntries.outdoors },
+        { entries: backgroundPreset.fromAboveEntries.heartBackground },
+      ],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+        { entries: backgroundPreset.lyingEntries.bedSheetPillow },
+        { entries: backgroundPreset.lyingEntries.grass },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartWhiteBackground },
+        { entries: backgroundPreset.cleanEntries.heartBackground },
+        { entries: backgroundPreset.cleanEntries.bedSheetWindow },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `gym uniform`,
+    `gym shirt`,
+    `white shirt`,
+    `buruma`,
+    `sleeveless`,
+    `sleeveless shirt`,
+    `socks`,
+    `shoes`,
+    `sweat`,
+    `collarbone`,
+    `bare arms`,
+    `bare legs`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `taut clothes`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+  whenRemoveShoes: {
+    excludeTags: [`shoes`],
+    additionalFootTokensAfterRemoving: [
+      new SimpleToken<OutfitAndExposureTag>({ tag: `no shoes` }),
+    ],
+  },
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -1945,6 +2009,7 @@ export const kurosakiMeaEft = {
     generateNakedShirt({ breastSize: `medium breasts` }),
     generateUnderwearOnly({ breastSize: `medium breasts` }),
     generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
+    generateGymUniform({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
