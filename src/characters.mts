@@ -1683,6 +1683,14 @@ export const sentoIsuzuLittleJellyV2 = {
       isArmpitsVisible: false,
       liftType: `none`,
     },
+    generateMaidBikini({ breastSize: `medium breasts` }),
+    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
+    generatePlayboyBunny({ breastSize: `medium breasts` }),
+    generateSleevelessSerafuku({ breastSize: `medium breasts` }),
+    generateNakedShirt({ breastSize: `medium breasts` }),
+    generateUnderwearOnly({ breastSize: `medium breasts` }),
+    generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
+    generateGymUniform({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -1925,6 +1933,10 @@ export const momoVeliaDevilukeEft = {
     generateSchoolSwimsuit({ breastSize: `large breasts` }),
     generatePlayboyBunny({ breastSize: `large breasts` }),
     generateSleevelessSerafuku({ breastSize: `large breasts` }),
+    generateNakedShirt({ breastSize: `large breasts` }),
+    generateUnderwearOnly({ breastSize: `large breasts` }),
+    generateCamisoleDenimShorts({ breastSize: `large breasts` }),
+    generateGymUniform({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
