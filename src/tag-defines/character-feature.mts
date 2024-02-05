@@ -23,6 +23,8 @@ const allProperNouns = [
   `mea kurosaki`,
   `kurosaki mea`,
   `lala satalin deviluke`,
+  `haruna sairenji`,
+  `sairenji haruna`,
   `magia record: mahou shoujo madoka magica gaiden`,
   `iroha tamaki`,
   `tamaki iroha`,
@@ -319,6 +321,7 @@ const allHeadFeatureTags = [
   `pointy ears`,
   `earrings`,
   `gold earrings`,
+  `forehead`, // TODO: Reconsider as exposure
 ] as const satisfies readonly string[];
 type HeadFeatureTag = (typeof allHeadFeatureTags)[number];
 
