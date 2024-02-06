@@ -176,6 +176,25 @@ export const visibleType = {
     ...invisible,
     foot: true,
   },
+  frontNeck: {
+    ...invisible,
+    frontBreast: true,
+    sideBreast: true,
+  },
+  frontDressDecoration: {
+    ...invisible,
+    frontBreast: true,
+    sideBreast: true,
+    frontMidriff: true,
+    sideMidriff: true,
+    frontHipAndThigh: true,
+    sideHipAndThigh: true,
+  },
+  navel: {
+    ...invisible,
+    frontMidriff: true,
+    sideMidriff: true,
+  },
 } as const satisfies { [k: string]: Visible };
 
 export const tagVisibilities = {
@@ -575,6 +594,7 @@ export const tagVisibilities = {
   nsfw: visibleType.all,
 
   "cleavage cutout": { ...invisible, frontBreast: true, sideBreast: true },
+  "navel cutout": visibleType.navel,
   "neck ribbon": { ...invisible, frontBreast: true, sideBreast: true },
   underbust: visibleType.midriff,
   bowtie: { ...invisible, frontBreast: true, sideBreast: true },
@@ -804,6 +824,19 @@ export const tagVisibilities = {
   "gym shirt": visibleType.shirt,
   buruma: visibleType.aroundHip,
   sweat: visibleType.all,
+  necklace: visibleType.frontNeck,
+  "wedding dress": visibleType.dress,
+  "nontraditional wedding dress": visibleType.dress,
+  bride: visibleType.all,
+  "bridal veil": visibleType.head,
+  "bridal garter": visibleType.aroundHip,
+  "bridal gauntlets": visibleType.aroundBreast,
+  "bridal lingerie": visibleType.dress,
+  "garter belt": visibleType.aroundHip,
+  "garter straps": visibleType.aroundHip,
+  bouquet: visibleType.all, // TODO: Reconsider.
+  "revealing clothes": visibleType.all,
+  "clothing cutout": visibleType.frontDressDecoration,
 
   // Emotion
   blush: visibleType.face,
@@ -920,6 +953,9 @@ export const tagVisibilities = {
   day: visibleType.all,
   pool: visibleType.all, // TODO: Make all background tags invisible for safety.
   casino: visibleType.all,
+  "falling petals": visibleType.all,
+  petals: visibleType.all,
+  wedding: visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

@@ -38,6 +38,7 @@ type ExposureTag = (typeof allExposureTags)[number];
 
 const allOutfitTags = [
   `cleavage cutout`,
+  `navel cutout`,
   `neck ribbon`,
   `blue ribbon`,
   `black ribbon`,
@@ -252,6 +253,22 @@ const allOutfitTags = [
   `gym shirt`,
   `buruma`,
   `sweat`, // TODO: Move.
+  `necklace`,
+  `wedding dress`,
+  `nontraditional wedding dress`,
+  `bride`,
+  `veil`,
+  `bridal veil`,
+  `hair ornament`,
+  `hair flower`,
+  `bridal garter`,
+  `bridal gauntlets`,
+  `bridal lingerie`,
+  `garter belt`,
+  `garter straps`,
+  `bouquet`, // TODO: Reconsider as items.
+  `revealing clothes`,
+  `clothing cutout`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

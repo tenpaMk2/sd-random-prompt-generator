@@ -33,6 +33,7 @@ export const backgroundPreset = {
     caveInterior: [`cave interior`],
     amusementPark: [`outdoors`, `amusement park`, `blue sky`],
     dayPool: [`outdoors`, `day`, `pool`],
+    wedding: [`white background`, `falling petals`, `wedding`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],
@@ -49,6 +50,7 @@ export const backgroundPreset = {
       `heart`,
       `spoken heart`,
     ],
+    wedding: [`white background`, `falling petals`, `wedding`],
   },
   fromAboveEntries: {
     bedSheet: [`bed sheet`],
@@ -68,6 +70,7 @@ export const backgroundPreset = {
       `heart`,
       `spoken heart`,
     ],
+    wedding: [`white background`, `falling petals`, `wedding`],
   },
   lyingEntries: {
     bedSheet: [`bed sheet`],
@@ -93,6 +96,7 @@ export const backgroundPreset = {
       `heart`,
       `spoken heart`,
     ],
+    wedding: [`white background`, `petals`, `wedding`],
   },
   cleanEntries: {
     bedSheet: [`bed sheet`],
@@ -122,6 +126,7 @@ export const backgroundPreset = {
       `heart`,
       `spoken heart`,
     ],
+    wedding: [`white background`, `falling petals`, `wedding`],
   },
 } as const satisfies {
   [camera: string]: {

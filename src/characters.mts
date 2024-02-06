@@ -646,6 +646,84 @@ const generateGymUniform = ({
   },
 });
 
+const generateBridalLingerie = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `bridal-lingerie`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromHorizontalEntries.wedding }],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.wedding }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromAboveEntries.wedding }],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.lyingEntries.wedding }],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.cleanEntries.wedding }],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `nontraditional wedding dress`,
+    `wedding dress`,
+    `revealing clothes`,
+    `bride`,
+    `veil`,
+    { tag: `bridal veil`, weight: 1.2 },
+    `hair ornament`,
+    `hair flower`,
+    `jewelry`,
+    `necklace`,
+    `bridal garter`,
+    `bridal gauntlets`,
+    `white gloves`,
+    `bridal lingerie`,
+    `lingerie`,
+    // `underwear`,
+    `thighhighs`,
+    `white thighhighs`,
+    `garter belt`,
+    [
+      {
+        entries: [
+          `panties`,
+          `white panties`,
+          `dress`,
+          `white dress`,
+          `clothing cutout`,
+          `cleavage cutout`,
+          `navel cutout`,
+          ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+            ? ([`cleavage`] as const)
+            : []),
+        ],
+      },
+      {
+        entries: [
+          `bikini`,
+          `white bikini`,
+          ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+            ? ([`cleavage`, `sideboob`, `backboob`] as const)
+            : []),
+        ],
+      },
+    ],
+    `collarbone`,
+    `bare shoulders`,
+    `navel`,
+    `shoulder blades`,
+    `bouquet`, // TODO: Reconsider as items.
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -2022,6 +2100,7 @@ export const kurosakiMeaEft = {
     generateUnderwearOnly({ breastSize: `medium breasts` }),
     generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
     generateGymUniform({ breastSize: `medium breasts` }),
+    generateBridalLingerie({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2108,6 +2187,7 @@ export const lalaSatalinDevilukeEft = {
     generateUnderwearOnly({ breastSize: `large breasts` }),
     generateCamisoleDenimShorts({ breastSize: `large breasts` }),
     generateGymUniform({ breastSize: `large breasts` }),
+    generateBridalLingerie({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2195,6 +2275,7 @@ export const sairenjiHarunaEft = {
     generateUnderwearOnly({ breastSize: `medium breasts` }),
     generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
     generateGymUniform({ breastSize: `medium breasts` }),
+    generateBridalLingerie({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
