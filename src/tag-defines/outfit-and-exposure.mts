@@ -269,6 +269,7 @@ const allOutfitTags = [
   `bouquet`, // TODO: Reconsider as items.
   `revealing clothes`,
   `clothing cutout`,
+  `sainan high school uniform`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

@@ -956,6 +956,7 @@ export const tagVisibilities = {
   "falling petals": visibleType.all,
   petals: visibleType.all,
   wedding: visibleType.all,
+  "sainan high school uniform": visibleType.dress,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

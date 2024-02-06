@@ -1978,6 +1978,7 @@ export const momoVeliaDevilukeEft = {
       },
 
       outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `sainan high school uniform`,
         `school uniform`,
         `shirt`,
         `white shirt`,
@@ -2064,6 +2065,7 @@ export const kurosakiMeaEft = {
       },
 
       outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `sainan high school uniform`,
         `school uniform`,
         `shirt`,
         `white shirt`,
@@ -2151,6 +2153,7 @@ export const lalaSatalinDevilukeEft = {
       },
 
       outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `sainan high school uniform`,
         `school uniform`,
         `shirt`,
         `white shirt`,
@@ -2239,6 +2242,7 @@ export const sairenjiHarunaEft = {
       },
 
       outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `sainan high school uniform`,
         `school uniform`,
         `shirt`,
         `white shirt`,
