@@ -25,6 +25,7 @@ const allProperNouns = [
   `lala satalin deviluke`,
   `haruna sairenji`,
   `sairenji haruna`,
+  `konjiki no yami`,
   `magia record: mahou shoujo madoka magica gaiden`,
   `iroha tamaki`,
   `tamaki iroha`,

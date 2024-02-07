@@ -2283,6 +2283,151 @@ export const sairenjiHarunaEft = {
   ],
 } as const satisfies CharaDefine;
 
+export const konjikiNoYamiEft = {
+  key: `konjiki-no-yami-eft`,
+  lora: new LoraToken({
+    tag: `yami-loveru`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `to love-ru`,
+    `to love-ru darkness`,
+    `konjiki no yami`,
+    `red eyes`,
+    `tsurime`,
+    `eyelashes`,
+    `blonde hair`,
+    `long hair`,
+    `very long hair`,
+    `two side up`,
+    `hair intakes`,
+    `sidelocks`,
+    `hair ornament`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.serious),
+  situations: [
+    {
+      key: `school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.classroom,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.heartBackground,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `sainan high school uniform`,
+        `school uniform`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `bowtie`,
+        `green bowtie`,
+        `sweater vest`,
+        `yellow sweater vest`,
+        `short sleeves`,
+        `skirt`,
+        `green skirt`,
+        `pleated skirt`,
+        `plaid skirt`,
+        `socks`,
+        `white socks`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `battle-dress`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.night },
+            { entries: backgroundPreset.fromHorizontalEntries.city },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.blueSky,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.grass,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.heartBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `dress`,
+        `black dress`,
+        `sleeveless dress`,
+        `sleeveless`,
+        `detached sleeves`,
+        `black sleeves`,
+        `wide sleeves`,
+        `clothing cutout`,
+        `cleavage cutout`,
+        `belt`,
+        `black belt`,
+        `high-low skirt`,
+        `thigh strap`,
+        `boots`,
+        `bare shoulders`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
+      whenRemoveShoes: {
+        excludeTags: [`boots`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `medium breasts` }),
+    generateMaidBikini({ breastSize: `medium breasts` }),
+    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
+    generatePlayboyBunny({ breastSize: `medium breasts` }),
+    generateSleevelessSerafuku({ breastSize: `medium breasts` }),
+    generateNakedShirt({ breastSize: `medium breasts` }),
+    generateUnderwearOnly({ breastSize: `medium breasts` }),
+    generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
+    generateGymUniform({ breastSize: `medium breasts` }),
+    generateBridalLingerie({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
 export const tamakiIrohaEft = {
   key: `tamaki-iroha-eft`,
   lora: new LoraToken({

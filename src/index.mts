@@ -1,5 +1,6 @@
 import {
   ceciliaAlcottOGTurles,
+  konjikiNoYamiEft,
   kurosakiMeaEft,
   lalaSatalinDevilukeEft,
   minimumTest,
@@ -30,6 +31,7 @@ const charas = [
   kurosakiMeaEft,
   lalaSatalinDevilukeEft,
   sairenjiHarunaEft,
+  konjikiNoYamiEft,
   tamakiIrohaEft,
 ];
 const charaInfos = charas.map((chara) => ({
