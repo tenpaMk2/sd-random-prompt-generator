@@ -2437,6 +2437,8 @@ export const kotegawaYuiEft = {
   characterFeature: new PromptDefine<CharacterFeatureTag>([
     `to love-ru`,
     `to love-ru darkness`,
+    `kotegawa yui`,
+    `yui kotegawa`,
     `yellow eyes`,
     `tsurime`,
     `black hair`,
@@ -2510,6 +2512,91 @@ export const kotegawaYuiEft = {
     generateCamisoleDenimShorts({ breastSize: `large breasts` }),
     generateGymUniform({ breastSize: `large breasts` }),
     generateBridalLingerie({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
+export const nanaAstaDevilukeEft = {
+  key: `nana-asta-deviluke-eft`,
+  lora: new LoraToken({
+    tag: `nana-loveru`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `to love-ru`,
+    `to love-ru darkness`,
+    `nana astar deviluke`,
+    `nana asta deviluke`,
+    `purple eyes`,
+    `tsurime`,
+    `pink hair`,
+    `medium hair`,
+    `twintails`,
+    `flat chest`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.classroom,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.heartBackground,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `sainan high school uniform`,
+        `school uniform`,
+        `shirt`,
+        `white shirt`,
+        `collared shirt`,
+        `bowtie`,
+        `green bowtie`,
+        `sweater vest`,
+        `yellow sweater vest`,
+        `short sleeves`,
+        `skirt`,
+        `green skirt`,
+        `pleated skirt`,
+        `plaid skirt`,
+        `socks`,
+        `white socks`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `flat chest` }),
+    generateMaidBikini({ breastSize: `flat chest` }),
+    generateSchoolSwimsuit({ breastSize: `flat chest` }),
+    generatePlayboyBunny({ breastSize: `flat chest` }),
+    generateSleevelessSerafuku({ breastSize: `flat chest` }),
+    generateNakedShirt({ breastSize: `flat chest` }),
+    generateUnderwearOnly({ breastSize: `flat chest` }),
+    generateCamisoleDenimShorts({ breastSize: `flat chest` }),
+    generateGymUniform({ breastSize: `flat chest` }),
+    generateBridalLingerie({ breastSize: `flat chest` }),
   ],
 } as const satisfies CharaDefine;
 
