@@ -233,6 +233,9 @@ export const tagVisibilities = {
   "magia record: mahou shoujo madoka magica gaiden": visibleType.all,
   "iroha tamaki": visibleType.all,
   "tamaki iroha": visibleType.all,
+  "mahouka koukou no rettousei": visibleType.all,
+  "miyuki shiba": visibleType.all,
+  "shiba miyuki": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -968,6 +971,14 @@ export const tagVisibilities = {
   wedding: visibleType.all,
   "sainan high school uniform": visibleType.dress,
   "thigh strap": visibleType.thighhighs,
+  "first high school uniform": visibleType.dress,
+  "collared dress": visibleType.aroundBreast,
+  "pencil dress": visibleType.dress,
+  necktie: visibleType.frontNeck,
+  "black necktie": visibleType.frontNeck,
+  "short necktie": visibleType.frontNeck,
+  "green jacket": visibleType.shirt,
+  "cropped jacket": visibleType.shirt,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

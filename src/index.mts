@@ -9,6 +9,7 @@ import {
   nanaAstaDevilukeEft,
   sairenjiHarunaEft,
   sentoIsuzuLittleJellyV2,
+  shibaMiyukiEft,
   shokuhoMisaki,
   suzukazeAobaNarugo1992,
   takimotoHifumiNarugo1992,
@@ -37,6 +38,7 @@ const charas = [
   kotegawaYuiEft,
   nanaAstaDevilukeEft,
   tamakiIrohaEft,
+  shibaMiyukiEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

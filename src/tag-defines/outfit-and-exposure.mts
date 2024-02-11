@@ -276,6 +276,14 @@ const allOutfitTags = [
   `clothing cutout`,
   `sainan high school uniform`,
   `thigh strap`,
+  `first high school uniform`,
+  `collared dress`,
+  `pencil dress`,
+  `necktie`,
+  `black necktie`,
+  `short necktie`,
+  `green jacket`,
+  `cropped jacket`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

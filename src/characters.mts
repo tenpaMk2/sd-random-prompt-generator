@@ -2687,3 +2687,94 @@ export const tamakiIrohaEft = {
     generateNakedShirt({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const shibaMiyukiEft = {
+  key: `shiba-miyuki-eft`,
+  lora: new LoraToken({
+    tag: `miyuki-mahouka`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `mahouka koukou no rettousei`,
+    `miyuki shiba`,
+    `shiba miyuki`,
+    `black eyes`,
+    `blue eyes`,
+    `tsurime`,
+    `eyelashes`,
+    `black hair`,
+    `long hair`,
+    `hime cut`,
+    `straight hair`,
+    `blunt bangs`,
+    `blunt ends`,
+    `sidelocks`,
+    `hair ornament`,
+    `snowflake hair ornament`,
+    `large breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
+  situations: [
+    {
+      key: `first-high-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `first high school uniform`,
+        `dress`,
+        `white dress`,
+        `collared dress`,
+        `pencil dress`,
+        `necktie`,
+        `black necktie`,
+        `short necktie`,
+        `jacket`,
+        `green jacket`,
+        `cropped jacket`,
+        `open jacket`,
+        `long sleeves`,
+        `pantyhose`,
+        `boots`,
+        `black footwear`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `dress`,
+      upskirt: new PromptDefine(upskirtPreset.pantiesUnderPantyhose),
+      whenRemoveShoes: {
+        excludeTags: [`boots`, `black footwear`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    generateBikini({ breastSize: `flat chest` }),
+    generateMaidBikini({ breastSize: `flat chest` }),
+    generateSchoolSwimsuit({ breastSize: `flat chest` }),
+    generatePlayboyBunny({ breastSize: `flat chest` }),
+    generateSleevelessSerafuku({ breastSize: `flat chest` }),
+    generateNakedShirt({ breastSize: `flat chest` }),
+    generateUnderwearOnly({ breastSize: `flat chest` }),
+    generateCamisoleDenimShorts({ breastSize: `flat chest` }),
+    generateGymUniform({ breastSize: `flat chest` }),
+    generateBridalLingerie({ breastSize: `flat chest` }),
+  ],
+} as const satisfies CharaDefine;

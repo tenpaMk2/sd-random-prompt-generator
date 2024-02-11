@@ -33,6 +33,9 @@ const allProperNouns = [
   `magia record: mahou shoujo madoka magica gaiden`,
   `iroha tamaki`,
   `tamaki iroha`,
+  `mahouka koukou no rettousei`,
+  `miyuki shiba`,
+  `shiba miyuki`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
