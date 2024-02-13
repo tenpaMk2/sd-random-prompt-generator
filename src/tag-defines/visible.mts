@@ -236,6 +236,8 @@ export const tagVisibilities = {
   "mahouka koukou no rettousei": visibleType.all,
   "miyuki shiba": visibleType.all,
   "shiba miyuki": visibleType.all,
+  "saegusa mayumi": visibleType.all,
+  "mayumi saegusa": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,

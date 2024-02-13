@@ -7,6 +7,7 @@ import {
   minimumTest,
   momoVeliaDevilukeEft,
   nanaAstaDevilukeEft,
+  saegusaMayumiEft,
   sairenjiHarunaEft,
   sentoIsuzuLittleJellyV2,
   shibaMiyukiEft,
@@ -39,6 +40,7 @@ const charas = [
   nanaAstaDevilukeEft,
   tamakiIrohaEft,
   shibaMiyukiEft,
+  saegusaMayumiEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,
