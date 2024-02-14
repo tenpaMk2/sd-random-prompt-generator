@@ -95,6 +95,8 @@ export const emotionPreset = {
   cute: [
     [
       { entries: preset.smile },
+      { entries: preset.smile },
+      { entries: preset.smile },
       { entries: preset.smilePartedLips },
       { entries: preset.smileOpenMouth },
       { entries: preset.smileHalfClosedEyes },
@@ -104,6 +106,8 @@ export const emotionPreset = {
       { entries: preset.embarrassed },
       { entries: preset.nervous },
       { entries: preset.flustered },
+      { entries: preset.seductiveSmile },
+      { entries: preset.seductiveSmile },
       { entries: preset.seductiveSmile },
       { entries: preset.naughtyFace },
       { entries: preset.oneEyeClosed },
