@@ -106,6 +106,7 @@ const allOutfitTags = [
   `black vest`,
   `dress`,
   `red dress`,
+  `blue dress`,
   `black dress`,
   `grey dress`,
   `two-tone dress`,
@@ -284,6 +285,11 @@ const allOutfitTags = [
   `short necktie`,
   `green jacket`,
   `cropped jacket`,
+  `china dress`,
+  `chinese clothes`,
+  `dragon print`,
+  `floral print`,
+  `side slit`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

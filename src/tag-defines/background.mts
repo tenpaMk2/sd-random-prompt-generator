@@ -23,6 +23,7 @@ const allBackgroundTags = [
   `simple background`,
   `white background`,
   `pink background`,
+  `red background`,
   `heart background`,
   `heart`,
   `spoken heart`,

@@ -679,6 +679,7 @@ export const tagVisibilities = {
   "black vest": visibleType.shirt,
   dress: visibleType.dress,
   "red dress": visibleType.dress,
+  "blue dress": visibleType.dress,
   "black dress": visibleType.dress,
   "grey dress": visibleType.dress,
   "two-tone dress": visibleType.dress,
@@ -952,6 +953,7 @@ export const tagVisibilities = {
   "simple background": visibleType.all,
   "white background": visibleType.all,
   "pink background": visibleType.all,
+  "red background": visibleType.all,
   "heart background": visibleType.all,
   heart: visibleType.all,
   "spoken heart": visibleType.all,
@@ -983,6 +985,11 @@ export const tagVisibilities = {
   "short necktie": visibleType.frontNeck,
   "green jacket": visibleType.shirt,
   "cropped jacket": visibleType.shirt,
+  "china dress": visibleType.dress,
+  "chinese clothes": visibleType.dress,
+  "dragon print": visibleType.all,
+  "floral print": visibleType.all,
+  "side slit": visibleType.aroundHip,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

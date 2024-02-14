@@ -724,6 +724,69 @@ const generateBridalLingerie = ({
   liftType: `none`,
 });
 
+const generateChinaDress = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `china-dress`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromHorizontalEntries.window }],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.ceiling }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromAboveEntries.floor }],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.lyingEntries.whiteBackground }],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartRedBackground },
+        { entries: backgroundPreset.cleanEntries.pinkBackground },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `china dress`,
+    `chinese clothes`,
+    `clothing cutout`,
+    `cleavage cutout`,
+    [
+      { entries: [`red dress`] },
+      { entries: [`blue dress`] },
+      { entries: [`black dress`] },
+      { entries: [`white dress`] },
+    ],
+    [{ entries: [`dragon print`] }, { entries: [`floral print`] }],
+    `gold trim`,
+    `dress`,
+    `sleeveless dress`,
+    `sleeveless`,
+    `side slit`,
+    `bare shoulders`,
+    `bare arms`,
+    `bare legs`,
+    `shoulder blades`,
+    `barefoot`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `dress`,
+  upskirt: new PromptDefine([
+    `underwear`,
+    `panties`,
+    `crotch seam`,
+    `black panties`,
+  ]),
+  whenRemoveShoes: undefined,
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -2951,5 +3014,6 @@ export const mitsuiHonokaEft = {
     generateCamisoleDenimShorts({ breastSize: `large breasts` }),
     generateGymUniform({ breastSize: `large breasts` }),
     generateBridalLingerie({ breastSize: `large breasts` }),
+    generateChinaDress({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;

@@ -55,6 +55,7 @@ export const backgroundPreset = {
   fromAboveEntries: {
     bedSheet: [`bed sheet`],
     indoors: [`indoors`],
+    floor: [`indoors`, `floor`],
     woodenFloor: [`indoors`, `wooden floor`],
     officeFloor: [`indoors`, `floor`, `office`],
     outdoors: [`outdoors`],
@@ -117,6 +118,11 @@ export const backgroundPreset = {
     heartPinkBackground: [
       `simple background`,
       `pink background`,
+      `heart background`,
+    ],
+    heartRedBackground: [
+      `simple background`,
+      `red background`,
       `heart background`,
     ],
     heartBackground: [
