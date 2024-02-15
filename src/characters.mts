@@ -82,21 +82,25 @@ export type CharaDefine = Readonly<{
     };
   }>[];
 }>;
-// bikiniColorStrong: ({
-//   tagEntries: [],
-//   children: [
-//     new TagLeaf({ tagEntries: [{ tag: `red bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `blue bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `green bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `yellow bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `orange bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `aqua bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `white bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `black bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `pink bikini`, weight: 1.3 }] }),
-//     new TagLeaf({ tagEntries: [{ tag: `purple bikini`, weight: 1.3 }] }),
-//   ],
-// }),
+
+const generateAll = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"] => [
+  generateBikini({ breastSize }),
+  generateMaidBikini({ breastSize }),
+  generateSchoolSwimsuit({ breastSize }),
+  generatePlayboyBunny({ breastSize }),
+  generateSleevelessSerafuku({ breastSize }),
+  generateNakedShirt({ breastSize }),
+  generateUnderwearOnly({ breastSize }),
+  generateCamisoleDenimShorts({ breastSize }),
+  generateGymUniform({ breastSize }),
+  generateBridalLingerie({ breastSize }),
+  generateChinaDress({ breastSize }),
+  generateSantaBikini({ breastSize }),
+];
 
 const generateBikini = ({
   breastSize,
@@ -1301,9 +1305,7 @@ export const shokuhoMisaki = {
       liftType: `skirt`,
       upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -1433,9 +1435,7 @@ export const ceciliaAlcottOGTurles = {
       liftType: `skirt`,
       upskirt: new PromptDefine(upskirtPreset.vividPantiesStrong),
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -1877,14 +1877,7 @@ export const sentoIsuzuLittleJellyV2 = {
       isArmpitsVisible: false,
       liftType: `none`,
     },
-    generateMaidBikini({ breastSize: `medium breasts` }),
-    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
-    generatePlayboyBunny({ breastSize: `medium breasts` }),
-    generateSleevelessSerafuku({ breastSize: `medium breasts` }),
-    generateNakedShirt({ breastSize: `medium breasts` }),
-    generateUnderwearOnly({ breastSize: `medium breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
-    generateGymUniform({ breastSize: `medium breasts` }),
+    ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -1958,10 +1951,7 @@ export const suzukazeAobaNarugo1992 = {
         ],
       },
     },
-    generateBikini({ breastSize: `small breasts` }),
-    generateMaidBikini({ breastSize: `small breasts` }),
-    generateSchoolSwimsuit({ breastSize: `small breasts` }),
-    generatePlayboyBunny({ breastSize: `small breasts` }),
+    ...generateAll({ breastSize: `small breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2039,10 +2029,7 @@ export const takimotoHifumiNarugo1992 = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
-    generatePlayboyBunny({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2123,15 +2110,7 @@ export const momoVeliaDevilukeEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
-    generatePlayboyBunny({ breastSize: `large breasts` }),
-    generateSleevelessSerafuku({ breastSize: `large breasts` }),
-    generateNakedShirt({ breastSize: `large breasts` }),
-    generateUnderwearOnly({ breastSize: `large breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `large breasts` }),
-    generateGymUniform({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2209,16 +2188,7 @@ export const kurosakiMeaEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `medium breasts` }),
-    generateMaidBikini({ breastSize: `medium breasts` }),
-    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
-    generatePlayboyBunny({ breastSize: `medium breasts` }),
-    generateSleevelessSerafuku({ breastSize: `medium breasts` }),
-    generateNakedShirt({ breastSize: `medium breasts` }),
-    generateUnderwearOnly({ breastSize: `medium breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
-    generateGymUniform({ breastSize: `medium breasts` }),
-    generateBridalLingerie({ breastSize: `medium breasts` }),
+    ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2297,16 +2267,7 @@ export const lalaSatalinDevilukeEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
-    generatePlayboyBunny({ breastSize: `large breasts` }),
-    generateSleevelessSerafuku({ breastSize: `large breasts` }),
-    generateNakedShirt({ breastSize: `large breasts` }),
-    generateUnderwearOnly({ breastSize: `large breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `large breasts` }),
-    generateGymUniform({ breastSize: `large breasts` }),
-    generateBridalLingerie({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2386,16 +2347,7 @@ export const sairenjiHarunaEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `medium breasts` }),
-    generateMaidBikini({ breastSize: `medium breasts` }),
-    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
-    generatePlayboyBunny({ breastSize: `medium breasts` }),
-    generateSleevelessSerafuku({ breastSize: `medium breasts` }),
-    generateNakedShirt({ breastSize: `medium breasts` }),
-    generateUnderwearOnly({ breastSize: `medium breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
-    generateGymUniform({ breastSize: `medium breasts` }),
-    generateBridalLingerie({ breastSize: `medium breasts` }),
+    ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2531,16 +2483,7 @@ export const konjikiNoYamiEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `medium breasts` }),
-    generateMaidBikini({ breastSize: `medium breasts` }),
-    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
-    generatePlayboyBunny({ breastSize: `medium breasts` }),
-    generateSleevelessSerafuku({ breastSize: `medium breasts` }),
-    generateNakedShirt({ breastSize: `medium breasts` }),
-    generateUnderwearOnly({ breastSize: `medium breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `medium breasts` }),
-    generateGymUniform({ breastSize: `medium breasts` }),
-    generateBridalLingerie({ breastSize: `medium breasts` }),
+    ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2618,16 +2561,7 @@ export const kotegawaYuiEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
-    generatePlayboyBunny({ breastSize: `large breasts` }),
-    generateSleevelessSerafuku({ breastSize: `large breasts` }),
-    generateNakedShirt({ breastSize: `large breasts` }),
-    generateUnderwearOnly({ breastSize: `large breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `large breasts` }),
-    generateGymUniform({ breastSize: `large breasts` }),
-    generateBridalLingerie({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2703,16 +2637,7 @@ export const nanaAstaDevilukeEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `flat chest` }),
-    generateMaidBikini({ breastSize: `flat chest` }),
-    generateSchoolSwimsuit({ breastSize: `flat chest` }),
-    generatePlayboyBunny({ breastSize: `flat chest` }),
-    generateSleevelessSerafuku({ breastSize: `flat chest` }),
-    generateNakedShirt({ breastSize: `flat chest` }),
-    generateUnderwearOnly({ breastSize: `flat chest` }),
-    generateCamisoleDenimShorts({ breastSize: `flat chest` }),
-    generateGymUniform({ breastSize: `flat chest` }),
-    generateBridalLingerie({ breastSize: `flat chest` }),
+    ...generateAll({ breastSize: `flat chest` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2796,11 +2721,7 @@ export const tamakiIrohaEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `medium breasts` }),
-    generateMaidBikini({ breastSize: `medium breasts` }),
-    generateSchoolSwimsuit({ breastSize: `medium breasts` }),
-    generatePlayboyBunny({ breastSize: `medium breasts` }),
-    generateNakedShirt({ breastSize: `medium breasts` }),
+    ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2882,16 +2803,7 @@ export const shibaMiyukiEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
-    generatePlayboyBunny({ breastSize: `large breasts` }),
-    generateSleevelessSerafuku({ breastSize: `large breasts` }),
-    generateNakedShirt({ breastSize: `large breasts` }),
-    generateUnderwearOnly({ breastSize: `large breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `large breasts` }),
-    generateGymUniform({ breastSize: `large breasts` }),
-    generateBridalLingerie({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -2971,16 +2883,7 @@ export const saegusaMayumiEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
-    generatePlayboyBunny({ breastSize: `large breasts` }),
-    generateSleevelessSerafuku({ breastSize: `large breasts` }),
-    generateNakedShirt({ breastSize: `large breasts` }),
-    generateUnderwearOnly({ breastSize: `large breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `large breasts` }),
-    generateGymUniform({ breastSize: `large breasts` }),
-    generateBridalLingerie({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
 
@@ -3057,17 +2960,6 @@ export const mitsuiHonokaEft = {
         ],
       },
     },
-    generateBikini({ breastSize: `large breasts` }),
-    generateMaidBikini({ breastSize: `large breasts` }),
-    generateSchoolSwimsuit({ breastSize: `large breasts` }),
-    generatePlayboyBunny({ breastSize: `large breasts` }),
-    generateSleevelessSerafuku({ breastSize: `large breasts` }),
-    generateNakedShirt({ breastSize: `large breasts` }),
-    generateUnderwearOnly({ breastSize: `large breasts` }),
-    generateCamisoleDenimShorts({ breastSize: `large breasts` }),
-    generateGymUniform({ breastSize: `large breasts` }),
-    generateBridalLingerie({ breastSize: `large breasts` }),
-    generateChinaDress({ breastSize: `large breasts` }),
-    generateSantaBikini({ breastSize: `large breasts` }),
+    ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
