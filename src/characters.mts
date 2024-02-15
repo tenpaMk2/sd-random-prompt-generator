@@ -787,6 +787,59 @@ const generateChinaDress = ({
   whenRemoveShoes: undefined,
 });
 
+const generateSantaBikini = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `santa-bikini`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromHorizontalEntries.christmas }],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.ceiling }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromAboveEntries.floor }],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.whiteBackground },
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartRedBackground },
+        { entries: backgroundPreset.cleanEntries.pinkBackground },
+        { entries: backgroundPreset.cleanEntries.christmas },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `santa costume`,
+    `santa hat`,
+    `santa bikini`,
+    `red bikini`,
+    `fur collar`,
+    `fur trim`,
+    `fur-trimmed bikini`,
+    `fur-trimmed headwear`,
+    `detached sleeves`,
+    `red thighhighs`,
+    `bare shoulders`,
+    `shoulder blades`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+  upskirt: undefined,
+  whenRemoveShoes: undefined,
+});
+
 // export const cecilia: CharaDefine = {
 //   chara: [
 //     `aacecilia`,
@@ -3015,5 +3068,6 @@ export const mitsuiHonokaEft = {
     generateGymUniform({ breastSize: `large breasts` }),
     generateBridalLingerie({ breastSize: `large breasts` }),
     generateChinaDress({ breastSize: `large breasts` }),
+    generateSantaBikini({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;

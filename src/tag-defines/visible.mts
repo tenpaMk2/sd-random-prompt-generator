@@ -717,6 +717,7 @@ export const tagVisibilities = {
   pantyhose: visibleType.pantyhose,
   thighhighs: visibleType.thighhighs,
   "black thighhighs": visibleType.thighhighs,
+  "red thighhighs": visibleType.thighhighs,
   socks: visibleType.foot,
   "white socks": visibleType.foot,
   "black socks": visibleType.foot,
@@ -975,6 +976,8 @@ export const tagVisibilities = {
   "falling petals": visibleType.all,
   petals: visibleType.all,
   wedding: visibleType.all,
+  christmas: visibleType.all,
+  "christmas tree": visibleType.all,
   "sainan high school uniform": visibleType.dress,
   "thigh strap": visibleType.thighhighs,
   "first high school uniform": visibleType.dress,
@@ -990,6 +993,13 @@ export const tagVisibilities = {
   "dragon print": visibleType.all,
   "floral print": visibleType.all,
   "side slit": visibleType.aroundHip,
+  "santa costume": visibleType.all,
+  "santa hat": visibleType.head,
+  "santa bikini": visibleType.dress,
+  "fur collar": visibleType.aroundBreast,
+  "fur trim": visibleType.all,
+  "fur-trimmed bikini": visibleType.dress,
+  "fur-trimmed headwear": visibleType.head,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

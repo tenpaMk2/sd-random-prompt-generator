@@ -34,6 +34,7 @@ export const backgroundPreset = {
     amusementPark: [`outdoors`, `amusement park`, `blue sky`],
     dayPool: [`outdoors`, `day`, `pool`],
     wedding: [`white background`, `falling petals`, `wedding`],
+    christmas: [`indoors`, `christmas`, `christmas tree`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],
@@ -133,6 +134,7 @@ export const backgroundPreset = {
       `spoken heart`,
     ],
     wedding: [`white background`, `falling petals`, `wedding`],
+    christmas: [`indoors`, `christmas`, `christmas tree`],
   },
 } as const satisfies {
   [camera: string]: {

@@ -144,6 +144,7 @@ const allOutfitTags = [
   `pantyhose`,
   `thighhighs`,
   `black thighhighs`,
+  `red thighhighs`,
   `socks`,
   `white socks`,
   `black socks`,
@@ -290,6 +291,13 @@ const allOutfitTags = [
   `dragon print`,
   `floral print`,
   `side slit`,
+  `santa costume`,
+  `santa hat`,
+  `santa bikini`,
+  `fur collar`,
+  `fur trim`,
+  `fur-trimmed bikini`,
+  `fur-trimmed headwear`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
