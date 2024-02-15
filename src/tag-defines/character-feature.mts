@@ -334,6 +334,7 @@ const allHeadFeatureTags = [
   `earrings`,
   `gold earrings`,
   `forehead`, // TODO: Reconsider as exposure
+  `tress ribbon`,
 ] as const satisfies readonly string[];
 type HeadFeatureTag = (typeof allHeadFeatureTags)[number];
 

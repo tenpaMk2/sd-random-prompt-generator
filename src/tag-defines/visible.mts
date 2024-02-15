@@ -531,6 +531,7 @@ export const tagVisibilities = {
   earrings: visibleType.head,
   "gold earrings": visibleType.head,
   forehead: visibleType.face,
+  "tress ribbon": visibleType.head,
   "flat chest": visibleType.aroundBreast,
   "small breasts": visibleType.aroundBreast,
   "medium breasts": visibleType.aroundBreast,

@@ -2748,6 +2748,7 @@ export const shibaMiyukiEft = {
     `sidelocks`,
     `hair ornament`,
     `snowflake hair ornament`,
+    `tress ribbon`,
     `large breasts`,
   ]),
   emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
