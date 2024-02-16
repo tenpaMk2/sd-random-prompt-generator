@@ -1,5 +1,6 @@
 import {
   ceciliaAlcottOGTurles,
+  chibaErikaEft,
   konjikiNoYamiEft,
   kotegawaYuiEft,
   kurosakiMeaEft,
@@ -43,6 +44,7 @@ const charas = [
   shibaMiyukiEft,
   saegusaMayumiEft,
   mitsuiHonokaEft,
+  chibaErikaEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,
