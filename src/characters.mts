@@ -3041,3 +3041,80 @@ export const chibaErikaEft = {
     ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const kitayamaShizukuEft = {
+  key: `kitayama-shizuku-eft`,
+  lora: new LoraToken({
+    tag: `shizuku-mahouka`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `mahouka koukou no rettousei`,
+    `kitayama shizuku`,
+    `shizuku kitayama`,
+    `purple eyes`,
+    `jitome`,
+    `black hair`,
+    `short hair`,
+    `messy hair`,
+    `short hair with long locks`,
+    `sidelocks`,
+    `small breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.serious),
+  situations: [
+    {
+      key: `first-high-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `first high school uniform`,
+        `dress`,
+        `white dress`,
+        `collared dress`,
+        `pencil dress`,
+        `necktie`,
+        `black necktie`,
+        `short necktie`,
+        `jacket`,
+        `green jacket`,
+        `cropped jacket`,
+        `open jacket`,
+        `long sleeves`,
+        `thighhighs`,
+        `black thighhighs`,
+        `boots`,
+        `black footwear`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `dress`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`boots`, `black footwear`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `small breasts` }),
+  ],
+} as const satisfies CharaDefine;

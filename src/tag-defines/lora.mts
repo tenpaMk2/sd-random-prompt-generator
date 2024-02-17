@@ -17,5 +17,6 @@ const allLoraNameTags = [
   `mayumi-mahouka`, // 0.8, <https://civitai.com/models/298307/mayumi-saegusa-mahouka-koukou-no-rettousei>
   `honoka-mahouka`, // 0.8, <https://civitai.com/models/298315/honoka-mitsui-mahouka-koukou-no-rettousei>
   `erika-mahouka`, // 0.8, <https://civitai.com/models/298310/erika-chiba-mahouka-koukou-no-rettousei>
+  `shizuku-mahouka`, // 0.8, <https://civitai.com/models/298313/shizuku-kitayama-mahouka-koukou-no-rettousei>
 ] as const satisfies readonly string[];
 export type LoraNameTag = (typeof allLoraNameTags)[number];

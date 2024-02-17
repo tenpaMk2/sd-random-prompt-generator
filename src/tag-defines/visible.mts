@@ -242,6 +242,8 @@ export const tagVisibilities = {
   "honoka mitsui": visibleType.all,
   "chiba erika": visibleType.all,
   "erika chiba": visibleType.all,
+  "kitayama shizuku": visibleType.all,
+  "shizuku kitayama": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -262,6 +264,7 @@ export const tagVisibilities = {
   heterocromia: visibleType.face,
   tsurime: visibleType.face,
   tareme: visibleType.face,
+  jitome: visibleType.face,
   "thick eyebrows": visibleType.face,
   eyelashes: visibleType.face,
   "long eyelashes": visibleType.face,

@@ -42,6 +42,8 @@ const allProperNouns = [
   `honoka mitsui`,
   `chiba erika`,
   `erika chiba`,
+  `kitayama shizuku`,
+  `shizuku kitayama`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
@@ -65,6 +67,7 @@ const allHeadFeatureTags = [
   `heterocromia`,
   `tsurime`,
   `tareme`,
+  `jitome`,
   `thick eyebrows`,
   `eyelashes`,
   `long eyelashes`,
