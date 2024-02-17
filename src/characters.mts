@@ -2644,7 +2644,7 @@ export const nanaAstaDevilukeEft = {
 export const tamakiIrohaEft = {
   key: `tamaki-iroha-eft`,
   lora: new LoraToken({
-    tag: `iroha-madomagi`,
+    tag: `iroha-madomagi-01`,
     weights: [0.6, 0.8],
   }),
   characterFeature: new PromptDefine<CharacterFeatureTag>([

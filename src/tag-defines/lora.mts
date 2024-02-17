@@ -12,7 +12,7 @@ const allLoraNameTags = [
   `yami-loveru`, // 0.8, <https://civitai.com/models/258473/konjiki-no-yami-to-love-ru>
   `yui-loveru`, // 0.8, <https://civitai.com/models/258476/yui-kotegawa-to-love-ru>
   `nana-loveru`, // 0.8, <https://civitai.com/models/258477/nana-astar-deviluke-to-love-ru>
-  `iroha-madomagi`, // 0.8, <https://civitai.com/models/271627/iroha-tamaki-magia-record>
+  `iroha-madomagi-01`, // 0.8, <https://civitai.com/models/271627/iroha-tamaki-magia-record>
   `miyuki-mahouka`, // 0.8, <https://civitai.com/models/298306/miyuki-shiba-mahouka-koukou-no-rettousei>
   `mayumi-mahouka`, // 0.8, <https://civitai.com/models/298307/mayumi-saegusa-mahouka-koukou-no-rettousei>
   `honoka-mahouka`, // 0.8, <https://civitai.com/models/298315/honoka-mitsui-mahouka-koukou-no-rettousei>
