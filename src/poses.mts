@@ -575,7 +575,198 @@ const generateWariza: Generator = ({
   };
 };
 
-// TODO:        new TagLeaf({ tagEntries: [`spread legs`] }),
+const generateContrapposto: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `contrapposto`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `contrapposto`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
+const generateContrappostoArmsUp: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  isArmpitsVisible,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `contrapposto`,
+    `looking at viewer`,
+    `arms up`,
+    ...(isArmpitsVisible ? ([`armpits`] as const) : []),
+  ]).convertToPatternCollection();
+
+  return {
+    key: `contrapposto-arms-up`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
+const generateTwistedTorso: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `sideBreast`, `backMidriff`, `backHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `twisted torso`,
+    `looking back`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `twisted-torso`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
+const generateSittingSpreadLegs: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  upskirtPatternCollection,
+  frontEmotionPatternCollection,
+  background: { cleanPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `sitting`,
+    `spread legs`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `sitting-spread-legs`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      upskirtPatternCollection,
+      frontEmotionPatternCollection,
+      cleanPatternCollection,
+    ]),
+  };
+};
+
+const generateLyingOnSide: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  upskirtPatternCollection,
+  frontEmotionPatternCollection,
+  background: { lyingPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [
+      `frontHead`,
+      `frontBreast`,
+      `sideBreast`,
+      `frontMidriff`,
+      `sideHipAndThigh`,
+      `foot`,
+    ],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `lying`,
+    `on side`,
+    `ass focus`,
+    `foreshortening`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `lying-on-side`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      upskirtPatternCollection,
+      frontEmotionPatternCollection,
+      lyingPatternCollection,
+    ]),
+  };
+};
+
+const generateSquatting: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  upskirtPatternCollection,
+  frontEmotionPatternCollection,
+  background: { cleanPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`, `foot`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `squatting`,
+    `hands on own knees`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `squatting`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      upskirtPatternCollection,
+      frontEmotionPatternCollection,
+      cleanPatternCollection,
+    ]),
+  };
+};
+
 // TODO:        new TagLeaf({ tagEntries: [`legs up`] }),
 
 export const posePromptGenerators = [
@@ -589,4 +780,10 @@ export const posePromptGenerators = [
   generateCowboyShotLyingOnBed,
   generateLeaningForwardVArms,
   generateWariza,
+  generateContrapposto,
+  generateContrappostoArmsUp,
+  generateTwistedTorso,
+  generateSittingSpreadLegs,
+  generateLyingOnSide,
+  generateSquatting,
 ];

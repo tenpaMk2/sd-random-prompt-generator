@@ -23,5 +23,12 @@ const allPoseTags = [
   `pantyshot`,
   `wariza`,
   `sitting`,
+  `contrapposto`,
+  `twisted torso`,
+  `on side`,
+  `ass focus`,
+  `foreshortening`,
+  `squatting`,
+  `hands on own knees`,
 ] as const satisfies readonly string[];
 export type PoseTag = (typeof allPoseTags)[number];

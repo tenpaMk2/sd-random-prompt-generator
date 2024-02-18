@@ -987,6 +987,13 @@ export const tagVisibilities = {
   pantyshot: visibleType.upskirt,
   wariza: visibleType.all,
   sitting: visibleType.all,
+  contrapposto: visibleType.all,
+  "twisted torso": visibleType.all,
+  "on side": visibleType.all,
+  "ass focus": visibleType.all,
+  foreshortening: visibleType.all,
+  squatting: visibleType.all,
+  "hands on own knees": visibleType.all,
 
   // Background
   indoors: visibleType.all,
