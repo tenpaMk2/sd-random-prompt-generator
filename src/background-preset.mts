@@ -78,7 +78,8 @@ export const backgroundPreset = {
     bedSheet: [`bed sheet`],
     bedSheetPillow: [`bed sheet`, `pillow`],
     grass: [`outdoors`, `grass`],
-    oceanPartiallySubmerged: [`outdoors`, `ocean`, `partially submerged`],
+    partiallySubmerged: [`outdoors`, `partially submerged`, `wet`],
+    oceanPartiallySubmerged: [`outdoors`, `ocean`, `partially submerged`], // TODO: Add `wet` .
     whiteBackground: [`simple background`, `white background`],
     pinkBackground: [`simple background`, `pink background`],
     heartWhiteBackground: [

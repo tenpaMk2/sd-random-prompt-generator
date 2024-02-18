@@ -74,6 +74,7 @@ const allOutfitTags = [
   `white jacket`,
   `white dress`,
   `black collar`,
+  `white collar`,
   `red collar`,
   `long sleeves`,
   `white sleeves`,
@@ -298,6 +299,15 @@ const allOutfitTags = [
   `fur trim`,
   `fur-trimmed bikini`,
   `fur-trimmed headwear`,
+  `headdress`,
+  `armor`,
+  `breastplate`,
+  `white armor`,
+  `crescent necklace`,
+  `print dress`,
+  `thighlet`,
+  `sandals`,
+  `casual`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

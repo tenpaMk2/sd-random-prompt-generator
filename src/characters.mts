@@ -2725,6 +2725,138 @@ export const tamakiIrohaEft = {
   ],
 } as const satisfies CharaDefine;
 
+export const nanamiYachiyoEft = {
+  key: `nanami-yachiyo-eft`,
+  lora: new LoraToken({
+    tag: `yachiyo-madomagi-01`,
+    weights: [0.6, 0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `magia record: mahou shoujo madoka magica gaiden`,
+    `yachiyo nanami`,
+    `nanami yachiyo`,
+    `blue eyes`,
+    `tareme`,
+    `blue hair`,
+    `dark blue hair`,
+    `long hair`,
+    `hime cut`,
+    `straight hair`,
+    `blunt bangs`,
+    `hair intakes`,
+    `blunt ends`,
+    `sidelocks`,
+    `small breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.serious),
+  situations: [
+    {
+      key: `magical-girl`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.partiallySubmerged },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `magical girl`,
+        `headdress`,
+        `veil`,
+        `armor`,
+        `breastplate`,
+        `white armor`,
+        `gold trim`,
+        `crescent necklace`,
+        `bridal gauntlets`,
+        `dress`,
+        `blue dress`,
+        `print dress`,
+        `covered navel`,
+        `side slit`,
+        `thighlet`,
+        `skin tight`,
+        `taut clothes`,
+        `bare legs`,
+        `sandals`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `dress`,
+      upskirt: new PromptDefine(upskirtPreset.monochromePanties),
+      whenRemoveShoes: {
+        excludeTags: [`sandals`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    {
+      key: `casual`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.window,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.partiallySubmerged },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `casual`,
+        `collarbone`,
+        `dress`,
+        `black dress`,
+        `collared dress`,
+        `white collar`,
+        `short sleeves`,
+        `sandals`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `dress`,
+      upskirt: new PromptDefine(upskirtPreset.monochromePanties),
+      whenRemoveShoes: {
+        excludeTags: [`sandals`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `small breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
 export const shibaMiyukiEft = {
   key: `shiba-miyuki-eft`,
   lora: new LoraToken({

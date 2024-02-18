@@ -33,6 +33,8 @@ const allProperNouns = [
   `magia record: mahou shoujo madoka magica gaiden`,
   `iroha tamaki`,
   `tamaki iroha`,
+  `yachiyo nanami`,
+  `nanami yachiyo`,
   `mahouka koukou no rettousei`,
   `miyuki shiba`,
   `shiba miyuki`,
