@@ -195,6 +195,11 @@ export const visibleType = {
     frontMidriff: true,
     sideMidriff: true,
   },
+  "shoulder blades": {
+    ...invisible,
+    backBreast: true,
+    sideBreast: true,
+  },
 } as const satisfies { [k: string]: Visible };
 
 export const tagVisibilities = {
@@ -235,6 +240,9 @@ export const tagVisibilities = {
   "tamaki iroha": visibleType.all,
   "yachiyo nanami": visibleType.all,
   "nanami yachiyo": visibleType.all,
+  "mahou shoujo madoka magica": visibleType.all,
+  "kaname madoka": visibleType.all,
+  "madoka kaname": visibleType.all,
   "mahouka koukou no rettousei": visibleType.all,
   "miyuki shiba": visibleType.all,
   "shiba miyuki": visibleType.all,
@@ -579,7 +587,7 @@ export const tagVisibilities = {
   midriff: { ...invisible, frontMidriff: true, sideMidriff: true },
   navel: { ...invisible, frontMidriff: true, sideMidriff: true },
   "covered navel": { ...invisible, frontMidriff: true, sideMidriff: true },
-  "shoulder blades": { ...invisible, backBreast: true },
+  "shoulder blades": visibleType["shoulder blades"],
   "taut clothes": { ...invisible, frontBreast: true },
   "skin tight": visibleType.dress,
   skindentation: {
@@ -675,6 +683,7 @@ export const tagVisibilities = {
   maid: visibleType.all,
   "maid bikini": visibleType.dress,
   frills: visibleType.all,
+  "center frills": visibleType.frontNeck,
   apron: visibleType.dress,
   "frilled apron": visibleType.dress,
   "maid apron": visibleType.dress,
@@ -700,6 +709,7 @@ export const tagVisibilities = {
   "sweater dress": visibleType.dress,
   "office lady": visibleType.all,
   choker: visibleType.collar,
+  "ribbon choker": visibleType.collar,
   strap: visibleType.all,
   gloves: visibleType.all,
   "black gloves": visibleType.all,
@@ -895,6 +905,16 @@ export const tagVisibilities = {
   thighlet: visibleType.thigh,
   sandals: visibleType.foot,
   casual: visibleType.all,
+  "soul gem": visibleType.frontNeck, // For Madoka
+  "puffy sleeves": visibleType.aroundBreast,
+  "puffy short sleeves": visibleType.aroundBreast,
+  "bubble skirt": visibleType.skirt,
+  "backless outfit": visibleType["shoulder blades"],
+  "bow skirt": visibleType.skirt,
+  "ankle lace-up": visibleType.foot,
+  "mitakihara school uniform": visibleType.all,
+  "juliet sleeves": visibleType.aroundBreast,
+  "yellow sweater": visibleType.shirt,
 
   // Emotion
   blush: visibleType.face,

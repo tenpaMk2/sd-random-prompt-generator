@@ -91,6 +91,7 @@ const allOutfitTags = [
   `maid headdress`,
   `maid bikini`,
   `frills`,
+  `center frills`,
   `apron`,
   `frilled apron`,
   `maid apron`,
@@ -119,6 +120,7 @@ const allOutfitTags = [
   `sweater dress`,
   `office lady`,
   `choker`,
+  `ribbon choker`,
   `strap`,
   `gloves`,
   `black gloves`,
@@ -308,6 +310,16 @@ const allOutfitTags = [
   `thighlet`,
   `sandals`,
   `casual`,
+  `soul gem`,
+  `puffy sleeves`,
+  `puffy short sleeves`,
+  `bubble skirt`,
+  `backless outfit`,
+  `bow skirt`,
+  `ankle lace-up`,
+  `mitakihara school uniform`,
+  `juliet sleeves`,
+  `yellow sweater`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

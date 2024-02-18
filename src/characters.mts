@@ -2857,6 +2857,149 @@ export const nanamiYachiyoEft = {
   ],
 } as const satisfies CharaDefine;
 
+export const kanameMadokaEft = {
+  key: `kaname-madoka-eft`,
+  lora: new LoraToken({
+    tag: `madoka-madomagi-01`,
+    weights: [0.6, 0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `mahou shoujo madoka magica`,
+    `kaname madoka`,
+    `madoka kaname`,
+    `pink eyes`,
+    `tareme`,
+    `pink hair`,
+    `short hair`,
+    `twintails`,
+    `short twintails`,
+    `hair ribbon`,
+    `red ribbon`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `magical-girl`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.partiallySubmerged },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `magical girl`,
+        `choker`,
+        `ribbon choker`,
+        `soul gem`,
+        `collarbone`,
+        `short sleeves`,
+        `puffy sleeves`,
+        `puffy short sleeves`,
+        `center frills`,
+        `gloves`,
+        `white gloves`,
+        `bubble skirt`,
+        `backless outfit`,
+        `shoulder blades`,
+        `bow skirt`,
+        `socks`,
+        `white socks`,
+        `shoes`,
+        `cross-laced footwear`,
+        `ankle lace-up`,
+        `cleavage`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`shoes`, `cross-laced footwear`, `ankle lace-up`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `mitakihara school uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.window },
+            { entries: backgroundPreset.fromHorizontalEntries.classroom },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromAboveEntries.woodenFloor },
+            { entries: backgroundPreset.fromAboveEntries.heartBackground },
+          ],
+        ]),
+        lying: new PromptDefine<BackgroundTag>([
+          [{ entries: backgroundPreset.lyingEntries.grass }],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+            { entries: backgroundPreset.cleanEntries.pinkBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `mitakihara school uniform`,
+        `school uniform`,
+        `puffy sleeves`,
+        `juliet sleeves`,
+        `bowtie`,
+        `red bowtie`,
+        `yellow sweater`,
+        `collared shirt`,
+        `white shirt`,
+        `skirt`,
+        `black skirt`,
+        `plaid skirt`,
+        `miniskirt`,
+        `socks`,
+        `white socks`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `small breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
 export const shibaMiyukiEft = {
   key: `shiba-miyuki-eft`,
   lora: new LoraToken({
