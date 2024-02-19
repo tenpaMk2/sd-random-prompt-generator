@@ -7,6 +7,7 @@ import {
   kotegawaYuiEft,
   kurosakiMeaEft,
   lalaSatalinDevilukeEft,
+  mikiSayakaEft,
   minimumTest,
   mitsuiHonokaEft,
   momoVeliaDevilukeEft,
@@ -45,12 +46,13 @@ const charas = [
   nanaAstaDevilukeEft,
   tamakiIrohaEft,
   nanamiYachiyoEft,
+  kanameMadokaEft,
+  mikiSayakaEft,
   shibaMiyukiEft,
   saegusaMayumiEft,
   mitsuiHonokaEft,
   chibaErikaEft,
   kitayamaShizukuEft,
-  kanameMadokaEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

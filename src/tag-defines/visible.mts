@@ -200,6 +200,11 @@ export const visibleType = {
     backBreast: true,
     sideBreast: true,
   },
+  "belt buckle": {
+    ...invisible,
+    frontHipAndThigh: true,
+    sideHipAndThigh: true,
+  },
 } as const satisfies { [k: string]: Visible };
 
 export const tagVisibilities = {
@@ -243,6 +248,8 @@ export const tagVisibilities = {
   "mahou shoujo madoka magica": visibleType.all,
   "kaname madoka": visibleType.all,
   "madoka kaname": visibleType.all,
+  "miki sayaka": visibleType.all,
+  "sayaka miki": visibleType.all,
   "mahouka koukou no rettousei": visibleType.all,
   "miyuki shiba": visibleType.all,
   "shiba miyuki": visibleType.all,
@@ -620,6 +627,7 @@ export const tagVisibilities = {
   "partially unbuttoned": { ...invisible, frontBreast: true, sideBreast: true },
   "partially undressed": visibleType.dress,
   nsfw: visibleType.all,
+  "midriff peak": visibleType.navel,
 
   "cleavage cutout": { ...invisible, frontBreast: true, sideBreast: true },
   "navel cutout": visibleType.navel,
@@ -915,6 +923,15 @@ export const tagVisibilities = {
   "mitakihara school uniform": visibleType.all,
   "juliet sleeves": visibleType.aroundBreast,
   "yellow sweater": visibleType.shirt,
+  "musical note": visibleType.head, // For musical note hair ornament
+  fortissimo: visibleType.head, // For musical note hair ornament
+  cape: visibleType.dress,
+  "white cape": visibleType.dress,
+  "shiny clothes": visibleType.dress,
+  strapless: visibleType.aroundBreast,
+  "belt buckle": visibleType["belt buckle"],
+  "leg belt": visibleType.thigh,
+  "blue footwear": visibleType.foot,
 
   // Emotion
   blush: visibleType.face,

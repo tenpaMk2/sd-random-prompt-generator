@@ -33,6 +33,7 @@ const allExposureTags = [
   `partially unbuttoned`,
   `partially undressed`,
   `nsfw`,
+  `midriff peak`,
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 
@@ -320,6 +321,16 @@ const allOutfitTags = [
   `mitakihara school uniform`,
   `juliet sleeves`,
   `yellow sweater`,
+  `musical note hair ornament`,
+  `musical note`,
+  `fortissimo`,
+  `cape`,
+  `white cape`,
+  `shiny clothes`,
+  `strapless`,
+  `belt buckle`,
+  `leg belt`,
+  `blue footwear`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
