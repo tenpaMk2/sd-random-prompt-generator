@@ -3017,7 +3017,7 @@ export const mikiSayakaEft = {
     `bob cut`,
     `medium breasts`,
   ]),
-  emotion: new PromptDefine<EmotionTag>(emotionPreset.all),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
   situations: [
     {
       key: `magical-girl`,

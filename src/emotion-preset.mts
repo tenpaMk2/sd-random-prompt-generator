@@ -111,6 +111,7 @@ export const emotionPreset = {
       { entries: preset.seductiveSmile },
       { entries: preset.naughtyFace },
       { entries: preset.oneEyeClosed },
+      { entries: preset.oneEyeClosed },
     ],
   ],
 } as const satisfies { [k: string]: Entry<EmotionTag>[] };
