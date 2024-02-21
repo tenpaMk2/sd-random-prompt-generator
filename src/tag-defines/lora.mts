@@ -16,6 +16,7 @@ const allLoraNameTags = [
   `yachiyo-madomagi-01`, // eft, 0.8, <https://civitai.com/models/271624/yachiyo-nanami-magia-record>
   `madoka-madomagi-01`, // eft, 0.8, <https://civitai.com/models/269404/madoka-kaname-mahou-shoujo-madokamagica>
   `sayaka-madomagi-01`, // eft, 0.8, <https://civitai.com/models/269414/sayaka-miki-mahou-shoujo-madokamagica>
+  `mami-madomagi-01`, // eft, 0.8, <https://civitai.com/models/269417/mami-tomoe-mahou-shoujo-madokamagica>
   `miyuki-mahouka`, // 0.8, <https://civitai.com/models/298306/miyuki-shiba-mahouka-koukou-no-rettousei>
   `mayumi-mahouka`, // 0.8, <https://civitai.com/models/298307/mayumi-saegusa-mahouka-koukou-no-rettousei>
   `honoka-mahouka`, // 0.8, <https://civitai.com/models/298315/honoka-mitsui-mahouka-koukou-no-rettousei>

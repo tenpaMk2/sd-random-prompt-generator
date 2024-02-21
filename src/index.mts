@@ -21,6 +21,7 @@ import {
   suzukazeAobaNarugo1992,
   takimotoHifumiNarugo1992,
   tamakiIrohaEft,
+  tomoeMamiEft,
 } from "./characters.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
@@ -48,6 +49,7 @@ const charas = [
   nanamiYachiyoEft,
   kanameMadokaEft,
   mikiSayakaEft,
+  tomoeMamiEft,
   shibaMiyukiEft,
   saegusaMayumiEft,
   mitsuiHonokaEft,
