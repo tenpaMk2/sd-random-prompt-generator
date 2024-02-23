@@ -3304,6 +3304,137 @@ export const tomoeMamiEft = {
   ],
 } as const satisfies CharaDefine;
 
+export const sakuraKyoukoEft = {
+  key: `sakura-kyouko-eft`,
+  lora: new LoraToken({
+    tag: `kyouko-madomagi-01`,
+    weights: [0.6, 0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `mahou shoujo madoka magica`,
+    `sakura kyouko`,
+    `sakura kyoko`,
+    `kyouko sakura`,
+    `red eyes`,
+    `tsurime`,
+    `red hair`,
+    `long hair`,
+    `ponytail`,
+    `hair bow`,
+    `black bow`,
+    `small breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `magical-girl`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.woodenFloor,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.partiallySubmerged },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `magical girl`,
+        `dress`,
+        `red dress`,
+        `cleavage cutout`,
+        `sleeveless`,
+        `sleeveless dress`,
+        `soul gem`,
+        `detached sleeves`,
+        `white sleeves`,
+        `wrist cuffs`,
+        `skirt`,
+        `pink skirt`,
+        `pleated skirt`,
+        `miniskirt`,
+        `thighhighs`,
+        `black thighhighs`,
+        `boots`,
+        `red footwear`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`boots`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `hooded jacket`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.indoors,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.floor,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.partiallySubmerged },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `casual`,
+        `collarbone`,
+        `green jacket`,
+        `hooded jacket`,
+        `long sleeves`,
+        `denim`,
+        `denim shorts`,
+        `fur trim`,
+        `fur-trimmed shorts`,
+        `boots`,
+        `knee boots`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `none`,
+      upskirt: undefined,
+      whenRemoveShoes: {
+        excludeTags: [`boots`, `knee boots`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `small breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
 export const shibaMiyukiEft = {
   key: `shiba-miyuki-eft`,
   lora: new LoraToken({

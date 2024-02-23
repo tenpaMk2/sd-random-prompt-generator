@@ -160,6 +160,7 @@ const allOutfitTags = [
   `shoes`,
   `loafers`,
   `boots`,
+  `knee boots`,
   `underwear`,
   `underwear only`,
   `lingerie`,
@@ -264,7 +265,9 @@ const allOutfitTags = [
   `pink camisole`,
   `purple camisole`,
   `shorts`,
+  `fur-trimmed shorts`,
   `denim shorts`,
+  `denim`,
   `gym uniform`,
   `gym shirt`,
   `buruma`,
@@ -336,6 +339,7 @@ const allOutfitTags = [
   `belt buckle`,
   `leg belt`,
   `blue footwear`,
+  `red footwear`,
   `hat`,
   `beret`,
   `brown headwear`,
@@ -343,6 +347,8 @@ const allOutfitTags = [
   `brown corset`,
   `suspenders`,
   `puffy detached sleeves`,
+  `hoodie`,
+  `hooded jacket`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
