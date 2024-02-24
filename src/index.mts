@@ -1,4 +1,5 @@
 import {
+  akemiHomuraEft,
   ceciliaAlcottOGTurles,
   chibaErikaEft,
   kanameMadokaEft,
@@ -52,6 +53,7 @@ const charas = [
   mikiSayakaEft,
   tomoeMamiEft,
   sakuraKyoukoEft,
+  akemiHomuraEft,
   shibaMiyukiEft,
   saegusaMayumiEft,
   mitsuiHonokaEft,

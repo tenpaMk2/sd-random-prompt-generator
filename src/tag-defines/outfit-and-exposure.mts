@@ -43,6 +43,7 @@ const allOutfitTags = [
   `neck ribbon`,
   `blue ribbon`,
   `black ribbon`,
+  `purple ribbon`,
   `underbust`,
   `bowtie`,
   `blue bowtie`,
@@ -148,6 +149,7 @@ const allOutfitTags = [
   `high-low skirt`,
   `red trim`,
   `pantyhose`,
+  `black pantyhose`,
   `thighhighs`,
   `black thighhighs`,
   `red thighhighs`,
@@ -349,6 +351,12 @@ const allOutfitTags = [
   `puffy detached sleeves`,
   `hoodie`,
   `hooded jacket`,
+  `capelet`,
+  `purple capelet`,
+  `high heels`,
+  `high heel boots`,
+  `argyle`,
+  `argyle legwear`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

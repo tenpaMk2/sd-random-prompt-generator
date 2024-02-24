@@ -38,6 +38,8 @@ const allProperNouns = [
   `mahou shoujo madoka magica`,
   `kaname madoka`,
   `madoka kaname`,
+  `akemi homura`,
+  `homura akemi`,
   `miki sayaka`,
   `sayaka miki`,
   `mami tomoe`,
