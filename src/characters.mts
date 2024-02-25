@@ -2287,7 +2287,6 @@ export const sairenjiHarunaEft = {
     `purple hair`,
     `short hair`,
     `bob cut`,
-    `swept bangs`,
     `forehead`,
     `hair ornament`,
     `hairclip`,
