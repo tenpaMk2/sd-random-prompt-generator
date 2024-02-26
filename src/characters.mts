@@ -3972,77 +3972,75 @@ export const nishikigiChisatoEft = {
   ],
 } as const satisfies CharaDefine;
 
-// export const nishikigiChisato = {
-//   key: `nishikigi-chisato-h-madoka`,
-//   characterFeatureTree: [
-//     new CharaS(`<lora:nishikigi_chisato_v1:0.75>`),
-//     new CharaS(`lycoris recoil`),
-//     new CharaS(`nishikigi chisato`),
-//     new CharaS(`red eyes`),
-//     new CharaS(`blonde hair`),
-//     new CharaS(`short hair`),
-//     new CharaS(`bob cut`),
-//     new CharaS(`hair ribbon`),
-//     new CharaS(`large breasts`),
-//   ],
-//   emotionTokens: emotionPreset.chisato,
-//   situations: [
-//     {
-//       key: `lycoris-uniform`,
-//       backgroundTokens: {
-//         fromHorizontal: [
-//           new BackgroundD(`indoors`, [
-//             backgroundCandidates.fromHorizontal.city,
-//           ]),
-//         ],
-//         fromBelow: [
-//           new BackgroundD(`indoors`, [backgroundCandidates.fromBelow.blueSky]),
-//         ],
-//         fromAbove: [
-//           new BackgroundD(`indoors`, [backgroundCandidates.fromAbove.grass]),
-//         ],
-//         lying: [
-//           new BackgroundD(`indoors`, [
-//             backgroundCandidates.lying.whiteBackground,
-//             backgroundCandidates.lying.pinkBackground,
-//           ]),
-//         ],
-//         clean: [
-//           new BackgroundD(`indoors`, [
-//             backgroundCandidates.clean.bedSheetWindow,
-//             backgroundCandidates.clean.grassBlueSky,
-//             backgroundCandidates.clean.heartBackground,
-//           ]),
-//         ],
-//       },
+export const inoueTakinaEft = {
+  key: `inoue-takina-eft`,
+  lora: new LoraToken({
+    tag: `takina-lycoreco-01`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `lycoris recoil`,
+    `inoue takina`,
+    `takina inoue`,
+    `purple eyes`,
+    `tsurime`,
+    `black hair`,
+    `long hair`,
+    `straight hair`,
+    `sidelocks`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.serious),
+  situations: [
+    {
+      key: `lycoris-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
 
-//       outfitAndExposureTokens: [
-//         new OutfitAndExposureS(`aachisato`),
-//         new OutfitAndExposureS(`lycoris uniform`),
-//         new OutfitAndExposureS(`neck ribbon`),
-//         new OutfitAndExposureS(`blue ribbon`),
-//         new OutfitAndExposureS(`collared shirt`),
-//         new OutfitAndExposureS(`two-tone dress`),
-//         new OutfitAndExposureS(`red dress`),
-//         new OutfitAndExposureS(`grey dress`),
-//         new OutfitAndExposureS(`long sleeves`),
-//         new OutfitAndExposureS(`red belt`),
-//         new OutfitAndExposureS(`taut clothes`),
-//         new OutfitAndExposureS(`pleated dress`),
-//         new OutfitAndExposureS(`socks`),
-//         new OutfitAndExposureS(`shoes`),
-//         new OutfitAndExposureS(`loafers`),
-//       ],
-
-//       upskirtTokens: preset.upskirtPanties,
-//       whenRemoveShoes: {
-//         excludeTokens: [
-//           new OutfitAndExposureS(`shoes`),
-//           new OutfitAndExposureS(`loafers`),
-//         ],
-//         additionalFootTokensAfterRemoving: [new OutfitAndExposureS(`no shoes`)],
-//       },
-//     },
-//     generateMaidBkini({ breastSize: `large breasts` }),
-//   ],
-// } as const satisfies CharaDefine;
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `lycoris uniform`,
+        `neck ribbon`,
+        `green ribbon`,
+        `collared shirt`,
+        `two-tone dress`,
+        `blue dress`,
+        `grey dress`,
+        `long sleeves`,
+        `blue belt`,
+        `taut clothes`,
+        `pleated dress`,
+        `bare legs`,
+        `socks`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `dress`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;

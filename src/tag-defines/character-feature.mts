@@ -8,6 +8,8 @@ const allProperNouns = [
   `lycoris recoil`,
   `nishikigi chisato`,
   `chisato nishikigi`,
+  `inoue takina`,
+  `takina inoue`,
   `toaru kagaku no railgun`,
   `shokuhou misaki`,
   `amagi brilliant park`,
