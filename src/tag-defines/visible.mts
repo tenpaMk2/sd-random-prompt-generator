@@ -217,6 +217,7 @@ export const tagVisibilities = {
   "yor briar": visibleType.all,
   "lycoris recoil": visibleType.all,
   "nishikigi chisato": visibleType.all,
+  "chisato nishikigi": visibleType.all,
   "toaru kagaku no railgun": visibleType.all,
   "shokuhou misaki": visibleType.all,
   "amagi brilliant park": visibleType.all,

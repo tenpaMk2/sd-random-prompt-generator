@@ -7,6 +7,7 @@ const allProperNouns = [
   `yor briar`,
   `lycoris recoil`,
   `nishikigi chisato`,
+  `chisato nishikigi`,
   `toaru kagaku no railgun`,
   `shokuhou misaki`,
   `amagi brilliant park`,

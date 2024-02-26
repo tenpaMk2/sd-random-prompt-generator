@@ -14,6 +14,7 @@ import {
   momoVeliaDevilukeEft,
   nanaAstaDevilukeEft,
   nanamiYachiyoEft,
+  nishikigiChisatoEft,
   saegusaMayumiEft,
   sairenjiHarunaEft,
   sakuraKyoukoEft,
@@ -59,6 +60,7 @@ const charas = [
   mitsuiHonokaEft,
   chibaErikaEft,
   kitayamaShizukuEft,
+  nishikigiChisatoEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,
