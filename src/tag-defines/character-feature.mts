@@ -64,6 +64,8 @@ const allProperNouns = [
   `re:zero kara hajimeru isekai seikatsu`,
   `rem`,
   `rem \\(re:zero\\)`,
+  `ram`,
+  `ram \\(re:zero\\)`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 

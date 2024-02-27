@@ -274,6 +274,8 @@ export const tagVisibilities = {
   "re:zero kara hajimeru isekai seikatsu": visibleType.all,
   rem: visibleType.all,
   "rem \\(re:zero\\)": visibleType.all,
+  ram: visibleType.all,
+  "ram \\(re:zero\\)": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,

@@ -16,6 +16,7 @@ import {
   nanaAstaDevilukeEft,
   nanamiYachiyoEft,
   nishikigiChisatoEft,
+  ramEft,
   remEft,
   saegusaMayumiEft,
   sairenjiHarunaEft,
@@ -65,6 +66,7 @@ const charas = [
   nishikigiChisatoEft,
   inoueTakinaEft,
   remEft,
+  ramEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,
