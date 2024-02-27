@@ -4044,3 +4044,89 @@ export const inoueTakinaEft = {
     ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const remEft = {
+  key: `rem-eft`,
+  lora: new LoraToken({
+    tag: `rem-rezero-01`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `re:zero kara hajimeru isekai seikatsu`,
+    `rem`,
+    `rem \\(re:zero\\)`,
+    `blue eyes`,
+    `tareme`,
+    `blue hair`,
+    `short hair`,
+    `hair over one eye`,
+    `hair ornament`,
+    `x hair ornament`,
+    `flower knot`,
+    `large breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `roswaal-mansion-maid-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `roswaal mansion maid uniform`,
+        `maid`,
+        `maid headdress`,
+        `clothing cutout`,
+        `cleavage cutout`,
+        `detached collar`,
+        `neck ribbon`,
+        `black ribbon`,
+        `frills`,
+        `frilled sleeves`,
+        `detached sleeves`,
+        `black sleeves`,
+        `underbust`,
+        `maid apron`,
+        `white apron`,
+        `waist apron`,
+        `skirt`,
+        `black skirt`,
+        `miniskirt`,
+        `frilled skirt`,
+        `thighhighs`,
+        `white thighhighs`,
+        `garter straps`,
+        `mary janes`,
+        `cleavage`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`mary janes`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;

@@ -61,6 +61,9 @@ const allProperNouns = [
   `erika chiba`,
   `kitayama shizuku`,
   `shizuku kitayama`,
+  `re:zero kara hajimeru isekai seikatsu`,
+  `rem`,
+  `rem \\(re:zero\\)`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
@@ -357,6 +360,7 @@ const allHeadFeatureTags = [
   `gold earrings`,
   `forehead`, // TODO: Reconsider as exposure
   `tress ribbon`,
+  `flower knot`,
 ] as const satisfies readonly string[];
 type HeadFeatureTag = (typeof allHeadFeatureTags)[number];
 

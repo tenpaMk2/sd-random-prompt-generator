@@ -359,6 +359,10 @@ const allOutfitTags = [
   `high heel boots`,
   `argyle`,
   `argyle legwear`,
+  `roswaal mansion maid uniform`,
+  `frilled sleeves`,
+  `white apron`,
+  `mary janes`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

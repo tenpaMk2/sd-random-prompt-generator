@@ -271,6 +271,9 @@ export const tagVisibilities = {
   "erika chiba": visibleType.all,
   "kitayama shizuku": visibleType.all,
   "shizuku kitayama": visibleType.all,
+  "re:zero kara hajimeru isekai seikatsu": visibleType.all,
+  rem: visibleType.all,
+  "rem \\(re:zero\\)": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -564,6 +567,7 @@ export const tagVisibilities = {
   "gold earrings": visibleType.head,
   forehead: visibleType.face,
   "tress ribbon": visibleType.head,
+  "flower knot": visibleType.head, // for head
   "flat chest": visibleType.aroundBreast,
   "small breasts": visibleType.aroundBreast,
   "medium breasts": visibleType.aroundBreast,
@@ -968,6 +972,10 @@ export const tagVisibilities = {
   "high heel boots": visibleType.foot,
   argyle: visibleType.foot, // For `argyle legwear` ,
   "argyle legwear": visibleType.foot,
+  "roswaal mansion maid uniform": visibleType.dress,
+  "frilled sleeves": visibleType.aroundBreast,
+  "white apron": visibleType.skirt,
+  "mary janes": visibleType.foot,
 
   // Emotion
   blush: visibleType.face,
