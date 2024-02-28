@@ -4299,3 +4299,125 @@ export const emiliaEft = {
     ...generateAll({ breastSize: `medium breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const lisesharteAtismataEft = {
+  key: `lisesharte-atismata-eft`,
+  lora: new LoraToken({
+    tag: `lisesharte-bahamut-01`,
+    weights: [0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `saijaku muhai no bahamut`,
+    `lisesharte atismata`,
+    `red eyes`,
+    `tsurime`,
+    `blonde hair`,
+    `long hair`,
+    `side ponytail`,
+    `hair between eyes`,
+    `hair ribbon`,
+    `black ribbon`,
+    `large breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `bahamut-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `school uniform`,
+        `ascot`,
+        `red ascot`,
+        `shirt`,
+        `white shirt`,
+        `gold trim`,
+        `long sleeves`,
+        `center frills`,
+        `underbust`,
+        `skirt`,
+        `blue skirt`,
+        `petticoat`,
+        `miniskirt`,
+        `pleated skirt`,
+        `high-waist skirt`,
+        `thighhighs`,
+        `black thighhighs`,
+        `boots`,
+        `zettai ryouiki`,
+        `taut clothes`,
+        `zettai ryouiki`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`boots`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `bahamut-pilot-suit`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.heartBackground,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `pilot suit`,
+        `leotard`,
+        `white leotard`,
+        `red trim`,
+        `armpit cutout`,
+        `elbow gloves`,
+        `covered navel`,
+        `skin tight`,
+        `impossible bodysuit`,
+        `thighhighs`,
+        `black thighhighs`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `none`,
+      upskirt: undefined,
+      whenRemoveShoes: undefined,
+    },
+    ...generateAll({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;

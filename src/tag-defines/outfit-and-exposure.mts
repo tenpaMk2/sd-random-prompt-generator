@@ -216,6 +216,7 @@ const allOutfitTags = [
   `pirate hat`,
   `eyepatch`, // TODO: Decide where `eyepatch` belongs. Outfit? Character feature?
   `ascot`,
+  `red ascot`,
   `gold trim`,
   `thigh boots`,
   `playboy bunny`,
@@ -329,6 +330,8 @@ const allOutfitTags = [
   `bubble skirt`,
   `backless outfit`,
   `bow skirt`,
+  `high-waist skirt`,
+  `petticoat`,
   `ankle lace-up`,
   `mitakihara school uniform`,
   `juliet sleeves`,
@@ -365,6 +368,9 @@ const allOutfitTags = [
   `mary janes`,
   `gem`,
   `white legwear`,
+  `pilot suit`,
+  `impossible bodysuit`,
+  `armpit cutout`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

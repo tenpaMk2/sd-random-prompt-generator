@@ -10,6 +10,7 @@ import {
   kotegawaYuiEft,
   kurosakiMeaEft,
   lalaSatalinDevilukeEft,
+  lisesharteAtismataEft,
   mikiSayakaEft,
   minimumTest,
   mitsuiHonokaEft,
@@ -69,6 +70,7 @@ const charas = [
   remEft,
   ramEft,
   emiliaEft,
+  lisesharteAtismataEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

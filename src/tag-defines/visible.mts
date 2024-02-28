@@ -278,6 +278,8 @@ export const tagVisibilities = {
   "ram \\(re:zero\\)": visibleType.all,
   emilia: visibleType.all,
   "emilia \\(re:zero\\)": visibleType.all,
+  "saijaku muhai no bahamut": visibleType.all,
+  "lisesharte atismata": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -836,7 +838,8 @@ export const tagVisibilities = {
   "open shirt": visibleType.shirt,
   pirate: visibleType.all,
   "pirate hat": visibleType.head,
-  ascot: { ...invisible, frontBreast: true, sideBreast: true },
+  ascot: visibleType.frontNeck,
+  "red ascot": visibleType.frontNeck,
   "gold trim": visibleType.all, // TODO: `gold trim shirt` and `gold trim skirt` .
   "thigh boots": visibleType.foot,
   "playboy bunny": visibleType.dress,
@@ -947,6 +950,8 @@ export const tagVisibilities = {
   "bubble skirt": visibleType.skirt,
   "backless outfit": visibleType["shoulder blades"],
   "bow skirt": visibleType.skirt,
+  "high-waist skirt": visibleType.skirt,
+  petticoat: visibleType.skirt,
   "ankle lace-up": visibleType.foot,
   "mitakihara school uniform": visibleType.all,
   "juliet sleeves": visibleType.aroundBreast,
@@ -982,6 +987,9 @@ export const tagVisibilities = {
   "mary janes": visibleType.foot,
   gem: visibleType.frontNeck, // For gem
   "white legwear": visibleType.thighhighs, // For thigh boots
+  "pilot suit": visibleType.dress,
+  "impossible bodysuit": visibleType.aroundBreast,
+  "armpit cutout": visibleType.aroundBreast,
 
   // Emotion
   blush: visibleType.face,
