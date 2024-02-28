@@ -2,6 +2,7 @@ import {
   akemiHomuraEft,
   ceciliaAlcottOGTurles,
   chibaErikaEft,
+  emiliaEft,
   inoueTakinaEft,
   kanameMadokaEft,
   kitayamaShizukuEft,
@@ -67,6 +68,7 @@ const charas = [
   inoueTakinaEft,
   remEft,
   ramEft,
+  emiliaEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

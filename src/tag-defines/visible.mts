@@ -276,6 +276,8 @@ export const tagVisibilities = {
   "rem \\(re:zero\\)": visibleType.all,
   ram: visibleType.all,
   "ram \\(re:zero\\)": visibleType.all,
+  emilia: visibleType.all,
+  "emilia \\(re:zero\\)": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -978,6 +980,8 @@ export const tagVisibilities = {
   "frilled sleeves": visibleType.aroundBreast,
   "white apron": visibleType.skirt,
   "mary janes": visibleType.foot,
+  gem: visibleType.frontNeck, // For gem
+  "white legwear": visibleType.thighhighs, // For thigh boots
 
   // Emotion
   blush: visibleType.face,

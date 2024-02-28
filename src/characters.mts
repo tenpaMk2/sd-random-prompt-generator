@@ -4215,3 +4215,87 @@ export const ramEft = {
     ...generateAll({ breastSize: `small breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const emiliaEft = {
+  key: `emilia-eft`,
+  lora: new LoraToken({
+    tag: `emilia-rezero-01`,
+    weights: [0.6, 0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `re:zero kara hajimeru isekai seikatsu`,
+    `emilia`,
+    `emilia \\(re:zero\\)`,
+    `purple eyes`,
+    `grey hair`,
+    `white hair`,
+    `long hair`,
+    `braid`,
+    `crown braid`,
+    `blunt bangs`,
+    `sidelocks`,
+    `hair ornament`,
+    `x hair ornament`,
+    `hair flower`,
+    `hair ribbon`,
+    `purple ribbon`,
+    `pointy ears`,
+    `elf`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `emilia-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.garden,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `detached collar`,
+        `white collar`,
+        `gem`,
+        `cleavage`,
+        `dress`,
+        `white dress`,
+        `bare shoulders`,
+        `white sleeves`,
+        `detached sleeves`,
+        `wide sleeves`,
+        `skirt`,
+        `white skirt`,
+        `miniskirt`,
+        `pleated skirt`,
+        `thigh boots`,
+        `white legwear`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`thigh boots`, `white legwear`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;
