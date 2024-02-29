@@ -35,6 +35,7 @@ export const backgroundPreset = {
     dayPool: [`outdoors`, `day`, `pool`],
     wedding: [`white background`, `falling petals`, `wedding`],
     christmas: [`indoors`, `christmas`, `christmas tree`],
+    kitchen: [`indoors`, `kitchen`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],
@@ -52,6 +53,7 @@ export const backgroundPreset = {
       `spoken heart`,
     ],
     wedding: [`white background`, `falling petals`, `wedding`],
+    kitchen: [`indoors`, `kitchen`],
   },
   fromAboveEntries: {
     bedSheet: [`bed sheet`],
@@ -73,6 +75,7 @@ export const backgroundPreset = {
       `spoken heart`,
     ],
     wedding: [`white background`, `falling petals`, `wedding`],
+    kitchen: [`indoors`, `kitchen`],
   },
   lyingEntries: {
     bedSheet: [`bed sheet`],

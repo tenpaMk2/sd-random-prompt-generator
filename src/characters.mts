@@ -83,25 +83,6 @@ export type CharaDefine = Readonly<{
   }>[];
 }>;
 
-const generateAll = ({
-  breastSize,
-}: {
-  readonly breastSize: BreastSizeTag;
-}): CharaDefine["situations"] => [
-  generateBikini({ breastSize }),
-  generateMaidBikini({ breastSize }),
-  generateSchoolSwimsuit({ breastSize }),
-  generatePlayboyBunny({ breastSize }),
-  generateSleevelessSerafuku({ breastSize }),
-  generateNakedShirt({ breastSize }),
-  generateUnderwearOnly({ breastSize }),
-  generateCamisoleDenimShorts({ breastSize }),
-  generateGymUniform({ breastSize }),
-  generateBridalLingerie({ breastSize }),
-  generateChinaDress({ breastSize }),
-  generateSantaBikini({ breastSize }),
-];
-
 const generateBikini = ({
   breastSize,
 }: {
@@ -843,6 +824,135 @@ const generateSantaBikini = ({
   upskirt: undefined,
   whenRemoveShoes: undefined,
 });
+
+const generateNakedApron = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `naked-apron`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromHorizontalEntries.kitchen }],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.kitchen }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromAboveEntries.kitchen }],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.whiteBackground },
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartRedBackground },
+        { entries: backgroundPreset.cleanEntries.pinkBackground },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `naked apron`,
+    `collarbone`,
+    `bare arms`,
+    `shoulder blades`,
+    `ass`,
+    `bare legs`,
+    `barefoot`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+  upskirt: undefined,
+  whenRemoveShoes: undefined,
+});
+
+const generateCowPrintBikini = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `cow-print-bikini`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromHorizontalEntries.ocean },
+        { entries: backgroundPreset.fromHorizontalEntries.beach },
+        { entries: backgroundPreset.fromHorizontalEntries.window },
+      ],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.blueSky }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.fromAboveEntries.ocean },
+        { entries: backgroundPreset.fromAboveEntries.oceanPartiallySubmerged },
+        { entries: backgroundPreset.fromAboveEntries.grass },
+      ],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.lyingEntries.whiteBackground },
+        { entries: backgroundPreset.lyingEntries.heartBackground },
+        { entries: backgroundPreset.lyingEntries.grass },
+      ],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [
+        { entries: backgroundPreset.cleanEntries.heartRedBackground },
+        { entries: backgroundPreset.cleanEntries.pinkBackground },
+        { entries: backgroundPreset.cleanEntries.grass },
+      ],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `cow print`,
+    `cow print bikini`,
+    `cow print gloves`,
+    `cow print thighhighs`,
+    `print bikini`,
+    `print gloves`,
+    `print thighhighs`,
+    `neck bell`,
+    `choker`,
+    `shoulder blades`,
+    `navel`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+  upskirt: undefined,
+  whenRemoveShoes: undefined,
+});
+
+const generateAll = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"] => [
+  generateBikini({ breastSize }),
+  generateMaidBikini({ breastSize }),
+  generateSchoolSwimsuit({ breastSize }),
+  generatePlayboyBunny({ breastSize }),
+  generateSleevelessSerafuku({ breastSize }),
+  generateNakedShirt({ breastSize }),
+  generateUnderwearOnly({ breastSize }),
+  generateCamisoleDenimShorts({ breastSize }),
+  generateGymUniform({ breastSize }),
+  generateBridalLingerie({ breastSize }),
+  generateChinaDress({ breastSize }),
+  generateSantaBikini({ breastSize }),
+  generateNakedApron({ breastSize }),
+  generateCowPrintBikini({ breastSize }),
+];
 
 // export const cecilia: CharaDefine = {
 //   chara: [

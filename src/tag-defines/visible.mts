@@ -650,13 +650,6 @@ export const tagVisibilities = {
   "partially undressed": visibleType.dress,
   nsfw: visibleType.all,
   "midriff peak": visibleType.navel,
-  "impossible clothes": visibleType.frontNeck,
-  "impossible shirt": visibleType.frontNeck,
-  "impossible leotard": visibleType.frontNeck,
-  bodysuit: visibleType.dress,
-  "white bodysuit": visibleType.dress,
-  "micro shorts": visibleType.skirt,
-  "black shorts": visibleType.skirt,
 
   "cleavage cutout": visibleType.frontNeck,
   "navel cutout": visibleType.navel,
@@ -1001,6 +994,21 @@ export const tagVisibilities = {
   "pilot suit": visibleType.dress,
   "impossible bodysuit": visibleType.aroundBreast,
   "armpit cutout": visibleType.aroundBreast,
+  "impossible clothes": visibleType.frontNeck,
+  "impossible shirt": visibleType.frontNeck,
+  "impossible leotard": visibleType.frontNeck,
+  bodysuit: visibleType.dress,
+  "white bodysuit": visibleType.dress,
+  "micro shorts": visibleType.skirt,
+  "black shorts": visibleType.skirt,
+  "naked apron": visibleType.dress,
+  "cow print": visibleType.dress,
+  "cow print bikini": visibleType.dress,
+  "cow print gloves": visibleType.aroundBreast,
+  "cow print thighhighs": visibleType.thighhighs,
+  "print gloves": visibleType.aroundBreast,
+  "print thighhighs": visibleType.thighhighs,
+  "neck bell": visibleType.frontNeck,
 
   // Emotion
   blush: visibleType.face,
@@ -1131,6 +1139,7 @@ export const tagVisibilities = {
   christmas: visibleType.all,
   "christmas tree": visibleType.all,
   wet: visibleType.all,
+  kitchen: visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

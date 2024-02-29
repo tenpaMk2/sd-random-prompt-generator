@@ -34,13 +34,6 @@ const allExposureTags = [
   `partially undressed`,
   `nsfw`,
   `midriff peak`,
-  `impossible clothes`,
-  `impossible shirt`,
-  `impossible leotard`,
-  `bodysuit`,
-  `white bodysuit`,
-  `micro shorts`,
-  `black shorts`,
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 
@@ -380,6 +373,21 @@ const allOutfitTags = [
   `pilot suit`,
   `impossible bodysuit`,
   `armpit cutout`,
+  `impossible clothes`,
+  `impossible shirt`,
+  `impossible leotard`,
+  `bodysuit`,
+  `white bodysuit`,
+  `micro shorts`,
+  `black shorts`,
+  `naked apron`,
+  `cow print`,
+  `cow print bikini`,
+  `cow print gloves`,
+  `cow print thighhighs`,
+  `print gloves`,
+  `print thighhighs`,
+  `neck bell`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
