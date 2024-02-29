@@ -8,6 +8,7 @@ import {
   kitayamaShizukuEft,
   konjikiNoYamiEft,
   kotegawaYuiEft,
+  krulciferEinfolkEft,
   kurosakiMeaEft,
   lalaSatalinDevilukeEft,
   lisesharteAtismataEft,
@@ -71,6 +72,7 @@ const charas = [
   ramEft,
   emiliaEft,
   lisesharteAtismataEft,
+  krulciferEinfolkEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

@@ -150,6 +150,8 @@ const allOutfitTags = [
   `pencil skirt`,
   `high-low skirt`,
   `red trim`,
+  `blue trim`,
+  `purple trim`,
   `pantyhose`,
   `black pantyhose`,
   `thighhighs`,

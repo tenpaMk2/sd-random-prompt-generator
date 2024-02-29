@@ -70,6 +70,7 @@ const allProperNouns = [
   `emilia \\(re:zero\\)`,
   `saijaku muhai no bahamut`,
   `lisesharte atismata`,
+  `krulcifer einfolk`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 

@@ -280,6 +280,7 @@ export const tagVisibilities = {
   "emilia \\(re:zero\\)": visibleType.all,
   "saijaku muhai no bahamut": visibleType.all,
   "lisesharte atismata": visibleType.all,
+  "krulcifer einfolk": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -764,6 +765,8 @@ export const tagVisibilities = {
   "pencil skirt": visibleType.skirt,
   "high-low skirt": visibleType.skirt,
   "red trim": visibleType.all,
+  "blue trim": visibleType.all,
+  "purple trim": visibleType.all,
   pantyhose: visibleType.pantyhose,
   "black pantyhose": visibleType.pantyhose,
   thighhighs: visibleType.thighhighs,
