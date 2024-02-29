@@ -281,6 +281,7 @@ export const tagVisibilities = {
   "saijaku muhai no bahamut": visibleType.all,
   "lisesharte atismata": visibleType.all,
   "krulcifer einfolk": visibleType.all,
+  "philuffy aingram": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -649,6 +650,13 @@ export const tagVisibilities = {
   "partially undressed": visibleType.dress,
   nsfw: visibleType.all,
   "midriff peak": visibleType.navel,
+  "impossible clothes": visibleType.frontNeck,
+  "impossible shirt": visibleType.frontNeck,
+  "impossible leotard": visibleType.frontNeck,
+  bodysuit: visibleType.dress,
+  "white bodysuit": visibleType.dress,
+  "micro shorts": visibleType.skirt,
+  "black shorts": visibleType.skirt,
 
   "cleavage cutout": visibleType.frontNeck,
   "navel cutout": visibleType.navel,

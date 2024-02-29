@@ -34,6 +34,13 @@ const allExposureTags = [
   `partially undressed`,
   `nsfw`,
   `midriff peak`,
+  `impossible clothes`,
+  `impossible shirt`,
+  `impossible leotard`,
+  `bodysuit`,
+  `white bodysuit`,
+  `micro shorts`,
+  `black shorts`,
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 
