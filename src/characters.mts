@@ -4782,3 +4782,216 @@ export const philuffyAingramEft = {
     ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const celistiaRalgrisEft = {
+  key: `celistia-ralgris-eft`,
+  lora: new LoraToken({
+    tag: `celistia-bahamut-01`,
+    weights: [0.6, 0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `saijaku muhai no bahamut`,
+    `celistia ralgris`,
+    `green eyes`,
+    `tsurime`,
+    `blonde hair`,
+    `long hair`,
+    `wavy hair`,
+    `hair over shoulder`,
+    `hair between eyes`,
+    `hairband`,
+    `black hairband`,
+    `large breasts`,
+    `thick thighs`,
+    `wide hips`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `bahamut-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.garden },
+            { entries: backgroundPreset.fromHorizontalEntries.window },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `school uniform`,
+        `ascot`,
+        `blue ascot`,
+        `shirt`,
+        `white shirt`,
+        `gold trim`,
+        `long sleeves`,
+        `center frills`,
+        `underbust`,
+        `skirt`,
+        `blue skirt`,
+        `petticoat`,
+        `miniskirt`,
+        `pleated skirt`,
+        `high-waist skirt`,
+        `thighhighs`,
+        `black thighhighs`,
+        `boots`,
+        `taut clothes`,
+        `impossible clothes`,
+        `impossible shirt`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`boots`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `bahamut-pilot-suit`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromHorizontalEntries.heartBackground,
+        ),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `pilot suit`,
+        `bodysuit`,
+        `white bodysuit`,
+        `impossible clothes`,
+        `gold trim`,
+        `armpit cutout`,
+        `white sleeves`,
+        `long sleeves`,
+        `covered navel`,
+        `skin tight`,
+        `thighhighs`,
+        `black thighhighs`,
+        `skindentation`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `none`,
+      upskirt: undefined,
+      whenRemoveShoes: undefined,
+    },
+    ...generateAll({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
+export const kirihimeYorukaEft = {
+  key: `kirihime-yoruka-eft`,
+  lora: new LoraToken({
+    tag: `yoruka-bahamut-01`,
+    weights: [0.6, 0.8],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `saijaku muhai no bahamut`,
+    `kirihime yoruka`,
+    `yoruka kirihime`,
+    `blue eyes`,
+    `purple eyes`,
+    `heterocromia`,
+    `tsurime`,
+    `black hair`,
+    `long hair`,
+    `hair over shoulder`,
+    `hair between eyes`,
+    `sidelocks`,
+    `low tied sidelocks`,
+    `hair ribbon`,
+    `red ribbon`,
+    `large breasts`,
+    `thick thighs`,
+    `wide hips`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `bahamut-wafuku`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.garden },
+            { entries: backgroundPreset.fromHorizontalEntries.window },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>(
+          backgroundPreset.lyingEntries.grass,
+        ),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `kimono`,
+        `kimono skirt`,
+        `off shoulder`,
+        `bare shoulders`,
+        `detached collar`,
+        `black collar`,
+        `cleavage`,
+        `frills`,
+        `obi`,
+        `red sash`,
+        `white skirt`,
+        `thigh boots`,
+        `black footwear`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`thigh boots`, `black footwear`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;

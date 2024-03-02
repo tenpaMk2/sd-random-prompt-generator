@@ -72,6 +72,9 @@ const allProperNouns = [
   `lisesharte atismata`,
   `krulcifer einfolk`,
   `philuffy aingram`,
+  `celistia ralgris`,
+  `kirihime yoruka`,
+  `yoruka kirihime`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 

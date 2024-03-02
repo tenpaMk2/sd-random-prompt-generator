@@ -1,10 +1,12 @@
 import {
   akemiHomuraEft,
   ceciliaAlcottOGTurles,
+  celistiaRalgrisEft,
   chibaErikaEft,
   emiliaEft,
   inoueTakinaEft,
   kanameMadokaEft,
+  kirihimeYorukaEft,
   kitayamaShizukuEft,
   konjikiNoYamiEft,
   kotegawaYuiEft,
@@ -75,6 +77,8 @@ const charas = [
   lisesharteAtismataEft,
   krulciferEinfolkEft,
   philuffyAingramEft,
+  celistiaRalgrisEft,
+  kirihimeYorukaEft,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

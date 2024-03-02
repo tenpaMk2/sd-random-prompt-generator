@@ -282,6 +282,9 @@ export const tagVisibilities = {
   "lisesharte atismata": visibleType.all,
   "krulcifer einfolk": visibleType.all,
   "philuffy aingram": visibleType.all,
+  "celistia ralgris": visibleType.all,
+  "kirihime yoruka": visibleType.all,
+  "yoruka kirihime": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -844,6 +847,7 @@ export const tagVisibilities = {
   "pirate hat": visibleType.head,
   ascot: visibleType.frontNeck,
   "red ascot": visibleType.frontNeck,
+  "blue ascot": visibleType.frontNeck,
   "gold trim": visibleType.all, // TODO: `gold trim shirt` and `gold trim skirt` .
   "thigh boots": visibleType.foot,
   "playboy bunny": visibleType.dress,
@@ -1009,6 +1013,11 @@ export const tagVisibilities = {
   "print gloves": visibleType.aroundBreast,
   "print thighhighs": visibleType.thighhighs,
   "neck bell": visibleType.frontNeck,
+  kimono: visibleType.dress,
+  "kimono skirt": visibleType.skirt,
+  obi: visibleType.midriff,
+  sash: visibleType.midriff,
+  "red sash": visibleType.midriff,
 
   // Emotion
   blush: visibleType.face,
