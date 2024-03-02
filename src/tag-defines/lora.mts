@@ -33,6 +33,6 @@ const allLoraNameTags = [
   `philuffy-bahamut-01`, // eft, 0.8, <https://civitai.com/models/191372/philuffy-aingram-saijaku-muhai-no-bahamut>
   `krulcifer-bahamut-01`, // eft, 0.8, <https://civitai.com/models/191382/krulcifer-einfolk-saijaku-muhai-no-bahamut>
   `celistia-bahamut-01`, // eft, 0.8, <https://civitai.com/models/191380/celistia-ralgris-saijaku-muhai-no-bahamut>
-  `yoruka-bahamut-01 `, // eft, 0.8, <https://civitai.com/models/191383/yoruka-kirihime-saijaku-muhai-no-bahamut>
+  `yoruka-bahamut-01`, // eft, 0.8, <https://civitai.com/models/191383/yoruka-kirihime-saijaku-muhai-no-bahamut>
 ] as const satisfies readonly string[];
 export type LoraNameTag = (typeof allLoraNameTags)[number];
