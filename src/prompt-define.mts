@@ -1,11 +1,6 @@
-import {
-  generateDynamicPrompt,
-  getCombinations,
-  getKeys,
-} from "./libs/utility.mjs";
+import { generateDynamicPrompt, getCombinations } from "./libs/utility.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
-import { allOutfitWildcards } from "./tag-defines/outfit-and-exposure.mjs";
 
 export class SimpleToken<T extends Tag> {
   readonly tag: T;
@@ -16,14 +11,7 @@ export class SimpleToken<T extends Tag> {
   }
 
   toString() {
-    const wildcardKeys = getKeys(allOutfitWildcards);
-    const str = wildcardKeys.some((k) => k === this.tag)
-      ? generateDynamicPrompt(
-          allOutfitWildcards[this.tag as (typeof wildcardKeys)[number]],
-        )
-      : this.tag;
-
-    return this.weight === 1.0 ? str : `(${str}:${this.weight})`;
+    return this.weight === 1.0 ? this.tag : `${this.tag}:${this.weight}`;
   }
 }
 
@@ -344,10 +332,27 @@ export class PatternCollection<T extends Tag> {
             return temp3;
           })
           .flat();
-        return new PatternCollection(temp2);
+        return new PatternCollection<T>(temp2);
       },
     );
     return temp1;
+  }
+
+  static joinAll<T extends Tag>(patternCollections: PatternCollection<T>[]) {
+    const allPatterns = patternCollections.map((c) => c.patterns).flat();
+    const totalProbability = allPatterns.reduce(
+      (prev, current) => prev + current.probability,
+      0,
+    );
+    const normalized = allPatterns.map(
+      ({ simpleTokens, probability }) =>
+        new Pattern({
+          simpleTokens,
+          probability: probability / totalProbability,
+        }),
+    );
+
+    return new PatternCollection<T>(normalized);
   }
 }
 

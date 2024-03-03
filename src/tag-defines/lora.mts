@@ -16,3 +16,40 @@ const allLoraNameTags = [
   `miyuki-mahouka`, // 0.8, <https://civitai.com/models/298306/miyuki-shiba-mahouka-koukou-no-rettousei>
 ] as const satisfies readonly string[];
 export type LoraNameTag = (typeof allLoraNameTags)[number];
+
+/**
+ * All Lora character trigger words.
+ * Not included common danbooru tag.
+ */
+const allLoraCharacterTriggerWordsTags = [
+  `aacecilia`, // h_madoka: <https://civitai.com/models/237390/cecilia-alcott-infinite-stratos>
+  `suzukaze_aoba_newgame`, // narugo1992: <https://civitai.com/models/227219/suzukaze-aoba-new-game>
+  `takimoto_hifumi_newgame`, // narugo1992: <https://civitai.com/models/227280/takimoto-hifumi-new-game>
+  `momo belia deviluke`, // eft: <https://civitai.com/models/258472/momo-belia-deviluke-to-love-ru>
+  `mea kurosaki`, // eft
+  `haruna sairenji`, // eft
+  `yui kotegawa`, // eft
+  `nana astar deviluke`, // eft
+  `iroha tamaki`, // eft
+  `miyuki shiba`, // eft
+] as const satisfies readonly string[];
+export type LoraCharacterTriggerWordsTag =
+  (typeof allLoraCharacterTriggerWordsTags)[number];
+
+/**
+ * All Lora outfit trigger words.
+ */
+const allLoraOutfitTriggerTags = [
+  `chino work`, // TODO
+  `aachisato`, // TODO
+  `hmmisaki`, // TODO
+  `SentoUniform`, // LittleJelly: <https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park>
+  `SentoVest`, // LittleJelly: <https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park>
+  `SentoSchoolUniform`, // LittleJelly: <https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park>
+  `SentoSuit`, // LittleJelly: <https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park>
+  `SentoCasual`, // LittleJelly: <https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park>
+  `SentoBikini`, // LittleJelly: <https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park>
+  `SentoPirate`, // LittleJelly: <https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park>
+] as const satisfies readonly string[];
+export type LoraOutfitTriggerWordsTag =
+  (typeof allLoraOutfitTriggerTags)[number];
