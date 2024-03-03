@@ -35,5 +35,6 @@ const allLoraNameTags = [
   `celistia-bahamut-01`, // eft, 0.8, <https://civitai.com/models/191380/celistia-ralgris-saijaku-muhai-no-bahamut>
   `yoruka-bahamut-01`, // eft, 0.8, <https://civitai.com/models/191383/yoruka-kirihime-saijaku-muhai-no-bahamut>
   `eft_dumbell_blonde`, // wiz_, 0.7, <https://civitai.com/models/315195/hibiki-sakura-how-heavy-are-the-dumbbells-you-lift-dumbbell-nan-kilo-moteru-anime-design>
+  `eft_dumbell_short`, // wiz_, 0.7, <https://civitai.com/models/315183/satomi-tachibana-how-heavy-are-the-dumbbells-you-lift-dumbbell-nan-kilo-moteru-anime-design>
 ] as const satisfies readonly string[];
 export type LoraNameTag = (typeof allLoraNameTags)[number];

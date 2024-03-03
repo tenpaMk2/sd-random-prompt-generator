@@ -32,6 +32,7 @@ import {
   shibaMiyukiEft,
   shokuhoMisaki,
   suzukazeAobaNarugo1992,
+  tachibanaSatomiWiz,
   takimotoHifumiNarugo1992,
   tamakiIrohaEft,
   tomoeMamiEft,
@@ -81,6 +82,7 @@ const charas = [
   celistiaRalgrisEft,
   kirihimeYorukaEft,
   sakuraHibikiWiz,
+  tachibanaSatomiWiz,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

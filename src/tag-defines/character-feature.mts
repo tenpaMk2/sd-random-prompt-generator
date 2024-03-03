@@ -78,6 +78,8 @@ const allProperNouns = [
   `dumbbell nan kilo moteru?`,
   `eft_dumbbell_blonde`,
   `sakura hibiki`,
+  `eft_dumbbell_short`,
+  `tachibana satomi`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
@@ -106,6 +108,7 @@ const allHeadFeatureTags = [
   `eyelashes`,
   `long eyelashes`,
   `thick eyelashes`,
+  `mole under eye`,
   `glasses`,
   `aqua-framed eyewear`,
   `black-framed eyewear`,

@@ -288,6 +288,8 @@ export const tagVisibilities = {
   "dumbbell nan kilo moteru?": visibleType.all,
   eft_dumbbell_blonde: visibleType.all,
   "sakura hibiki": visibleType.all,
+  eft_dumbbell_short: visibleType.all,
+  "tachibana satomi": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -313,6 +315,7 @@ export const tagVisibilities = {
   eyelashes: visibleType.face,
   "long eyelashes": visibleType.face,
   "thick eyelashes": visibleType.face,
+  "mole under eye": visibleType.face,
   glasses: visibleType.head,
   "aqua-framed eyewear": visibleType.head,
   "black-framed eyewear": visibleType.head,
@@ -726,6 +729,7 @@ export const tagVisibilities = {
   "waist apron": visibleType.skirt,
   shirt: visibleType.shirt,
   "collared shirt": visibleType.shirt,
+  "t-shirt": visibleType.shirt,
   vest: visibleType.shirt,
   "green vest": visibleType.shirt,
   "yellow vest": visibleType.shirt,
@@ -839,6 +843,9 @@ export const tagVisibilities = {
   blazer: visibleType.shirt,
   suit: visibleType.shirt,
   "business suit": visibleType.shirt,
+  "suit jacket": visibleType.shirt,
+  "skirt suit": visibleType.skirt,
+  teacher: visibleType.all,
   "pinstripe pattern": visibleType.shirt, // TODO: Separate to `pinstripe pattern shirt` and `pinstripe pattern skirt` .
   pumps: visibleType.foot,
   "open clothes": visibleType.shirt, // Visible from back. Assume when all fours.

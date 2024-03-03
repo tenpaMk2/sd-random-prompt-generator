@@ -5144,3 +5144,153 @@ export const sakuraHibikiWiz = {
     ...generateAll({ breastSize: `large breasts` }),
   ],
 } as const satisfies CharaDefine;
+
+export const tachibanaSatomiWiz = {
+  key: `tachibana-satomi-wiz`,
+  lora: new LoraToken({
+    tag: `eft_dumbell_short`,
+    weights: [0.7],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `dumbbell nan kilo moteru?`,
+    `eft_dumbbell_short`,
+    `tachibana satomi`,
+    `brown eyes`,
+    `tareme`,
+    `mole under eye`,
+    `black hair`,
+    `short hair`,
+    `bob cut`,
+    `parted bangs`,
+    `sidelocks`,
+    `mature female`,
+    `large breasts`,
+    `thick thighs`,
+    `wide hips`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `dumbbell-teacher`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.city },
+            { entries: backgroundPreset.fromHorizontalEntries.window },
+            { entries: backgroundPreset.fromHorizontalEntries.classroom },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>([
+          [{ entries: backgroundPreset.fromBelowEntries.classroomCeiling }],
+        ]),
+        fromAbove: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromAboveEntries.heartBackground },
+            { entries: backgroundPreset.fromAboveEntries.classroomFloor },
+          ],
+        ]),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.heartPinkBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `teacher`,
+        `suit`,
+        `suit jacket`,
+        `black jacket`,
+        `long sleeves`,
+        `white shirt`,
+        `collarbone`,
+        `collared shirt`,
+        `partially unbuttoned`,
+        `taut clothes`,
+        `skirt`,
+        `black skirt`,
+        `pencil skirt`,
+        `skirt suit`,
+        `miniskirt`,
+        `loafers`,
+        `black footwear`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.monochromePanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`, `black footwear`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    {
+      key: `dumbbell-gym-tachibana`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromAbove: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `collarbone`,
+        `shirt`,
+        `white shirt`,
+        `t-shirt`,
+        `taut clothes`,
+        `shorts`,
+        `black shorts`,
+        `bare legs`,
+        `sneakers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `none`,
+      upskirt: undefined,
+      whenRemoveShoes: {
+        excludeTags: [`sneakers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `large breasts` }),
+  ],
+} as const satisfies CharaDefine;
