@@ -26,6 +26,7 @@ import {
   remEft,
   saegusaMayumiEft,
   sairenjiHarunaEft,
+  sakuraHibikiWiz,
   sakuraKyoukoEft,
   sentoIsuzuLittleJellyV2,
   shibaMiyukiEft,
@@ -79,6 +80,7 @@ const charas = [
   philuffyAingramEft,
   celistiaRalgrisEft,
   kirihimeYorukaEft,
+  sakuraHibikiWiz,
 ];
 const charaInfos = charas.map((chara) => ({
   key: chara.key,

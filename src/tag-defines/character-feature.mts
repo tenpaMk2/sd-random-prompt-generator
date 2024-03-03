@@ -75,6 +75,9 @@ const allProperNouns = [
   `celistia ralgris`,
   `kirihime yoruka`,
   `yoruka kirihime`,
+  `dumbbell nan kilo moteru?`,
+  `eft_dumbbell_blonde`,
+  `sakura hibiki`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
 
@@ -399,6 +402,8 @@ const allBodyFeatureTags = [
   `dog girl`,
   `fox girl`,
   `elf`,
+  `gyaru`,
+  `tan`,
 ] as const satisfies readonly string[];
 type BodyFeatureTag = (typeof allBodyFeatureTags)[number];
 

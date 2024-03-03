@@ -49,5 +49,7 @@ const allBackgroundTags = [
   `christmas tree`,
   `wet`,
   `kitchen`,
+  `gym`,
+  `dumbbell`,
 ] as const satisfies readonly string[];
 export type BackgroundTag = (typeof allBackgroundTags)[number];

@@ -381,6 +381,8 @@ const allOutfitTags = [
   `white bodysuit`,
   `micro shorts`,
   `black shorts`,
+  `red shorts`,
+  `blue shorts`,
   `naked apron`,
   `cow print`,
   `cow print bikini`,
@@ -394,6 +396,12 @@ const allOutfitTags = [
   `obi`,
   `sash`,
   `red sash`,
+  `loose bowtie`,
+  `tank top`,
+  `black tank top`,
+  `white tank top`,
+  `red tank top`,
+  `sneakers`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

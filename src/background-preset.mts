@@ -36,6 +36,7 @@ export const backgroundPreset = {
     wedding: [`white background`, `falling petals`, `wedding`],
     christmas: [`indoors`, `christmas`, `christmas tree`],
     kitchen: [`indoors`, `kitchen`],
+    gym: [`indoors`, `gym`, `dumbbell`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],
@@ -54,6 +55,7 @@ export const backgroundPreset = {
     ],
     wedding: [`white background`, `falling petals`, `wedding`],
     kitchen: [`indoors`, `kitchen`],
+    gym: [`indoors`, `gym`, `ceiling`, `dumbbell`],
   },
   fromAboveEntries: {
     bedSheet: [`bed sheet`],
@@ -76,6 +78,7 @@ export const backgroundPreset = {
     ],
     wedding: [`white background`, `falling petals`, `wedding`],
     kitchen: [`indoors`, `kitchen`],
+    gym: [`indoors`, `gym`, `floor`, `dumbbell`],
   },
   lyingEntries: {
     bedSheet: [`bed sheet`],
@@ -103,6 +106,7 @@ export const backgroundPreset = {
       `spoken heart`,
     ],
     wedding: [`white background`, `petals`, `wedding`],
+    gym: [`indoors`, `gym`, `dumbbell`],
   },
   cleanEntries: {
     bedSheet: [`bed sheet`],
@@ -139,6 +143,7 @@ export const backgroundPreset = {
     ],
     wedding: [`white background`, `falling petals`, `wedding`],
     christmas: [`indoors`, `christmas`, `christmas tree`],
+    gym: [`indoors`, `gym`, `dumbbell`],
   },
 } as const satisfies {
   [camera: string]: {

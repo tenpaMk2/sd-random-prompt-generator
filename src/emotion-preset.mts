@@ -6,6 +6,8 @@ const preset = {
   lightSmile: [`blush`, `light smile`],
   smilePartedLips: [`blush`, `smile`, `parted lips`],
   smileOpenMouth: [`blush`, `smile`, `:d`, `open mouth`],
+  smileOpenMouthWithFang: [`blush`, `smile`, `:d`, `open mouth`, `fang`],
+  smileClosedMouth: [`blush`, `smile`, `closed mouth`],
   smileHalfClosedEyes: [`blush`, `smile`, `half-closed eyes`],
   expressionless: [`blush`, `expressionless`],
   surprised: [`blush`, `surprised`, `:o`, `open mouth`, `!`],
@@ -14,6 +16,7 @@ const preset = {
   nervous: [`blush`, `nose blush`, `nervous`],
   flustered: [`blush`, `nose blush`, `flustered`],
   seductiveSmile: [`blush`, `seductive smile`],
+  seductiveSmileWithFang: [`blush`, `seductive smile`, `open mouth`, `fang`],
   naughtyFace: [`blush`, `naughty face`, `smile`, `half-closed eyes`],
   scowl: [`blush`, `nose blush`, `scowl`],
   oneEyeClosed: [
@@ -21,6 +24,15 @@ const preset = {
     `smile`,
     `one eye closed`,
     [{ entries: [`;\\)`, `closed mouth`] }, { entries: [`;o`, `open mouth`] }],
+  ],
+  oneEyeClosedWithFang: [
+    `blush`,
+    `smile`,
+    `one eye closed`,
+    [
+      { entries: [`;\\)`, `closed mouth`] },
+      { entries: [`;o`, `open mouth`, `fang`] },
+    ],
   ],
 } as const satisfies { [k: string]: Entry<EmotionTag>[] };
 
@@ -116,6 +128,28 @@ export const emotionPreset = {
       { entries: preset.naughtyFace },
       { entries: preset.oneEyeClosed },
       { entries: preset.oneEyeClosed },
+    ],
+  ],
+  cuteFang: [
+    [
+      { entries: preset.smileClosedMouth },
+      { entries: preset.smileOpenMouthWithFang },
+      { entries: preset.smileOpenMouthWithFang },
+      { entries: preset.smileOpenMouthWithFang },
+      { entries: preset.smileHalfClosedEyes },
+      { entries: preset.expressionless },
+      { entries: preset.surprised },
+      { entries: preset.confused },
+      { entries: preset.embarrassed },
+      { entries: preset.nervous },
+      { entries: preset.flustered },
+      { entries: preset.seductiveSmile },
+      { entries: preset.seductiveSmileWithFang },
+      { entries: preset.seductiveSmileWithFang },
+      { entries: preset.seductiveSmileWithFang },
+      { entries: preset.naughtyFace },
+      { entries: preset.oneEyeClosedWithFang },
+      { entries: preset.oneEyeClosedWithFang },
     ],
   ],
 } as const satisfies { [k: string]: Entry<EmotionTag>[] };

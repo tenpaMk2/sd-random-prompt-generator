@@ -285,6 +285,9 @@ export const tagVisibilities = {
   "celistia ralgris": visibleType.all,
   "kirihime yoruka": visibleType.all,
   "yoruka kirihime": visibleType.all,
+  "dumbbell nan kilo moteru?": visibleType.all,
+  eft_dumbbell_blonde: visibleType.all,
+  "sakura hibiki": visibleType.all,
 
   "sparkling eyes": visibleType.face,
   "star-shaped pupils": visibleType.face,
@@ -572,7 +575,7 @@ export const tagVisibilities = {
   "dog ears": visibleType.head,
   "fox ears": visibleType.head,
   "animal ear fluff": visibleType.head,
-  fang: visibleType.head,
+  fang: visibleType.face,
   "pointy ears": visibleType.head,
   earrings: visibleType.head,
   "gold earrings": visibleType.head,
@@ -598,13 +601,11 @@ export const tagVisibilities = {
   "dog girl": visibleType.all,
   "fox girl": visibleType.all,
   elf: visibleType.all,
+  gyaru: visibleType.all,
+  tan: visibleType.all,
 
   // Outfit and exposures
-  collarbone: {
-    ...invisible,
-    frontBreast: true,
-    sideBreast: true,
-  },
+  collarbone: visibleType.frontNeck,
   "bare shoulders": visibleType.aroundBreast,
   armpits: visibleType.aroundBreast,
   "bare arms": visibleType.aroundBreast,
@@ -1005,6 +1006,8 @@ export const tagVisibilities = {
   "white bodysuit": visibleType.dress,
   "micro shorts": visibleType.skirt,
   "black shorts": visibleType.skirt,
+  "red shorts": visibleType.skirt,
+  "blue shorts": visibleType.skirt,
   "naked apron": visibleType.dress,
   "cow print": visibleType.dress,
   "cow print bikini": visibleType.dress,
@@ -1018,6 +1021,12 @@ export const tagVisibilities = {
   obi: visibleType.midriff,
   sash: visibleType.midriff,
   "red sash": visibleType.midriff,
+  "loose bowtie": visibleType.frontNeck,
+  "tank top": visibleType.shirt,
+  "black tank top": visibleType.shirt,
+  "white tank top": visibleType.shirt,
+  "red tank top": visibleType.shirt,
+  sneakers: visibleType.foot,
 
   // Emotion
   blush: visibleType.face,
@@ -1149,6 +1158,8 @@ export const tagVisibilities = {
   "christmas tree": visibleType.all,
   wet: visibleType.all,
   kitchen: visibleType.all,
+  gym: visibleType.all,
+  dumbbell: visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {
