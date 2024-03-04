@@ -4,6 +4,7 @@ import {
   celistiaRalgrisEft,
   chibaErikaEft,
   emiliaEft,
+  ginaBoydWiz,
   inoueTakinaEft,
   kanameMadokaEft,
   kirihimeYorukaEft,
@@ -37,6 +38,7 @@ import {
   takimotoHifumiNarugo1992,
   tamakiIrohaEft,
   tomoeMamiEft,
+  ueharaAyakaWiz,
 } from "./characters.mjs";
 import { generateDynamicPrompt } from "./libs/utility.mjs";
 import { parse } from "./parser.mjs";
@@ -84,6 +86,8 @@ const charas = [
   kirihimeYorukaEft,
   sakuraHibikiWiz,
   souryuuinAkemiWiz,
+  ueharaAyakaWiz,
+  ginaBoydWiz,
   tachibanaSatomiWiz,
 ];
 const charaInfos = charas.map((chara) => ({

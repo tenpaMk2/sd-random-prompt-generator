@@ -5054,6 +5054,7 @@ export const sakuraHibikiWiz = {
 
       outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
         `school uniform`,
+        `summer uniform`,
         `collared shirt`,
         `white collar`,
         `collarbone`,
@@ -5198,6 +5199,7 @@ export const souryuuinAkemiWiz = {
       },
       outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
         `school uniform`,
+        `summer uniform`,
         `collared shirt`,
         `white collar`,
         `bowtie`,
@@ -5271,6 +5273,311 @@ export const souryuuinAkemiWiz = {
         `shorts`,
         `blue shorts`,
         `bike shorts`,
+        `bare legs`,
+        `sneakers`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `none`,
+      upskirt: undefined,
+      whenRemoveShoes: {
+        excludeTags: [`sneakers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
+export const ueharaAyakaWiz = {
+  key: `uehara-ayaka-wiz`,
+  lora: new LoraToken({
+    tag: `eft_dumbell_bun`,
+    weights: [0.7],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `dumbbell nan kilo moteru?`,
+    `eft_dumbbell_bun`,
+    `brown eyes`,
+    `tsurime`,
+    `brown hair`,
+    `short hair`,
+    `hair bun`,
+    `single hair bun`,
+    `parted bangs`,
+    `sidelocks`,
+    `asymmetrical sidelocks`,
+    `asymmetrical hair`,
+    `hair ornament`,
+    `hairpin`,
+    `gyaru`,
+    `tan`,
+    `toned`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `dumbbell-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.city },
+            { entries: backgroundPreset.fromHorizontalEntries.window },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.heartPinkBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `school uniform`,
+        `summer uniform`,
+        `collared shirt`,
+        `white collar`,
+        `bowtie`,
+        `red bowtie`,
+        `shirt`,
+        `white shirt`,
+        `short sleeves`,
+        `skirt`,
+        `black skirt`,
+        `pleated skirt`,
+        `miniskirt`,
+        `bare legs`,
+        `socks`,
+        `black socks`,
+        `taut clothes`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `dumbbell-gym-ayaka`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromAbove: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `sports bra`,
+        `blue sports bra`,
+        `collarbone`,
+        `cleavage`,
+        `skindentation`,
+        `bare arms`,
+        `midriff`,
+        `navel`,
+        `shoulder blades`,
+        `shorts`,
+        `blue shorts`,
+        `bike shorts`,
+        `bare legs`,
+        `sneakers`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `none`,
+      upskirt: undefined,
+      whenRemoveShoes: {
+        excludeTags: [`sneakers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
+export const ginaBoydWiz = {
+  key: `gina-boyd-wiz`,
+  lora: new LoraToken({
+    tag: `eft_dumbell_white`,
+    weights: [0.7],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `dumbbell nan kilo moteru?`,
+    `eft_dumbbell_white`,
+    `blue eyes`,
+    `tsurime`,
+    `eyelashes`,
+    `grey hair`,
+    `short hair`,
+    `bob cut`,
+    `blunt bangs`,
+    `blunt ends`,
+    `toned`,
+    `medium breasts`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `dumbbell-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.city },
+            { entries: backgroundPreset.fromHorizontalEntries.window },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.heartPinkBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `school uniform`,
+        `winter uniform`,
+        `collarbone`,
+        `serafuku`,
+        `black serafuku`,
+        `sailor collar`,
+        `black sailor collar`,
+        `neckerchief`,
+        `red neckerchief`,
+        `long sleeves`,
+        `taut clothes`,
+        `skirt`,
+        `black skirt`,
+        `pleated skirt`,
+        `miniskirt`,
+        `bare legs`,
+        `socks`,
+        `black socks`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `dumbbell-gym-gina`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromAbove: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `collarbone`,
+        `cleavage`,
+        `sports bra`,
+        `grey sports bra`,
+        `skindentation`,
+        `arm ribbon`,
+        `yellow ribbon`,
+        `midriff`,
+        `navel`,
+        `shoulder blades`,
+        `belt`,
+        `black belt`,
+        `shorts`,
+        `grey shorts`,
         `bare legs`,
         `sneakers`,
       ]),

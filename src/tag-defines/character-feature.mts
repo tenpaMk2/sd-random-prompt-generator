@@ -266,6 +266,7 @@ const allHeadFeatureTags = [
   `swept bangs`,
   `sidelocks`,
   `asymmetrical sidelocks`,
+  `asymmetrical hair`,
   `drill sidelocks`,
   `low tied sidelocks`,
   `single sidelock`,
@@ -413,6 +414,7 @@ const allBodyFeatureTags = [
   `elf`,
   `gyaru`,
   `tan`,
+  `toned`,
 ] as const satisfies readonly string[];
 type BodyFeatureTag = (typeof allBodyFeatureTags)[number];
 
