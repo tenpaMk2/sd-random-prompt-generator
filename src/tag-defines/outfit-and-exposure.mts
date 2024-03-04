@@ -279,6 +279,7 @@ const allOutfitTags = [
   `shorts`,
   `fur-trimmed shorts`,
   `denim shorts`,
+  `bike shorts`,
   `denim`,
   `gym uniform`,
   `gym shirt`,
@@ -405,6 +406,7 @@ const allOutfitTags = [
   `black tank top`,
   `white tank top`,
   `red tank top`,
+  `blue tank top`,
   `sneakers`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];

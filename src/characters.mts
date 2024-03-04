@@ -5145,6 +5145,149 @@ export const sakuraHibikiWiz = {
   ],
 } as const satisfies CharaDefine;
 
+export const souryuuinAkemiWiz = {
+  key: `souryuuin-akemi-wiz`,
+  lora: new LoraToken({
+    tag: `eft_dumbell_black`,
+    weights: [0.7],
+  }),
+  characterFeature: new PromptDefine<CharacterFeatureTag>([
+    `dumbbell nan kilo moteru?`,
+    `eft_dumbbell_black`,
+    `souryuuin akemi`,
+    `aqua eyes`,
+    `eyelashes`,
+    `black hair`,
+    `long hair`,
+    `hime cut`,
+    `blunt bangs`,
+    `blunt ends`,
+    `medium breasts`,
+    `thick thighs`,
+  ]),
+  emotion: new PromptDefine<EmotionTag>(emotionPreset.cute),
+  situations: [
+    {
+      key: `dumbbell-school-uniform`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.city },
+            { entries: backgroundPreset.fromHorizontalEntries.window },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromBelowEntries.ceiling,
+        ),
+        fromAbove: new PromptDefine<BackgroundTag>(
+          backgroundPreset.fromAboveEntries.heartBackground,
+        ),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.lyingEntries.grass },
+            { entries: backgroundPreset.lyingEntries.heartPinkBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.cleanEntries.heartBackground },
+            { entries: backgroundPreset.cleanEntries.whiteBackground },
+            { entries: backgroundPreset.cleanEntries.grassBlueSky },
+          ],
+        ]),
+      },
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `school uniform`,
+        `collared shirt`,
+        `white collar`,
+        `bowtie`,
+        `red bowtie`,
+        `shirt`,
+        `white shirt`,
+        `short sleeves`,
+        `skirt`,
+        `black skirt`,
+        `pleated skirt`,
+        `miniskirt`,
+        `thighhighs`,
+        `black thighhighs`,
+        `skindentation`,
+        `taut clothes`,
+        `loafers`,
+      ]),
+      isArmpitsVisible: false,
+      liftType: `skirt`,
+      upskirt: new PromptDefine(upskirtPreset.vividPanties),
+      whenRemoveShoes: {
+        excludeTags: [`loafers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `no shoes` }),
+        ],
+      },
+    },
+    {
+      key: `dumbbell-gym-akemi`,
+      background: {
+        fromHorizontal: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromBelow: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        fromAbove: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+          ],
+        ]),
+        lying: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+        clean: new PromptDefine<BackgroundTag>([
+          [
+            { entries: backgroundPreset.fromHorizontalEntries.gym },
+            { entries: backgroundPreset.fromHorizontalEntries.whiteBackground },
+            { entries: backgroundPreset.fromHorizontalEntries.heartBackground },
+          ],
+        ]),
+      },
+
+      outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+        `tank top`,
+        `blue tank top`,
+        `collarbone`,
+        `cleavage`,
+        `bare arms`,
+        `shorts`,
+        `blue shorts`,
+        `bike shorts`,
+        `bare legs`,
+        `sneakers`,
+      ]),
+      isArmpitsVisible: true,
+      liftType: `none`,
+      upskirt: undefined,
+      whenRemoveShoes: {
+        excludeTags: [`sneakers`],
+        additionalFootTokensAfterRemoving: [
+          new SimpleToken({ tag: `barefoot` }),
+        ],
+      },
+    },
+    ...generateAll({ breastSize: `medium breasts` }),
+  ],
+} as const satisfies CharaDefine;
+
 export const tachibanaSatomiWiz = {
   key: `tachibana-satomi-wiz`,
   lora: new LoraToken({

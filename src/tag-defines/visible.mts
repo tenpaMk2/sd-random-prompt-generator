@@ -287,8 +287,14 @@ export const tagVisibilities = {
   "yoruka kirihime": visibleType.all,
   "dumbbell nan kilo moteru?": visibleType.all,
   eft_dumbbell_blonde: visibleType.all,
-  "sakura hibiki": visibleType.all,
+  eft_dumbbell_black: visibleType.all,
+  eft_dumbbell_bun: visibleType.all,
+  eft_dumbbell_white: visibleType.all,
   eft_dumbbell_short: visibleType.all,
+  "sakura hibiki": visibleType.all,
+  "souryuuin akemi": visibleType.all,
+  "uehara ayaka": visibleType.all,
+  "gina boyd": visibleType.all,
   "tachibana satomi": visibleType.all,
 
   "sparkling eyes": visibleType.face,
@@ -912,6 +918,7 @@ export const tagVisibilities = {
   shorts: visibleType.skirt,
   "fur-trimmed shorts": visibleType.skirt,
   "denim shorts": visibleType.skirt,
+  "bike shorts": visibleType.skirt,
   denim: visibleType.skirt, // For `denim shorts` .
   "gym uniform": visibleType.dress,
   "gym shirt": visibleType.shirt,
@@ -1033,6 +1040,7 @@ export const tagVisibilities = {
   "black tank top": visibleType.shirt,
   "white tank top": visibleType.shirt,
   "red tank top": visibleType.shirt,
+  "blue tank top": visibleType.shirt,
   sneakers: visibleType.foot,
 
   // Emotion

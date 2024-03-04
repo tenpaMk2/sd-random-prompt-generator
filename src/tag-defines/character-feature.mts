@@ -77,8 +77,14 @@ const allProperNouns = [
   `yoruka kirihime`,
   `dumbbell nan kilo moteru?`,
   `eft_dumbbell_blonde`,
-  `sakura hibiki`,
+  `eft_dumbbell_black`,
+  `eft_dumbbell_bun`,
+  `eft_dumbbell_white`,
   `eft_dumbbell_short`,
+  `sakura hibiki`,
+  `souryuuin akemi`,
+  `uehara ayaka`,
+  `gina boyd`,
   `tachibana satomi`,
 ] as const satisfies readonly string[];
 type ProperNoun = (typeof allProperNouns)[number];
