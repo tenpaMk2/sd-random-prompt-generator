@@ -1,3 +1,4 @@
+import { exportAsDynamicPrompts } from "./exporter.mjs";
 import { generatePatterns } from "./generator.mjs";
 import { prepare } from "./prepare.mjs";
 import { settings } from "./setting.mjs";
@@ -9,8 +10,7 @@ console.log(generationDatas);
 const p = generatePatterns(generationDatas);
 
 console.log(p);
-console.log(p);
 
-while (true) {
-  console.log(p[0].patternCollection.pickOne().toPrompt());
-}
+await exportAsDynamicPrompts(p);
+
+console.log(p[0].patternCollection.pickOne().toPrompt());
