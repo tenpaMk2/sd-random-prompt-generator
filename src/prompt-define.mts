@@ -318,28 +318,27 @@ export class PatternCollection<T extends Tag> {
   static makeCombination<T extends Tag>(
     patternCollections: PatternCollection<T>[],
   ) {
-    const temp1 = patternCollections.reduce(
-      (previousCollection, currentCollection) => {
-        const temp2 = currentCollection.patterns
-          .map((currentPattern) => {
-            const temp3 = previousCollection.patterns.map((previousPattern) => {
-              const temp4 = new Pattern<T>({
+    const combine = (a: PatternCollection<T>, b: PatternCollection<T>) => {
+      const combination = a.patterns
+        .map((patternA) =>
+          b.patterns.map(
+            (patternB) =>
+              new Pattern<T>({
                 simpleTokens: [
-                  ...previousPattern.simpleTokens,
-                  ...currentPattern.simpleTokens,
+                  ...patternA.simpleTokens,
+                  ...patternB.simpleTokens,
                 ],
-                probability:
-                  currentPattern.probability * previousPattern.probability,
-              });
-              return temp4;
-            });
-            return temp3;
-          })
-          .flat();
-        return new PatternCollection<T>(temp2);
-      },
+                probability: patternA.probability * patternB.probability,
+              }),
+          ),
+        )
+        .flat();
+      return new PatternCollection<T>(combination);
+    };
+
+    return patternCollections.reduce((previousCollection, currentCollection) =>
+      combine(previousCollection, currentCollection),
     );
-    return temp1;
   }
 
   static joinAll<T extends Tag>(
