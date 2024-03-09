@@ -59,6 +59,7 @@ const generatePosePatternCollection = (
   poseData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
 ) => ({
   key: poseData.key,
+  weight: poseData.weight,
   patternCollection: resolve(
     generationData,
     characterData,
@@ -86,11 +87,15 @@ const generateBackgroundPatternCollection = (
   );
 
   const backgroundPatternCollection = PatternCollection.joinAll(
-    poses.map(({ patternCollection }) => patternCollection),
+    poses.map(({ patternCollection, weight }) => ({
+      patternCollection,
+      weight,
+    })),
   );
 
   return {
     key: backgroundData.key,
+    weight: backgroundData.weight,
     patternCollection: backgroundPatternCollection,
     children: poses,
   };
@@ -111,11 +116,15 @@ const generateOutfitPatternCollection = (
   );
 
   const outfitPatternCollection = PatternCollection.joinAll(
-    backgrounds.map(({ patternCollection }) => patternCollection),
+    backgrounds.map(({ patternCollection, weight }) => ({
+      patternCollection,
+      weight,
+    })),
   );
 
   return {
     key: outfitData.key,
+    weight: outfitData.weight,
     patternCollection: outfitPatternCollection,
     children: backgrounds,
   };
@@ -130,11 +139,15 @@ const generateCharacterPatternCollection = (
   );
 
   const characterPatternCollection = PatternCollection.joinAll(
-    outfits.map(({ patternCollection }) => patternCollection),
+    outfits.map(({ patternCollection, weight }) => ({
+      patternCollection,
+      weight,
+    })),
   );
 
   return {
     key: characterData.key,
+    weight: characterData.weight,
     patternCollection: characterPatternCollection,
     children: outfits,
   };
@@ -148,11 +161,15 @@ const generateRootPatternCollection = (
   );
 
   const rootPatternCollection = PatternCollection.joinAll(
-    characters.map(({ patternCollection }) => patternCollection),
+    characters.map(({ patternCollection, weight }) => ({
+      patternCollection,
+      weight,
+    })),
   );
 
   return {
     key: generationData.key,
+    weight: generationData.weight,
     patternCollection: rootPatternCollection,
     children: characters,
   };

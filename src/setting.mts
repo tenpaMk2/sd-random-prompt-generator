@@ -33,6 +33,8 @@ export type Setting = Readonly<{
 export const settings = [
   {
     key: `sasuoni`,
+    // TODO: Model, VAE, width, height, ...
+    // TODO: generateImage?
     characters: [
       {
         key: `sasuoni-shiba-miyuki-eft`,
@@ -49,6 +51,17 @@ export const settings = [
                 type: `from-below`,
                 key: `blue-sky`,
                 poses: [{ key: `upper-body` }],
+              },
+            ],
+          },
+          {
+            key: `bikini`,
+            weight: 10,
+            backgrounds: [
+              {
+                type: `from-horizontal`,
+                key: `indoors`,
+                poses: [{ key: `contrapposto` }],
               },
             ],
           },

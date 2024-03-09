@@ -4,59 +4,75 @@ import { outfitTable } from "./outfits/resolver.mjs";
 import { poseTable } from "./poses/resolver.mjs";
 import { BackgroundSetting, Setting } from "./setting.mjs";
 
-const generateFromHorizontalPose = (
-  poseSetting: BackgroundSetting<"from-horizontal">["poses"][number],
-) => ({
-  key: poseSetting.key,
-  pose: poseTable["from-horizontal"][poseSetting.key],
+const generateFromHorizontalPose = ({
+  key,
+  weight,
+}: BackgroundSetting<"from-horizontal">["poses"][number]) => ({
+  key,
+  weight: weight ?? 1,
+  pose: poseTable["from-horizontal"][key],
 });
 
-const generateFromBelowPose = (
-  poseSetting: BackgroundSetting<"from-below">["poses"][number],
-) => ({
-  key: poseSetting.key,
-  pose: poseTable["from-below"][poseSetting.key],
+const generateFromBelowPose = ({
+  key,
+  weight,
+}: BackgroundSetting<"from-below">["poses"][number]) => ({
+  key,
+  weight: weight ?? 1,
+  pose: poseTable["from-below"][key],
 });
 
-const generateBackground = (
-  backgroundSetting: Setting["characters"][number]["outfits"][number]["backgrounds"][number],
-) => {
-  switch (backgroundSetting.type) {
+const generateBackground = ({
+  key,
+  type,
+  weight,
+  poses,
+}: Setting["characters"][number]["outfits"][number]["backgrounds"][number]) => {
+  switch (type) {
     case "from-horizontal":
       return {
-        key: backgroundSetting.key,
-        background: backgroundTable["from-horizontal"][backgroundSetting.key],
-        poses: backgroundSetting.poses.map(generateFromHorizontalPose),
+        key,
+        weight: weight ?? 1,
+        background: backgroundTable["from-horizontal"][key],
+        poses: poses.map(generateFromHorizontalPose),
       };
     case "from-below":
       return {
-        key: backgroundSetting.key,
-        background: backgroundTable["from-below"][backgroundSetting.key],
-        poses: backgroundSetting.poses.map(generateFromBelowPose),
+        key,
+        weight: weight ?? 1,
+        background: backgroundTable["from-below"][key],
+        poses: poses.map(generateFromBelowPose),
       };
   }
 };
 
-const generateOutfit = (
-  outfitSetting: Setting["characters"][number]["outfits"][number],
-) => ({
-  key: outfitSetting.key,
-  outfit: outfitTable[outfitSetting.key],
-  backgrounds: outfitSetting.backgrounds.map(generateBackground),
+const generateOutfit = ({
+  key,
+  weight,
+  backgrounds,
+}: Setting["characters"][number]["outfits"][number]) => ({
+  key,
+  weight: weight ?? 1,
+  outfit: outfitTable[key],
+  backgrounds: backgrounds.map(generateBackground),
 });
 
-const generateCharacter = (
-  characterSetting: Setting["characters"][number],
-) => ({
-  key: characterSetting.key,
-  character: characterTable[characterSetting.key],
-  outfits: characterSetting.outfits.map(generateOutfit),
+const generateCharacter = ({
+  key,
+  weight,
+  outfits,
+}: Setting["characters"][number]) => ({
+  key,
+  weight: weight ?? 1,
+  character: characterTable[key],
+  outfits: outfits.map(generateOutfit),
 });
 
 export const prepare = (settings: Setting[]) =>
-  settings.map((setting) => ({
-    key: setting.key,
-    characters: setting.characters.map(generateCharacter),
+  settings.map(({ key, weight, characters }) => ({
+    key,
+    weight: weight ?? 1,
+    characters: characters.map(generateCharacter),
   }));
 
 export type GenerationDatas = ReturnType<typeof prepare>;

@@ -10,3 +10,7 @@ const p = generatePatterns(generationDatas);
 
 console.log(p);
 console.log(p);
+
+while (true) {
+  console.log(p[0].patternCollection.pickOne().toPrompt());
+}

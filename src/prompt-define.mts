@@ -209,8 +209,12 @@ export class Pattern<T extends Tag> {
     this.probability = probability ?? 1.0;
   }
 
+  toPrompt() {
+    return this.simpleTokens.join(`, `);
+  }
+
   toString() {
-    const prompt = this.simpleTokens.join(`, `);
+    const prompt = this.toPrompt();
     const roundProbability = Math.round(this.probability * 1000000) / 1000000;
     return roundProbability === 1 ? prompt : `${roundProbability}::${prompt}`;
   }
@@ -338,21 +342,36 @@ export class PatternCollection<T extends Tag> {
     return temp1;
   }
 
-  static joinAll<T extends Tag>(patternCollections: PatternCollection<T>[]) {
-    const allPatterns = patternCollections.map((c) => c.patterns).flat();
-    const totalProbability = allPatterns.reduce(
-      (prev, current) => prev + current.probability,
+  static joinAll<T extends Tag>(
+    targets: { patternCollection: PatternCollection<T>; weight: number }[],
+  ) {
+    const totalWeight = targets.reduce(
+      (prev, current) => prev + current.weight,
       0,
     );
-    const normalized = allPatterns.map(
-      ({ simpleTokens, probability }) =>
-        new Pattern({
-          simpleTokens,
-          probability: probability / totalProbability,
-        }),
-    );
+    const normalized = targets
+      .map(({ patternCollection, weight }) =>
+        patternCollection.patterns.map(
+          (pattern) =>
+            new Pattern<T>({
+              simpleTokens: pattern.simpleTokens,
+              probability: (pattern.probability * weight) / totalWeight,
+            }),
+        ),
+      )
+      .flat();
 
     return new PatternCollection<T>(normalized);
+  }
+
+  pickOne() {
+    const random = Math.random();
+    let sum = 0;
+    for (const pattern of this.patterns) {
+      sum += pattern.probability;
+      if (random <= sum) return pattern;
+    }
+    throw new Error(`Unexpected error: No item was picked.`);
   }
 }
 
