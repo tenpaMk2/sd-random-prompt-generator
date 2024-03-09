@@ -376,6 +376,7 @@ const generateSleevelessSerafuku = ({
   ]),
   isArmpitsVisible: true,
   liftType: `skirt`,
+  upskirt: new PromptDefine(upskirtPreset.colorfulPanties),
   whenRemoveShoes: {
     excludeTags: [`loafers`],
     additionalFootTokensAfterRemoving: [
