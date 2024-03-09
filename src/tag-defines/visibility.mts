@@ -2,7 +2,6 @@ import { getKeys } from "../libs/utility.mjs";
 import { createWriteStream } from "node:fs";
 import { CharacterFeatureTag } from "./character-feature.mjs";
 import { OutfitAndExposureTag } from "./outfit-and-exposure.mjs";
-import { HeadOutfitTags } from "./head-outfit.mjs";
 
 const visibilityKeys = [
   `frontHead`,
@@ -934,7 +933,7 @@ export const tagVisibilities = {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };
 
-export const writeAsCSV = (path: string) => {
+export const exportAsCSV = (path: string) => {
   const ws = createWriteStream(path);
 
   ws.write(
