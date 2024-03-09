@@ -736,6 +736,107 @@ const generateLyingOnSide: Generator = ({
   };
 };
 
+const generateThePose: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { lyingPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [
+      `frontHead`,
+      `sideHead`,
+      `frontBreast`,
+      `sideHipAndThigh`,
+      `backHipAndThigh`,
+      `foot`,
+    ],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `lying`,
+    `on stomach`,
+    `the pose`,
+    `breasts`,
+    `head rest`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `the-pose`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      lyingPatternCollection,
+    ]),
+  };
+};
+
+const generateBreastLift: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    { tag: `breast lift`, weight: 1.3 },
+    `breasts`,
+    `arm under breasts`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `breast-lift`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
+const generateBreastSuppress: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `breast suppress`,
+    `hand on own chest`,
+    `breasts`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `breast-suppress`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
 const generateSquatting: Generator = ({
   loraToken,
   personInfoPatterns,
@@ -767,6 +868,162 @@ const generateSquatting: Generator = ({
   };
 };
 
+const generateFromBelowUpskirt: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  upskirtPatternCollection,
+  frontEmotionPatternCollection,
+  background: { fromBelowPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `from below`,
+    `cowboy shot`,
+    `looking at viewer`,
+    `looking down`,
+    `pantyshot`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `from-below-upskirt`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      upskirtPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromBelowPatternCollection,
+    ]),
+  };
+};
+
+const generateHandsOnOwnHips: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `hands on own hips`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `hands-on-own-hips`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
+const generateHaruhiPose: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `pointing`,
+    `pointing at viewer`,
+    `foreshortening`,
+    `hand on own hips`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `haruhi-pose`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
+// const generateCrossBodyStretch: Generator = ({
+//   loraToken,
+//   personInfoPatterns,
+//   frontEmotionPatternCollection,
+//   background: { fromHorizontalPatternCollection },
+// }) => {
+//   const personPatternCollection = getPersonPatternCollection(
+//     personInfoPatterns,
+//     [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+//   );
+
+//   const posePatternCollection = new PromptDefine([
+//     `cowboy shot`,
+//     `stretching`,
+//     `cross-body stretch`,
+//     [{ entries: [`looking at viewer`] }, { entries: [`looking away`] }],
+//   ]).convertToPatternCollection();
+
+//   return {
+//     key: `cross-body-stretch`,
+//     prompt: finilize([
+//       loraToken,
+//       personPatternCollection,
+//       posePatternCollection,
+//       frontEmotionPatternCollection,
+//       fromHorizontalPatternCollection,
+//     ]),
+//   };
+// };
+
+const generateIncomingHug: Generator = ({
+  loraToken,
+  personInfoPatterns,
+  frontEmotionPatternCollection,
+  background: { fromHorizontalPatternCollection },
+}) => {
+  const personPatternCollection = getPersonPatternCollection(
+    personInfoPatterns,
+    [`frontHead`, `frontBreast`, `frontMidriff`, `frontHipAndThigh`],
+  );
+
+  const posePatternCollection = new PromptDefine([
+    `cowboy shot`,
+    `reaching`,
+    `reaching towards viewer`,
+    `incoming hug`,
+    `foreshortening`,
+    `looking at viewer`,
+  ]).convertToPatternCollection();
+
+  return {
+    key: `reaching-towards-viewer`,
+    prompt: finilize([
+      loraToken,
+      personPatternCollection,
+      posePatternCollection,
+      frontEmotionPatternCollection,
+      fromHorizontalPatternCollection,
+    ]),
+  };
+};
+
 // TODO:        new TagLeaf({ tagEntries: [`legs up`] }),
 
 export const posePromptGenerators = [
@@ -786,4 +1043,11 @@ export const posePromptGenerators = [
   generateSittingSpreadLegs,
   generateLyingOnSide,
   generateSquatting,
+  generateThePose,
+  generateBreastLift,
+  generateBreastSuppress,
+  generateFromBelowUpskirt,
+  generateHandsOnOwnHips,
+  generateHaruhiPose,
+  generateIncomingHug,
 ];
