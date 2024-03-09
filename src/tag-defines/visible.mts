@@ -1209,6 +1209,7 @@ export const tagVisibilities = {
   gym: visibleType.all,
   dumbbell: visibleType.all,
   onsen: visibleType.all,
+  steam: visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {
