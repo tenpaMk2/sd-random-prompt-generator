@@ -37,6 +37,7 @@ export const backgroundPreset = {
     christmas: [`indoors`, `christmas`, `christmas tree`],
     kitchen: [`indoors`, `kitchen`],
     gym: [`indoors`, `gym`, `dumbbell`],
+    onsen: [`outdoors`, `onsen`],
   },
   fromBelowEntries: {
     indoors: [`indoors`],
@@ -57,6 +58,7 @@ export const backgroundPreset = {
     wedding: [`white background`, `falling petals`, `wedding`],
     kitchen: [`indoors`, `kitchen`],
     gym: [`indoors`, `gym`, `ceiling`, `dumbbell`],
+    onsen: [`outdoors`, `onsen`],
   },
   fromAboveEntries: {
     bedSheet: [`bed sheet`],
@@ -81,6 +83,7 @@ export const backgroundPreset = {
     wedding: [`white background`, `falling petals`, `wedding`],
     kitchen: [`indoors`, `kitchen`],
     gym: [`indoors`, `gym`, `floor`, `dumbbell`],
+    onsen: [`outdoors`, `onsen`],
   },
   lyingEntries: {
     bedSheet: [`bed sheet`],
@@ -109,6 +112,7 @@ export const backgroundPreset = {
     ],
     wedding: [`white background`, `petals`, `wedding`],
     gym: [`indoors`, `gym`, `dumbbell`],
+    onsen: [`outdoors`, `onsen`],
   },
   cleanEntries: {
     bedSheet: [`bed sheet`],
@@ -146,6 +150,7 @@ export const backgroundPreset = {
     wedding: [`white background`, `falling petals`, `wedding`],
     christmas: [`indoors`, `christmas`, `christmas tree`],
     gym: [`indoors`, `gym`, `dumbbell`],
+    onsen: [`outdoors`, `onsen`],
   },
 } as const satisfies {
   [camera: string]: {

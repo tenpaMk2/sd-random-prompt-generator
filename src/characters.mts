@@ -934,6 +934,47 @@ const generateCowPrintBikini = ({
   whenRemoveShoes: undefined,
 });
 
+const generateNakedTowel = ({
+  breastSize,
+}: {
+  readonly breastSize: BreastSizeTag;
+}): CharaDefine["situations"][number] => ({
+  key: `naked-towel`,
+  background: {
+    fromHorizontal: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromHorizontalEntries.onsen }],
+    ]),
+    fromBelow: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromBelowEntries.onsen }],
+    ]),
+    fromAbove: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.fromAboveEntries.onsen }],
+    ]),
+    lying: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.lyingEntries.onsen }],
+    ]),
+    clean: new PromptDefine<BackgroundTag>([
+      [{ entries: backgroundPreset.cleanEntries.onsen }],
+    ]),
+  },
+  outfitAndExposure: new PromptDefine<OutfitAndExposureTag>([
+    `naked towel`,
+    `collarbone`,
+    `bare shoulders`,
+    `bare arms`,
+    `shoulder blades`,
+    `bare legs`,
+    `barefoot`,
+    ...(BreastSizeOrder[`medium breasts`] <= BreastSizeOrder[breastSize]
+      ? ([`cleavage`, `sideboob`, `backboob`] as const)
+      : []),
+  ]),
+  isArmpitsVisible: true,
+  liftType: `none`,
+  upskirt: undefined,
+  whenRemoveShoes: undefined,
+});
+
 const generateAll = ({
   breastSize,
 }: {
@@ -953,6 +994,7 @@ const generateAll = ({
   generateSantaBikini({ breastSize }),
   generateNakedApron({ breastSize }),
   generateCowPrintBikini({ breastSize }),
+  generateNakedTowel({ breastSize }),
 ];
 
 // export const cecilia: CharaDefine = {

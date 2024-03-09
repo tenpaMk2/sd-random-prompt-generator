@@ -1056,6 +1056,7 @@ export const tagVisibilities = {
   "blue sports bra": visibleType.aroundBreast,
   "grey sports bra": visibleType.aroundBreast,
   "arm ribbon": visibleType.aroundBreast,
+  "naked towel": visibleType.dress,
 
   // Emotion
   blush: visibleType.face,
@@ -1207,6 +1208,7 @@ export const tagVisibilities = {
   kitchen: visibleType.all,
   gym: visibleType.all,
   dumbbell: visibleType.all,
+  onsen: visibleType.all,
 } as const satisfies { [K in Tag]: Visible };
 
 export const writeAsCSV = (path: string) => {

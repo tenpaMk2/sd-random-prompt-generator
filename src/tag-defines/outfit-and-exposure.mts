@@ -422,6 +422,7 @@ const allOutfitTags = [
   `blue sports bra`,
   `grey sports bra`,
   `arm ribbon`,
+  `naked towel`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
