@@ -325,8 +325,8 @@ export class PatternCollection<T extends Tag> {
             const temp3 = previousCollection.patterns.map((previousPattern) => {
               const temp4 = new Pattern<T>({
                 simpleTokens: [
-                  ...currentPattern.simpleTokens,
                   ...previousPattern.simpleTokens,
+                  ...currentPattern.simpleTokens,
                 ],
                 probability:
                   currentPattern.probability * previousPattern.probability,
