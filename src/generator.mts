@@ -14,15 +14,11 @@ const resolve = (
   backgroundData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
   poseData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
 ) => {
-  const rootKey = rootData.key;
-
-  const characterKey = characterData.key;
   const characterFeaturePatternCollection =
     new PromptDefine<CharacterFeatureTag>(
       characterData.character.characterFeatureEntries,
     ).convertToPatternCollection();
 
-  const outfitKey = outfitData.key;
   const loraOutfitTriggerWordPatternCollection =
     new PromptDefine<LoraOutfitTriggerWordsTag>(
       outfitData.outfit.loraOutfitTriggerWordEntries ?? [],
@@ -32,12 +28,10 @@ const resolve = (
       outfitData.outfit.outfitAndExposureEntries,
     ).convertToPatternCollection();
 
-  const backgroundKey = backgroundData.key;
   const backgroundPatternCollection = new PromptDefine<BackgroundTag>(
     backgroundData.background.entries,
   ).convertToPatternCollection();
 
-  const poseKey = poseData.key;
   const posePatternCollection = new PromptDefine<PoseTag>(
     poseData.pose.entries,
   ).convertToPatternCollection();
