@@ -1,6 +1,8 @@
 const optionsJson = {
   sd_model_checkpoint: "vividorangemix_v10.safetensors [ff4725f91c]",
   sd_vae: "blessed2.vae.safetensors",
+  // sd_model_checkpoint: "vividorangemix_v10NSFW.safetensors [730dd31df7]",
+  // sd_vae: "blessed2.vae.safetensors",
   // sd_model_checkpoint: "calicomix_v75.safetensors [c5fc303196]",
   // sd_vae: "None",
   // sd_model_checkpoint: "calicomixFlatani_v10.safetensors [053eb3f26a]",
