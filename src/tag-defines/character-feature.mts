@@ -211,7 +211,6 @@ type BodyFeatureTag = (typeof allBodyFeatureTags)[number];
 
 export type CharacterFeatureTag =
   | HeadFeatureTag
-  | BreastSizeTag
   | BodyFeatureTag
   | HeadOutfitTag;
 
