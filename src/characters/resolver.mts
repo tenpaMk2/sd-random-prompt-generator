@@ -20,7 +20,7 @@ export type CharacterDefine = Readonly<{
   /**
    * Lora character trigger words define.
    */
-  loraCharacterTriggerWordEntries: Entry<LoraCharacterTriggerWordsTag>[] | null;
+  loraCharacterTriggerWordEntries: Entry<LoraCharacterTriggerWordsTag>[];
   /**
    * Series name.
    */

@@ -1,4 +1,4 @@
-import { Entry, LoraToken } from "../prompt-define.mjs";
+import { Entry, LoraEntry } from "../prompt-define.mjs";
 import { LoraOutfitTriggerWordsTag } from "../tag-defines/lora.mjs";
 import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
 import { bikini } from "./common/bikini.mjs";
@@ -11,11 +11,11 @@ export type OutfitDefine = Readonly<{
   /**
    * Lora define.
    */
-  lora: LoraToken | null;
+  lora: LoraEntry | null;
   /**
    * Lora outfit trigger words define.
    */
-  loraOutfitTriggerWordEntries: Entry<LoraOutfitTriggerWordsTag>[] | null;
+  loraOutfitTriggerWordEntries: Entry<LoraOutfitTriggerWordsTag>[];
   /**
    * Outfit and exposure defines such as `red shirt` , `collarbone` and `thigh gap` .
    */
@@ -71,7 +71,7 @@ export type OutfitDefine = Readonly<{
   /**
    * Outfit and exposure defines in the skirt for when `upskirt` is specified.
    */
-  upskirtEntries: Entry<OutfitAndExposureTag>[] | null;
+  upskirtEntries: Entry<OutfitAndExposureTag>[];
   /**
    * Outfit and exposure defines at foot for when footwear should be removed.
    */

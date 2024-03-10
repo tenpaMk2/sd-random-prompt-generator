@@ -21,6 +21,12 @@ export const allLoraNameTags = [
 export type LoraNameTag = (typeof allLoraNameTags)[number];
 
 /**
+ * Lora name tag type guard.
+ */
+export const isLoraNameTag = (tag: string): tag is LoraNameTag =>
+  allLoraNameTags.some((loraNameTag) => loraNameTag === tag);
+
+/**
  * All Lora character trigger words.
  * Not included common danbooru tag.
  */

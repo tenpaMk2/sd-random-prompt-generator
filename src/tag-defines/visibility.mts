@@ -3,7 +3,7 @@ import { createWriteStream } from "node:fs";
 import { CharacterFeatureTag } from "./character-feature.mjs";
 import { OutfitAndExposureTag } from "./outfit-and-exposure.mjs";
 
-const visibilityKeys = [
+export const visibilityKeys = [
   `frontHead`,
   `sideHead`,
   `backHead`,
@@ -20,7 +20,7 @@ const visibilityKeys = [
   `wristAndHand`,
   `aroundBody`,
 ] as const satisfies string[];
-type VisibilityKeys = (typeof visibilityKeys)[number];
+export type VisibilityKeys = (typeof visibilityKeys)[number];
 
 export type Visibility = Readonly<{
   [k in VisibilityKeys]: boolean;

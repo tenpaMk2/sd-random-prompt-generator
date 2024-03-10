@@ -1,6 +1,6 @@
 import { writeFile, mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
-import { generatePatterns } from "./generator.mjs";
+import { generatePatterns } from "./generators/generator.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 

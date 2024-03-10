@@ -1,11 +1,57 @@
-import { GenerationDatas } from "./prepare.mjs";
-import { PatternCollection, PromptDefine } from "./prompt-define.mjs";
-import { Tag } from "./tag-defines/all.mjs";
-import { BackgroundTag } from "./tag-defines/background.mjs";
-import { CharacterFeatureTag } from "./tag-defines/character-feature.mjs";
-import { LoraOutfitTriggerWordsTag } from "./tag-defines/lora.mjs";
-import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
-import { PoseTag } from "./tag-defines/pose.mjs";
+import { GenerationDatas } from "../prepare.mjs";
+import { Pattern, PatternCollection, PromptDefine } from "../prompt-define.mjs";
+import { Tag } from "../tag-defines/all.mjs";
+import { BackgroundTag } from "../tag-defines/background.mjs";
+import {
+  BreastSizeTag,
+  CharacterFeatureTag,
+} from "../tag-defines/character-feature.mjs";
+import { CharacterNameTag } from "../tag-defines/character-name.mjs";
+import { EmotionTag } from "../tag-defines/emotion.mjs";
+import {
+  LoraCharacterTriggerWordsTag,
+  LoraNameTag,
+  LoraOutfitTriggerWordsTag,
+  isLoraNameTag,
+} from "../tag-defines/lora.mjs";
+import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
+import { PoseTag } from "../tag-defines/pose.mjs";
+import { SeriesNameTag } from "../tag-defines/series-name.mjs";
+import {
+  VisibilityKeys,
+  tagVisibilities,
+  visibilityKeys,
+} from "../tag-defines/visibility.mjs";
+
+const extractByVisibility = (
+  pattern: Pattern<CharacterFeatureTag | OutfitAndExposureTag>,
+) => {
+  const filter = (
+    tag: CharacterFeatureTag | OutfitAndExposureTag | LoraNameTag,
+    part: VisibilityKeys,
+  ) => {
+    if (isLoraNameTag(tag)) {
+      return true;
+    } else {
+      return tagVisibilities[tag][part];
+    }
+  };
+
+  const result = visibilityKeys.reduce(
+    (prev, part) => ({
+      ...prev,
+      [part]: pattern.filter(({ tag }) => filter(tag, part)),
+    }),
+    {},
+  ) as {
+    [k in VisibilityKeys]: Pattern<CharacterFeatureTag | OutfitAndExposureTag>;
+  };
+  return result;
+};
+
+const generatePatternCollection = <T extends Tag>(
+  entries: ConstructorParameters<typeof PromptDefine<T>>[0],
+) => new PromptDefine<T>(entries).convertToPatternCollection();
 
 const resolve = (
   rootData: GenerationDatas[number],
@@ -14,34 +60,56 @@ const resolve = (
   backgroundData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
   poseData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
 ) => {
-  const characterFeaturePatternCollection =
-    new PromptDefine<CharacterFeatureTag>(
-      characterData.character.characterFeatureEntries,
-    ).convertToPatternCollection();
+  const loraCharacter = generatePatternCollection(characterData.character.lora);
+  const loraCharacterTriggerWord =
+    generatePatternCollection<LoraCharacterTriggerWordsTag>(
+      characterData.character.loraCharacterTriggerWordEntries,
+    );
+  const seriesName = generatePatternCollection<SeriesNameTag>(
+    characterData.character.seriesNameEntries,
+  );
+  const characterName = generatePatternCollection<CharacterNameTag>(
+    characterData.character.characterNameEntries,
+  );
+  const characterFeature = generatePatternCollection<CharacterFeatureTag>(
+    characterData.character.characterFeatureEntries,
+  );
+  // TODO: extractByVisibility(characterFeaturePattern);
+  const breastSize = generatePatternCollection<BreastSizeTag>([
+    characterData.character.breastSize,
+  ]);
+  const emotion = generatePatternCollection<EmotionTag>(
+    characterData.character.emotionEntries,
+  );
 
-  const loraOutfitTriggerWordPatternCollection =
-    new PromptDefine<LoraOutfitTriggerWordsTag>(
-      outfitData.outfit.loraOutfitTriggerWordEntries ?? [],
-    ).convertToPatternCollection();
-  const outfitAndExposurePatternCollection =
-    new PromptDefine<OutfitAndExposureTag>(
-      outfitData.outfit.outfitAndExposureEntries,
-    ).convertToPatternCollection();
+  const loraOutfit = generatePatternCollection(outfitData.outfit.lora ?? []);
+  const loraOutfitTriggerWord =
+    generatePatternCollection<LoraOutfitTriggerWordsTag>(
+      outfitData.outfit.loraOutfitTriggerWordEntries,
+    );
+  const outfitAndExposure = generatePatternCollection<OutfitAndExposureTag>(
+    outfitData.outfit.outfitAndExposureEntries,
+  );
 
-  const backgroundPatternCollection = new PromptDefine<BackgroundTag>(
+  const background = generatePatternCollection<BackgroundTag>(
     backgroundData.background.entries,
-  ).convertToPatternCollection();
+  );
 
-  const posePatternCollection = new PromptDefine<PoseTag>(
-    poseData.pose.entries,
-  ).convertToPatternCollection();
+  const pose = generatePatternCollection<PoseTag>(poseData.pose.entries);
 
   return PatternCollection.makeCombination<Tag>([
-    characterFeaturePatternCollection,
-    loraOutfitTriggerWordPatternCollection,
-    outfitAndExposurePatternCollection,
-    backgroundPatternCollection,
-    posePatternCollection,
+    seriesName,
+    characterName,
+    loraCharacter,
+    loraCharacterTriggerWord,
+    characterFeature,
+    breastSize,
+    emotion,
+    loraOutfit,
+    loraOutfitTriggerWord,
+    outfitAndExposure,
+    background,
+    pose,
   ]);
 };
 

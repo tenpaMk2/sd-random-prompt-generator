@@ -3,7 +3,7 @@ import { OutfitDefine } from "../resolver.mjs";
 export const bikini = () =>
   ({
     lora: null,
-    loraOutfitTriggerWordEntries: null,
+    loraOutfitTriggerWordEntries: [],
     outfitAndExposureEntries: [
       `bikini`,
       `skindentation`,
@@ -26,6 +26,6 @@ export const bikini = () =>
       insideOfThighs: true,
     },
     liftType: `none`,
-    upskirtEntries: null,
+    upskirtEntries: [],
     whenRemoveShoes: null,
   }) as const satisfies OutfitDefine;

@@ -3,7 +3,7 @@ import { OutfitDefine } from "../resolver.mjs";
 export const sasuoniEftFirstHighSchoolUniform = () =>
   ({
     lora: null,
-    loraOutfitTriggerWordEntries: null,
+    loraOutfitTriggerWordEntries: [],
     outfitAndExposureEntries: [
       `first high school uniform`,
       `dress`,
@@ -36,6 +36,7 @@ export const sasuoniEftFirstHighSchoolUniform = () =>
 
     liftType: `dress`,
     upskirtEntries: [
+      // TODO: Exclude `pantyshot` and `upskirt` from upskirt tags.
       `panties under pantyhose`,
       `underwear`,
       `panties`,
