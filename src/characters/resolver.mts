@@ -1,4 +1,4 @@
-import { Entry, LoraToken } from "../prompt-define.mjs";
+import { LoraEntry, Entry } from "../prompt-define.mjs";
 import {
   BreastSizeTag,
   CharacterFeatureTag,
@@ -16,7 +16,7 @@ export type CharacterDefine = Readonly<{
   /**
    * Lora define.
    */
-  lora: ConstructorParameters<typeof LoraToken>[0] | null;
+  lora: LoraEntry | null;
   /**
    * Lora character trigger words define.
    */

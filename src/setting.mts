@@ -13,28 +13,34 @@ export type BackgroundSetting<T extends BackgroundType> = Readonly<{
   }[];
 }>;
 
+type OutfitSetting = Readonly<{
+  key: OutfitKey;
+  weight?: number;
+  backgrounds: (
+    | BackgroundSetting<`from-horizontal`>
+    | BackgroundSetting<`from-below`>
+  )[];
+}>;
+
+type CharacterSetting = Readonly<{
+  key: CharacterKey;
+  weight?: number;
+  outfits: OutfitSetting[];
+}>;
+
 export type Setting = Readonly<{
   key: string; // Generation name.
   weight?: number;
-  characters: {
-    key: CharacterKey;
-    weight?: number;
-    outfits: {
-      key: OutfitKey;
-      weight?: number;
-      backgrounds: (
-        | BackgroundSetting<`from-horizontal`>
-        | BackgroundSetting<`from-below`>
-      )[];
-    }[];
-  }[];
+  characters: CharacterSetting[];
 }>;
 
 export const settings = [
   {
     key: `sasuoni`,
     // TODO: Model, VAE, width, height, ...
-    // TODO: generateImage?
+    // TODO: Negative prompts architecture.
+    // TODO: presets.
+    // TODO: setting generator for all characters and the fix outfit.
     characters: [
       {
         key: `sasuoni-shiba-miyuki-eft`,

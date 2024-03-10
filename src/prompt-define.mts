@@ -1,50 +1,31 @@
 import { generateDynamicPrompt, getCombinations } from "./libs/utility.mjs";
 import { Tag } from "./tag-defines/all.mjs";
-import { LoraNameTag } from "./tag-defines/lora.mjs";
-
-export class SimpleToken<T extends Tag> {
-  readonly tag: T;
-  readonly weight: number;
-  constructor({ tag, weight }: { tag: T; weight?: number }) {
-    this.tag = tag;
-    this.weight = weight ?? 1.0;
-  }
-
-  toString() {
-    return this.weight === 1.0 ? this.tag : `${this.tag}:${this.weight}`;
-  }
-}
+import { LoraNameTag, allLoraNameTags } from "./tag-defines/lora.mjs";
 
 /**
- * For Lora token definition.
- * The weights can be specified as arrays and will be converted to dynamic prompt.
+ * Simple token definition.
+ * This definition is used for both normal tags and lora tags.
  */
-export class LoraToken {
-  readonly tag: LoraNameTag;
-  readonly weights: number[];
-  constructor({
-    tag,
-    weights,
-  }: {
-    tag: LoraNameTag;
-    weights?: number | number[];
-  }) {
+class SimpleToken<T extends Tag> {
+  readonly tag: T | LoraNameTag;
+  readonly weight: number;
+  constructor({ tag, weight }: { tag: T | LoraNameTag; weight?: number }) {
     this.tag = tag;
-    this.weights = typeof weights === `number` ? [weights] : weights ?? [1.0];
+    this.weight = weight ?? 1.0;
 
     // Vadidation
-    for (const weight of this.weights) {
-      if (weight < 0) throw new Error(`Invalid weight: ${weight}`);
-    }
+    if (this.weight < 0) throw new Error(`Invalid weight: ${this.weight}`);
+  }
+
+  private isLoraNameTag(tag: T | LoraNameTag): tag is LoraNameTag {
+    return allLoraNameTags.some((t) => t === tag);
   }
 
   toString() {
-    if (this.weights.length === 1) {
-      return `<lora:${this.tag}:${this.weights[0]}>`;
+    if (this.isLoraNameTag(this.tag)) {
+      return `<lora:${this.tag}:${this.weight}>`;
     } else {
-      return generateDynamicPrompt(
-        this.weights.map((w) => `<lora:${this.tag}:${w}>`),
-      );
+      return this.weight === 1.0 ? this.tag : `${this.tag}:${this.weight}`;
     }
   }
 }
@@ -52,7 +33,7 @@ export class LoraToken {
 /**
  * Candidate for `DynamicPromptToken` .
  */
-export class Candidate<T extends Tag> {
+class Candidate<T extends Tag> {
   readonly tokens: Token<T>[];
   readonly probability: number;
   constructor({
@@ -67,6 +48,9 @@ export class Candidate<T extends Tag> {
   }
 }
 
+/**
+ * Dynamic prompt token definition.
+ */
 export class DynamicPromptToken<T extends Tag> {
   readonly candidates: Candidate<T>[];
   constructor({ candidates }: { candidates: Candidate<T>[] }) {
@@ -81,22 +65,38 @@ export class DynamicPromptToken<T extends Tag> {
   }
 
   toString() {
+    if (this.candidates.length === 0) return ``;
+
     return `{${this.candidates.map((c) => c.tokens.join(`, `)).join(`|`)}}`;
   }
 }
+
+/**
+ * Type of entries for normal token define.
+ */
+export type NormalEntry<T extends Tag> =
+  | T
+  | { tag: T; weight: number }
+  | { probability?: number; entries: NormalEntry<T>[] }[];
+
+/**
+ * Type of entries for Lora token define.
+ */
+export type LoraEntry = {
+  tag: LoraNameTag;
+  probabilityAndWeights: { probability: number; weight: number }[];
+};
 
 /**
  * Type of entries.
  *
  * The `weight` cannot be specified in the DynamicPrompt. Instead, specify it in each Token.
  */
-export type Entry<T extends Tag> =
-  | T
-  | { tag: T; weight: number }
-  | SimpleToken<T>
-  | DynamicPromptToken<T>
-  | { probability?: number; entries: Entry<T>[] }[];
+export type Entry<T extends Tag> = NormalEntry<T>;
 
+/**
+ * Type of tokens.
+ */
 type Token<T extends Tag> = SimpleToken<T> | DynamicPromptToken<T>;
 
 /**
@@ -104,34 +104,43 @@ type Token<T extends Tag> = SimpleToken<T> | DynamicPromptToken<T>;
  */
 export class PromptDefine<T extends Tag> {
   readonly tokens: Token<T>[];
-  constructor(entries: Entry<T>[]) {
+  constructor(entries: Entry<T>[] | LoraEntry) {
     this.tokens = this.parse(entries);
   }
 
-  private parse(entries: Entry<T>[]): Token<T>[] {
+  private parse(entries: Entry<T>[] | LoraEntry): Token<T>[] {
+    if (`probabilityAndWeights` in entries) {
+      const candidates = entries.probabilityAndWeights.map(
+        ({ probability, weight }) =>
+          new Candidate<T>({
+            tokens: [new SimpleToken<T>({ tag: entries.tag, weight })],
+            probability,
+          }),
+      );
+
+      return [new DynamicPromptToken<T>({ candidates })];
+    }
+
     const all = entries.map((entry) => {
-      if (entry instanceof SimpleToken) {
-        return entry;
-      } else if (entry instanceof DynamicPromptToken) {
-        return entry;
-      } else if (typeof entry === `string`) {
+      if (typeof entry === `string`) {
         return new SimpleToken({ tag: entry });
       } else if (`tag` in entry) {
         return new SimpleToken(entry);
-      } else if (`length` in entry) {
+      } else if (Array.isArray(entry)) {
         const candidateEntries = entry.map(({ probability, entries }) => ({
           tokens: this.parse(entries),
           probability,
         }));
         const candidates = candidateEntries.map(
-          ({ tokens, probability }) => new Candidate({ tokens, probability }),
+          ({ tokens, probability }) =>
+            new Candidate<T>({ tokens, probability }),
         );
-        return new DynamicPromptToken({ candidates });
+        return new DynamicPromptToken<T>({ candidates });
       }
       throw new Error(`Invalid entry: ${entry}`);
     });
 
-    return all as Token<T>[];
+    return all;
   }
 
   private candidateToPatterns(candidate: Candidate<T>): Pattern<T>[] {
@@ -408,5 +417,24 @@ export class PatternCollection<T extends Tag> {
 // ]);
 
 // console.log(test3);
+
+// const test4 = new PromptDefine({
+//   tag: `lala-loveru`,
+//   probabilityAndWeights: [
+//     { probability: 1 / 3, weight: 0.5 },
+//     { probability: 2 / 3, weight: 0.8 },
+//   ],
+// });
+
+// console.log(test4);
+// console.log(test4.toString());
+// console.log(test4.convertToPatternCollection());
+
+// const test5 = PatternCollection.makeCombination([
+//   test4.convertToPatternCollection(),
+//   new PromptDefine([`smile`]).convertToPatternCollection(),
+// ]);
+
+// console.log(test5);
 
 // console.log(`end`);

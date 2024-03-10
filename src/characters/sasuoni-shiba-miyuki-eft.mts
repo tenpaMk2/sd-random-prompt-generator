@@ -4,7 +4,10 @@ export const sasuoniShibaMiyukiEft = () =>
   ({
     lora: {
       tag: `miyuki-mahouka`,
-      weights: [0.8],
+      probabilityAndWeights: [
+        { probability: 1, weight: 0.8 },
+        { probability: 1, weight: 0.6 },
+      ],
     },
     loraCharacterTriggerWordEntries: [`miyuki shiba`],
     seriesNameEntries: [`mahouka koukou no rettousei`],
