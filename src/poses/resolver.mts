@@ -11,6 +11,9 @@ export const poseTable = {
   "from-horizontal": {
     "upper-body": { entries: [`upper body`] },
     contrapposto: { entries: [`contrapposto`] },
+    "hands-on-own-hips": {
+      entries: [`cowboy shot`, `hands on own hips`, `looking at viewer`],
+    },
   },
   "from-below": {
     "upper-body": { entries: [`upper body`] },

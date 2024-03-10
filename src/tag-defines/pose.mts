@@ -25,5 +25,6 @@ const allPoseTags = [
   `sitting`,
   `contrapposto`,
   `cheering`,
+  `hands on own hips`,
 ] as const satisfies readonly string[];
 export type PoseTag = (typeof allPoseTags)[number];

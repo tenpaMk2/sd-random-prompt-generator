@@ -1,46 +1,32 @@
-import { BackgroundKey, BackgroundType } from "./backgrounds/resolver.mjs";
-import { CharacterKey } from "./characters/resolver.mjs";
-import { OutfitKey } from "./outfits/resolver.mjs";
-import { PoseKey } from "./poses/resolver.mjs";
+import { MachineSetting, Setting } from "./setting-define.mjs";
 
-export type BackgroundSetting<T extends BackgroundType> = Readonly<{
-  type: T;
-  key: BackgroundKey[T];
-  weight?: number;
-  poses: {
-    key: PoseKey[T];
-    weight?: number;
-  }[];
-}>;
-
-type OutfitSetting = Readonly<{
-  key: OutfitKey;
-  weight?: number;
-  backgrounds: (
-    | BackgroundSetting<`from-horizontal`>
-    | BackgroundSetting<`from-below`>
-  )[];
-}>;
-
-type CharacterSetting = Readonly<{
-  key: CharacterKey;
-  weight?: number;
-  outfits: OutfitSetting[];
-}>;
-
-export type Setting = Readonly<{
-  key: string; // Generation name.
-  weight?: number;
-  characters: CharacterSetting[];
-}>;
+export const machineSetting = {
+  ip: `192.168.10.3`,
+  port: 7860,
+} as const satisfies MachineSetting;
 
 export const settings = [
   {
     key: `sasuoni`,
-    // TODO: Model, VAE, width, height, ...
-    // TODO: Negative prompts architecture.
+    // TODO: Adaptive negative prompts architecture.
     // TODO: presets.
     // TODO: setting generator for all characters and the fix outfit.
+    fixedPrompt: `1girl, solo, masterpiece, best quality,\n`,
+    optionsBodyJson: {
+      sd_model_checkpoint: `vividorangemix_v10.safetensors [ff4725f91c]`,
+      sd_vae: `blessed2.vae.safetensors`,
+    },
+    txt2imgBodyJson: {
+      negative_prompt: `verybadimagenegative_v1.3, (cameltoe, empty eyes, black background:1.5)`,
+      sampler_name: `Restart`,
+      width: 512,
+      height: 768,
+      denoising_strength: 0.4,
+      enable_hr: true,
+      hr_scale: 2.5,
+      hr_upscaler: "4x-AnimeSharp",
+      hr_second_pass_steps: 30,
+    },
     characters: [
       {
         key: `sasuoni-shiba-miyuki-eft`,
@@ -51,7 +37,7 @@ export const settings = [
               {
                 type: `from-horizontal`,
                 key: `cafe`,
-                poses: [{ key: `contrapposto` }],
+                poses: [{ key: `contrapposto` }, { key: `hands-on-own-hips` }],
               },
               {
                 type: `from-below`,
@@ -67,7 +53,7 @@ export const settings = [
               {
                 type: `from-horizontal`,
                 key: `indoors`,
-                poses: [{ key: `contrapposto` }],
+                poses: [{ key: `contrapposto` }, { key: `hands-on-own-hips` }],
               },
             ],
           },

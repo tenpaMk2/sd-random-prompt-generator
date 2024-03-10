@@ -232,6 +232,9 @@ const generateRootPatternCollection = (
   return {
     key: generationData.key,
     weight: generationData.weight,
+    fixedPrompt: generationData.fixedPrompt,
+    optionsBodyJson: generationData.optionsBodyJson,
+    txt2imgBodyJson: generationData.txt2imgBodyJson,
     patternCollection: rootPatternCollection,
     children: characters,
   };

@@ -2,7 +2,7 @@ import { backgroundTable } from "./backgrounds/resolver.mjs";
 import { characterTable } from "./characters/resolver.mjs";
 import { outfitTable } from "./outfits/resolver.mjs";
 import { poseTable } from "./poses/resolver.mjs";
-import { BackgroundSetting, Setting } from "./setting.mjs";
+import { BackgroundSetting, Setting } from "./setting-define.mjs";
 
 const generateFromHorizontalPose = ({
   key,
@@ -69,10 +69,22 @@ const generateCharacter = ({
 });
 
 export const prepare = (settings: Setting[]) =>
-  settings.map(({ key, weight, characters }) => ({
-    key,
-    weight: weight ?? 1,
-    characters: characters.map(generateCharacter),
-  }));
+  settings.map(
+    ({
+      key,
+      weight,
+      characters,
+      fixedPrompt,
+      optionsBodyJson,
+      txt2imgBodyJson,
+    }) => ({
+      key,
+      weight: weight ?? 1,
+      fixedPrompt,
+      optionsBodyJson,
+      txt2imgBodyJson,
+      characters: characters.map(generateCharacter),
+    }),
+  );
 
 export type GenerationDatas = ReturnType<typeof prepare>;

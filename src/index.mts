@@ -4,6 +4,7 @@ import { generatePatterns } from "./generators/generator.mjs";
 import { prepare } from "./prepare.mjs";
 import { settings } from "./setting.mjs";
 import { exportAsCSV } from "./tag-defines/visibility.mjs";
+import { generateImage } from "./image-generator.mjs";
 
 const generationDatas = prepare(settings);
 
@@ -17,3 +18,5 @@ await exportAsDynamicPrompts(p);
 await exportAsCSV(join("outputs", "visibility.csv"));
 
 console.log(p[0].patternCollection.pickOne().toPrompt());
+
+generateImage(p);
