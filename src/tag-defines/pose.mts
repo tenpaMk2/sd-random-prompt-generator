@@ -2,6 +2,8 @@ const allPoseTags = [
   `looking at viewer`,
   `looking back`,
   `looking up`,
+  `looking ahead`,
+  `looking away`,
   `portrait`,
   `upper body`,
   `cowboy shot`,

@@ -14,6 +14,7 @@ export const outfitsPreset = {
             { key: `hands-on-own-hips` },
             { key: `contrapposto` },
             { key: `twisted-torso` },
+            { key: `cowboy-shot-from-side` },
           ],
         },
         {
