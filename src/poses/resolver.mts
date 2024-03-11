@@ -120,7 +120,7 @@ export const poseTable = {
       specialVisibility: specialVisibilityPreset.frontPortraitArmDown,
     },
     contrapposto: {
-      entries: [`contrapposto`],
+      entries: [`contrapposto`, `looking at viewer`],
       visibility: visibilityPreset.frontCowboyShot,
       specialVisibility: specialVisibilityPreset.frontCowboyShotArmDown,
     },
