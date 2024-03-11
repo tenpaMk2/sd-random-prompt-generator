@@ -1,3 +1,8 @@
+import { OutfitDefine, UnderboobLevelOrder } from "../outfits/resolver.mjs";
+import {
+  PoseSpecialVisibility,
+  PoseUnderboobLevelOrder,
+} from "../poses/resolver.mjs";
 import { GenerationDatas } from "../prepare.mjs";
 import { Pattern, PatternCollection, PromptDefine } from "../prompt-define.mjs";
 import { Tag } from "../tag-defines/all.mjs";
@@ -17,6 +22,7 @@ import {
 import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
 import { PoseTag } from "../tag-defines/pose.mjs";
 import { SeriesNameTag } from "../tag-defines/series-name.mjs";
+import { SpecialTag } from "../tag-defines/special.mjs";
 import {
   VisibilityKeys,
   tagVisibilities,
@@ -73,6 +79,44 @@ const generatePatternCollection = <T extends Tag>(
   entries: ConstructorParameters<typeof PromptDefine<T>>[0],
 ) => new PromptDefine<T>(entries).convertToPatternCollection();
 
+const generateSpecialVisibilityPatternCollection = (
+  outfit: OutfitDefine["specialVisibility"],
+  pose: PoseSpecialVisibility,
+) => {
+  const entries = [] as SpecialTag[];
+
+  if (outfit.armpits && pose.armpits) {
+    entries.push(`armpits`);
+  }
+  if (outfit.hangingBreasts && pose.hangingBreasts) {
+    entries.push(`hanging breasts`);
+  }
+  if (outfit.cleavage && pose.cleavage) {
+    entries.push(`cleavage`);
+  }
+  if (outfit.sideboob && pose.sideboob) {
+    entries.push(`sideboob`);
+  }
+  if (outfit.backboob && pose.backboob) {
+    entries.push(`backboob`);
+  }
+  if (
+    PoseUnderboobLevelOrder[pose.underboobLevel] <
+    UnderboobLevelOrder[outfit.underboobLevel]
+  ) {
+    entries.push(`underboob`);
+  }
+  if (outfit.zettaiRyouiki && pose.zettaiRyouiki) {
+    entries.push(`zettai ryouiki`);
+  }
+  if (outfit.insideOfThighs && pose.insideOfThighs) {
+    entries.push(`ass visible through thighs`);
+    entries.push(`thigh gap`);
+  }
+
+  return generatePatternCollection(entries);
+};
+
 const resolve = (
   rootData: GenerationDatas[number],
   characterData: GenerationDatas[number]["characters"][number],
@@ -128,6 +172,11 @@ const resolve = (
     poseVisibility,
   );
 
+  const specialVisibility = generateSpecialVisibilityPatternCollection(
+    outfitData.outfit.specialVisibility,
+    poseData.pose.specialVisibility,
+  );
+
   return PatternCollection.makeCombination<Tag>([
     seriesName,
     characterName,
@@ -139,6 +188,7 @@ const resolve = (
     loraOutfit,
     loraOutfitTriggerWord,
     visibleOutfits,
+    specialVisibility,
     background,
     pose,
   ]);

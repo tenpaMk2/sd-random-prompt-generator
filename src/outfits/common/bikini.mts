@@ -14,7 +14,7 @@ export const bikini = () =>
       `bare legs`,
       `barefoot`,
     ],
-    visibility: {
+    specialVisibility: {
       armpits: true,
       hangingBreasts: true,
       tautClothes: false,

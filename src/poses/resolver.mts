@@ -1,14 +1,32 @@
 import { BackgroundType } from "../backgrounds/resolver.mjs";
+import { OutfitDefine } from "../outfits/resolver.mjs";
 import { Entry } from "../prompt-define.mjs";
 import { PoseTag } from "../tag-defines/pose.mjs";
 import { Visibility } from "../tag-defines/visibility.mjs";
 
+export type PoseSpecialVisibility = Omit<
+  OutfitDefine["specialVisibility"],
+  "underboobLevel"
+> &
+  Readonly<{
+    underboobLevel: `from below` | `from horizontal` | `invisible`;
+  }>;
+
+export const PoseUnderboobLevelOrder = {
+  "from below": 0,
+  "from horizontal": 1,
+  invisible: 2,
+} as const satisfies {
+  [k in PoseSpecialVisibility["underboobLevel"]]: number;
+};
+
 type PoseDefine = {
   entries: Entry<PoseTag>[];
   visibility: Visibility;
+  specialVisibility: PoseSpecialVisibility;
 };
 
-const preset = {
+const visibilityPreset = {
   frontPortrait: {
     frontHead: true,
     sideHead: true,
@@ -45,19 +63,71 @@ const preset = {
   },
 } as const satisfies { [k in string]: Visibility };
 
+const specialVisibilityPreset = {
+  frontPortraitArmDown: {
+    armpits: false,
+    hangingBreasts: false,
+    tautClothes: true,
+    cleavage: true,
+    sideboob: false,
+    backboob: false,
+    underboobLevel: `from horizontal`,
+    zettaiRyouiki: false,
+    insideOfThighs: false,
+  },
+  frontPortraitArmUp: {
+    armpits: true,
+    hangingBreasts: false,
+    tautClothes: true,
+    cleavage: true,
+    sideboob: false,
+    backboob: false,
+    underboobLevel: `from horizontal`,
+    zettaiRyouiki: false,
+    insideOfThighs: false,
+  },
+  frontCowboyShotArmDown: {
+    armpits: false,
+    hangingBreasts: false,
+    tautClothes: true,
+    cleavage: true,
+    sideboob: false,
+    backboob: false,
+    underboobLevel: `from horizontal`,
+    zettaiRyouiki: true,
+    insideOfThighs: true,
+  },
+  frontCowboyShotArmUp: {
+    armpits: true,
+    hangingBreasts: false,
+    tautClothes: true,
+    cleavage: true,
+    sideboob: false,
+    backboob: false,
+    underboobLevel: `from horizontal`,
+    zettaiRyouiki: true,
+    insideOfThighs: true,
+  },
+} as const satisfies {
+  [k in string]: PoseSpecialVisibility;
+};
+
 export const poseTable = {
   "from-horizontal": {
     portrait: {
       entries: [`portrait`, `looking at viewer`],
-      visibility: preset.frontPortrait,
+      visibility: visibilityPreset.frontPortrait,
+      specialVisibility: specialVisibilityPreset.frontPortraitArmDown,
     },
     contrapposto: {
       entries: [`contrapposto`],
-      visibility: preset.frontCowboyShot,
+      visibility: visibilityPreset.frontCowboyShot,
+      specialVisibility: specialVisibilityPreset.frontCowboyShotArmDown,
     },
     "hands-on-own-hips": {
       entries: [`cowboy shot`, `hands on own hips`, `looking at viewer`],
-      visibility: preset.frontCowboyShot,
+      visibility: visibilityPreset.frontCowboyShot,
+      specialVisibility: specialVisibilityPreset.frontCowboyShotArmDown,
     },
     "twisted-torso": {
       entries: [
@@ -83,6 +153,17 @@ export const poseTable = {
         wristAndHand: false,
         aroundBody: true,
       },
+      specialVisibility: {
+        armpits: false,
+        hangingBreasts: false,
+        tautClothes: true,
+        cleavage: false,
+        sideboob: true,
+        backboob: false,
+        underboobLevel: `invisible`,
+        zettaiRyouiki: true,
+        insideOfThighs: false,
+      },
     },
   },
   "from-below": {
@@ -91,22 +172,34 @@ export const poseTable = {
       visibility: {
         frontHead: true,
         sideHead: true,
-        backHead: true,
+        backHead: false,
         frontBreast: true,
         sideBreast: true,
-        backBreast: true,
+        backBreast: false,
         frontMidriff: true,
         sideMidriff: true,
-        backMidriff: true,
-        frontHipAndThigh: true,
-        sideHipAndThigh: true,
-        backHipAndThigh: true,
-        foot: true,
-        wristAndHand: true,
+        backMidriff: false,
+        frontHipAndThigh: false,
+        sideHipAndThigh: false,
+        backHipAndThigh: false,
+        foot: false,
+        wristAndHand: false,
         aroundBody: true,
+      },
+      specialVisibility: {
+        armpits: false,
+        hangingBreasts: false,
+        tautClothes: true,
+        cleavage: true,
+        sideboob: false,
+        backboob: false,
+        underboobLevel: `from below`,
+        zettaiRyouiki: false,
+        insideOfThighs: false,
       },
     },
     cheering: {
+      // tmp
       entries: [`cheering`],
       visibility: {
         frontHead: true,
@@ -124,6 +217,17 @@ export const poseTable = {
         foot: true,
         wristAndHand: true,
         aroundBody: true,
+      },
+      specialVisibility: {
+        armpits: false,
+        hangingBreasts: false,
+        tautClothes: true,
+        cleavage: true,
+        sideboob: false,
+        backboob: false,
+        underboobLevel: `from below`,
+        zettaiRyouiki: false,
+        insideOfThighs: false,
       },
     },
   },

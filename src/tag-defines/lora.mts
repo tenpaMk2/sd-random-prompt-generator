@@ -20,6 +20,8 @@ export const allLoraNameTags = [
 ] as const satisfies readonly string[];
 export type LoraNameTag = (typeof allLoraNameTags)[number];
 
+// TODO: Define Lora structures such as `loraName`, `loraTrigger`, `URL` ...
+
 /**
  * Lora name tag type guard.
  */

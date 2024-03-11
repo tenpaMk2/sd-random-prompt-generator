@@ -23,7 +23,7 @@ export type OutfitDefine = Readonly<{
   /**
    * Visibility of specific tags.
    */
-  visibility: {
+  specialVisibility: {
     /**
      * Visible when arms up.
      */
@@ -51,9 +51,9 @@ export type OutfitDefine = Readonly<{
     /**
      * Visibility level of underboob.
      * `full` is always visible.
-     * `only from below` is only visible from below.
+     * `only from below` is visible only from below.
      */
-    underboobLevel: `full` | `only from below` | `invisible`;
+    underboobLevel: `invisible` | `only from below` | `full`;
     /**
      * Visible when from front.
      */
@@ -96,3 +96,11 @@ export const outfitTable = {
 };
 
 export type OutfitKey = keyof typeof outfitTable;
+
+export const UnderboobLevelOrder = {
+  invisible: 0,
+  "only from below": 1,
+  full: 2,
+} as const satisfies {
+  [k in OutfitDefine["specialVisibility"]["underboobLevel"]]: number;
+};

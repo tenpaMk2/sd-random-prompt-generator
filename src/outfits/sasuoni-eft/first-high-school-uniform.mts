@@ -22,7 +22,7 @@ export const sasuoniEftFirstHighSchoolUniform = () =>
       `boots`,
       `black footwear`,
     ],
-    visibility: {
+    specialVisibility: {
       armpits: false,
       hangingBreasts: false,
       tautClothes: true,

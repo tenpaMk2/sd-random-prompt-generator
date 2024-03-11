@@ -1,28 +1,20 @@
 import { HeadOutfitTags } from "./head-outfit.mjs";
 
-const allArmpitsTags = [`armpits`] as const satisfies readonly string[];
-export type ArmpitsTag = (typeof allArmpitsTags)[number];
-
 const allExposureTags = [
   `collarbone`,
   `bare shoulders`,
   `bare arms`,
-  `cleavage`,
-  `sideboob`,
-  `backboob`,
   `nipples`,
   `covered niples`,
   `midriff`,
   `navel`,
   `covered navel`,
   `shoulder blades`,
-  `taut clothes`,
   `skin tight`,
   `skindentation`,
   `bare legs`,
   `cameltoe`,
   `pussy`,
-  `zettai ryouiki`,
   `ass`,
   `butt crack`,
   `barefoot`,

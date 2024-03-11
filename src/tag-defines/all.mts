@@ -7,9 +7,10 @@ import {
   LoraCharacterTriggerWordsTag,
   LoraOutfitTriggerWordsTag,
 } from "./lora.mjs";
-import { ArmpitsTag, OutfitAndExposureTag } from "./outfit-and-exposure.mjs";
+import { OutfitAndExposureTag } from "./outfit-and-exposure.mjs";
 import { PoseTag } from "./pose.mjs";
 import { SeriesNameTag } from "./series-name.mjs";
+import { SpecialTag } from "./special.mjs";
 
 export type PersonTag =
   | SeriesNameTag
@@ -18,11 +19,11 @@ export type PersonTag =
   | LoraOutfitTriggerWordsTag
   | CharacterFeatureTag
   | BreastSizeTag
-  | ArmpitsTag
   | OutfitAndExposureTag
   | EmotionTag
   | ProfileTag
   | ArmPoseTag
-  | PoseTag;
+  | PoseTag
+  | SpecialTag;
 
 export type Tag = PersonTag | BackgroundTag;

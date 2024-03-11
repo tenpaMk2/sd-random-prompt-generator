@@ -1,6 +1,6 @@
 import { join } from "node:path";
 import { exportAsDynamicPrompts } from "./exporter.mjs";
-import { generatePatterns } from "./generators/generator.mjs";
+import { generatePatterns } from "./prompt-generators/common.mjs";
 import { prepare } from "./prepare.mjs";
 import { settings } from "./setting.mjs";
 import { exportAsCSV } from "./tag-defines/visibility.mjs";
