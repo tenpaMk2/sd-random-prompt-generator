@@ -722,6 +722,7 @@ export const tagVisibilities = {
   "frilled bikini": visibleType.dress,
   "print bikini": visibleType.dress,
   "o-ring bikini": visibleType.dress,
+  "micro bikini": visibleType.dress,
   "school swimsuit": visibleType.dress,
   ...allOnePieceSwimsuitColorVisibilities,
   "o-ring top": visibleType.cleavage,

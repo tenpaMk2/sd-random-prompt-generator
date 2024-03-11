@@ -1,4 +1,3 @@
-import { ArmPoseTag } from "./arm-pose.mjs";
 import { BackgroundTag } from "./background.mjs";
 import { BreastSizeTag, CharacterFeatureTag } from "./character-feature.mjs";
 import { CharacterNameTag } from "./character-name.mjs";
@@ -22,7 +21,6 @@ export type PersonTag =
   | OutfitAndExposureTag
   | EmotionTag
   | ProfileTag
-  | ArmPoseTag
   | PoseTag
   | SpecialTag;
 

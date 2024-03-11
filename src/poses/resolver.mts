@@ -34,6 +34,23 @@ const visibilityPreset = {
     frontBreast: true,
     sideBreast: true,
     backBreast: false,
+    frontMidriff: false,
+    sideMidriff: false,
+    backMidriff: false,
+    frontHipAndThigh: false,
+    sideHipAndThigh: false,
+    backHipAndThigh: false,
+    foot: false,
+    wristAndHand: false,
+    aroundBody: false,
+  },
+  frontUpperBody: {
+    frontHead: true,
+    sideHead: true,
+    backHead: false,
+    frontBreast: true,
+    sideBreast: true,
+    backBreast: false,
     frontMidriff: true,
     sideMidriff: true,
     backMidriff: false,
@@ -86,6 +103,17 @@ const specialVisibilityPreset = {
     zettaiRyouiki: false,
     insideOfThighs: false,
   },
+  frontUpperBodyShotArmDown: {
+    armpits: false,
+    hangingBreasts: false,
+    tautClothes: true,
+    cleavage: true,
+    sideboob: false,
+    backboob: false,
+    underboobLevel: `from horizontal`,
+    zettaiRyouiki: true,
+    insideOfThighs: true,
+  },
   frontCowboyShotArmDown: {
     armpits: false,
     hangingBreasts: false,
@@ -129,6 +157,43 @@ export const poseTable = {
       visibility: visibilityPreset.frontCowboyShot,
       specialVisibility: specialVisibilityPreset.frontCowboyShotArmDown,
     },
+    v: {
+      entries: [`cowboy shot`, `v`, `hand up`, `looking at viewer`],
+      visibility: visibilityPreset.frontCowboyShot,
+      specialVisibility: specialVisibilityPreset.frontCowboyShotArmDown,
+    },
+    "double-v": {
+      entries: [
+        `cowboy shot`,
+        `double v`,
+        `v`,
+        `hands up`,
+        `looking at viewer`,
+      ],
+      visibility: visibilityPreset.frontCowboyShot,
+      specialVisibility: specialVisibilityPreset.frontCowboyShotArmDown,
+    },
+    "arms-up": {
+      entries: [
+        `cowboy shot`,
+        `arms up`,
+        `arms behind head`,
+        `looking at viewer`,
+      ],
+      visibility: visibilityPreset.frontCowboyShot,
+      specialVisibility: specialVisibilityPreset.frontCowboyShotArmUp,
+    },
+    "heart-hands": {
+      entries: [
+        `upper body`,
+        `heart hands`,
+        `hands up`,
+        `breasts`,
+        `looking at viewer`,
+      ],
+      visibility: visibilityPreset.frontUpperBody,
+      specialVisibility: specialVisibilityPreset.frontUpperBodyShotArmDown,
+    },
     "cowboy-shot-from-side": {
       entries: [`cowboy shot`, `from side`, `looking ahead`],
       visibility: {
@@ -160,7 +225,6 @@ export const poseTable = {
         insideOfThighs: false,
       },
     },
-
     "twisted-torso": {
       entries: [
         `cowboy shot`,

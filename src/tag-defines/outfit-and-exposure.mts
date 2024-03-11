@@ -120,6 +120,7 @@ const allOutfitTags = [
   `frilled bikini`,
   `print bikini`,
   `o-ring bikini`,
+  `micro bikini`,
   `school swimsuit`,
   ...allOnePieceSwimsuitColorTags,
   `o-ring top`,
