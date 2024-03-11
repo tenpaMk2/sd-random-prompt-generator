@@ -26,6 +26,7 @@ export const sasuoniShibaMiyukiEft = () =>
       `sidelocks`,
       `hair ornament`,
       `snowflake hair ornament`,
+      `tress ribbon`,
     ],
     breastSize: `large breasts`,
     emotionEntries: [`smile`],
