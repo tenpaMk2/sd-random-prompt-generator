@@ -57,6 +57,7 @@ const generateRoot = async (
     ...root.optionsBodyJson,
   };
 
+  // console.time("Option setting elapsed time");
   const optionsResponse = await fetch(
     `http://${machineSetting.ip}:${machineSetting.port}/sdapi/v1/options`,
     {
@@ -68,14 +69,26 @@ const generateRoot = async (
     },
   );
   // console.table(await optionsResponse.json());
+  // console.timeEnd("Option setting elapsed time");
 
   for (let i = 0; i < 300; i++) {
+    // console.time("Each generation elapsed time");
     await generateEachImage(
       root.fixedPrompt,
       root.txt2imgBodyJson,
       root.patternCollection,
     );
+    // console.timeEnd("Each generation elapsed time");
   }
+};
+
+const displayProgress = async (progress: number, eta: number) => {
+  const etaSecond = `${Math.floor(eta)}`.padStart(4, ` `);
+  const barPole = `=`.repeat(Math.floor(progress * 20));
+  const barContent = `${barPole}>`.padEnd(20, ` `);
+  const bar = `[${barContent}]`;
+  const percentage = `${Math.floor(progress * 100)}`.padStart(3, ``);
+  console.log(`${etaSecond} s: ${bar} ${percentage}%`);
 };
 
 const startStatusPolling = () =>
@@ -90,10 +103,11 @@ const startStatusPolling = () =>
       },
     );
     const json = await response.json();
-    console.table({
-      progress: json.progress,
-      eta_relative: json.eta_relative,
-    });
+    displayProgress(json.progress, json.eta_relative);
+    // console.table({
+    //   progress: `${Math.floor(json.progress * 100)}%`,
+    //   eta_relative: `${Math.floor(json.eta_relative)} s`,
+    // });
   }, 10000);
 
 export const generateImage = async (
