@@ -1,4 +1,4 @@
-import { generatePatterns } from "./generators/generator.mjs";
+import { generatePatterns } from "./prompt-generators/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Setting } from "./setting-define.mjs";
 import { machineSetting } from "./setting.mjs";
@@ -69,7 +69,7 @@ const generateRoot = async (
   );
   // console.table(await optionsResponse.json());
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 300; i++) {
     await generateEachImage(
       root.fixedPrompt,
       root.txt2imgBodyJson,
