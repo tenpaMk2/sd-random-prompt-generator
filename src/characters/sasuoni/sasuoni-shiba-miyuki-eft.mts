@@ -1,3 +1,4 @@
+import { emotionPreset } from "../emotion-preset.mjs";
 import { CharacterDefine } from "../resolver.mjs";
 
 export const sasuoniShibaMiyukiEft = () =>
@@ -26,5 +27,5 @@ export const sasuoniShibaMiyukiEft = () =>
       `tress ribbon`,
     ],
     breastSize: `large breasts`,
-    emotionEntries: [`smile`],
+    emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;
