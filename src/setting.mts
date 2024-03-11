@@ -22,7 +22,7 @@ export const settings = [
       width: 512,
       height: 768,
       denoising_strength: 0.4,
-      enable_hr: true,
+      enable_hr: false,
       hr_scale: 2.5,
       hr_upscaler: "4x-AnimeSharp",
       hr_second_pass_steps: 30,
@@ -37,7 +37,7 @@ export const settings = [
               {
                 type: `from-horizontal`,
                 key: `cafe`,
-                poses: [{ key: `contrapposto` }, { key: `hands-on-own-hips` }],
+                poses: [{ key: `hands-on-own-hips` }],
               },
               {
                 type: `from-below`,
@@ -52,8 +52,21 @@ export const settings = [
             backgrounds: [
               {
                 type: `from-horizontal`,
-                key: `indoors`,
-                poses: [{ key: `contrapposto` }, { key: `hands-on-own-hips` }],
+                key: `ocean`,
+                poses: [
+                  { key: `hands-on-own-hips` },
+                  { key: `contrapposto` },
+                  { key: `twisted-torso` },
+                ],
+              },
+              {
+                type: `from-horizontal`,
+                key: `ocean-beach`,
+                poses: [
+                  { key: `hands-on-own-hips` },
+                  { key: `contrapposto` },
+                  { key: `twisted-torso` },
+                ],
               },
             ],
           },

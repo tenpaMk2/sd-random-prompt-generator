@@ -572,6 +572,7 @@ export const tagVisibilities = {
   fang: visibleType.hair,
   "pointy ears": visibleType.hair,
   forehead: visibleType.face,
+  "tress ribbon": visibleType.hair,
 
   // Breast size
   ...allBreastSizeVisibilities,

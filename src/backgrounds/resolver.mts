@@ -12,6 +12,14 @@ export const backgroundTable = {
   "from-horizontal": {
     indoors: { entries: [`indoors`], removeShoes: false },
     cafe: { entries: [`indoors`, `cafe`], removeShoes: false },
+    ocean: {
+      entries: [`outdoors`, `ocean`, `wet`, `blue sky`],
+      removeShoes: true,
+    },
+    "ocean-beach": {
+      entries: [`outdoors`, `ocean`, `beach`, `blue sky`],
+      removeShoes: true,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },

@@ -8,6 +8,26 @@ type PoseDefine = {
   visibility: Visibility;
 };
 
+const preset = {
+  frontCowboyShot: {
+    frontHead: true,
+    sideHead: true,
+    backHead: false,
+    frontBreast: true,
+    sideBreast: true,
+    backBreast: false,
+    frontMidriff: true,
+    sideMidriff: true,
+    backMidriff: false,
+    frontHipAndThigh: true,
+    sideHipAndThigh: true,
+    backHipAndThigh: false,
+    foot: false,
+    wristAndHand: true,
+    aroundBody: true,
+  },
+} as const satisfies { [k in string]: Visibility };
+
 export const poseTable = {
   "from-horizontal": {
     "upper-body": {
@@ -32,26 +52,19 @@ export const poseTable = {
     },
     contrapposto: {
       entries: [`contrapposto`],
-      visibility: {
-        frontHead: true,
-        sideHead: true,
-        backHead: true,
-        frontBreast: true,
-        sideBreast: true,
-        backBreast: true,
-        frontMidriff: true,
-        sideMidriff: true,
-        backMidriff: true,
-        frontHipAndThigh: true,
-        sideHipAndThigh: true,
-        backHipAndThigh: true,
-        foot: true,
-        wristAndHand: true,
-        aroundBody: true,
-      },
+      visibility: preset.frontCowboyShot,
     },
     "hands-on-own-hips": {
       entries: [`cowboy shot`, `hands on own hips`, `looking at viewer`],
+      visibility: preset.frontCowboyShot,
+    },
+    "twisted-torso": {
+      entries: [
+        `cowboy shot`,
+        `twisted torso`,
+        `looking back`,
+        `looking at viewer`,
+      ],
       visibility: {
         frontHead: true,
         sideHead: true,
@@ -59,14 +72,14 @@ export const poseTable = {
         frontBreast: true,
         sideBreast: true,
         backBreast: false,
-        frontMidriff: true,
+        frontMidriff: false,
         sideMidriff: true,
-        backMidriff: false,
-        frontHipAndThigh: true,
+        backMidriff: true,
+        frontHipAndThigh: false,
         sideHipAndThigh: true,
-        backHipAndThigh: false,
+        backHipAndThigh: true,
         foot: false,
-        wristAndHand: true,
+        wristAndHand: false,
         aroundBody: true,
       },
     },

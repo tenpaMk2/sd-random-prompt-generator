@@ -179,6 +179,7 @@ const allHeadFeatureTags = [
   `fang`,
   `pointy ears`,
   `forehead`,
+  `tress ribbon`,
 ] as const satisfies readonly string[];
 type HeadFeatureTag = (typeof allHeadFeatureTags)[number];
 
