@@ -87,7 +87,7 @@ const displayProgress = async (progress: number, eta: number) => {
   const barPole = `=`.repeat(Math.floor(progress * 20));
   const barContent = `${barPole}>`.padEnd(20, ` `);
   const bar = `[${barContent}]`;
-  const percentage = `${Math.floor(progress * 100)}`.padStart(3, ``);
+  const percentage = `${Math.floor(progress * 100)}`.padStart(3, ` `);
   console.log(`${etaSecond} s: ${bar} ${percentage}%`);
 };
 
