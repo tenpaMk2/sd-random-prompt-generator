@@ -7,6 +7,7 @@ import { CharacterNameTag } from "../tag-defines/character-name.mjs";
 import { EmotionTag } from "../tag-defines/emotion.mjs";
 import { LoraCharacterTriggerWordsTag } from "../tag-defines/lora.mjs";
 import { SeriesNameTag } from "../tag-defines/series-name.mjs";
+import { sasuoniMitsuiHonokaEft } from "./sasuoni/sasuoni-mitsui-honoka-eft.mjs";
 import { sasuoniSaegusaMayumiEft } from "./sasuoni/sasuoni-saegusa-mayumi-eft.mjs";
 import { sasuoniShibaMiyukiEft } from "./sasuoni/sasuoni-shiba-miyuki-eft.mjs";
 
@@ -47,6 +48,7 @@ export type CharacterDefine = Readonly<{
 export const characterTable = {
   "sasuoni-shiba-miyuki-eft": sasuoniShibaMiyukiEft(),
   "sasuoni-saegusa-mayumi-eft": sasuoniSaegusaMayumiEft(),
+  "sasuoni-mitsui-honoka-eft": sasuoniMitsuiHonokaEft(),
 } as const satisfies {
   [k: string]: CharacterDefine;
 };
