@@ -1,4 +1,5 @@
 import { MachineSetting, Setting } from "./setting-define.mjs";
+import { outfitsPreset } from "./setting-preset.mjs";
 
 export const machineSetting = {
   ip: `192.168.10.3`,
@@ -11,7 +12,7 @@ export const settings = [
     // TODO: Adaptive negative prompts architecture.
     // TODO: presets.
     // TODO: setting generator for all characters and the fix outfit.
-    fixedPrompt: `1girl, solo, masterpiece, best quality,\n`,
+    fixedPrompt: `1girl, solo, masterpiece, best quality, megami magazine,\n`,
     optionsBodyJson: {
       sd_model_checkpoint: `vividorangemix_v10.safetensors [ff4725f91c]`,
       sd_vae: `blessed2.vae.safetensors`,
@@ -22,7 +23,7 @@ export const settings = [
       width: 512,
       height: 768,
       denoising_strength: 0.4,
-      enable_hr: false,
+      enable_hr: true,
       hr_scale: 2.5,
       hr_upscaler: "4x-AnimeSharp",
       hr_second_pass_steps: 30,
@@ -46,32 +47,12 @@ export const settings = [
               },
             ],
           },
-          {
-            key: `bikini`,
-            weight: 10,
-            backgrounds: [
-              {
-                type: `from-horizontal`,
-                key: `ocean`,
-                poses: [
-                  { key: `portrait` },
-                  { key: `hands-on-own-hips` },
-                  { key: `contrapposto` },
-                  { key: `twisted-torso` },
-                ],
-              },
-              {
-                type: `from-horizontal`,
-                key: `ocean-beach`,
-                poses: [
-                  { key: `hands-on-own-hips` },
-                  { key: `contrapposto` },
-                  { key: `twisted-torso` },
-                ],
-              },
-            ],
-          },
+          ...outfitsPreset.usual,
         ],
+      },
+      {
+        key: `sasuoni-saegusa-mayumi-eft`,
+        outfits: [...outfitsPreset.usual],
       },
     ],
   },
