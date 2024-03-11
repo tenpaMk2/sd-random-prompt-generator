@@ -54,6 +54,10 @@ export const settings = [
         key: `sasuoni-saegusa-mayumi-eft`,
         outfits: [...outfitsPreset.usual],
       },
+      {
+        key: `sasuoni-mitsui-honoka-eft`,
+        outfits: [...outfitsPreset.usual],
+      },
     ],
   },
 ] as const satisfies Setting[];
