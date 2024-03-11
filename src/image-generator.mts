@@ -73,7 +73,8 @@ const generateRoot = async (
   // console.table(await optionsResponse.json());
   // console.timeEnd("Option setting elapsed time");
 
-  for (let i = 0; i < 300; i++) {
+  // for (let i = 0; i < 1000; i++) {
+  while (true) {
     // console.time("Each generation elapsed time");
     await generateEachImage(
       root.fixedPrompt,
