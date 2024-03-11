@@ -706,6 +706,7 @@ export const tagVisibilities = {
   "partially unbuttoned": visibleType.bowtie,
   "partially undressed": visibleType.dress,
   nsfw: visibleType.all,
+  "shiny skin": visibleType.all,
 
   // Outfit
   "cleavage cutout": visibleType.cleavage,

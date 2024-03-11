@@ -22,6 +22,7 @@ const allExposureTags = [
   `partially unbuttoned`,
   `partially undressed`,
   `nsfw`,
+  `shiny skin`,
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 

@@ -27,8 +27,10 @@ export const bikini = () =>
       `shoulder blades`,
       `navel`,
       `bare arms`,
+      [{ entries: [`bikini skirt`] }, { entries: [] }],
       `bare legs`,
       `barefoot`,
+      `shiny skin`,
     ],
     specialVisibility: {
       armpits: true,
