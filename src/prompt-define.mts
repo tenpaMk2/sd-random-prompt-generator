@@ -219,7 +219,7 @@ export class Pattern<T extends Tag> {
   }
 
   toPrompt() {
-    return this.simpleTokens.join(`, `);
+    return this.simpleTokens.join(`,\n`);
   }
 
   toString() {
