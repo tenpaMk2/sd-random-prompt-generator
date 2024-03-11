@@ -9,6 +9,23 @@ type PoseDefine = {
 };
 
 const preset = {
+  frontPortrait: {
+    frontHead: true,
+    sideHead: true,
+    backHead: false,
+    frontBreast: true,
+    sideBreast: true,
+    backBreast: false,
+    frontMidriff: true,
+    sideMidriff: true,
+    backMidriff: false,
+    frontHipAndThigh: false,
+    sideHipAndThigh: false,
+    backHipAndThigh: false,
+    foot: false,
+    wristAndHand: false,
+    aroundBody: false,
+  },
   frontCowboyShot: {
     frontHead: true,
     sideHead: true,
@@ -30,25 +47,9 @@ const preset = {
 
 export const poseTable = {
   "from-horizontal": {
-    "upper-body": {
-      entries: [`upper body`],
-      visibility: {
-        frontHead: true,
-        sideHead: true,
-        backHead: true,
-        frontBreast: true,
-        sideBreast: true,
-        backBreast: true,
-        frontMidriff: true,
-        sideMidriff: true,
-        backMidriff: true,
-        frontHipAndThigh: true,
-        sideHipAndThigh: true,
-        backHipAndThigh: true,
-        foot: true,
-        wristAndHand: true,
-        aroundBody: true,
-      },
+    portrait: {
+      entries: [`portrait`, `looking at viewer`],
+      visibility: preset.frontPortrait,
     },
     contrapposto: {
       entries: [`contrapposto`],

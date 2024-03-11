@@ -54,6 +54,7 @@ export const settings = [
                 type: `from-horizontal`,
                 key: `ocean`,
                 poses: [
+                  { key: `portrait` },
                   { key: `hands-on-own-hips` },
                   { key: `contrapposto` },
                   { key: `twisted-torso` },
