@@ -36,7 +36,7 @@ export const bikini = () =>
       armpits: true,
       hangingBreasts: true,
       tautClothes: false,
-      cleavage: true,
+      cleavage: true, // TODO: Consider small breasts.
       sideboob: true,
       backboob: true,
       underboobLevel: `only from below`,
