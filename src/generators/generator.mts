@@ -23,13 +23,12 @@ import {
   visibilityKeys,
 } from "../tag-defines/visibility.mjs";
 
-const extractByVisibility = (
-  pattern: Pattern<CharacterFeatureTag | OutfitAndExposureTag>,
+const separateByVisibility = <
+  T extends CharacterFeatureTag | OutfitAndExposureTag,
+>(
+  pattern: Pattern<T>,
 ) => {
-  const filter = (
-    tag: CharacterFeatureTag | OutfitAndExposureTag | LoraNameTag,
-    part: VisibilityKeys,
-  ) => {
+  const filter = (tag: T | LoraNameTag, part: VisibilityKeys) => {
     if (isLoraNameTag(tag)) {
       return true;
     } else {
@@ -44,9 +43,30 @@ const extractByVisibility = (
     }),
     {},
   ) as {
-    [k in VisibilityKeys]: Pattern<CharacterFeatureTag | OutfitAndExposureTag>;
+    [k in VisibilityKeys]: Pattern<T>;
   };
   return result;
+};
+
+const extractVisible = <T extends CharacterFeatureTag | OutfitAndExposureTag>(
+  patternCollection: PatternCollection<T>,
+  parts: VisibilityKeys[],
+) => {
+  const newPatterns = patternCollection.patterns.map((pattern) => {
+    const v = separateByVisibility<T>(pattern);
+    const specifiedPatterns = parts.map((part) => v[part]);
+    const concattedPattern = specifiedPatterns.reduce(
+      (previous, current) => previous.concat(current.simpleTokens),
+      new Pattern<T>({
+        simpleTokens: [],
+        probability: pattern.probability,
+      }),
+    );
+
+    return concattedPattern;
+  });
+
+  return new PatternCollection<T>(newPatterns);
 };
 
 const generatePatternCollection = <T extends Tag>(
@@ -74,7 +94,6 @@ const resolve = (
   const characterFeature = generatePatternCollection<CharacterFeatureTag>(
     characterData.character.characterFeatureEntries,
   );
-  // TODO: extractByVisibility(characterFeaturePattern);
   const breastSize = generatePatternCollection<BreastSizeTag>([
     characterData.character.breastSize,
   ]);
@@ -96,18 +115,30 @@ const resolve = (
   );
 
   const pose = generatePatternCollection<PoseTag>(poseData.pose.entries);
+  const poseVisibility = visibilityKeys.filter(
+    (key) => poseData.pose.visibility[key],
+  );
+
+  const visibleFeatures = extractVisible<CharacterFeatureTag>(
+    characterFeature,
+    poseVisibility,
+  );
+  const visibleOutfits = extractVisible<OutfitAndExposureTag>(
+    outfitAndExposure,
+    poseVisibility,
+  );
 
   return PatternCollection.makeCombination<Tag>([
     seriesName,
     characterName,
     loraCharacter,
     loraCharacterTriggerWord,
-    characterFeature,
+    visibleFeatures,
     breastSize,
     emotion,
     loraOutfit,
     loraOutfitTriggerWord,
-    outfitAndExposure,
+    visibleOutfits,
     background,
     pose,
   ]);
