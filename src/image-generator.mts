@@ -44,7 +44,9 @@ const generateEachImage = async (
       body: JSON.stringify(json),
     },
   );
-  console.log((await generationResponse.json()).info);
+  const resultJson = await generationResponse.json();
+  const infoJson = JSON.parse(resultJson.info);
+  console.log(infoJson);
 };
 
 const generateRoot = async (
