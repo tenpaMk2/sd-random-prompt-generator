@@ -18,7 +18,7 @@ export const sasuoniEftFirstHighSchoolUniform = () =>
       `cropped jacket`,
       `open jacket`,
       `long sleeves`,
-      `pantyhose`,
+      `pantyhose`, // TODO: Support variations of thighighs.
       `boots`,
       `black footwear`,
     ],

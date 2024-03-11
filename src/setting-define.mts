@@ -30,7 +30,7 @@ export type BackgroundSetting<T extends BackgroundType> = Readonly<{
   }[];
 }>;
 
-type OutfitSetting = Readonly<{
+export type OutfitSetting = Readonly<{
   key: OutfitKey;
   weight?: number;
   backgrounds: (
@@ -39,7 +39,7 @@ type OutfitSetting = Readonly<{
   )[];
 }>;
 
-type CharacterSetting = Readonly<{
+export type CharacterSetting = Readonly<{
   key: CharacterKey;
   weight?: number;
   outfits: OutfitSetting[];

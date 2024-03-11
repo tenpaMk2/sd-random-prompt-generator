@@ -92,7 +92,7 @@ const generateSpecialVisibilityPatternCollection = (
     entries.push(`hanging breasts`);
   }
   if (outfit.cleavage && pose.cleavage) {
-    entries.push(`cleavage`);
+    entries.push(`cleavage`); // TODO: Consider breast size.
   }
   if (outfit.sideboob && pose.sideboob) {
     entries.push(`sideboob`);

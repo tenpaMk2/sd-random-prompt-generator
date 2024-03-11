@@ -1,4 +1,4 @@
-import { CharacterDefine } from "./resolver.mjs";
+import { CharacterDefine } from "../resolver.mjs";
 
 export const sasuoniShibaMiyukiEft = () =>
   ({
