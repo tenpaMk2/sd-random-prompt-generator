@@ -29,26 +29,17 @@ export const settings = [
       hr_second_pass_steps: 30,
     },
     characters: [
+      // {
+      //   key: `new-game-aoba-narugo1992`,
+      //   outfits: [...outfitsPreset.usual],
+      // },
+      // {
+      //   key: `new-game-hifumi-narugo1992`,
+      //   outfits: [...outfitsPreset.usual],
+      // },
       {
         key: `sasuoni-shiba-miyuki-eft`,
-        outfits: [
-          {
-            key: `sasuoni-eft-first-high-school-uniform`,
-            backgrounds: [
-              {
-                type: `from-horizontal`,
-                key: `cafe`,
-                poses: [{ key: `hands-on-own-hips` }],
-              },
-              {
-                type: `from-below`,
-                key: `blue-sky`,
-                poses: [{ key: `upper-body` }],
-              },
-            ],
-          },
-          ...outfitsPreset.usual,
-        ],
+        outfits: [...outfitsPreset.usual],
       },
       {
         key: `sasuoni-saegusa-mayumi-eft`,
@@ -56,6 +47,26 @@ export const settings = [
       },
       {
         key: `sasuoni-mitsui-honoka-eft`,
+        outfits: [...outfitsPreset.usual],
+      },
+      {
+        key: `to-love-ru-lala-eft`,
+        outfits: [...outfitsPreset.usual],
+      },
+      {
+        key: `to-love-ru-mea-eft`,
+        outfits: [...outfitsPreset.usual],
+      },
+      {
+        key: `to-love-ru-momo-eft`,
+        outfits: [...outfitsPreset.usual],
+      },
+      {
+        key: `to-love-ru-yami-eft`,
+        outfits: [...outfitsPreset.usual],
+      },
+      {
+        key: `to-love-ru-yui-eft`,
         outfits: [...outfitsPreset.usual],
       },
     ],
