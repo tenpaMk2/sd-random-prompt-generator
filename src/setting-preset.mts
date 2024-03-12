@@ -37,27 +37,47 @@ export const outfitsPreset = {
     //     },
     //   ],
     // },
+    // {
+    //   key: `micro-bikini`,
+    //   backgrounds: [
+    //     {
+    //       type: `from-horizontal`,
+    //       key: `ocean`,
+    //       poses: [
+    //         { key: `portrait` },
+    //         { key: `contrapposto` },
+    //         { key: `hands-on-own-hips` },
+    //         { key: `v` },
+    //         { key: `double-v` },
+    //         { key: `arms-up` },
+    //         { key: `heart-hands` },
+    //         { key: `cowboy-shot-from-side` },
+    //         { key: `twisted-torso` },
+    //       ],
+    //     },
+    //     {
+    //       type: `from-horizontal`,
+    //       key: `ocean-beach`,
+    //       poses: [
+    //         { key: `portrait` },
+    //         { key: `contrapposto` },
+    //         { key: `hands-on-own-hips` },
+    //         { key: `v` },
+    //         { key: `double-v` },
+    //         { key: `arms-up` },
+    //         { key: `heart-hands` },
+    //         { key: `cowboy-shot-from-side` },
+    //         { key: `twisted-torso` },
+    //       ],
+    //     },
+    //   ],
+    // },
     {
-      key: `micro-bikini`,
+      key: `maid-bikini`,
       backgrounds: [
         {
           type: `from-horizontal`,
-          key: `ocean`,
-          poses: [
-            { key: `portrait` },
-            { key: `contrapposto` },
-            { key: `hands-on-own-hips` },
-            { key: `v` },
-            { key: `double-v` },
-            { key: `arms-up` },
-            { key: `heart-hands` },
-            { key: `cowboy-shot-from-side` },
-            { key: `twisted-torso` },
-          ],
-        },
-        {
-          type: `from-horizontal`,
-          key: `ocean-beach`,
+          key: `cafe-window`,
           poses: [
             { key: `portrait` },
             { key: `contrapposto` },

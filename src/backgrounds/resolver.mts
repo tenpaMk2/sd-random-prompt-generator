@@ -12,6 +12,10 @@ export const backgroundTable = {
   "from-horizontal": {
     indoors: { entries: [`indoors`], removeShoes: false },
     cafe: { entries: [`indoors`, `cafe`], removeShoes: false },
+    "cafe-window": {
+      entries: [`indoors`, `cafe`, `window`],
+      removeShoes: false,
+    },
     ocean: {
       entries: [`outdoors`, `ocean`, `wet`, `blue sky`],
       removeShoes: true,
@@ -23,6 +27,10 @@ export const backgroundTable = {
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
+    "cafe-ceiling": {
+      entries: [`indoors`, `cafe`, `ceiling`],
+      removeShoes: false,
+    },
     ceiling: { entries: [`indoors`, `ceiling`], removeShoes: false },
     "blue-sky": { entries: [`outdoors`, `blue sky`], removeShoes: false },
   },
