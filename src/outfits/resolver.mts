@@ -4,6 +4,7 @@ import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
 import { bikini } from "./common/bikini.mjs";
 import { maidBikini } from "./common/maid-bikini.mjs";
 import { microBikini } from "./common/micro-bikini.mjs";
+import { revealingMiko } from "./common/revealing-miko.mjs";
 import { sasuoniEftFirstHighSchoolUniform } from "./sasuoni-eft/first-high-school-uniform.mjs";
 
 /**
@@ -94,6 +95,7 @@ export const outfitTable = {
   bikini: bikini(),
   "maid-bikini": maidBikini(),
   "micro-bikini": microBikini(),
+  "revealing-miko": revealingMiko(),
   "sasuoni-eft-first-high-school-uniform": sasuoniEftFirstHighSchoolUniform(),
 } as const satisfies {
   [k: string]: OutfitDefine;

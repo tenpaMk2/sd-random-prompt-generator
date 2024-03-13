@@ -329,6 +329,11 @@ const allOutfitTags = [
   `black necktie`,
   `short necktie`,
   `cropped jacket`,
+  `miko`,
+  `nontraditional miko`,
+  `hakama`,
+  `hakama skirt`,
+  `hip vent`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

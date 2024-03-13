@@ -72,12 +72,32 @@ export const outfitsPreset = {
     //     },
     //   ],
     // },
+    // {
+    //   key: `maid-bikini`,
+    //   backgrounds: [
+    //     {
+    //       type: `from-horizontal`,
+    //       key: `cafe-window`,
+    //       poses: [
+    //         { key: `portrait` },
+    //         { key: `contrapposto` },
+    //         { key: `hands-on-own-hips` },
+    //         { key: `v` },
+    //         { key: `double-v` },
+    //         { key: `arms-up` },
+    //         { key: `heart-hands` },
+    //         { key: `cowboy-shot-from-side` },
+    //         { key: `twisted-torso` },
+    //       ],
+    //     },
+    //   ],
+    // },
     {
-      key: `maid-bikini`,
+      key: `revealing-miko`,
       backgrounds: [
         {
           type: `from-horizontal`,
-          key: `cafe-window`,
+          key: `colorful-backgrounds`,
           poses: [
             { key: `portrait` },
             { key: `contrapposto` },

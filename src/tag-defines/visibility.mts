@@ -232,6 +232,10 @@ export const visibleType = {
     sideMidriff: true,
     backMidriff: true,
   },
+  "side hip": {
+    ...invisible,
+    sideHipAndThigh: true,
+  },
 } as const satisfies { [k: string]: Visibility };
 
 const allEyesColorVisibilities = {
@@ -927,6 +931,11 @@ export const tagVisibilities = {
   "black necktie": visibleType.bowtie,
   "short necktie": visibleType.bowtie,
   "cropped jacket": visibleType.shirt,
+  miko: visibleType.dress,
+  "nontraditional miko": visibleType.dress,
+  hakama: visibleType.shirt,
+  "hakama skirt": visibleType.skirt,
+  "hip vent": visibleType["side hip"],
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

@@ -24,6 +24,18 @@ export const backgroundTable = {
       entries: [`outdoors`, `ocean`, `beach`, `blue sky`],
       removeShoes: true,
     },
+    "colorful-backgrounds": {
+      entries: [
+        `simple background`,
+        [
+          { entries: [`white background`] },
+          { entries: [`pink background`] },
+          { entries: [`blue background`] },
+          { entries: [`red background`] },
+        ],
+      ],
+      removeShoes: false,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
