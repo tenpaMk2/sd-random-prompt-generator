@@ -3,11 +3,12 @@ import { PatternCollection } from "./prompt-define.mjs";
 import { Setting } from "./setting-define.mjs";
 import { machineSetting } from "./setting.mjs";
 import { Tag } from "./tag-defines/all.mjs";
+import { LoraNameTag } from "./tag-defines/lora.mjs";
 
 const generateEachImage = async (
   fixedPrompt: string,
   txt2imgBodyJson: Setting["txt2imgBodyJson"],
-  patternCollection: PatternCollection<Tag>,
+  patternCollection: PatternCollection<Tag | LoraNameTag>,
 ) => {
   const json = {
     prompt: fixedPrompt + patternCollection.pickOne().toPrompt(),

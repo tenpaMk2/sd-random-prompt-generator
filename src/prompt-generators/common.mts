@@ -4,7 +4,7 @@ import {
   PoseUnderboobLevelOrder,
 } from "../poses/resolver.mjs";
 import { GenerationDatas } from "../prepare.mjs";
-import { Pattern, PatternCollection, PromptDefine } from "../prompt-define.mjs";
+import { Pattern, PatternCollection } from "../prompt-define.mjs";
 import { Tag } from "../tag-defines/all.mjs";
 import { BackgroundTag } from "../tag-defines/background.mjs";
 import {
@@ -62,9 +62,9 @@ const extractVisible = <T extends CharacterFeatureTag | OutfitAndExposureTag>(
     const v = separateByVisibility<T>(pattern);
     const specifiedPatterns = parts.map((part) => v[part]);
     const concattedPattern = specifiedPatterns.reduce(
-      (previous, current) => previous.concat(current.simpleTokens),
+      (previous, current) => previous.concat(current.tokens),
       new Pattern<T>({
-        simpleTokens: [],
+        tokens: [],
         probability: pattern.probability,
       }),
     );
@@ -74,10 +74,6 @@ const extractVisible = <T extends CharacterFeatureTag | OutfitAndExposureTag>(
 
   return new PatternCollection<T>(newPatterns);
 };
-
-const generatePatternCollection = <T extends Tag>(
-  entries: ConstructorParameters<typeof PromptDefine<T>>[0],
-) => new PromptDefine<T>(entries).convertToPatternCollection();
 
 const generateSpecialVisibilityPatternCollection = (
   outfit: OutfitDefine["specialVisibility"],
@@ -114,7 +110,7 @@ const generateSpecialVisibilityPatternCollection = (
     entries.push(`thigh gap`);
   }
 
-  return generatePatternCollection(entries);
+  return PatternCollection.create<SpecialTag>(entries);
 };
 
 const resolve = (
@@ -124,41 +120,45 @@ const resolve = (
   backgroundData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
   poseData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
 ) => {
-  const loraCharacter = generatePatternCollection(characterData.character.lora);
+  const loraCharacter = PatternCollection.createLora(
+    characterData.character.lora,
+  );
   const loraCharacterTriggerWord =
-    generatePatternCollection<LoraCharacterTriggerWordsTag>(
+    PatternCollection.create<LoraCharacterTriggerWordsTag>(
       characterData.character.loraCharacterTriggerWordEntries,
     );
-  const seriesName = generatePatternCollection<SeriesNameTag>(
+  const seriesName = PatternCollection.create<SeriesNameTag>(
     characterData.character.seriesNameEntries,
   );
-  const characterName = generatePatternCollection<CharacterNameTag>(
+  const characterName = PatternCollection.create<CharacterNameTag>(
     characterData.character.characterNameEntries,
   );
-  const characterFeature = generatePatternCollection<CharacterFeatureTag>(
+  const characterFeature = PatternCollection.create<CharacterFeatureTag>(
     characterData.character.characterFeatureEntries,
   );
-  const breastSize = generatePatternCollection<BreastSizeTag>([
+  const breastSize = PatternCollection.create<BreastSizeTag>([
     characterData.character.breastSize,
   ]);
-  const emotion = generatePatternCollection<EmotionTag>(
+  const emotion = PatternCollection.create<EmotionTag>(
     characterData.character.emotionEntries,
   );
 
-  const loraOutfit = generatePatternCollection(outfitData.outfit.lora ?? []);
+  const loraOutfit = PatternCollection.createLora(
+    outfitData.outfit.lora ?? null,
+  );
   const loraOutfitTriggerWord =
-    generatePatternCollection<LoraOutfitTriggerWordsTag>(
+    PatternCollection.create<LoraOutfitTriggerWordsTag>(
       outfitData.outfit.loraOutfitTriggerWordEntries,
     );
-  const outfitAndExposure = generatePatternCollection<OutfitAndExposureTag>(
+  const outfitAndExposure = PatternCollection.create<OutfitAndExposureTag>(
     outfitData.outfit.outfitAndExposureEntries,
   );
 
-  const background = generatePatternCollection<BackgroundTag>(
+  const background = PatternCollection.create<BackgroundTag>(
     backgroundData.background.entries,
   );
 
-  const pose = generatePatternCollection<PoseTag>(poseData.pose.entries);
+  const pose = PatternCollection.create<PoseTag>(poseData.pose.entries);
   const poseVisibility = visibilityKeys.filter(
     (key) => poseData.pose.visibility[key],
   );
@@ -177,7 +177,7 @@ const resolve = (
     poseData.pose.specialVisibility,
   );
 
-  return PatternCollection.makeCombination<Tag>([
+  return PatternCollection.combine<Tag | LoraNameTag>([
     seriesName,
     characterName,
     loraCharacter,
@@ -232,7 +232,7 @@ const generateBackgroundPatternCollection = (
   const backgroundPatternCollection = PatternCollection.joinAll(
     poses.map(({ patternCollection, weight }) => ({
       patternCollection,
-      weight,
+      probability: weight,
     })),
   );
 
@@ -261,7 +261,7 @@ const generateOutfitPatternCollection = (
   const outfitPatternCollection = PatternCollection.joinAll(
     backgrounds.map(({ patternCollection, weight }) => ({
       patternCollection,
-      weight,
+      probability: weight,
     })),
   );
 
@@ -284,7 +284,7 @@ const generateCharacterPatternCollection = (
   const characterPatternCollection = PatternCollection.joinAll(
     outfits.map(({ patternCollection, weight }) => ({
       patternCollection,
-      weight,
+      probability: weight,
     })),
   );
 
@@ -306,7 +306,7 @@ const generateRootPatternCollection = (
   const rootPatternCollection = PatternCollection.joinAll(
     characters.map(({ patternCollection, weight }) => ({
       patternCollection,
-      weight,
+      probability: weight,
     })),
   );
 

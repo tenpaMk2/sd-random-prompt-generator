@@ -1,4 +1,4 @@
-import { Entry } from "../prompt-define.mjs";
+import { NormalEntry } from "../prompt-define.mjs";
 import { EmotionTag } from "../tag-defines/emotion.mjs";
 
 const emotionPresetPiece = {
@@ -23,7 +23,7 @@ const emotionPresetPiece = {
     `one eye closed`,
     [{ entries: [`;\\)`, `closed mouth`] }, { entries: [`;o`, `open mouth`] }],
   ],
-} as const satisfies { [k in string]: Entry<EmotionTag>[] };
+} as const satisfies { [k in string]: NormalEntry<EmotionTag>[] };
 
 export const emotionPreset = {
   cute: [
@@ -59,4 +59,4 @@ export const emotionPreset = {
     ],
   ],
   // TODO: genki, mukuchi, tsundere
-} as const satisfies { [k in string]: Entry<EmotionTag>[] };
+} as const satisfies { [k in string]: NormalEntry<EmotionTag>[] };

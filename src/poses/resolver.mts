@@ -1,6 +1,6 @@
 import { BackgroundType } from "../backgrounds/resolver.mjs";
 import { OutfitDefine } from "../outfits/resolver.mjs";
-import { Entry } from "../prompt-define.mjs";
+import { NormalEntry } from "../prompt-define.mjs";
 import { PoseTag } from "../tag-defines/pose.mjs";
 import { Visibility } from "../tag-defines/visibility.mjs";
 
@@ -21,7 +21,7 @@ export const PoseUnderboobLevelOrder = {
 };
 
 type PoseDefine = {
-  entries: Entry<PoseTag>[];
+  entries: NormalEntry<PoseTag>[];
   visibility: Visibility;
   specialVisibility: PoseSpecialVisibility;
 };

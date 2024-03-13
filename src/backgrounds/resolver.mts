@@ -1,10 +1,10 @@
-import { Entry } from "../prompt-define.mjs";
+import { NormalEntry } from "../prompt-define.mjs";
 import { BackgroundTag } from "../tag-defines/background.mjs";
 
 export type BackgroundType = `from-horizontal` | `from-below`;
 
 type BackgroundDefine = {
-  entries: Entry<BackgroundTag>[];
+  entries: NormalEntry<BackgroundTag>[];
   removeShoes: boolean;
 };
 

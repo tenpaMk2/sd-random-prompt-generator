@@ -1,4 +1,4 @@
-import { LoraEntry, Entry } from "../prompt-define.mjs";
+import { LoraEntry, NormalEntry } from "../prompt-define.mjs";
 import {
   BreastSizeTag,
   CharacterFeatureTag,
@@ -29,19 +29,19 @@ export type CharacterDefine = Readonly<{
   /**
    * Lora character trigger words define.
    */
-  loraCharacterTriggerWordEntries: Entry<LoraCharacterTriggerWordsTag>[];
+  loraCharacterTriggerWordEntries: NormalEntry<LoraCharacterTriggerWordsTag>[];
   /**
    * Series name.
    */
-  seriesNameEntries: Entry<SeriesNameTag>[];
+  seriesNameEntries: NormalEntry<SeriesNameTag>[];
   /**
    * Character name.
    */
-  characterNameEntries: Entry<CharacterNameTag>[];
+  characterNameEntries: NormalEntry<CharacterNameTag>[];
   /**
    * Character feature defines.
    */
-  characterFeatureEntries: Entry<CharacterFeatureTag>[];
+  characterFeatureEntries: NormalEntry<CharacterFeatureTag>[];
   /**
    * Breast size define.
    */
@@ -49,7 +49,7 @@ export type CharacterDefine = Readonly<{
   /**
    * Emotion defines.
    */
-  emotionEntries: Entry<EmotionTag>[];
+  emotionEntries: NormalEntry<EmotionTag>[];
 }>;
 
 export const characterTable = {

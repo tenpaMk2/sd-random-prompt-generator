@@ -3,10 +3,11 @@ import { join } from "node:path";
 import { generatePatterns } from "./prompt-generators/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
+import { LoraNameTag } from "./tag-defines/lora.mjs";
 
 type Tree = {
   key: string;
-  patternCollection: PatternCollection<Tag>;
+  patternCollection: PatternCollection<Tag | LoraNameTag>;
   children: Tree[];
 };
 
