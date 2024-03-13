@@ -20,7 +20,10 @@ const exportRecursively = async (
   await mkdir(parentDir, { recursive: true });
 
   const promises = [
-    writeFile(join(parentDir, `${key}.txt`), patternCollection.toString()),
+    writeFile(
+      join(parentDir, `${key}.txt`),
+      patternCollection.pickAllPrompts().join(`\n`),
+    ),
     ...children.map(async (child) =>
       exportRecursively(child, join(parentDir, child.key)),
     ),

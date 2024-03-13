@@ -216,16 +216,20 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
     return new PatternCollection<T>(patterns);
   }
 
-  pickOne() {
+  pickOnePrompt() {
     if (this.patterns.length === 0) return new Pattern<T>({ tokens: [] });
 
     const random = Math.random();
     let sum = 0;
     for (const pattern of this.patterns) {
       sum += pattern.probability;
-      if (random <= sum) return pattern;
+      if (random <= sum) return pattern.toPrompt();
     }
     throw new Error(`Unexpected error: No item was picked.`);
+  }
+
+  pickAllPrompts() {
+    return this.patterns.map((p) => p.toPrompt());
   }
 }
 

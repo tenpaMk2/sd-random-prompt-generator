@@ -11,7 +11,7 @@ const generateEachImage = async (
   patternCollection: PatternCollection<Tag | LoraNameTag>,
 ) => {
   const json = {
-    prompt: fixedPrompt + patternCollection.pickOne().toPrompt(),
+    prompt: fixedPrompt + patternCollection.pickOnePrompt(),
     seed: -1,
     batch_size: 1,
     steps: 40,

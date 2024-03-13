@@ -17,6 +17,6 @@ console.log(p);
 await exportAsDynamicPrompts(p);
 await exportAsCSV(join("outputs", "visibility.csv"));
 
-console.log(p[0].patternCollection.pickOne().toPrompt());
+console.log(p[0].patternCollection.pickOnePrompt());
 
 generateImage(p);
