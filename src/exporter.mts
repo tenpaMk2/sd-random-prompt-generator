@@ -21,7 +21,7 @@ const exportRecursively = async (
 
   const promises = [
     writeFile(join(parentDir, `${key}.txt`), patternCollection.toString()),
-    children.map((child) =>
+    ...children.map(async (child) =>
       exportRecursively(child, join(parentDir, child.key)),
     ),
   ];
@@ -39,5 +39,5 @@ export const exportAsDynamicPrompts = async (
     exportRecursively(patternData, join(outputsDir, patternData.key)),
   );
 
-  return Promise.all(promises);
+  return await Promise.all(promises);
 };
