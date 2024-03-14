@@ -20,5 +20,5 @@ export const sasuoniShizukuEft = () =>
       `sidelocks`,
     ],
     breastSize: `small breasts`,
-    emotionEntries: emotionPreset.serious, // TODO: mukuchi
+    emotionEntries: emotionPreset.deadpanned,
   }) as const satisfies CharacterDefine;

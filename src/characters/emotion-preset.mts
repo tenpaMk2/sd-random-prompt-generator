@@ -17,12 +17,14 @@ const emotionPresetPiece = {
   seductiveSmile: [`blush`, `seductive smile`],
   naughtyFace: [`blush`, `naughty face`, `smile`, `half-closed eyes`],
   scowl: [`blush`, `nose blush`, `scowl`],
+  angry: [`blush`, `angry`],
   oneEyeClosed: [
     `blush`,
     `smile`,
     `one eye closed`,
     [{ entries: [`;\\)`, `closed mouth`] }, { entries: [`;o`, `open mouth`] }],
   ],
+  doyagao: [`blush`, `doyagao`, `grin`],
 } as const satisfies { [k in string]: NormalEntry<EmotionTag>[] };
 
 export const emotionPreset = {
@@ -41,6 +43,7 @@ export const emotionPreset = {
       { entries: emotionPresetPiece.seductiveSmile, probability: 3 },
       { entries: emotionPresetPiece.naughtyFace },
       { entries: emotionPresetPiece.oneEyeClosed, probability: 2 },
+      { entries: emotionPresetPiece.doyagao },
     ],
   ],
   serious: [
@@ -56,6 +59,37 @@ export const emotionPreset = {
       { entries: emotionPresetPiece.seductiveSmile, probability: 3 },
       { entries: emotionPresetPiece.naughtyFace },
       { entries: emotionPresetPiece.scowl },
+    ],
+  ],
+  uptight: [
+    [
+      { entries: emotionPresetPiece.lightSmile, probability: 2 },
+      { entries: emotionPresetPiece.smilePartedLips },
+      { entries: emotionPresetPiece.smileOpenMouth },
+      { entries: emotionPresetPiece.smileHalfClosedEyes },
+      { entries: emotionPresetPiece.expressionless },
+      { entries: emotionPresetPiece.surprised },
+      { entries: emotionPresetPiece.embarrassed },
+      { entries: emotionPresetPiece.nervous },
+      { entries: emotionPresetPiece.flustered },
+      { entries: emotionPresetPiece.seductiveSmile, probability: 3 },
+      { entries: emotionPresetPiece.naughtyFace },
+      { entries: emotionPresetPiece.scowl, probability: 3 },
+      { entries: emotionPresetPiece.angry },
+    ],
+  ],
+  deadpanned: [
+    [
+      { entries: emotionPresetPiece.lightSmile, probability: 2 },
+      { entries: emotionPresetPiece.smilePartedLips },
+      { entries: emotionPresetPiece.smileOpenMouth },
+      { entries: emotionPresetPiece.smileHalfClosedEyes, probability: 2 },
+      { entries: emotionPresetPiece.expressionless, probability: 3 },
+      { entries: emotionPresetPiece.embarrassed },
+      { entries: emotionPresetPiece.nervous },
+      { entries: emotionPresetPiece.flustered },
+      { entries: emotionPresetPiece.seductiveSmile, probability: 3 },
+      { entries: emotionPresetPiece.naughtyFace },
     ],
   ],
   // TODO: genki, mukuchi, tsundere
