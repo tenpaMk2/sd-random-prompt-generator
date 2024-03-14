@@ -53,6 +53,7 @@ export type CharacterDefine = Readonly<{
   lora: LoraEntry | null;
   /**
    * Lora character trigger words define.
+   * If the trigger words is duplicate with the character name, it should not be set.
    */
   loraCharacterTriggerWordEntries: NormalEntry<LoraCharacterTriggerWordsTag>[];
   /**

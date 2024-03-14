@@ -7,7 +7,7 @@ export const toLoveRuLalaEft = () =>
       tag: `lala-loveru`,
       probabilityAndWeights: [{ probability: 1, weight: 0.8 }],
     },
-    loraCharacterTriggerWordEntries: [], // TODO: Should set `lala satalin deviluke` ?
+    loraCharacterTriggerWordEntries: [],
     seriesNameEntries: [`to love-ru`, `to love-ru darkness`],
     characterNameEntries: [`lala satalin deviluke`],
     characterFeatureEntries: [
