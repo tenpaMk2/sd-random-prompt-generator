@@ -282,6 +282,7 @@ const allEyesVisibilities = {
   heterocromia: visibleType.face,
   tsurime: visibleType.face,
   tareme: visibleType.face,
+  jitome: visibleType.face,
 };
 
 const allEyebrowsVisibilities = {
@@ -577,6 +578,8 @@ export const tagVisibilities = {
   "pointy ears": visibleType.hair,
   forehead: visibleType.face,
   "tress ribbon": visibleType.hair,
+  "mole under eye": visibleType.face,
+  "asymmetrical hair": visibleType.hair,
 
   // Breast size
   ...allBreastSizeVisibilities,
@@ -596,6 +599,9 @@ export const tagVisibilities = {
   "dog girl": visibleType.all,
   "fox girl": visibleType.all,
   elf: visibleType.all,
+  toned: visibleType.all,
+  gyaru: visibleType.all,
+  tan: visibleType.all,
 
   // Head outfit
   glasses: visibleType.glasses,
@@ -687,6 +693,7 @@ export const tagVisibilities = {
   "gold hairband": visibleType.hair,
   earrings: visibleType.hair,
   "gold earrings": visibleType.hair,
+  "flower knot": visibleType.hair,
 
   // Exposure
   collarbone: visibleType.bowtie,

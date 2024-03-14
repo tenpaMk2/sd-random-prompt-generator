@@ -44,6 +44,7 @@ const allEyesTags = [
   `heterocromia`,
   `tsurime`,
   `tareme`,
+  `jitome`,
 ] as const satisfies readonly string[];
 
 const allEyebrowsTags = [
@@ -179,7 +180,9 @@ const allHeadFeatureTags = [
   `fang`,
   `pointy ears`,
   `forehead`,
-  `tress ribbon`,
+  `tress ribbon`, // TODO: fidme
+  `mole under eye`,
+  `asymmetrical hair`,
 ] as const satisfies readonly string[];
 type HeadFeatureTag = (typeof allHeadFeatureTags)[number];
 
@@ -207,6 +210,9 @@ const allBodyFeatureTags = [
   `dog girl`,
   `fox girl`,
   `elf`,
+  `toned`,
+  `gyaru`,
+  `tan`,
 ] as const satisfies readonly string[];
 type BodyFeatureTag = (typeof allBodyFeatureTags)[number];
 

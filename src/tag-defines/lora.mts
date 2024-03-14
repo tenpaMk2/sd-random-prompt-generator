@@ -67,11 +67,20 @@ const allLoraCharacterTriggerWordsTags = [
   `yui kotegawa`, // eft
   `nana astar deviluke`, // eft
   `iroha tamaki`, // eft
+  `yachiyo nanami`, // eft
+  `madoka kaname`, // eft
+  `homura akemi`, // eft
+  `sayaka miki`, // eft
+  `mami tomoe`, // eft
+  `kyouko sakura`, // eft
   `miyuki shiba`, // eft
   `mayumi saegusa`, // eft
   `honoka mitsui`, // eft
   `erika chiba`, // eft
   `shizuku kitayama`, // eft
+  `chisato nishikigi`, // eft
+  `takina inoue`, // eft
+  `yoruka kirihime`, // eft
   `rem`, // eft
   `ram`, // eft
   `emilia`, // eft

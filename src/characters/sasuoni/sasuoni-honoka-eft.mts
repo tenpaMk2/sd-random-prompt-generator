@@ -1,7 +1,7 @@
 import { emotionPreset } from "../emotion-preset.mjs";
 import { CharacterDefine } from "../resolver.mjs";
 
-export const sasuoniMitsuiHonokaEft = () =>
+export const sasuoniHonokaEft = () =>
   ({
     lora: {
       tag: `honoka-mahouka`,

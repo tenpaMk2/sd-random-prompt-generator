@@ -1,5 +1,5 @@
 import { MachineSetting, Setting } from "./setting-define.mjs";
-import { outfitsPreset } from "./setting-preset.mjs";
+import { charactersPreset, outfitsPreset } from "./setting-preset.mjs";
 
 export const machineSetting = {
   ip: `192.168.10.3`,
@@ -8,7 +8,7 @@ export const machineSetting = {
 
 export const settings = [
   {
-    key: `sasuoni`,
+    key: `all`,
     // TODO: Adaptive negative prompts architecture.
     // TODO: presets.
     // TODO: setting generator for all characters and the fix outfit.
@@ -28,47 +28,6 @@ export const settings = [
       hr_upscaler: "4x-AnimeSharp",
       hr_second_pass_steps: 30,
     },
-    characters: [
-      // {
-      //   key: `new-game-aoba-narugo1992`,
-      //   outfits: [...outfitsPreset.usual],
-      // },
-      // {
-      //   key: `new-game-hifumi-narugo1992`,
-      //   outfits: [...outfitsPreset.usual],
-      // },
-      {
-        key: `sasuoni-shiba-miyuki-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-      {
-        key: `sasuoni-saegusa-mayumi-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-      {
-        key: `sasuoni-mitsui-honoka-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-      {
-        key: `to-love-ru-lala-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-      {
-        key: `to-love-ru-mea-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-      {
-        key: `to-love-ru-momo-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-      {
-        key: `to-love-ru-yami-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-      {
-        key: `to-love-ru-yui-eft`,
-        outfits: [...outfitsPreset.usual],
-      },
-    ],
+    characters: [...charactersPreset.all],
   },
 ] as const satisfies Setting[];

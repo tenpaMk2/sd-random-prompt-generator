@@ -1,26 +1,30 @@
 import { emotionPreset } from "../emotion-preset.mjs";
 import { CharacterDefine } from "../resolver.mjs";
 
-export const sasuoniSaegusaMayumiEft = () =>
+export const sasuoniMiyukiEft = () =>
   ({
     lora: {
-      tag: `mayumi-mahouka`,
+      tag: `miyuki-mahouka`,
       probabilityAndWeights: [{ probability: 1, weight: 0.8 }],
     },
-    loraCharacterTriggerWordEntries: [`mayumi saegusa`],
+    loraCharacterTriggerWordEntries: [`miyuki shiba`],
     seriesNameEntries: [`mahouka koukou no rettousei`],
-    characterNameEntries: [`saegusa mayumi`],
+    characterNameEntries: [`shiba miyuki`],
     characterFeatureEntries: [
-      `red eyes`,
-      `tareme`,
+      `black eyes`,
+      `blue eyes`,
+      `tsurime`,
+      `eyelashes`,
       `black hair`,
       `long hair`,
-      `wavy hair`,
-      `curtained bangs`,
+      `hime cut`,
+      `straight hair`,
+      `blunt bangs`,
+      `blunt ends`,
       `sidelocks`,
-      `hair bow`,
-      `white bow`,
-      `forehead`,
+      `hair ornament`,
+      `snowflake hair ornament`,
+      `tress ribbon`,
     ],
     breastSize: `large breasts`,
     emotionEntries: emotionPreset.cute,
