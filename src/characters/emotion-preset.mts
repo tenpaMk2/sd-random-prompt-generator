@@ -92,5 +92,4 @@ export const emotionPreset = {
       { entries: emotionPresetPiece.naughtyFace },
     ],
   ],
-  // TODO: genki, mukuchi, tsundere
 } as const satisfies { [k in string]: NormalEntry<EmotionTag>[] };

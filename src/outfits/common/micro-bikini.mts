@@ -21,7 +21,7 @@ export const microBikini = () =>
         { entries: [`white bikini`] },
         { entries: [`yellow bikini`] },
       ],
-      `skindentation`, // TODO: Separate it to `breasts skindentation` and `thighhighs skindentations`
+      `skindentation`,
       `collarbone`,
       `shoulder blades`,
       `navel`,
@@ -34,7 +34,7 @@ export const microBikini = () =>
       armpits: true,
       hangingBreasts: true,
       tautClothes: false,
-      cleavage: true, // TODO: Consider small breasts.
+      cleavage: true,
       sideboob: true,
       backboob: true,
       underboobLevel: `full`,
