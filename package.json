@@ -4,6 +4,7 @@
   "description": "Generater random prompt (Dynamic prompts) for Stable Diffusion.",
   "main": "index.js",
   "scripts": {
+    "tsc": "tsc --noEmit",
     "exe": "node --loader ts-node/esm --nolazy -r ts-node/register/transpile-only src/index.mts"
   },
   "author": "tenpaMk2 <wavyroom@gmail.com> (https://github.com/tenpaMk2)",
