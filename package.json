@@ -10,8 +10,9 @@
   "author": "tenpaMk2 <wavyroom@gmail.com> (https://github.com/tenpaMk2)",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^20.11.27",
     "prettier": "^3.1.1",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   }
 }
