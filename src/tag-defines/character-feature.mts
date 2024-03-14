@@ -180,7 +180,6 @@ const allHeadFeatureTags = [
   `fang`,
   `pointy ears`,
   `forehead`,
-  `tress ribbon`, // TODO: fidme
   `mole under eye`,
   `asymmetrical hair`,
 ] as const satisfies readonly string[];

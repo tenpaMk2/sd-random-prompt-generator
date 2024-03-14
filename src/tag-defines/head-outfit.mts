@@ -159,5 +159,6 @@ const allHeadOutfitTags = [
   `earrings`,
   `gold earrings`,
   `flower knot`,
+  `tress ribbon`, // TODO: fidme
 ] as const satisfies readonly string[];
 export type HeadOutfitTags = (typeof allHeadOutfitTags)[number];
