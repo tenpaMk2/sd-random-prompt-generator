@@ -10,7 +10,6 @@ export const settings = [
   {
     key: `all`,
     // TODO: Adaptive negative prompts architecture.
-    // TODO: presets.
     // TODO: setting generator for all characters and the fix outfit.
     fixedPrompt: `1girl, solo, masterpiece, best quality, megami magazine,\n`,
     optionsBodyJson: {
