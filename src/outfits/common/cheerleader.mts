@@ -19,6 +19,8 @@ export const cheerleader = () =>
         { entries: [`yellow shirt`, `yellow skirt`] },
         { entries: [`orange shirt`, `orange skirt`] },
         { entries: [`white shirt`, `white skirt`] },
+        { entries: [`blue shirt`, `white skirt`] },
+        { entries: [`red shirt`, `white skirt`] },
       ],
       `sweat`,
       `shiny skin`,
