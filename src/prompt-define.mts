@@ -1,5 +1,7 @@
 import { Tag } from "./tag-defines/all.mjs";
+import { EmotionTag } from "./tag-defines/emotion.mts";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
+import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mts";
 
 /**
  * Token definition.
@@ -64,6 +66,8 @@ export class Pattern<T extends Tag | LoraNameTag> {
   }) {
     this.tokens = tokens;
     this.probability = probability ?? 1.0;
+
+    // TODO: Remove duplicate tokens.
   }
 
   filter(callback: (token: Token<T>) => boolean) {
@@ -110,6 +114,8 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
           probability: probability / totalProbability,
         }),
     );
+
+    // TODO: Remove `0` probability patterns.
   }
 
   static createLora(entries: LoraEntry | null) {
@@ -223,6 +229,34 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
     return new PatternCollection<T>(patterns);
   }
 
+  combineIf<U extends Tag>(
+    callback: (p: Pattern<T>) => boolean,
+    patternCollection: PatternCollection<U>,
+  ) {
+    const targetPatterns = this.patterns.filter(callback);
+    const targetPatternsProbability = targetPatterns.reduce(
+      (prev, current) => prev + current.probability,
+      0,
+    );
+    const targetPatternCollections = new PatternCollection<T>(targetPatterns);
+
+    const combined = targetPatternCollections.combineWith<U>(patternCollection);
+
+    if (targetPatterns.length === this.patterns.length) return combined; // When match all patterns.
+
+    const excludedPatterns = this.patterns.filter((p) => !callback(p));
+    const excludedPatternsProbabiility = 1 - targetPatternsProbability;
+    const excludedOnly = new PatternCollection<T>(excludedPatterns);
+
+    return PatternCollection.joinAll<T | U>([
+      { probability: targetPatternsProbability, patternCollection: combined },
+      {
+        probability: excludedPatternsProbabiility,
+        patternCollection: excludedOnly,
+      },
+    ]);
+  }
+
   pickOnePrompt() {
     if (this.patterns.length === 0) return new Pattern<T>({ tokens: [] });
 
@@ -269,4 +303,32 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
 // ]);
 
 // console.log(pc2);
+
+// const combineIf = pc2.combineIf<EmotionTag>(
+//   (p) => p.tokens.some(({ tag }) => tag === `micro bikini`),
+//   PatternCollection.create<EmotionTag>([
+//     `smile`,
+//     [
+//       { probability: 1, entries: [`!`] },
+//       { probability: 1, entries: [`?`] },
+//     ],
+//   ]),
+// );
+
+// console.log(combineIf);
+
+// const combineIfEmpty = pc2.combineIf(
+//   (p) => p.tokens.some(({ tag }) => tag === `micro bikini`),
+//   PatternCollection.create<EmotionTag>([]),
+// );
+
+// console.log(combineIfEmpty);
+
+// const combineIfAllMatch = pc2.combineIf(
+//   (p) => p.tokens.some(({ tag }) => true),
+//   PatternCollection.create<EmotionTag>([`smile`]),
+// );
+
+// console.log(combineIfAllMatch);
+
 // console.log(`end`);

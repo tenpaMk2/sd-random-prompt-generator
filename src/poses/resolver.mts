@@ -10,6 +10,7 @@ export type PoseSpecialVisibility = Omit<
 > &
   Readonly<{
     underboobLevel: `from below` | `from horizontal` | `invisible`;
+    upskirt: boolean;
   }>;
 
 export const PoseUnderboobLevelOrder = {
@@ -91,6 +92,7 @@ const specialVisibilityPreset = {
     underboobLevel: `from horizontal`,
     zettaiRyouiki: false,
     insideOfThighs: false,
+    upskirt: false,
   },
   frontPortraitArmUp: {
     armpits: true,
@@ -102,6 +104,7 @@ const specialVisibilityPreset = {
     underboobLevel: `from horizontal`,
     zettaiRyouiki: false,
     insideOfThighs: false,
+    upskirt: false,
   },
   frontUpperBodyShotArmDown: {
     armpits: false,
@@ -113,6 +116,7 @@ const specialVisibilityPreset = {
     underboobLevel: `from horizontal`,
     zettaiRyouiki: true,
     insideOfThighs: true,
+    upskirt: false,
   },
   frontCowboyShotArmDown: {
     armpits: false,
@@ -124,6 +128,7 @@ const specialVisibilityPreset = {
     underboobLevel: `from horizontal`,
     zettaiRyouiki: true,
     insideOfThighs: true,
+    upskirt: false,
   },
   frontCowboyShotArmUp: {
     armpits: true,
@@ -135,6 +140,7 @@ const specialVisibilityPreset = {
     underboobLevel: `from horizontal`,
     zettaiRyouiki: true,
     insideOfThighs: true,
+    upskirt: false,
   },
 } as const satisfies {
   [k in string]: PoseSpecialVisibility;
@@ -223,6 +229,7 @@ export const poseTable = {
         underboobLevel: `from horizontal`,
         zettaiRyouiki: true,
         insideOfThighs: false,
+        upskirt: false,
       },
     },
     "twisted-torso": {
@@ -259,6 +266,7 @@ export const poseTable = {
         underboobLevel: `invisible`,
         zettaiRyouiki: true,
         insideOfThighs: false,
+        upskirt: false,
       },
     },
   },
@@ -286,12 +294,13 @@ export const poseTable = {
         armpits: false,
         hangingBreasts: false,
         tautClothes: true,
-        cleavage: true,
+        cleavage: false,
         sideboob: false,
         backboob: false,
         underboobLevel: `from below`,
         zettaiRyouiki: false,
         insideOfThighs: false,
+        upskirt: false,
       },
     },
     "cheering with pom poms": {
@@ -326,12 +335,13 @@ export const poseTable = {
         armpits: true,
         hangingBreasts: false,
         tautClothes: true,
-        cleavage: true,
+        cleavage: false,
         sideboob: true,
         backboob: false,
         underboobLevel: `from below`,
         zettaiRyouiki: false,
         insideOfThighs: false,
+        upskirt: true,
       },
     },
   },

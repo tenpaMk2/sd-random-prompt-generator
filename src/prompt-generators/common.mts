@@ -78,39 +78,69 @@ const extractVisible = <T extends CharacterFeatureTag | OutfitAndExposureTag>(
 const generateSpecialVisibilityPatternCollection = (
   outfit: OutfitDefine["specialVisibility"],
   pose: PoseSpecialVisibility,
+  {
+    breastSize,
+    upskirtPatternCollection,
+    emotionPatternCollection,
+    backgroundPatternCollection,
+    visibleFeaturePatternCollection,
+    visibleOutfitPatternCollection,
+  }: {
+    breastSize: BreastSizeTag;
+    upskirtPatternCollection: PatternCollection<OutfitAndExposureTag>;
+    emotionPatternCollection: PatternCollection<EmotionTag>;
+    backgroundPatternCollection: PatternCollection<BackgroundTag>;
+    visibleFeaturePatternCollection: PatternCollection<CharacterFeatureTag>;
+    visibleOutfitPatternCollection: PatternCollection<OutfitAndExposureTag>;
+  },
 ) => {
-  const entries = [] as SpecialTag[];
+  const pcs = [] as PatternCollection<Tag>[];
+  const pushSpecial = (tag: SpecialTag) =>
+    pcs.push(PatternCollection.create<SpecialTag>([tag]));
 
   if (outfit.armpits && pose.armpits) {
-    entries.push(`armpits`);
+    pushSpecial(`armpits`);
   }
   if (outfit.hangingBreasts && pose.hangingBreasts) {
-    entries.push(`hanging breasts`);
+    pushSpecial(`hanging breasts`);
   }
   if (outfit.cleavage && pose.cleavage) {
-    entries.push(`cleavage`); // TODO: Consider breast size.
+    pushSpecial(`cleavage`); // TODO: Consider breast size.
   }
   if (outfit.sideboob && pose.sideboob) {
-    entries.push(`sideboob`);
+    pushSpecial(`sideboob`);
   }
   if (outfit.backboob && pose.backboob) {
-    entries.push(`backboob`);
+    pushSpecial(`backboob`);
   }
   if (
     PoseUnderboobLevelOrder[pose.underboobLevel] <
     UnderboobLevelOrder[outfit.underboobLevel]
   ) {
-    entries.push(`underboob`);
+    pushSpecial(`underboob`);
   }
   if (outfit.zettaiRyouiki && pose.zettaiRyouiki) {
-    entries.push(`zettai ryouiki`);
+    pushSpecial(`zettai ryouiki`);
   }
   if (outfit.insideOfThighs && pose.insideOfThighs) {
-    entries.push(`ass visible through thighs`);
-    entries.push(`thigh gap`);
+    pushSpecial(`ass visible through thighs`);
+    pushSpecial(`thigh gap`);
   }
 
-  return PatternCollection.create<SpecialTag>(entries);
+  if (pose.upskirt) {
+    pushSpecial(`upskirt`);
+
+    const pantyshotAdded = upskirtPatternCollection.combineIf<SpecialTag>(
+      (p) =>
+        p.tokens.some(
+          ({ tag }) => tag === `panties` || tag === `panties under pantyhose`,
+        ),
+      PatternCollection.create<SpecialTag>([`pantyshot`]),
+    );
+    pcs.push(pantyshotAdded);
+  }
+
+  return PatternCollection.combine(pcs);
 };
 
 const resolve = (
@@ -153,6 +183,9 @@ const resolve = (
   const outfitAndExposure = PatternCollection.create<OutfitAndExposureTag>(
     outfitData.outfit.outfitAndExposureEntries,
   );
+  const upskirt = PatternCollection.create<OutfitAndExposureTag>(
+    outfitData.outfit.upskirtEntries,
+  );
 
   const background = PatternCollection.create<BackgroundTag>(
     backgroundData.background.entries,
@@ -175,10 +208,14 @@ const resolve = (
   const specialVisibility = generateSpecialVisibilityPatternCollection(
     outfitData.outfit.specialVisibility,
     poseData.pose.specialVisibility,
-  );
-
-  const upskirt = PatternCollection.create<OutfitAndExposureTag>( // TODO: FIXME
-    outfitData.outfit.upskirtEntries,
+    {
+      breastSize: characterData.character.breastSize,
+      upskirtPatternCollection: upskirt,
+      emotionPatternCollection: emotion,
+      backgroundPatternCollection: background,
+      visibleFeaturePatternCollection: visibleFeatures,
+      visibleOutfitPatternCollection: visibleOutfits,
+    },
   );
 
   return PatternCollection.combine<Tag | LoraNameTag>([
