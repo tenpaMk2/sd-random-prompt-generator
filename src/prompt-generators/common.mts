@@ -8,6 +8,7 @@ import { Pattern, PatternCollection } from "../prompt-define.mjs";
 import { Tag } from "../tag-defines/all.mjs";
 import { BackgroundTag } from "../tag-defines/background.mjs";
 import {
+  BreastSizeOrder,
   BreastSizeTag,
   CharacterFeatureTag,
 } from "../tag-defines/character-feature.mjs";
@@ -101,16 +102,32 @@ const generateSpecialVisibilityPatternCollection = (
   if (outfit.armpits && pose.armpits) {
     pushSpecial(`armpits`);
   }
-  if (outfit.hangingBreasts && pose.hangingBreasts) {
+  if (
+    outfit.hangingBreasts &&
+    pose.hangingBreasts &&
+    BreastSizeOrder["medium breasts"] <= BreastSizeOrder[breastSize]
+  ) {
     pushSpecial(`hanging breasts`);
   }
-  if (outfit.cleavage && pose.cleavage) {
-    pushSpecial(`cleavage`); // TODO: Consider breast size.
+  if (
+    outfit.cleavage &&
+    pose.cleavage &&
+    BreastSizeOrder["medium breasts"] <= BreastSizeOrder[breastSize]
+  ) {
+    pushSpecial(`cleavage`);
   }
-  if (outfit.sideboob && pose.sideboob) {
+  if (
+    outfit.sideboob &&
+    pose.sideboob &&
+    BreastSizeOrder["small breasts"] <= BreastSizeOrder[breastSize]
+  ) {
     pushSpecial(`sideboob`);
   }
-  if (outfit.backboob && pose.backboob) {
+  if (
+    outfit.backboob &&
+    pose.backboob &&
+    BreastSizeOrder["small breasts"] <= BreastSizeOrder[breastSize]
+  ) {
     pushSpecial(`backboob`);
   }
   if (
