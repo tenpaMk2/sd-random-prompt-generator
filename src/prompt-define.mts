@@ -203,14 +203,21 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
     );
 
     const patterns = pairs
-      .map(({ probability, patternCollection }) =>
-        patternCollection.patterns.map((p) => {
+      .map(({ probability, patternCollection }) => {
+        if (patternCollection.patterns.length === 0) {
+          return new Pattern<T>({
+            tokens: [],
+            probability: probability / totalProbability,
+          });
+        }
+
+        return patternCollection.patterns.map((p) => {
           return new Pattern<T>({
             tokens: p.tokens,
             probability: (p.probability * probability) / totalProbability,
           });
-        }),
-      )
+        });
+      })
       .flat();
 
     return new PatternCollection<T>(patterns);
