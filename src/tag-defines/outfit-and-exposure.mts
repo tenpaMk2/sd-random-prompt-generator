@@ -56,6 +56,21 @@ const allSkirtColorTags = [
   `yellow skirt`,
 ] as const satisfies string[];
 
+const allPantiesColorTags = [
+  `aqua panties`,
+  `black panties`,
+  `blue panties`,
+  `brown panties`,
+  `green panties`,
+  `grey panties`,
+  `orange panties`,
+  `pink panties`,
+  `purple panties`,
+  `red panties`,
+  `white panties`,
+  `yellow panties`,
+] as const satisfies string[];
+
 const allBowtieColorTags = [
   `aqua bowtie`,
   `black bowtie`,
@@ -229,16 +244,7 @@ const allOutfitTags = [
   `lingerie`,
   `bra`,
   `panties`,
-  `red panties`,
-  `blue panties`,
-  `green panties`,
-  `yellow panties`,
-  `orange panties`,
-  `aqua panties`,
-  `white panties`,
-  `black panties`,
-  `pink panties`,
-  `purple panties`,
+  ...allPantiesColorTags,
   `crotch seam`,
   `lace panties`,
   `tokiwadai school uniform`,

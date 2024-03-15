@@ -1,4 +1,5 @@
 import { OutfitDefine } from "../resolver.mjs";
+import { upskirtPreset } from "./upskirt-preset.mts";
 
 export const cheerleader = () =>
   ({
@@ -17,6 +18,7 @@ export const cheerleader = () =>
         { entries: [`red shirt`, `red skirt`] },
         { entries: [`yellow shirt`, `yellow skirt`] },
         { entries: [`orange shirt`, `orange skirt`] },
+        { entries: [`white shirt`, `white skirt`] },
       ],
       `sweat`,
       `shiny skin`,
@@ -25,7 +27,7 @@ export const cheerleader = () =>
       armpits: true,
       hangingBreasts: true,
       tautClothes: false,
-      cleavage: false, // TODO: temporary
+      cleavage: true,
       sideboob: false,
       backboob: true,
       underboobLevel: `only from below`,
@@ -33,6 +35,6 @@ export const cheerleader = () =>
       insideOfThighs: true,
     },
     liftType: `skirt`,
-    upskirtEntries: [`underwear`, `panties`, `crotch seam`],
+    upskirtEntries: upskirtPreset.vividPanties,
     whenRemoveShoes: null,
   }) as const satisfies OutfitDefine;
