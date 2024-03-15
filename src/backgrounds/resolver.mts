@@ -45,6 +45,10 @@ export const backgroundTable = {
     },
     ceiling: { entries: [`indoors`, `ceiling`], removeShoes: false },
     "blue-sky": { entries: [`outdoors`, `blue sky`], removeShoes: false },
+    "blue-sky-confetti": {
+      entries: [`outdoors`, `blue sky`, `confetti`],
+      removeShoes: false,
+    },
   },
 } as const satisfies {
   [k in BackgroundType]: {

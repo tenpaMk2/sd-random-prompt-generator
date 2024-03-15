@@ -26,6 +26,36 @@ const allExposureTags = [
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 
+const allShirtColorTags = [
+  `aqua shirt`,
+  `black shirt`,
+  `blue shirt`,
+  `brown shirt`,
+  `green shirt`,
+  `grey shirt`,
+  `orange shirt`,
+  `pink shirt`,
+  `purple shirt`,
+  `red shirt`,
+  `white shirt`,
+  `yellow shirt`,
+] as const satisfies string[];
+
+const allSkirtColorTags = [
+  `aqua skirt`,
+  `black skirt`,
+  `blue skirt`,
+  `brown skirt`,
+  `green skirt`,
+  `grey skirt`,
+  `orange skirt`,
+  `pink skirt`,
+  `purple skirt`,
+  `red skirt`,
+  `white skirt`,
+  `yellow skirt`,
+] as const satisfies string[];
+
 const allBowtieColorTags = [
   `aqua bowtie`,
   `black bowtie`,
@@ -155,9 +185,7 @@ const allOutfitTags = [
   `maid apron`,
   `waist apron`,
   `shirt`,
-  `red shirt`,
-  `white shirt`,
-  `pink shirt`,
+  ...allShirtColorTags,
   `collared shirt`,
   `vest`,
   `green vest`,
@@ -181,15 +209,7 @@ const allOutfitTags = [
   `pleated dress`,
   `bikini skirt`,
   `skirt`,
-  `white skirt`,
-  `black skirt`,
-  `green skirt`,
-  `grey skirt`,
-  `red skirt`,
-  `orange skirt`,
-  `purple skirt`,
-  `pink skirt`,
-  `blue skirt`,
+  ...allSkirtColorTags,
   `miniskirt`,
   `plaid skirt`,
   `pencil skirt`,
@@ -334,6 +354,7 @@ const allOutfitTags = [
   `hakama`,
   `hakama skirt`,
   `hip vent`,
+  `cheerleader`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

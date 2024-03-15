@@ -177,6 +177,10 @@ const resolve = (
     poseData.pose.specialVisibility,
   );
 
+  const upskirt = PatternCollection.create<OutfitAndExposureTag>( // TODO: FIXME
+    outfitData.outfit.upskirtEntries,
+  );
+
   return PatternCollection.combine<Tag | LoraNameTag>([
     seriesName,
     characterName,
@@ -191,6 +195,7 @@ const resolve = (
     specialVisibility,
     background,
     pose,
+    upskirt,
   ]);
 };
 

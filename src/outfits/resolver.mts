@@ -2,6 +2,7 @@ import { NormalEntry, LoraEntry } from "../prompt-define.mjs";
 import { LoraOutfitTriggerWordsTag } from "../tag-defines/lora.mjs";
 import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
 import { bikini } from "./common/bikini.mjs";
+import { cheerleader } from "./common/cheerleader.mts";
 import { maidBikini } from "./common/maid-bikini.mjs";
 import { microBikini } from "./common/micro-bikini.mjs";
 import { revealingMiko } from "./common/revealing-miko.mjs";
@@ -93,6 +94,7 @@ export type OutfitDefine = Readonly<{
 
 export const outfitTable = {
   bikini: bikini(),
+  cheerleader: cheerleader(),
   "maid-bikini": maidBikini(),
   "micro-bikini": microBikini(),
   "revealing-miko": revealingMiko(),

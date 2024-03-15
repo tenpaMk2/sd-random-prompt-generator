@@ -2,6 +2,7 @@ const allPoseTags = [
   `looking at viewer`,
   `looking back`,
   `looking up`,
+  `looking down`,
   `looking ahead`,
   `looking away`,
   `portrait`,
@@ -27,6 +28,8 @@ const allPoseTags = [
   `sitting`,
   `contrapposto`,
   `cheering`,
+  `holding pom poms`,
+  `pom pom \\(cheerleading\\)`,
   `hands on own hips`,
   `twisted torso`,
   `breasts`,
@@ -35,8 +38,11 @@ const allPoseTags = [
   `hand up`,
   `hands up`,
   `arms up`,
+  `arm up`,
   `arms behind head`,
   `heart hands`,
+  `legs up`,
+  `leg up`,
 ] as const satisfies readonly string[];
 export type PoseTag = (typeof allPoseTags)[number];
 
