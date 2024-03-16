@@ -1,11 +1,11 @@
-import { mkdir, rm, appendFile, writeFile } from "node:fs/promises";
+import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
 import { generatePatterns } from "./prompt-generators/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
 import { globalSetting } from "./setting.mts";
-import { splitIntoChunks } from "./libs/utility.mts";
+import { exportArray } from "./libs/utility.mts";
 
 type Tree = {
   key: string;
@@ -21,24 +21,12 @@ const exportRecursively = async (
 
   await mkdir(parentDir, { recursive: true });
 
-  const writeAll = async () => {
-    const prompts = patternCollection.pickAllPrompts();
-    if (prompts.length <= globalSetting.promptExportingBatchSize) {
-      await writeFile(join(parentDir, `${key}-all.txt`), prompts.join(`\n`));
-    }
-    const promptsChunks = splitIntoChunks(
-      prompts,
-      globalSetting.promptExportingBatchSize,
-    );
-    for (const ps of promptsChunks) {
-      await appendFile(join(parentDir, `${key}-all.txt`), `${ps.join(`\n`)}\n`);
-    }
-  };
-
   if (children.length === 0) {
     // Export all prompts only when there are no children.
-    await writeAll();
-    return;
+    return exportArray(
+      join(parentDir, `${key}-all.txt`),
+      patternCollection.pickAllPrompts(),
+    );
   }
   // Export random prompts when there are children.
 
@@ -47,12 +35,12 @@ const exportRecursively = async (
     () => patternCollection.pickOnePrompt(),
   );
   randomPrompts.sort();
-  await writeFile(
+  await exportArray(
     join(
       parentDir,
       `${key}-random-${globalSetting.maxExportingRandomPrompts}.txt`,
     ),
-    randomPrompts.join(`\n`),
+    randomPrompts,
   );
 
   // Export 1 file at the same time to avoid the limit of the number of open files.

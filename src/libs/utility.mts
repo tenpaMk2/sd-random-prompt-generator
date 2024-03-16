@@ -1,3 +1,5 @@
+import { createWriteStream } from "fs";
+
 export const generateDynamicPrompt = (
   prompts: readonly string[],
   options: { lineBreak?: boolean } = { lineBreak: false },
@@ -42,4 +44,17 @@ export const splitIntoChunks = <T,>(array: T[], chunkSize: number): T[][] => {
     result.push(array.slice(i, i + chunkSize));
   }
   return result;
+};
+
+/**
+ * Export an array to a file.
+ * @param path Path to the file.
+ * @param array Array to export.
+ */
+export const exportArray = async (path: string, array: any[]) => {
+  const ws = createWriteStream(path);
+  for (const a of array) {
+    ws.write(`${a}\n`);
+  }
+  ws.end();
 };
