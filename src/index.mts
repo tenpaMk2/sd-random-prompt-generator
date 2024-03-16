@@ -14,9 +14,10 @@ const p = generatePatterns(generationDatas);
 
 console.log(p);
 
-await exportPrompts(p);
-await exportAsCSV(join("outputs", "visibility.csv"));
-
-console.log(p[0].patternCollection.pickOnePrompt());
-
-generateImage(p);
+// Export and generate image asynchronously at the same time.
+const promises = [
+  exportPrompts(p),
+  exportAsCSV(join("outputs", "visibility.csv")),
+  generateImage(p),
+];
+await Promise.all(promises);
