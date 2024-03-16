@@ -24,7 +24,8 @@ const emotionPresetPiece = {
     `one eye closed`,
     [{ entries: [`;\\)`, `closed mouth`] }, { entries: [`;o`, `open mouth`] }],
   ],
-  doyagao: [`blush`, `doyagao`, `grin`],
+  grin: [`blush`, `smile`, `grin`],
+  doyagao: [`blush`, `smug`, `doyagao`, `v-shaped eyebrows`, `puff of air`],
 } as const satisfies { [k in string]: NormalEntry<EmotionTag>[] };
 
 export const emotionPreset = {
@@ -43,7 +44,6 @@ export const emotionPreset = {
       { entries: emotionPresetPiece.seductiveSmile, probability: 3 },
       { entries: emotionPresetPiece.naughtyFace },
       { entries: emotionPresetPiece.oneEyeClosed, probability: 2 },
-      { entries: emotionPresetPiece.doyagao },
     ],
   ],
   serious: [
@@ -79,6 +79,21 @@ export const emotionPreset = {
     ],
   ],
   deadpanned: [
+    [
+      { entries: emotionPresetPiece.smile, probability: 2 },
+      { entries: emotionPresetPiece.oneEyeClosed, probability: 3 },
+      { entries: emotionPresetPiece.grin, probability: 3 },
+      { entries: emotionPresetPiece.smileOpenMouth },
+      { entries: emotionPresetPiece.smileHalfClosedEyes },
+      { entries: emotionPresetPiece.expressionless },
+      { entries: emotionPresetPiece.embarrassed },
+      { entries: emotionPresetPiece.nervous },
+      { entries: emotionPresetPiece.flustered },
+      { entries: emotionPresetPiece.seductiveSmile, probability: 3 },
+      { entries: emotionPresetPiece.naughtyFace },
+    ],
+  ],
+  mesugaki: [
     [
       { entries: emotionPresetPiece.lightSmile, probability: 2 },
       { entries: emotionPresetPiece.smilePartedLips },
