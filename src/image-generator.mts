@@ -117,6 +117,8 @@ const startStatusPolling = () =>
 export const generateImage = async (
   settings: ReturnType<typeof generatePatterns>,
 ) => {
+  console.log("Generating images...");
+
   const intervalID = startStatusPolling();
   for (const setting of settings) {
     await generateRoot(setting);
