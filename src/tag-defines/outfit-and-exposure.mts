@@ -23,6 +23,7 @@ const allExposureTags = [
   `partially undressed`,
   `nsfw`,
   `shiny skin`,
+  `sweat`,
 ] as const satisfies readonly string[];
 type ExposureTag = (typeof allExposureTags)[number];
 
@@ -330,7 +331,6 @@ const allOutfitTags = [
   `gym uniform`,
   `gym shirt`,
   `buruma`,
-  `sweat`, // TODO: Move.
   `necklace`,
   `wedding dress`,
   `nontraditional wedding dress`,
