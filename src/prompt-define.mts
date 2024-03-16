@@ -70,10 +70,32 @@ export class Pattern<T extends Tag | LoraNameTag> {
     tokens: Token<T>[];
     probability?: number;
   }) {
-    this.tokens = tokens;
-    this.probability = probability ?? 1.0;
+    const isDuplicate =
+      new Set(tokens.map((t) => t.tag)).size !== tokens.length;
 
-    // TODO: Remove duplicate tokens.
+    if (!isDuplicate) {
+      this.tokens = tokens;
+      this.probability = probability ?? 1.0;
+    }
+
+    const uniques = tokens.reduce(
+      (previous, current) => {
+        if (current.type === `lora`) return [...previous, current];
+
+        const found = previous.find((t) => t.tag === current.tag);
+        if (!found) {
+          // Not duplicated.
+          return [...previous, current];
+        }
+
+        const excluded = previous.filter((t) => t !== found);
+        const winner = current.weight < found.weight ? found : current;
+        return [...excluded, winner];
+      },
+      [] as typeof tokens,
+    );
+    this.tokens = uniques;
+    this.probability = probability ?? 1.0;
   }
 
   filter(callback: (token: Token<T>) => boolean) {
@@ -84,19 +106,57 @@ export class Pattern<T extends Tag | LoraNameTag> {
   }
 
   concat<U extends Tag>(items: Token<U>[]) {
-    const newTokens = [...this.tokens, ...items];
-    const uniqueTokens = [
-      ...new Map(newTokens.map((token) => [token.tag, token])).values(),
-    ];
-
     return new Pattern<T | U>({
-      tokens: uniqueTokens,
+      tokens: [...this.tokens, ...items],
       probability: this.probability,
     });
   }
 
   toPrompt() {
-    return this.tokens.map((token) => token.toString()).join(`, `);
+    const resolvedTokens = this.tokens.map((token) => {
+      switch (token.type) {
+        case `lora`:
+          return {
+            tag: token.tag,
+            weight: token.weight,
+            type: `lora`,
+            token,
+          } as const;
+        case `normal`:
+          return {
+            tag: (allDistinguishableExposureTags[token.tag as any] ??
+              token.tag) as
+              | T
+              | (typeof allDistinguishableExposureTags)[keyof typeof allDistinguishableExposureTags],
+            weight: token.weight,
+            type: `normal`,
+            token,
+          } as const;
+      }
+    });
+    const isDuplicate =
+      new Set(resolvedTokens.map((t) => t.tag)).size !== resolvedTokens.length;
+
+    if (!isDuplicate) {
+      return this.tokens.map((token) => token.toString()).join(`, `);
+    }
+
+    const uniques = resolvedTokens.reduce(
+      (previous, current) => {
+        const found = previous.find((t) => t.tag === current.tag);
+        if (!found) {
+          // Not duplicated.
+          return [...previous, current];
+        }
+
+        const excluded = previous.filter((t) => t !== found);
+        const winner = current.weight < found.weight ? found : current;
+        return [...excluded, winner];
+      },
+      [] as typeof resolvedTokens,
+    );
+
+    return uniques.map(({ token }) => token.toString()).join(`, `);
   }
 
   toString() {
