@@ -249,7 +249,6 @@ const resolve = (
     specialVisibility,
     background,
     pose,
-    upskirt,
   ]);
 };
 
