@@ -161,13 +161,10 @@ export const visibleType = {
     sideMidriff: true,
     backMidriff: true,
   },
-  skindentation: {
+  "breasts skindentation": {
     ...invisible,
     frontBreast: true,
     sideBreast: true,
-    frontHipAndThigh: true,
-    sideHipAndThigh: true,
-    backHipAndThigh: true,
   },
   cameltoe: {
     ...invisible,
@@ -696,6 +693,8 @@ export const tagVisibilities = {
   "flower knot": visibleType.hair,
 
   // Exposure
+  "breasts skindentation": visibleType["breasts skindentation"],
+  "thighs skindentation": visibleType.thighs,
   collarbone: visibleType.bowtie,
   "bare shoulders": visibleType.shoulder,
   "bare arms": visibleType.shoulder,
@@ -706,7 +705,6 @@ export const tagVisibilities = {
   "covered navel": visibleType.navel,
   "shoulder blades": visibleType["shoulder blades"],
   "skin tight": visibleType.dress,
-  skindentation: visibleType.skindentation,
   "bare legs": visibleType.thighs,
   cameltoe: visibleType.cameltoe,
   pussy: visibleType.cameltoe,

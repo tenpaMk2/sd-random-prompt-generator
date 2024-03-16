@@ -22,7 +22,7 @@ export const bikini = () =>
         { entries: [`white bikini`] },
         { entries: [`yellow bikini`] },
       ],
-      `skindentation`, // TODO: Separate it to `breasts skindentation` and `thighhighs skindentations`
+      `breasts skindentation`,
       `collarbone`,
       `shoulder blades`,
       `navel`,

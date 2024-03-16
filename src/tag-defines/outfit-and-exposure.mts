@@ -1,6 +1,14 @@
+import { getKeys } from "../libs/utility.mts";
 import { HeadOutfitTags } from "./head-outfit.mjs";
 
+export const allDistinguishableExposureTags = {
+  "breasts skindentation": `skindentation`,
+  "thighs skindentation": `skindentation`,
+  // TODO: `red neck ribbon` → `red ribbon`
+} as const satisfies { [k in string]: string };
+
 const allExposureTags = [
+  ...getKeys(allDistinguishableExposureTags),
   `collarbone`,
   `bare shoulders`,
   `bare arms`,
@@ -11,7 +19,6 @@ const allExposureTags = [
   `covered navel`,
   `shoulder blades`,
   `skin tight`,
-  `skindentation`,
   `bare legs`,
   `cameltoe`,
   `pussy`,

@@ -1,7 +1,10 @@
 import { Tag } from "./tag-defines/all.mjs";
 import { EmotionTag } from "./tag-defines/emotion.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
-import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
+import {
+  OutfitAndExposureTag,
+  allDistinguishableExposureTags,
+} from "./tag-defines/outfit-and-exposure.mjs";
 
 /**
  * Token definition.
@@ -31,7 +34,10 @@ class Token<T extends Tag | LoraNameTag> {
   toString() {
     switch (this.type) {
       case `normal`:
-        return this.weight === 1.0 ? this.tag : `${this.tag}:${this.weight}`;
+        // Resolve tag name if it's a distinguishable exposure tag.
+        const tag = allDistinguishableExposureTags[this.tag as any] ?? this.tag;
+
+        return this.weight === 1.0 ? tag : `${tag}:${this.weight}`;
       case `lora`:
         return `<lora:${this.tag}:${this.weight}>`;
     }

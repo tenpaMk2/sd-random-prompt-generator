@@ -21,7 +21,7 @@ export const microBikini = () =>
         { entries: [`white bikini`] },
         { entries: [`yellow bikini`] },
       ],
-      `skindentation`,
+      `breasts skindentation`,
       `collarbone`,
       `shoulder blades`,
       `navel`,

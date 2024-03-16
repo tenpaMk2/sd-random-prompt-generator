@@ -11,7 +11,7 @@ export const maidBikini = () =>
       `detached collar`,
       `bikini`,
       `maid bikini`,
-      `skindentation`,
+      `breasts skindentation`,
       `frills`,
       `apron`,
       `frilled apron`,
@@ -24,6 +24,7 @@ export const maidBikini = () =>
       `skirt`,
       `miniskirt`,
       `thighhighs`,
+      `thighs skindentation`,
     ],
     specialVisibility: {
       armpits: true,
