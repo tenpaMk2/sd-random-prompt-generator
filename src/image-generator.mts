@@ -108,10 +108,6 @@ const startStatusPolling = () =>
     );
     const json = await response.json();
     displayProgress(json.progress, json.eta_relative);
-    // console.table({
-    //   progress: `${Math.floor(json.progress * 100)}%`,
-    //   eta_relative: `${Math.floor(json.eta_relative)} s`,
-    // });
   }, 10000);
 
 export const generateImage = async (
