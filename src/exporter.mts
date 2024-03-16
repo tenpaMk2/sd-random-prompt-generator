@@ -5,7 +5,7 @@ import { PatternCollection } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
 import { globalSetting } from "./setting.mts";
-import { exportArray } from "./libs/utility.mts";
+import { exportArray, exportAsDynamicPrompts } from "./libs/utility.mts";
 
 type Tree = {
   key: string;
@@ -23,10 +23,16 @@ const exportRecursively = async (
 
   if (children.length === 0) {
     // Export all prompts only when there are no children.
-    return exportArray(
-      join(parentDir, `${key}-all.txt`),
-      patternCollection.pickAllPrompts(),
-    );
+    return Promise.all([
+      exportArray(
+        join(parentDir, `${key}-all.txt`),
+        patternCollection.pickAllPrompts(),
+      ),
+      exportAsDynamicPrompts(
+        join(parentDir, `${key}-all-dynamic-prompts.txt`),
+        patternCollection.pickAllPrompts(),
+      ),
+    ]);
   }
   // Export random prompts when there are children.
 
@@ -35,13 +41,22 @@ const exportRecursively = async (
     () => patternCollection.pickOnePrompt(),
   );
   randomPrompts.sort();
-  await exportArray(
-    join(
-      parentDir,
-      `${key}-random-${globalSetting.maxExportingRandomPrompts}.txt`,
+  await Promise.all([
+    exportArray(
+      join(
+        parentDir,
+        `${key}-random-${globalSetting.maxExportingRandomPrompts}.txt`,
+      ),
+      randomPrompts,
     ),
-    randomPrompts,
-  );
+    exportAsDynamicPrompts(
+      join(
+        parentDir,
+        `${key}-random-${globalSetting.maxExportingRandomPrompts}-dynamic-prompts.txt`,
+      ),
+      randomPrompts,
+    ),
+  ]);
 
   // Export 1 file at the same time to avoid the limit of the number of open files.
   for (const child of children) {
@@ -51,7 +66,7 @@ const exportRecursively = async (
   return;
 };
 
-export const exportAsDynamicPrompts = async (
+export const exportPrompts = async (
   patternDatas: ReturnType<typeof generatePatterns>,
 ) => {
   const outputsDir = `outputs` as const;

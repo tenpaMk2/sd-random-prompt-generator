@@ -1,5 +1,5 @@
 import { join } from "node:path";
-import { exportAsDynamicPrompts } from "./exporter.mjs";
+import { exportPrompts } from "./exporter.mjs";
 import { generatePatterns } from "./prompt-generators/common.mjs";
 import { prepare } from "./prepare.mjs";
 import { settings } from "./setting.mjs";
@@ -14,7 +14,7 @@ const p = generatePatterns(generationDatas);
 
 console.log(p);
 
-await exportAsDynamicPrompts(p);
+await exportPrompts(p);
 await exportAsCSV(join("outputs", "visibility.csv"));
 
 console.log(p[0].patternCollection.pickOnePrompt());

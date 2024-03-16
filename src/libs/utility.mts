@@ -58,3 +58,22 @@ export const exportArray = async (path: string, array: any[]) => {
   }
   ws.end();
 };
+
+/**
+ * Export an array as dynamic prompts to a file.
+ * @param path Path to the file.
+ * @param array Array to export.
+ */
+export const exportAsDynamicPrompts = async (path: string, array: any[]) => {
+  const ws = createWriteStream(path);
+  for (const [index, a] of array.entries()) {
+    if (index === 0) {
+      ws.write(`{${a}\n`);
+    } else if (index === array.length - 1) {
+      ws.write(`${a}}`);
+    } else {
+      ws.write(`|${a}\n`);
+    }
+  }
+  ws.end();
+};
