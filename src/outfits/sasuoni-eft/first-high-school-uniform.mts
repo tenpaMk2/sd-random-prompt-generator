@@ -36,7 +36,6 @@ export const sasuoniEftFirstHighSchoolUniform = () =>
 
     liftType: `dress`,
     upskirtEntries: [
-      // TODO: Exclude `pantyshot` and `upskirt` from upskirt tags.
       `panties under pantyhose`,
       `underwear`,
       `panties`,
