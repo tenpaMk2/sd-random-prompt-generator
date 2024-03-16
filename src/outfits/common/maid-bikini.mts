@@ -1,4 +1,5 @@
 import { OutfitDefine } from "../resolver.mjs";
+import { upskirtPreset } from "./upskirt-preset.mts";
 
 export const maidBikini = () =>
   ({
@@ -36,6 +37,6 @@ export const maidBikini = () =>
       insideOfThighs: true,
     },
     liftType: `skirt`,
-    upskirtEntries: [], // TODO
+    upskirtEntries: upskirtPreset.colorfulPanties,
     whenRemoveShoes: null,
   }) as const satisfies OutfitDefine;
