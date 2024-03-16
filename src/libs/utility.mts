@@ -29,3 +29,17 @@ export const getCombinations = <T,>(choices: T[][]): T[][] => {
   }
   return result;
 };
+
+/**
+ * Split an array into chunks.
+ * @param array Array to split.
+ * @param chunkSize Size of each chunk.
+ * @returns Array of chunks.
+ */
+export const splitIntoChunks = <T,>(array: T[], chunkSize: number): T[][] => {
+  const result = [] as T[][];
+  for (let i = 0; i < array.length; i += chunkSize) {
+    result.push(array.slice(i, i + chunkSize));
+  }
+  return result;
+};

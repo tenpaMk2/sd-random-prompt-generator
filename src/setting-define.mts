@@ -45,6 +45,19 @@ export type CharacterSetting = Readonly<{
   outfits: OutfitSetting[];
 }>;
 
+export type GlobalSetting = Readonly<{
+  /**
+   * The number of prompts to be exported at once.
+   * Increase or decrease this value to adjust the memory usage.
+   */
+  promptExportingBatchSize: number;
+
+  /**
+   * The maximum number of random prompts to be exported.
+   */
+  maxExportingRandomPrompts: number;
+}>;
+
 export type MachineSetting = Readonly<{
   ip: string;
   port: number;

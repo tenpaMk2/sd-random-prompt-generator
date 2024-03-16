@@ -1,5 +1,10 @@
-import { MachineSetting, Setting } from "./setting-define.mjs";
+import { GlobalSetting, MachineSetting, Setting } from "./setting-define.mjs";
 import { charactersPreset, outfitsPreset } from "./setting-preset.mjs";
+
+export const globalSetting = {
+  promptExportingBatchSize: 1000,
+  maxExportingRandomPrompts: 1000,
+} as const satisfies GlobalSetting;
 
 export const machineSetting = {
   ip: `192.168.10.3`,
