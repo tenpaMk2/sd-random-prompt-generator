@@ -98,7 +98,10 @@ export const outfitTable = {
   "maid-bikini": maidBikini(),
   "micro-bikini": microBikini(),
   "revealing-miko": revealingMiko(),
-  "sasuoni-eft-first-high-school-uniform": sasuoniEftFirstHighSchoolUniform(),
+  "sasuoni-eft-first-high-school-uniform-pantyhose":
+    sasuoniEftFirstHighSchoolUniform(`pantyhose`),
+  "sasuoni-eft-first-high-school-uniform-thighhighs":
+    sasuoniEftFirstHighSchoolUniform(`thighhighs`),
 } as const satisfies {
   [k: string]: OutfitDefine;
 };

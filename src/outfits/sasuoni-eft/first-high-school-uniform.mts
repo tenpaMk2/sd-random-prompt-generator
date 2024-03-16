@@ -1,6 +1,9 @@
+import { upskirtPreset } from "../common/upskirt-preset.mts";
 import { OutfitDefine } from "../resolver.mjs";
 
-export const sasuoniEftFirstHighSchoolUniform = () =>
+export const sasuoniEftFirstHighSchoolUniform = (
+  variation: `pantyhose` | `thighhighs`,
+) =>
   ({
     lora: null,
     loraOutfitTriggerWordEntries: [],
@@ -18,7 +21,7 @@ export const sasuoniEftFirstHighSchoolUniform = () =>
       `cropped jacket`,
       `open jacket`,
       `long sleeves`,
-      `pantyhose`, // TODO: Support variations of thighighs.
+      variation === `pantyhose` ? `pantyhose` : `thighhighs`,
       `boots`,
       `black footwear`,
     ],
@@ -35,12 +38,10 @@ export const sasuoniEftFirstHighSchoolUniform = () =>
     },
 
     liftType: `dress`,
-    upskirtEntries: [
-      `panties under pantyhose`,
-      `underwear`,
-      `panties`,
-      `crotch seam`,
-    ],
+    upskirtEntries:
+      variation === `pantyhose`
+        ? [`panties under pantyhose`, `underwear`, `panties`, `crotch seam`]
+        : upskirtPreset.colorfulPanties,
     whenRemoveShoes: {
       excludeTags: [`boots`, `black footwear`],
       additionalFootEntriesAfterRemoving: [`no shoes`],
