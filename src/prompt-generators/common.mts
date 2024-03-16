@@ -18,7 +18,6 @@ import {
   LoraCharacterTriggerWordsTag,
   LoraNameTag,
   LoraOutfitTriggerWordsTag,
-  isLoraNameTag,
 } from "../tag-defines/lora.mjs";
 import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
 import { PoseTag } from "../tag-defines/pose.mjs";
@@ -35,13 +34,7 @@ const separateByVisibility = <
 >(
   pattern: Pattern<T>,
 ) => {
-  const filter = (tag: T | LoraNameTag, part: VisibilityKeys) => {
-    if (isLoraNameTag(tag)) {
-      return true;
-    } else {
-      return tagVisibilities[tag][part];
-    }
-  };
+  const filter = (tag: T, part: VisibilityKeys) => tagVisibilities[tag][part];
 
   const result = visibilityKeys.reduce(
     (prev, part) => ({
