@@ -1,4 +1,4 @@
-import { getKeys } from "../libs/utility.mts";
+import { getKeys } from "../libs/utility.mjs";
 import { HeadOutfitTags } from "./head-outfit.mjs";
 
 export const allDistinguishableExposureTags = {

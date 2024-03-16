@@ -1,4 +1,4 @@
-import { upskirtPreset } from "../common/upskirt-preset.mts";
+import { upskirtPreset } from "../common/upskirt-preset.mjs";
 import { OutfitDefine } from "../resolver.mjs";
 
 export const sasuoniEftFirstHighSchoolUniform = (
