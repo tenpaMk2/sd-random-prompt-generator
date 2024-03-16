@@ -1,7 +1,7 @@
 import { Tag } from "./tag-defines/all.mjs";
-import { EmotionTag } from "./tag-defines/emotion.mts";
+import { EmotionTag } from "./tag-defines/emotion.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
-import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mts";
+import { OutfitAndExposureTag } from "./tag-defines/outfit-and-exposure.mjs";
 
 /**
  * Token definition.

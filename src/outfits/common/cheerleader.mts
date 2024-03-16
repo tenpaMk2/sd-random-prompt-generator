@@ -1,5 +1,5 @@
 import { OutfitDefine } from "../resolver.mjs";
-import { upskirtPreset } from "./upskirt-preset.mts";
+import { upskirtPreset } from "./upskirt-preset.mjs";
 
 export const cheerleader = () =>
   ({

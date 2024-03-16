@@ -1,5 +1,5 @@
-import { NormalEntry } from "../../prompt-define.mts";
-import { OutfitAndExposureTag } from "../../tag-defines/outfit-and-exposure.mts";
+import { NormalEntry } from "../../prompt-define.mjs";
+import { OutfitAndExposureTag } from "../../tag-defines/outfit-and-exposure.mjs";
 
 export const upskirtPreset = {
   colorfulPanties: [
