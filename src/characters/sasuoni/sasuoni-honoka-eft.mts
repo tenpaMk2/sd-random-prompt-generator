@@ -20,5 +20,6 @@ export const sasuoniHonokaEft = () =>
       `swept bangs`,
     ],
     breastSize: `large breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

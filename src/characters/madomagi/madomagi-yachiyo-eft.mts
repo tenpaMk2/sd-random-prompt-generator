@@ -27,5 +27,6 @@ export const madomagiYachiyoEft = () =>
       `sidelocks`,
     ],
     breastSize: `small breasts`,
+    fang: false,
     emotionEntries: emotionPreset.serious,
   }) as const satisfies CharacterDefine;

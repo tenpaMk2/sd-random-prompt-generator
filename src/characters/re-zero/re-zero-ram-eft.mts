@@ -21,5 +21,6 @@ export const reZeroRamEft = () =>
       `flower knot`,
     ],
     breastSize: `small breasts`,
+    fang: false,
     emotionEntries: emotionPreset.serious,
   }) as const satisfies CharacterDefine;

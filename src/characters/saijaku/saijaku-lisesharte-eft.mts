@@ -21,5 +21,6 @@ export const saijakuLisesharteEft = () =>
       `black ribbon`,
     ],
     breastSize: `large breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

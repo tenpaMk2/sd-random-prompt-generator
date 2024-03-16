@@ -23,5 +23,6 @@ export const madomagiHomuraEft = () =>
       `black hairband`,
     ],
     breastSize: `small breasts`,
+    fang: false,
     emotionEntries: emotionPreset.serious,
   }) as const satisfies CharacterDefine;

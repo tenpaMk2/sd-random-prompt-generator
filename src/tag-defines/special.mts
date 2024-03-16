@@ -11,6 +11,6 @@ const allSpecialTags = [
   `thigh gap`,
   `upskirt`,
   `pantyshot`,
-  // TODO: `fang`
+  `fang`,
 ] as const satisfies readonly string[];
 export type SpecialTag = (typeof allSpecialTags)[number];

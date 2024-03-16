@@ -26,5 +26,6 @@ export const saijakuPhiluffyEft = () =>
       `wide hips`,
     ],
     breastSize: `large breasts`,
+    fang: false,
     emotionEntries: emotionPreset.deadpanned,
   }) as const satisfies CharacterDefine;

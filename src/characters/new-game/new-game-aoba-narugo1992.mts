@@ -21,5 +21,6 @@ export const newGameAobaNarugo1992 = () =>
       `hair flower`,
     ],
     breastSize: `small breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

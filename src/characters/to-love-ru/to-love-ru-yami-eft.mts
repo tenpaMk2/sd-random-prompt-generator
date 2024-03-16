@@ -23,5 +23,6 @@ export const toLoveRuYamiEft = () =>
       `hair ornament`,
     ],
     breastSize: `medium breasts`,
+    fang: false,
     emotionEntries: emotionPreset.serious,
   }) as const satisfies CharacterDefine;

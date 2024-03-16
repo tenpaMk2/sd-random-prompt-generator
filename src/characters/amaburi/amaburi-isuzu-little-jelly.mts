@@ -24,5 +24,6 @@ export const amaburiIsuzuLittleJelly = () =>
       `thick thighs`,
     ],
     breastSize: `large breasts`,
+    fang: false,
     emotionEntries: emotionPreset.serious,
   }) as const satisfies CharacterDefine;

@@ -25,5 +25,6 @@ export const dumbbellHibikiWiz = () =>
       `tan`,
     ],
     breastSize: `large breasts`,
+    fang: true,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

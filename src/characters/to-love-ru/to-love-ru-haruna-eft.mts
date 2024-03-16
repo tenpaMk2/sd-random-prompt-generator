@@ -18,5 +18,6 @@ export const toLoveRuHarunaEft = () =>
       `twintails`,
     ],
     breastSize: `flat chest`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

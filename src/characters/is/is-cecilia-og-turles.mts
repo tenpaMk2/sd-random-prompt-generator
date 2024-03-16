@@ -29,5 +29,6 @@ export const isCeciliaOgTurles = () =>
       `thick thighs`,
     ],
     breastSize: `large breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

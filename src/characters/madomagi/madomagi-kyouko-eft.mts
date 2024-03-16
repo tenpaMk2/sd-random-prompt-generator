@@ -23,5 +23,6 @@ export const madomagiKyoukoEft = () =>
       `black bow`,
     ],
     breastSize: `small breasts`,
+    fang: true,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

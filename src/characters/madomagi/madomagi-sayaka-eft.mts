@@ -21,5 +21,6 @@ export const madomagiSayakaEft = () =>
       `bob cut`,
     ],
     breastSize: `medium breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

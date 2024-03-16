@@ -82,7 +82,7 @@ const generateSpecialVisibilityPatternCollection = (
   }: {
     breastSize: BreastSizeTag;
     upskirtPatternCollection: PatternCollection<OutfitAndExposureTag>;
-    emotionPatternCollection: PatternCollection<EmotionTag>;
+    emotionPatternCollection: PatternCollection<EmotionTag | SpecialTag>;
     backgroundPatternCollection: PatternCollection<BackgroundTag>;
     visibleFeaturePatternCollection: PatternCollection<CharacterFeatureTag>;
     visibleOutfitPatternCollection: PatternCollection<OutfitAndExposureTag>;
@@ -179,8 +179,15 @@ const resolve = (
   const breastSize = PatternCollection.create<BreastSizeTag>([
     characterData.character.breastSize,
   ]);
-  const emotion = PatternCollection.create<EmotionTag>(
+  const rawEmotion = PatternCollection.create<EmotionTag>(
     characterData.character.emotionEntries,
+  );
+  const emotion = rawEmotion.combineIf<SpecialTag>(
+    (p) =>
+      p.tokens.some(
+        ({ tag }) => tag === `open mouth` && characterData.character.fang,
+      ),
+    PatternCollection.create<SpecialTag>([`fang`]),
   );
 
   const loraOutfit = PatternCollection.createLora(

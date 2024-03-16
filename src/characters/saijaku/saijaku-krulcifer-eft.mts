@@ -23,5 +23,6 @@ export const saijakuKrulciferEft = () =>
       `black ribbon`,
     ],
     breastSize: `small breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

@@ -21,5 +21,6 @@ export const toLoveRuNanaEft = () =>
       `hairclip`,
     ],
     breastSize: `medium breasts`,
+    fang: true,
     emotionEntries: emotionPreset.mesugaki,
   }) as const satisfies CharacterDefine;

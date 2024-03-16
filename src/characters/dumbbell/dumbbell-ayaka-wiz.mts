@@ -28,5 +28,6 @@ export const dumbbellAyakaWiz = () =>
       `toned`,
     ],
     breastSize: `medium breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

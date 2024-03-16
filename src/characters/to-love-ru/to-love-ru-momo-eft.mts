@@ -22,5 +22,6 @@ export const toLoveRuMomoEft = () =>
       `demon tail`,
     ],
     breastSize: `large breasts`,
+    fang: false,
     emotionEntries: emotionPreset.cute,
   }) as const satisfies CharacterDefine;

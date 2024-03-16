@@ -19,5 +19,6 @@ export const lycorisRecoilTakinaEft = () =>
       `sidelocks`,
     ],
     breastSize: `medium breasts`,
+    fang: false,
     emotionEntries: emotionPreset.serious,
   }) as const satisfies CharacterDefine;

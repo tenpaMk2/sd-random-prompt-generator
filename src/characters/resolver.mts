@@ -73,6 +73,10 @@ export type CharacterDefine = Readonly<{
    */
   breastSize: BreastSizeTag;
   /**
+   * Does she have fang?
+   */
+  fang: boolean;
+  /**
    * Emotion defines.
    */
   emotionEntries: NormalEntry<EmotionTag>[];
