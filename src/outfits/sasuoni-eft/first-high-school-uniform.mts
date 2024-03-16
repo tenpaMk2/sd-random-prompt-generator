@@ -40,7 +40,7 @@ export const sasuoniEftFirstHighSchoolUniform = (
     liftType: `dress`,
     upskirtEntries:
       variation === `pantyhose`
-        ? [`panties under pantyhose`, `underwear`, `panties`, `crotch seam`]
+        ? upskirtPreset.pantiesUnderPantyhose
         : upskirtPreset.colorfulPanties,
     whenRemoveShoes: {
       excludeTags: [`boots`, `black footwear`],
