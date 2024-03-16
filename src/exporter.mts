@@ -4,8 +4,8 @@ import { generatePatterns } from "./prompt-generators/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
-import { globalSetting } from "./setting.mts";
-import { exportArray, exportAsDynamicPrompts } from "./libs/utility.mts";
+import { globalSetting } from "./setting.mjs";
+import { exportArray, exportAsDynamicPrompts } from "./libs/utility.mjs";
 
 type Tree = {
   key: string;
