@@ -4,4 +4,7 @@
     "module": "NodeNext", /* Specify what module code is generated. */
     "moduleResolution": "NodeNext"
   },
+  "include": [
+    "src/**/*"
+  ],
 }
