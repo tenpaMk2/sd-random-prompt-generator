@@ -65,7 +65,6 @@ export const emotionPreset = {
     [
       { entries: emotionPresetPiece.lightSmile, probability: 2 },
       { entries: emotionPresetPiece.smilePartedLips },
-      { entries: emotionPresetPiece.smileOpenMouth },
       { entries: emotionPresetPiece.smileHalfClosedEyes },
       { entries: emotionPresetPiece.expressionless },
       { entries: emotionPresetPiece.surprised },
