@@ -20,14 +20,16 @@ type VAE = (typeof allVAEs)[number];
 const allSamplers = [`Restart`] as const satisfies string[];
 type Sampler = (typeof allSamplers)[number];
 
+export type PoseSetting<T extends BackgroundType> = Readonly<{
+  key: PoseKey[T];
+  probability?: number;
+}>;
+
 export type BackgroundSetting<T extends BackgroundType> = Readonly<{
   type: T;
   key: BackgroundKey[T];
   probability?: number;
-  poses: {
-    key: PoseKey[T];
-    probability?: number;
-  }[];
+  poses: PoseSetting<T>[];
 }>;
 
 export type OutfitSetting = Readonly<{
