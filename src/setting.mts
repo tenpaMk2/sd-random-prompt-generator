@@ -1,5 +1,9 @@
 import { GlobalSetting, MachineSetting, Setting } from "./setting-define.mjs";
-import { charactersPreset, outfitsPreset } from "./setting-preset.mjs";
+import {
+  charactersPreset,
+  generateSetting,
+  outfitsPreset,
+} from "./setting-preset.mjs";
 
 export const globalSetting = {
   promptExportingBatchSize: 1000,
@@ -32,6 +36,9 @@ export const settings = [
       hr_upscaler: "4x-AnimeSharp",
       hr_second_pass_steps: 30,
     },
-    characters: [...charactersPreset.all],
+    characters: generateSetting({
+      characterKeys: [`danmachi-eina-eft`],
+      outfitKeys: `usual`,
+    }),
   },
 ] as const satisfies Setting[];
