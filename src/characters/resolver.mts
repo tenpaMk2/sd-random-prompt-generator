@@ -8,7 +8,12 @@ import { EmotionTag } from "../tag-defines/emotion.mjs";
 import { LoraCharacterTriggerWordsTag } from "../tag-defines/lora.mjs";
 import { SeriesNameTag } from "../tag-defines/series-name.mjs";
 import { amaburiIsuzuLittleJelly } from "./amaburi/amaburi-isuzu-little-jelly.mjs";
+import { danmachiAizEft } from "./danmachi/danmachi-aiz-eft.mjs";
 import { danmachiEinaEft } from "./danmachi/danmachi-eina-eft.mjs";
+import { danmachiHaruhimeEft } from "./danmachi/danmachi-haruhime-eft.mjs";
+import { danmachiHestiaEft } from "./danmachi/danmachi-hestia-eft.mjs";
+import { danmachiLiliEft } from "./danmachi/danmachi-lili-eft.mjs";
+import { danmachiRyuEft } from "./danmachi/danmachi-ryu-eft.mjs";
 import { dumbbellAkemiWiz } from "./dumbbell/dumbbell-akemi-wiz.mjs";
 import { dumbbellAyakaWiz } from "./dumbbell/dumbbell-ayaka-wiz.mjs";
 import { dumbbellGinaWiz } from "./dumbbell/dumbbell-gina-wiz.mjs";
@@ -87,7 +92,12 @@ export type CharacterDefine = Readonly<{
 
 export const characterTable = {
   "amaburi-isuzu-little-jelly": amaburiIsuzuLittleJelly(),
+  "danmachi-aiz-eft": danmachiAizEft(),
   "danmachi-eina-eft": danmachiEinaEft(),
+  "danmachi-haruhime-eft": danmachiHaruhimeEft(),
+  "danmachi-hestia-eft": danmachiHestiaEft(),
+  "danmachi-lili-eft": danmachiLiliEft(),
+  "danmachi-ryu-eft": danmachiRyuEft(),
   "dumbbell-akemi-wiz": dumbbellAkemiWiz(),
   "dumbbell-ayaka-wiz": dumbbellAyakaWiz(),
   "dumbbell-gina-wiz": dumbbellGinaWiz(),

@@ -62,5 +62,10 @@ export const allCharacterName = [
   `gina boyd`,
   `tachibana satomi`,
   `eina tulle`,
+  `sanjouno haruhime`,
+  `liliruca arde`,
+  `ryu lion`,
+  `aiz wallenstein`,
+  `hestia \\(danmachi\\)`,
 ] as const satisfies readonly string[];
 export type CharacterNameTag = (typeof allCharacterName)[number];
