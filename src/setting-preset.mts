@@ -1,7 +1,7 @@
-import { BackgroundType } from "./backgrounds/resolver.mts";
+import { BackgroundType } from "./backgrounds/resolver.mjs";
 import { CharacterKey, characterTable } from "./characters/resolver.mjs";
 import { getKeys } from "./libs/utility.mjs";
-import { OutfitKey } from "./outfits/resolver.mts";
+import { OutfitKey } from "./outfits/resolver.mjs";
 import {
   BackgroundSetting,
   CharacterSetting,
