@@ -6,7 +6,7 @@ import { settings } from "./setting.mjs";
 import { exportAsCSV } from "./tag-defines/visibility.mjs";
 import { generateImage } from "./image-generator.mjs";
 
-console.time();
+console.time(`Prompt generation`);
 
 const generationDatas = prepare(settings);
 
@@ -15,6 +15,7 @@ console.log(generationDatas);
 const p = generatePatterns(generationDatas);
 
 console.log(p);
+console.timeEnd(`Prompt generation`);
 
 // Export and generate image asynchronously at the same time.
 const promises = [
@@ -23,7 +24,5 @@ const promises = [
   generateImage(p),
 ];
 await Promise.all(promises);
-
-console.timeEnd();
 
 // TODO: TS test emvironment.
