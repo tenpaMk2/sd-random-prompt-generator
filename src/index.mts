@@ -6,6 +6,8 @@ import { settings } from "./setting.mjs";
 import { exportAsCSV } from "./tag-defines/visibility.mjs";
 import { generateImage } from "./image-generator.mjs";
 
+console.time();
+
 const generationDatas = prepare(settings);
 
 console.log(generationDatas);
@@ -21,3 +23,5 @@ const promises = [
   generateImage(p),
 ];
 await Promise.all(promises);
+
+console.timeEnd();
