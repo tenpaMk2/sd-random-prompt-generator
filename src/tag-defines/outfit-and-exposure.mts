@@ -9,6 +9,8 @@ export const allDistinguishableExposureTags = {
 export const allDistinguishableOutfitTags = {
   "gold trim shirt": `gold trim`,
   "gold trim skirt": `gold trim`,
+  "red trim shirt": `red trim`,
+  "red trim skirt": `red trim`,
   "pinstripe pattern shirt": `pinstripe pattern`,
   "pinstripe pattern skirt": `pinstripe pattern`,
   // TODO: `red neck ribbon` → `red ribbon`
@@ -537,7 +539,6 @@ const allOutfitTags = [
   `plaid skirt`,
   `pencil skirt`,
   `high-low skirt`,
-  `red trim`, // TODO
   `pantyhose`,
   `shoes`,
   `loafers`,

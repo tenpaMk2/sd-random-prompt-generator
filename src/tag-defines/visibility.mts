@@ -384,6 +384,8 @@ const allHairbandColorVisibilities = {
 const allDistinguishableOutfitVisibilities = {
   "gold trim shirt": visibleType.shirt,
   "gold trim skirt": visibleType.skirt,
+  "red trim shirt": visibleType.shirt,
+  "red trim skirt": visibleType.skirt,
   "pinstripe pattern shirt": visibleType.shirt,
   "pinstripe pattern skirt": visibleType.skirt,
 } as const;
@@ -1139,7 +1141,6 @@ export const tagVisibilities = {
   "plaid skirt": visibleType.skirt,
   "pencil skirt": visibleType.skirt,
   "high-low skirt": visibleType.skirt,
-  "red trim": visibleType.all,
   pantyhose: visibleType.thighhighs,
   shoes: visibleType.foot,
   loafers: visibleType.foot,
