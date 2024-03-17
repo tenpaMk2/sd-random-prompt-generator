@@ -80,12 +80,11 @@ export const emotionPreset = {
   ],
   deadpanned: [
     [
-      { entries: emotionPresetPiece.smile, probability: 2 },
-      { entries: emotionPresetPiece.oneEyeClosed, probability: 3 },
-      { entries: emotionPresetPiece.grin, probability: 3 },
+      { entries: emotionPresetPiece.lightSmile, probability: 2 },
+      { entries: emotionPresetPiece.smilePartedLips },
       { entries: emotionPresetPiece.smileOpenMouth },
-      { entries: emotionPresetPiece.smileHalfClosedEyes },
-      { entries: emotionPresetPiece.expressionless },
+      { entries: emotionPresetPiece.smileHalfClosedEyes, probability: 2 },
+      { entries: emotionPresetPiece.expressionless, probability: 3 },
       { entries: emotionPresetPiece.embarrassed },
       { entries: emotionPresetPiece.nervous },
       { entries: emotionPresetPiece.flustered },
@@ -95,11 +94,12 @@ export const emotionPreset = {
   ],
   mesugaki: [
     [
-      { entries: emotionPresetPiece.lightSmile, probability: 2 },
+      { entries: emotionPresetPiece.smile, probability: 2 },
       { entries: emotionPresetPiece.smilePartedLips },
+      { entries: emotionPresetPiece.grin, probability: 3 },
       { entries: emotionPresetPiece.smileOpenMouth },
-      { entries: emotionPresetPiece.smileHalfClosedEyes, probability: 2 },
-      { entries: emotionPresetPiece.expressionless, probability: 3 },
+      { entries: emotionPresetPiece.smileHalfClosedEyes },
+      { entries: emotionPresetPiece.expressionless },
       { entries: emotionPresetPiece.embarrassed },
       { entries: emotionPresetPiece.nervous },
       { entries: emotionPresetPiece.flustered },
