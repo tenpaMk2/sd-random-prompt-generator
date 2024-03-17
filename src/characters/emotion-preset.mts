@@ -3,10 +3,11 @@ import { EmotionTag } from "../tag-defines/emotion.mjs";
 
 const emotionPresetPiece = {
   smile: [`blush`, `smile`],
-  lightSmile: [`blush`, `light smile`],
   smilePartedLips: [`blush`, `smile`, `parted lips`],
   smileOpenMouth: [`blush`, `smile`, `:d`, `open mouth`],
   smileClosedMouth: [`blush`, `smile`, `closed mouth`],
+  lightSmileOpenMouth: [`blush`, `light smile`, `open mouth`],
+  lightSmileClosedMouth: [`blush`, `light smile`, `closed mouth`],
   smileHalfClosedEyes: [`blush`, `smile`, `half-closed eyes`],
   expressionless: [`blush`, `expressionless`],
   surprised: [`blush`, `surprised`, `:o`, `open mouth`, `!`],
@@ -31,9 +32,9 @@ const emotionPresetPiece = {
 export const emotionPreset = {
   cute: [
     [
-      { entries: emotionPresetPiece.smile, probability: 3 },
+      { entries: emotionPresetPiece.smileClosedMouth, probability: 2 },
+      { entries: emotionPresetPiece.smileOpenMouth, probability: 2 },
       { entries: emotionPresetPiece.smilePartedLips },
-      { entries: emotionPresetPiece.smileOpenMouth },
       { entries: emotionPresetPiece.smileHalfClosedEyes },
       { entries: emotionPresetPiece.expressionless },
       { entries: emotionPresetPiece.surprised },
@@ -48,7 +49,8 @@ export const emotionPreset = {
   ],
   serious: [
     [
-      { entries: emotionPresetPiece.lightSmile, probability: 3 },
+      { entries: emotionPresetPiece.lightSmileOpenMouth, probability: 1 },
+      { entries: emotionPresetPiece.lightSmileClosedMouth, probability: 3 },
       { entries: emotionPresetPiece.smilePartedLips },
       { entries: emotionPresetPiece.smileHalfClosedEyes },
       { entries: emotionPresetPiece.expressionless },
@@ -63,7 +65,8 @@ export const emotionPreset = {
   ],
   uptight: [
     [
-      { entries: emotionPresetPiece.lightSmile, probability: 2 },
+      { entries: emotionPresetPiece.lightSmileOpenMouth, probability: 1 },
+      { entries: emotionPresetPiece.lightSmileClosedMouth, probability: 2 },
       { entries: emotionPresetPiece.smilePartedLips },
       { entries: emotionPresetPiece.smileHalfClosedEyes },
       { entries: emotionPresetPiece.expressionless },
@@ -79,7 +82,7 @@ export const emotionPreset = {
   ],
   deadpanned: [
     [
-      { entries: emotionPresetPiece.lightSmile, probability: 2 },
+      { entries: emotionPresetPiece.lightSmileClosedMouth, probability: 2 },
       { entries: emotionPresetPiece.smilePartedLips },
       { entries: emotionPresetPiece.smileOpenMouth },
       { entries: emotionPresetPiece.smileHalfClosedEyes, probability: 2 },
@@ -93,7 +96,7 @@ export const emotionPreset = {
   ],
   mesugaki: [
     [
-      { entries: emotionPresetPiece.smile, probability: 2 },
+      { entries: emotionPresetPiece.smileOpenMouth, probability: 2 },
       { entries: emotionPresetPiece.smilePartedLips },
       { entries: emotionPresetPiece.grin, probability: 3 },
       { entries: emotionPresetPiece.smileOpenMouth },
