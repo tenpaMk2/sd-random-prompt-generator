@@ -24,6 +24,9 @@ export const cheerleader = () =>
       ],
       `sweat`,
       `shiny skin`,
+      `bare legs`,
+      `shoes`,
+      `sneakers`,
     ],
     specialVisibility: {
       armpits: true,
@@ -33,10 +36,13 @@ export const cheerleader = () =>
       sideboob: false,
       backboob: true,
       underboobLevel: `only from below`,
-      zettaiRyouiki: true,
+      zettaiRyouiki: false,
       insideOfThighs: true,
     },
     liftType: `skirt`,
     upskirtEntries: upskirtPreset.vividPanties,
-    whenRemoveShoes: null,
+    whenRemoveShoes: {
+      excludeTags: [`shoes`, `sneakers`],
+      additionalFootEntriesAfterRemoving: [`barefoot`],
+    },
   }) as const satisfies OutfitDefine;

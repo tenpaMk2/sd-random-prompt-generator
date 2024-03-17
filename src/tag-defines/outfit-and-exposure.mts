@@ -543,6 +543,7 @@ const allOutfitTags = [
   `shoes`,
   `loafers`,
   `boots`,
+  `sneakers`,
   `underwear`,
   `underwear only`,
   `lingerie`,

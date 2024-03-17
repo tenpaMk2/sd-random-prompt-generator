@@ -1145,6 +1145,7 @@ export const tagVisibilities = {
   shoes: visibleType.foot,
   loafers: visibleType.foot,
   boots: visibleType.foot,
+  sneakers: visibleType.foot,
   underwear: visibleType.dress,
   "underwear only": visibleType.dress,
   lingerie: visibleType.dress,
