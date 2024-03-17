@@ -38,6 +38,7 @@ export type OutfitSetting = Readonly<{
   backgrounds: (
     | BackgroundSetting<`from-horizontal`>
     | BackgroundSetting<`from-below`>
+    | BackgroundSetting<`from-above`>
   )[];
 }>;
 

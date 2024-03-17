@@ -1,7 +1,7 @@
 import { NormalEntry } from "../prompt-define.mjs";
 import { BackgroundTag } from "../tag-defines/background.mjs";
 
-export type BackgroundType = `from-horizontal` | `from-below`;
+export type BackgroundType = `from-horizontal` | `from-below` | `from-above`;
 
 type BackgroundDefine = {
   entries: NormalEntry<BackgroundTag>[];
@@ -50,6 +50,14 @@ export const backgroundTable = {
       removeShoes: false,
     },
   },
+  "from-above": {
+    floor: { entries: [`floor`], removeShoes: false },
+    "ocean-partially-submerged": {
+      entries: [`outdoors`, `ocean`, `wet`, `partially submerged`],
+      removeShoes: false,
+    },
+    "bed-sheet": { entries: [`indoors`, `bed sheet`], removeShoes: true },
+  },
 } as const satisfies {
   [k in BackgroundType]: {
     [k: string]: BackgroundDefine;
@@ -59,4 +67,5 @@ export const backgroundTable = {
 export type BackgroundKey = {
   "from-horizontal": keyof (typeof backgroundTable)["from-horizontal"];
   "from-below": keyof (typeof backgroundTable)["from-below"];
+  "from-above": keyof (typeof backgroundTable)["from-above"];
 };

@@ -153,6 +153,36 @@ const generateSpecialVisibilityPatternCollection = (
   return PatternCollection.combine(pcs);
 };
 
+const takeOffShoes = (
+  pc: PatternCollection<OutfitAndExposureTag>,
+  whenRemoveShoes: OutfitDefine["whenRemoveShoes"],
+) => {
+  if (!whenRemoveShoes) {
+    console.warn("`whenRemoveShoes` is `null` .");
+    return pc;
+  }
+
+  const outfitsWhenRemoveShoes = PatternCollection.create(
+    whenRemoveShoes.additionalFootEntriesAfterRemoving,
+  );
+
+  const added = pc.combineIf(
+    (p) =>
+      whenRemoveShoes.excludeTags.every((et) =>
+        p.tokens.some((token) => token.tag === et),
+      ),
+    outfitsWhenRemoveShoes,
+  );
+
+  const result = added.map((p) =>
+    p.filter((token) =>
+      whenRemoveShoes.excludeTags.every((et) => et !== token.tag),
+    ),
+  );
+
+  return result;
+};
+
 const resolve = (
   rootData: GenerationDatas[number],
   characterData: GenerationDatas[number]["characters"][number],
@@ -203,6 +233,9 @@ const resolve = (
   const upskirt = PatternCollection.create<OutfitAndExposureTag>(
     outfitData.outfit.upskirtEntries,
   );
+  const shoesRemovedOutfits = outfitData.outfit.whenRemoveShoes
+    ? takeOffShoes(outfitAndExposure, outfitData.outfit.whenRemoveShoes)
+    : outfitAndExposure;
 
   const background = PatternCollection.create<BackgroundTag>(
     backgroundData.background.entries,
@@ -218,7 +251,9 @@ const resolve = (
     poseVisibility,
   );
   const visibleOutfits = extractVisible<OutfitAndExposureTag>(
-    outfitAndExposure,
+    backgroundData.background.removeShoes
+      ? shoesRemovedOutfits
+      : outfitAndExposure,
     poseVisibility,
   );
 

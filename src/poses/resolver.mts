@@ -303,7 +303,7 @@ export const poseTable = {
         upskirt: false,
       },
     },
-    "cheering with pom poms": {
+    "cheering-with-pom-poms": {
       entries: [
         `from below`,
         `cheering`,
@@ -345,6 +345,72 @@ export const poseTable = {
       },
     },
   },
+  "from-above": {
+    "full-body-lying": {
+      entries: [`from above`, `full body`, `lying`],
+      visibility: {
+        frontHead: true,
+        sideHead: true,
+        backHead: false,
+        frontBreast: true,
+        sideBreast: true,
+        backBreast: false,
+        frontMidriff: true,
+        sideMidriff: true,
+        backMidriff: false,
+        frontHipAndThigh: true,
+        sideHipAndThigh: true,
+        backHipAndThigh: false,
+        foot: true,
+        wristAndHand: true,
+        aroundBody: true,
+      },
+      specialVisibility: {
+        armpits: false,
+        hangingBreasts: false,
+        tautClothes: true,
+        cleavage: true,
+        sideboob: false,
+        backboob: false,
+        underboobLevel: `from horizontal`,
+        zettaiRyouiki: false,
+        insideOfThighs: true,
+        upskirt: false,
+      },
+    },
+    "lying-on-bed": {
+      entries: [`from above`, `lying`, `on bed`],
+      visibility: {
+        frontHead: true,
+        sideHead: true,
+        backHead: false,
+        frontBreast: true,
+        sideBreast: true,
+        backBreast: false,
+        frontMidriff: true,
+        sideMidriff: true,
+        backMidriff: false,
+        frontHipAndThigh: true,
+        sideHipAndThigh: true,
+        backHipAndThigh: false,
+        foot: false,
+        wristAndHand: true,
+        aroundBody: true,
+      },
+      specialVisibility: {
+        armpits: false,
+        hangingBreasts: false,
+        tautClothes: true,
+        cleavage: true,
+        sideboob: false,
+        backboob: false,
+        underboobLevel: `from horizontal`,
+        zettaiRyouiki: false,
+        insideOfThighs: true,
+        upskirt: false,
+      },
+    },
+  },
 } as const satisfies {
   [k in BackgroundType]: {
     [k: string]: PoseDefine;
@@ -354,4 +420,5 @@ export const poseTable = {
 export type PoseKey = Readonly<{
   "from-horizontal": keyof (typeof poseTable)["from-horizontal"];
   "from-below": keyof (typeof poseTable)["from-below"];
+  "from-above": keyof (typeof poseTable)["from-above"];
 }>;

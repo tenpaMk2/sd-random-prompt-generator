@@ -6,6 +6,7 @@ import { cheerleader } from "./common/cheerleader.mjs";
 import { maidBikini } from "./common/maid-bikini.mjs";
 import { microBikini } from "./common/micro-bikini.mjs";
 import { revealingMiko } from "./common/revealing-miko.mjs";
+import { testOutfit } from "./common/test-outfit.mjs";
 import { sasuoniEftFirstHighSchoolUniform } from "./sasuoni-eft/first-high-school-uniform.mjs";
 
 /**
@@ -93,6 +94,7 @@ export type OutfitDefine = Readonly<{
 }>;
 
 export const outfitTable = {
+  "test-outfit": testOutfit(),
   bikini: bikini(),
   cheerleader: cheerleader(),
   "maid-bikini": maidBikini(),

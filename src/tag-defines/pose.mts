@@ -8,6 +8,7 @@ const allPoseTags = [
   `portrait`,
   `upper body`,
   `cowboy shot`,
+  `full body`,
   `all fours`,
   `lying`,
   `on back`,

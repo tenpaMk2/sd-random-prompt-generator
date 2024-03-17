@@ -235,6 +235,10 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
     return createPatternCollectionRecursively(entries);
   }
 
+  map(callback: (p: Pattern<T>) => Pattern<T>) {
+    return new PatternCollection<T>(this.patterns.map(callback));
+  }
+
   combineWith<U extends Tag | LoraNameTag>(
     patternCollection: PatternCollection<U>,
   ) {

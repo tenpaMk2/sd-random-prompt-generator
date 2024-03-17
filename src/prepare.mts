@@ -22,6 +22,15 @@ const generateFromBelowPose = ({
   pose: poseTable["from-below"][key],
 });
 
+const generateFromAbovePose = ({
+  key,
+  probability,
+}: BackgroundSetting<"from-above">["poses"][number]) => ({
+  key,
+  probability: probability ?? 1,
+  pose: poseTable["from-above"][key],
+});
+
 const generateBackground = ({
   key,
   type,
@@ -42,6 +51,13 @@ const generateBackground = ({
         probability: probability ?? 1,
         background: backgroundTable["from-below"][key],
         poses: poses.map(generateFromBelowPose),
+      };
+    case "from-above":
+      return {
+        key: `from-above-${key}`,
+        probability: probability ?? 1,
+        background: backgroundTable["from-above"][key],
+        poses: poses.map(generateFromAbovePose),
       };
   }
 };
