@@ -168,15 +168,15 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
       0,
     );
 
-    this.patterns = patterns.map(
-      ({ tokens, probability }) =>
-        new Pattern<T>({
-          tokens,
-          probability: probability / totalProbability,
-        }),
-    );
-
-    // TODO: Remove `0` probability patterns.
+    this.patterns = patterns
+      .filter(({ probability }) => probability !== 0)
+      .map(
+        ({ tokens, probability }) =>
+          new Pattern<T>({
+            tokens,
+            probability: probability / totalProbability,
+          }),
+      );
   }
 
   static createLora(entries: LoraEntry | null) {
