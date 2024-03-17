@@ -84,3 +84,6 @@ export type Setting = Readonly<{
   };
   characters: CharacterSetting[];
 }>;
+
+// TODO: Change portrait image and landscape image. (Consider `dutch angle` )
+// TODO: Support 2 girls setting.

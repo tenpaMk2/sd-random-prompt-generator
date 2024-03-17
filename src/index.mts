@@ -25,3 +25,5 @@ const promises = [
 await Promise.all(promises);
 
 console.timeEnd();
+
+// TODO: TS test emvironment.

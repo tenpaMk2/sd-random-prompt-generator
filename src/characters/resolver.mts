@@ -82,6 +82,8 @@ export type CharacterDefine = Readonly<{
   emotionEntries: NormalEntry<EmotionTag>[];
 }>;
 
+// TODO: stomach tattoo. Idea: hook `navel` tag.
+
 export const characterTable = {
   "amaburi-isuzu-little-jelly": amaburiIsuzuLittleJelly(),
   "dumbbell-akemi-wiz": dumbbellAkemiWiz(),
