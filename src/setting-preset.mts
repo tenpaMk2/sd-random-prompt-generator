@@ -1,6 +1,9 @@
+import { BackgroundType } from "./backgrounds/resolver.mts";
 import { CharacterKey, characterTable } from "./characters/resolver.mjs";
 import { getKeys } from "./libs/utility.mjs";
+import { OutfitKey } from "./outfits/resolver.mts";
 import {
+  BackgroundSetting,
   CharacterSetting,
   OutfitSetting,
   PoseSetting,
@@ -114,12 +117,12 @@ const cheerleader = {
 } as const satisfies OutfitSetting;
 
 export const outfitsPreset = {
-  testOutfit: [testOutfit],
-  bikini: [bikini],
-  microBikini: [microBikini],
-  maidBikini: [maidBikini],
-  revealingMiko: [revealingMiko],
-  cheerleader: [cheerleader],
+  [testOutfit.key]: [testOutfit],
+  [bikini.key]: [bikini],
+  [microBikini.key]: [microBikini],
+  [maidBikini.key]: [maidBikini],
+  [revealingMiko.key]: [revealingMiko],
+  [cheerleader.key]: [cheerleader],
   usual: [bikini, microBikini, maidBikini, revealingMiko, cheerleader],
 } as const satisfies {
   [k in string]: OutfitSetting[];
@@ -132,4 +135,73 @@ export const charactersPreset = {
   })),
 } as const satisfies {
   [k in string]: CharacterSetting[];
+};
+
+/**
+ * Define unique key for the pair of backgrounds and poses.
+ */
+type BackgroundAndPoseKey =
+  | `from-above-bed-sheet-lying-on-bed`
+  | `from-above-bed-sheet-full-body-lying`;
+
+export const generateSetting = ({
+  characterKeys,
+  outfitKeys,
+  backgroundAndPoseKeys,
+}: {
+  characterKeys: CharacterKey[] | `all`;
+  outfitKeys: OutfitKey[] | `usual`;
+  backgroundAndPoseKeys?: BackgroundAndPoseKey[];
+}) => {
+  const cKeys =
+    characterKeys === `all` ? getKeys(characterTable) : characterKeys;
+  const characterSettings = cKeys.map((cKey) => {
+    if (outfitKeys === `usual`)
+      return {
+        key: cKey,
+        outfits: [...outfitsPreset.usual],
+      };
+
+    if (!backgroundAndPoseKeys) {
+      const outfits = outfitKeys.map((oKeys) => outfitsPreset[oKeys]);
+
+      return {
+        key: cKey,
+        outfits,
+      };
+    }
+
+    const outfits = outfitKeys.map((oKey) => {
+      const backgrounds = backgroundAndPoseKeys.map(
+        (backgroundAndPoseKey): BackgroundSetting<BackgroundType> => {
+          switch (backgroundAndPoseKey) {
+            case `from-above-bed-sheet-lying-on-bed`:
+              return {
+                type: `from-above`,
+                key: `bed-sheet`,
+                poses: [{ key: `lying-on-bed` }],
+              };
+            case `from-above-bed-sheet-full-body-lying`:
+              return {
+                type: `from-above`,
+                key: `bed-sheet`,
+                poses: [{ key: `full-body-lying` }],
+              };
+          }
+        },
+      );
+
+      return {
+        key: oKey,
+        backgrounds,
+      };
+    });
+
+    return {
+      key: cKey,
+      outfits,
+    };
+  });
+
+  return characterSettings;
 };
