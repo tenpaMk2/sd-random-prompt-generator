@@ -718,6 +718,8 @@ export const tagVisibilities = {
   "shiny skin": visibleType.all,
 
   // Outfit
+  "gold trim shirt": visibleType.shirt,
+  "gold trim skirt": visibleType.skirt,
   "cleavage cutout": visibleType.cleavage,
   "navel cutout": visibleType.navel,
   "neck ribbon": visibleType.bowtie,
@@ -871,7 +873,6 @@ export const tagVisibilities = {
   pirate: visibleType.all,
   "pirate hat": visibleType.hair,
   ascot: visibleType.bowtie,
-  "gold trim": visibleType.all, // TODO: `gold trim shirt` and `gold trim skirt` .
   "thigh boots": visibleType.foot,
   "playboy bunny": visibleType.dress,
   "rabbit ears": visibleType.hair,

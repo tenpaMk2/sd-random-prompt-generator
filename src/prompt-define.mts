@@ -4,6 +4,7 @@ import { LoraNameTag } from "./tag-defines/lora.mjs";
 import {
   OutfitAndExposureTag,
   allDistinguishableExposureTags,
+  allDistinguishableOutfitTags,
 } from "./tag-defines/outfit-and-exposure.mjs";
 
 /**
@@ -34,8 +35,11 @@ class Token<T extends Tag | LoraNameTag> {
   toString() {
     switch (this.type) {
       case `normal`:
-        // Resolve tag name if it's a distinguishable exposure tag.
-        const tag = allDistinguishableExposureTags[this.tag as any] ?? this.tag;
+        // Resolve tag name if it's a distinguishable tag.
+        const tag =
+          allDistinguishableExposureTags[this.tag as any] ??
+          allDistinguishableOutfitTags[this.tag as any] ??
+          this.tag;
 
         return this.weight === 1.0 ? tag : `${tag}:${this.weight}`;
       case `lora`:
@@ -121,9 +125,8 @@ export class Pattern<T extends Tag | LoraNameTag> {
         case `normal`:
           return {
             tag: (allDistinguishableExposureTags[token.tag as any] ??
-              token.tag) as
-              | T
-              | (typeof allDistinguishableExposureTags)[keyof typeof allDistinguishableExposureTags],
+              allDistinguishableOutfitTags[token.tag as any] ??
+              token.tag) as T,
             weight: token.weight,
             type: `normal`,
             token,

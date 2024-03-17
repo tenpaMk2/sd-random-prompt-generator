@@ -4,6 +4,11 @@ import { HeadOutfitTags } from "./head-outfit.mjs";
 export const allDistinguishableExposureTags = {
   "breasts skindentation": `skindentation`,
   "thighs skindentation": `skindentation`,
+} as const satisfies { [k in string]: string };
+
+export const allDistinguishableOutfitTags = {
+  "gold trim shirt": `gold trim`,
+  "gold trim skirt": `gold trim`,
   // TODO: `red neck ribbon` → `red ribbon`
 } as const satisfies { [k in string]: string };
 
@@ -160,6 +165,7 @@ const allDressColorTags = [
 ] as const satisfies string[];
 
 const allOutfitTags = [
+  ...getKeys(allDistinguishableOutfitTags),
   `cleavage cutout`,
   `navel cutout`,
   `neck ribbon`,
@@ -281,7 +287,6 @@ const allOutfitTags = [
   `pirate`,
   `pirate hat`,
   `ascot`,
-  `gold trim`,
   `thigh boots`,
   `playboy bunny`,
   `rabbit ears`,
