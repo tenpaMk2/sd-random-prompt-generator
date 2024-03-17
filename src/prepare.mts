@@ -31,14 +31,14 @@ const generateBackground = ({
   switch (type) {
     case "from-horizontal":
       return {
-        key,
+        key: `from-horizontal-${key}`,
         probability: probability ?? 1,
         background: backgroundTable["from-horizontal"][key],
         poses: poses.map(generateFromHorizontalPose),
       };
     case "from-below":
       return {
-        key,
+        key: `from-below-${key}`,
         probability: probability ?? 1,
         background: backgroundTable["from-below"][key],
         poses: poses.map(generateFromBelowPose),
