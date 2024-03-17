@@ -37,7 +37,14 @@ export const settings = [
       hr_second_pass_steps: 30,
     },
     characters: generateSetting({
-      characterKeys: [`danmachi-eina-eft`],
+      characterKeys: [
+        `danmachi-aiz-eft`,
+        `danmachi-eina-eft`,
+        `danmachi-haruhime-eft`,
+        `danmachi-hestia-eft`,
+        `danmachi-lili-eft`,
+        `danmachi-ryu-eft`,
+      ],
       outfitKeys: `usual`,
     }),
   },
