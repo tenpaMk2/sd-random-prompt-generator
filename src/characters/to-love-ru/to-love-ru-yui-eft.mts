@@ -21,5 +21,5 @@ export const toLoveRuYuiEft = () =>
     ],
     breastSize: `large breasts`,
     fang: false,
-    emotionEntries: emotionPreset.serious,
+    emotionEntries: emotionPreset.uptight,
   }) as const satisfies CharacterDefine;
