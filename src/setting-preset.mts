@@ -59,6 +59,11 @@ const bikini = {
       key: `ocean-beach`,
       poses: fromHorizontalPosesPreset.usual,
     },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: [{ key: `lying-on-bed` }],
+    },
   ],
 } as const satisfies OutfitSetting;
 
@@ -91,6 +96,11 @@ const maidBikini = {
       key: `cafe-window`,
       poses: fromHorizontalPosesPreset.usual,
     },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: [{ key: `lying-on-bed` }],
+    },
   ],
 } as const satisfies OutfitSetting;
 
@@ -102,6 +112,11 @@ const revealingMiko = {
       key: `colorful-backgrounds`,
       poses: fromHorizontalPosesPreset.usual,
     },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: [{ key: `lying-on-bed` }],
+    },
   ],
 } as const satisfies OutfitSetting;
 
@@ -112,6 +127,11 @@ const cheerleader = {
       type: `from-below`,
       key: `blue-sky-confetti`,
       poses: [{ key: `cheering-with-pom-poms` }],
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: [{ key: `lying-on-bed` }],
     },
   ],
 } as const satisfies OutfitSetting;
