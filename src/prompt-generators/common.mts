@@ -260,7 +260,7 @@ const generatePosePatternCollection = (
   poseData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
 ) => ({
   key: poseData.key,
-  weight: poseData.weight,
+  probability: poseData.probability,
   patternCollection: resolve(
     generationData,
     characterData,
@@ -288,15 +288,15 @@ const generateBackgroundPatternCollection = (
   );
 
   const backgroundPatternCollection = PatternCollection.joinAll(
-    poses.map(({ patternCollection, weight }) => ({
+    poses.map(({ patternCollection, probability }) => ({
       patternCollection,
-      probability: weight,
+      probability,
     })),
   );
 
   return {
     key: backgroundData.key,
-    weight: backgroundData.weight,
+    probability: backgroundData.probability,
     patternCollection: backgroundPatternCollection,
     children: poses,
   };
@@ -317,15 +317,15 @@ const generateOutfitPatternCollection = (
   );
 
   const outfitPatternCollection = PatternCollection.joinAll(
-    backgrounds.map(({ patternCollection, weight }) => ({
+    backgrounds.map(({ patternCollection, probability }) => ({
       patternCollection,
-      probability: weight,
+      probability,
     })),
   );
 
   return {
     key: outfitData.key,
-    weight: outfitData.weight,
+    probability: outfitData.probability,
     patternCollection: outfitPatternCollection,
     children: backgrounds,
   };
@@ -340,15 +340,15 @@ const generateCharacterPatternCollection = (
   );
 
   const characterPatternCollection = PatternCollection.joinAll(
-    outfits.map(({ patternCollection, weight }) => ({
+    outfits.map(({ patternCollection, probability }) => ({
       patternCollection,
-      probability: weight,
+      probability,
     })),
   );
 
   return {
     key: characterData.key,
-    weight: characterData.weight,
+    probability: characterData.probability,
     patternCollection: characterPatternCollection,
     children: outfits,
   };
@@ -362,7 +362,7 @@ const generateRootPatternCollection = (
   );
 
   const rootPatternCollection = PatternCollection.joinAll(
-    characters.map(({ patternCollection, weight }) => ({
+    characters.map(({ patternCollection, probability: weight }) => ({
       patternCollection,
       probability: weight,
     })),
@@ -370,7 +370,7 @@ const generateRootPatternCollection = (
 
   return {
     key: generationData.key,
-    weight: generationData.weight,
+    probability: generationData.probability,
     fixedPrompt: generationData.fixedPrompt,
     optionsBodyJson: generationData.optionsBodyJson,
     txt2imgBodyJson: generationData.txt2imgBodyJson,

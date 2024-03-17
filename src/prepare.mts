@@ -6,40 +6,40 @@ import { BackgroundSetting, Setting } from "./setting-define.mjs";
 
 const generateFromHorizontalPose = ({
   key,
-  weight,
+  probability,
 }: BackgroundSetting<"from-horizontal">["poses"][number]) => ({
   key,
-  weight: weight ?? 1,
+  probability: probability ?? 1,
   pose: poseTable["from-horizontal"][key],
 });
 
 const generateFromBelowPose = ({
   key,
-  weight,
+  probability,
 }: BackgroundSetting<"from-below">["poses"][number]) => ({
   key,
-  weight: weight ?? 1,
+  probability: probability ?? 1,
   pose: poseTable["from-below"][key],
 });
 
 const generateBackground = ({
   key,
   type,
-  weight,
+  probability,
   poses,
 }: Setting["characters"][number]["outfits"][number]["backgrounds"][number]) => {
   switch (type) {
     case "from-horizontal":
       return {
         key,
-        weight: weight ?? 1,
+        probability: probability ?? 1,
         background: backgroundTable["from-horizontal"][key],
         poses: poses.map(generateFromHorizontalPose),
       };
     case "from-below":
       return {
         key,
-        weight: weight ?? 1,
+        probability: probability ?? 1,
         background: backgroundTable["from-below"][key],
         poses: poses.map(generateFromBelowPose),
       };
@@ -48,22 +48,22 @@ const generateBackground = ({
 
 const generateOutfit = ({
   key,
-  weight,
+  probability,
   backgrounds,
 }: Setting["characters"][number]["outfits"][number]) => ({
   key,
-  weight: weight ?? 1,
+  probability: probability ?? 1,
   outfit: outfitTable[key],
   backgrounds: backgrounds.map(generateBackground),
 });
 
 const generateCharacter = ({
   key,
-  weight,
+  probability,
   outfits,
 }: Setting["characters"][number]) => ({
   key,
-  weight: weight ?? 1,
+  probability: probability ?? 1,
   character: characterTable[key],
   outfits: outfits.map(generateOutfit),
 });
@@ -72,14 +72,14 @@ export const prepare = (settings: Setting[]) =>
   settings.map(
     ({
       key,
-      weight,
+      probability,
       characters,
       fixedPrompt,
       optionsBodyJson,
       txt2imgBodyJson,
     }) => ({
       key,
-      weight: weight ?? 1,
+      probability: probability ?? 1,
       fixedPrompt,
       optionsBodyJson,
       txt2imgBodyJson,

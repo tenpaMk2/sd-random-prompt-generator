@@ -23,16 +23,16 @@ type Sampler = (typeof allSamplers)[number];
 export type BackgroundSetting<T extends BackgroundType> = Readonly<{
   type: T;
   key: BackgroundKey[T];
-  weight?: number;
+  probability?: number;
   poses: {
     key: PoseKey[T];
-    weight?: number;
+    probability?: number;
   }[];
 }>;
 
 export type OutfitSetting = Readonly<{
   key: OutfitKey;
-  weight?: number;
+  probability?: number;
   backgrounds: (
     | BackgroundSetting<`from-horizontal`>
     | BackgroundSetting<`from-below`>
@@ -41,7 +41,7 @@ export type OutfitSetting = Readonly<{
 
 export type CharacterSetting = Readonly<{
   key: CharacterKey;
-  weight?: number;
+  probability?: number;
   outfits: OutfitSetting[];
 }>;
 
@@ -65,7 +65,7 @@ export type MachineSetting = Readonly<{
 
 export type Setting = Readonly<{
   key: string; // Generation name.
-  weight?: number;
+  probability?: number;
   fixedPrompt: string;
   optionsBodyJson: {
     sd_model_checkpoint: Checkpoint;
