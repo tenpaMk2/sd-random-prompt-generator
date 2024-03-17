@@ -248,7 +248,7 @@ const allEyesColorVisibilities = {
   "red eyes": visibleType.face,
   "white eyes": visibleType.face,
   "yellow eyes": visibleType.face,
-};
+} as const;
 
 const allHairColorVisibilities = {
   "aqua hair": visibleType.hair,
@@ -269,7 +269,7 @@ const allHairColorVisibilities = {
   "light purple hair": visibleType.hair,
   "red hair": visibleType.hair,
   "white hair": visibleType.hair,
-};
+} as const;
 
 const allEyesVisibilities = {
   "sparkling eyes": visibleType.face,
@@ -280,20 +280,20 @@ const allEyesVisibilities = {
   tsurime: visibleType.face,
   tareme: visibleType.face,
   jitome: visibleType.face,
-};
+} as const;
 
 const allEyebrowsVisibilities = {
   eyebrows: visibleType.face,
   "short eyebrows": visibleType.face,
   "thick eyebrows": visibleType.face,
   hikimayu: visibleType.face,
-};
+} as const;
 
 const allEyelashesVisibilities = {
   eyelashes: visibleType.face,
   "long eyelashes": visibleType.face,
   "thick eyelashes": visibleType.face,
-};
+} as const;
 
 const allHairLengthVisibilities = {
   "short hair": visibleType.hair,
@@ -301,7 +301,7 @@ const allHairLengthVisibilities = {
   "long hair": visibleType.hair,
   "very long hair": visibleType.hair,
   "absurdly long hair": visibleType.hair,
-};
+} as const;
 
 const allBreastSizeVisibilities = {
   "flat chest": visibleType.breasts,
@@ -309,7 +309,7 @@ const allBreastSizeVisibilities = {
   "medium breasts": visibleType.breasts,
   "large breasts": visibleType.breasts,
   "huge breasts": visibleType.breasts,
-};
+} as const;
 
 const allEyewearColorVisibilities = {
   "aqua-framed eyewear": visibleType.glasses,
@@ -324,7 +324,7 @@ const allEyewearColorVisibilities = {
   "red-framed eyewear": visibleType.glasses,
   "white-framed eyewear": visibleType.glasses,
   "yellow-framed eyewear": visibleType.glasses,
-};
+} as const;
 
 const allTintedEyewearColorVisibilities = {
   "blue-tinted eyewear": visibleType.glasses,
@@ -334,7 +334,7 @@ const allTintedEyewearColorVisibilities = {
   "purple-tinted eyewear": visibleType.glasses,
   "red-tinted eyewear": visibleType.glasses,
   "yellow-tinted eyewear": visibleType.glasses,
-};
+} as const;
 
 const allHairBowColorVisibilities = {
   "red bow": visibleType.hair,
@@ -349,7 +349,7 @@ const allHairBowColorVisibilities = {
   "black bow": visibleType.hair,
   "grey bow": visibleType.hair,
   "white bow": visibleType.hair,
-};
+} as const;
 
 const allHairRibbonColorVisibilities = {
   "red ribbon": visibleType.hair,
@@ -364,7 +364,7 @@ const allHairRibbonColorVisibilities = {
   "black ribbon": visibleType.hair,
   "grey ribbon": visibleType.hair,
   "white ribbon": visibleType.hair,
-};
+} as const;
 
 const allHairbandColorVisibilities = {
   "red hairband": visibleType.hair,
@@ -379,7 +379,59 @@ const allHairbandColorVisibilities = {
   "black hairband": visibleType.hair,
   "grey hairband": visibleType.hair,
   "white hairband": visibleType.hair,
-};
+} as const;
+
+const allDistinguishableOutfitVisibilities = {
+  "gold trim shirt": visibleType.shirt,
+  "gold trim skirt": visibleType.skirt,
+  "pinstripe pattern shirt": visibleType.shirt,
+  "pinstripe pattern skirt": visibleType.skirt,
+} as const;
+
+const allShirtColorVisibilities = {
+  "aqua shirt": visibleType.shirt,
+  "black shirt": visibleType.shirt,
+  "blue shirt": visibleType.shirt,
+  "brown shirt": visibleType.shirt,
+  "green shirt": visibleType.shirt,
+  "grey shirt": visibleType.shirt,
+  "orange shirt": visibleType.shirt,
+  "pink shirt": visibleType.shirt,
+  "purple shirt": visibleType.shirt,
+  "red shirt": visibleType.shirt,
+  "white shirt": visibleType.shirt,
+  "yellow shirt": visibleType.shirt,
+} as const;
+
+const allSkirtColorVisibilities = {
+  "aqua skirt": visibleType.skirt,
+  "black skirt": visibleType.skirt,
+  "blue skirt": visibleType.skirt,
+  "brown skirt": visibleType.skirt,
+  "green skirt": visibleType.skirt,
+  "grey skirt": visibleType.skirt,
+  "orange skirt": visibleType.skirt,
+  "pink skirt": visibleType.skirt,
+  "purple skirt": visibleType.skirt,
+  "red skirt": visibleType.skirt,
+  "white skirt": visibleType.skirt,
+  "yellow skirt": visibleType.skirt,
+} as const;
+
+const allPantiesColorVisibilities = {
+  "aqua panties": visibleType.panties,
+  "black panties": visibleType.panties,
+  "blue panties": visibleType.panties,
+  "brown panties": visibleType.panties,
+  "green panties": visibleType.panties,
+  "grey panties": visibleType.panties,
+  "orange panties": visibleType.panties,
+  "pink panties": visibleType.panties,
+  "purple panties": visibleType.panties,
+  "red panties": visibleType.panties,
+  "white panties": visibleType.panties,
+  "yellow panties": visibleType.panties,
+} as const;
 
 const allBowtieColorVisibilities = {
   "aqua bowtie": visibleType.bowtie,
@@ -444,7 +496,7 @@ const allJacketColorVisibilities = {
   "red jacket": visibleType.shirt,
   "white jacket": visibleType.shirt,
   "yellow jacket": visibleType.shirt,
-};
+} as const;
 
 const allDressColorVisibilities = {
   "aqua dress": visibleType.dress,
@@ -459,6 +511,272 @@ const allDressColorVisibilities = {
   "red dress": visibleType.dress,
   "white dress": visibleType.dress,
   "yellow dress": visibleType.dress,
+} as const;
+
+const allSweaterColorVisibilities = {
+  "aqua sweater": visibleType.shirt,
+  "beige sweater": visibleType.shirt,
+  "black sweater": visibleType.shirt,
+  "brown sweater": visibleType.shirt,
+  "blue sweater": visibleType.shirt,
+  "green sweater": visibleType.shirt,
+  "grey sweater": visibleType.shirt,
+  "orange sweater": visibleType.shirt,
+  "purple sweater": visibleType.shirt,
+  "red sweater": visibleType.shirt,
+  "yellow sweater": visibleType.shirt,
+  "white sweater": visibleType.shirt,
+} as const;
+
+const allSweaterVestColorVisibilities = {
+  "aqua sweater vest": visibleType.shirt,
+  "black sweater vest": visibleType.shirt,
+  "blue sweater vest": visibleType.shirt,
+  "brown sweater vest": visibleType.shirt,
+  "green sweater vest": visibleType.shirt,
+  "grey sweater vest": visibleType.shirt,
+  "orange sweater vest": visibleType.shirt,
+  "pink sweater vest": visibleType.shirt,
+  "purple sweater vest": visibleType.shirt,
+  "red sweater vest": visibleType.shirt,
+  "white sweater vest": visibleType.shirt,
+  "yellow sweater vest": visibleType.shirt,
+} as const;
+
+const allGlovesColorVisibilities = {
+  "multicolored gloves": visibleType["wrist cuffs"],
+  "aqua gloves": visibleType["wrist cuffs"],
+  "black gloves": visibleType["wrist cuffs"],
+  "blue gloves": visibleType["wrist cuffs"],
+  "brown gloves": visibleType["wrist cuffs"],
+  "green gloves": visibleType["wrist cuffs"],
+  "grey gloves": visibleType["wrist cuffs"],
+  "orange gloves": visibleType["wrist cuffs"],
+  "pink gloves": visibleType["wrist cuffs"],
+  "purple gloves": visibleType["wrist cuffs"],
+  "red gloves": visibleType["wrist cuffs"],
+  "white gloves": visibleType["wrist cuffs"],
+  "yellow gloves": visibleType["wrist cuffs"],
+} as const;
+
+const allThighhighsColorVisibilities = {
+  "black thighhighs": visibleType.thighhighs,
+  "blue thighhighs": visibleType.thighhighs,
+  "brown thighhighs": visibleType.thighhighs,
+  "green thighhighs": visibleType.thighhighs,
+  "grey thighhighs": visibleType.thighhighs,
+  "orange thighhighs": visibleType.thighhighs,
+  "pink thighhighs": visibleType.thighhighs,
+  "purple thighhighs": visibleType.thighhighs,
+  "red thighhighs": visibleType.thighhighs,
+  "white thighhighs": visibleType.thighhighs,
+  "yellow thighhighs": visibleType.thighhighs,
+} as const;
+
+const allSocksColorVisibilities = {
+  "black socks": visibleType.foot,
+  "blue socks": visibleType.foot,
+  "brown socks": visibleType.foot,
+  "green socks": visibleType.foot,
+  "grey socks": visibleType.foot,
+  "orange socks": visibleType.foot,
+  "pink socks": visibleType.foot,
+  "purple socks": visibleType.foot,
+  "red socks": visibleType.foot,
+  "white socks": visibleType.foot,
+  "yellow socks": visibleType.foot,
+} as const;
+
+const allCollarColorVisibilities = {
+  "black collar": visibleType.collar,
+  "blue collar": visibleType.collar,
+  "brown collar": visibleType.collar,
+  "grey collar": visibleType.collar,
+  "orange collar": visibleType.collar,
+  "pink collar": visibleType.collar,
+  "purple collar": visibleType.collar,
+  "red collar": visibleType.collar,
+  "white collar": visibleType.collar,
+} as const;
+
+const allSleevesColorVisibilities = {
+  "aqua sleeves": visibleType.shoulder,
+  "black sleeves": visibleType.shoulder,
+  "blue sleeves": visibleType.shoulder,
+  "brown sleeves": visibleType.shoulder,
+  "green sleeves": visibleType.shoulder,
+  "grey sleeves": visibleType.shoulder,
+  "orange sleeves": visibleType.shoulder,
+  "pink sleeves": visibleType.shoulder,
+  "purple sleeves": visibleType.shoulder,
+  "red sleeves": visibleType.shoulder,
+  "white sleeves": visibleType.shoulder,
+  "yellow sleeves": visibleType.shoulder,
+} as const;
+
+const allBeltColorVisibilities = {
+  "black belt": visibleType.skirt,
+  "blue belt": visibleType.skirt,
+  "brown belt": visibleType.skirt,
+  "green belt": visibleType.skirt,
+  "grey belt": visibleType.skirt,
+  "orange belt": visibleType.skirt,
+  "pink belt": visibleType.skirt,
+  "purple belt": visibleType.skirt,
+  "red belt": visibleType.skirt,
+  "white belt": visibleType.skirt,
+  "yellow belt": visibleType.skirt,
+} as const;
+
+const allVestColorVisibilities = {
+  "aqua vest": visibleType.shirt,
+  "black vest": visibleType.shirt,
+  "blue vest": visibleType.shirt,
+  "brown vest": visibleType.shirt,
+  "green vest": visibleType.shirt,
+  "grey vest": visibleType.shirt,
+  "orange vest": visibleType.shirt,
+  "pink vest": visibleType.shirt,
+  "purple vest": visibleType.shirt,
+  "red vest": visibleType.shirt,
+  "white vest": visibleType.shirt,
+  "yellow vest": visibleType.shirt,
+} as const;
+
+const allAscotColorVisibilities = {
+  "aqua ascot": visibleType.bowtie,
+  "black ascot": visibleType.bowtie,
+  "blue ascot": visibleType.bowtie,
+  "brown ascot": visibleType.bowtie,
+  "green ascot": visibleType.bowtie,
+  "grey ascot": visibleType.bowtie,
+  "orange ascot": visibleType.bowtie,
+  "pink ascot": visibleType.bowtie,
+  "purple ascot": visibleType.bowtie,
+  "red ascot": visibleType.bowtie,
+  "white ascot": visibleType.bowtie,
+  "yellow ascot": visibleType.bowtie,
+} as const;
+
+const allLeotardColorVisibilities = {
+  "aqua leotard": visibleType.dress,
+  "black leotard": visibleType.dress,
+  "blue leotard": visibleType.dress,
+  "brown leotard": visibleType.dress,
+  "green leotard": visibleType.dress,
+  "grey leotard": visibleType.dress,
+  "orange leotard": visibleType.dress,
+  "pink leotard": visibleType.dress,
+  "purple leotard": visibleType.dress,
+  "red leotard": visibleType.dress,
+  "white leotard": visibleType.dress,
+  "yellow leotard": visibleType.dress,
+} as const;
+
+const allNeckerchiefColorVisibilities = {
+  "aqua neckerchief": visibleType.bowtie,
+  "black neckerchief": visibleType.bowtie,
+  "blue neckerchief": visibleType.bowtie,
+  "brown neckerchief": visibleType.bowtie,
+  "green neckerchief": visibleType.bowtie,
+  "grey neckerchief": visibleType.bowtie,
+  "orange neckerchief": visibleType.bowtie,
+  "pink neckerchief": visibleType.bowtie,
+  "purple neckerchief": visibleType.bowtie,
+  "red neckerchief": visibleType.bowtie,
+  "white neckerchief": visibleType.bowtie,
+  "yellow neckerchief": visibleType.bowtie,
+} as const;
+
+const allSailorCollarColorVisibilities = {
+  "aqua sailor collar": visibleType.collar,
+  "black sailor collar": visibleType.collar,
+  "blue sailor collar": visibleType.collar,
+  "brown sailor collar": visibleType.collar,
+  "green sailor collar": visibleType.collar,
+  "grey sailor collar": visibleType.collar,
+  "orange sailor collar": visibleType.collar,
+  "pink sailor collar": visibleType.collar,
+  "purple sailor collar": visibleType.collar,
+  "red sailor collar": visibleType.collar,
+  "white sailor collar": visibleType.collar,
+  "yellow sailor collar": visibleType.collar,
+} as const;
+
+const allSerafukuColorVisibilities = {
+  "aqua serafuku": visibleType.shirt,
+  "black serafuku": visibleType.shirt,
+  "blue serafuku": visibleType.shirt,
+  "brown serafuku": visibleType.shirt,
+  "green serafuku": visibleType.shirt,
+  "grey serafuku": visibleType.shirt,
+  "orange serafuku": visibleType.shirt,
+  "pink serafuku": visibleType.shirt,
+  "purple serafuku": visibleType.shirt,
+  "red serafuku": visibleType.shirt,
+  "white serafuku": visibleType.shirt,
+  "yellow serafuku": visibleType.shirt,
+} as const;
+
+const allCamisoleColorVisibilities = {
+  "aqua camisole": visibleType.shirt,
+  "black camisole": visibleType.shirt,
+  "blue camisole": visibleType.shirt,
+  "brown camisole": visibleType.shirt,
+  "green camisole": visibleType.shirt,
+  "grey camisole": visibleType.shirt,
+  "orange camisole": visibleType.shirt,
+  "pink camisole": visibleType.shirt,
+  "purple camisole": visibleType.shirt,
+  "red camisole": visibleType.shirt,
+  "white camisole": visibleType.shirt,
+  "yellow camisole": visibleType.shirt,
+} as const;
+
+const allShortsColorVisibilities = {
+  "multicolored shorts": visibleType.skirt,
+  "aqua shorts": visibleType.skirt,
+  "black shorts": visibleType.skirt,
+  "blue shorts": visibleType.skirt,
+  "brown shorts": visibleType.skirt,
+  "green shorts": visibleType.skirt,
+  "grey shorts": visibleType.skirt,
+  "orange shorts": visibleType.skirt,
+  "pink shorts": visibleType.skirt,
+  "purple shorts": visibleType.skirt,
+  "red shorts": visibleType.skirt,
+  "white shorts": visibleType.skirt,
+  "yellow shorts": visibleType.skirt,
+} as const;
+
+const allBurumaColorVisibilities = {
+  "aqua buruma": visibleType.skirt,
+  "black buruma": visibleType.skirt,
+  "blue buruma": visibleType.skirt,
+  "brown buruma": visibleType.skirt,
+  "green buruma": visibleType.skirt,
+  "grey buruma": visibleType.skirt,
+  "orange buruma": visibleType.skirt,
+  "pink buruma": visibleType.skirt,
+  "purple buruma": visibleType.skirt,
+  "red buruma": visibleType.skirt,
+  "white buruma": visibleType.skirt,
+  "yellow buruma": visibleType.skirt,
+} as const;
+
+const allNecktieColorVisibilities = {
+  "aqua necktie": visibleType.bowtie,
+  "black necktie": visibleType.bowtie,
+  "blue necktie": visibleType.bowtie,
+  "brown necktie": visibleType.bowtie,
+  "green necktie": visibleType.bowtie,
+  "grey necktie": visibleType.bowtie,
+  "orange necktie": visibleType.bowtie,
+  "pink necktie": visibleType.bowtie,
+  "purple necktie": visibleType.bowtie,
+  "red necktie": visibleType.bowtie,
+  "white necktie": visibleType.bowtie,
+  "yellow necktie": visibleType.bowtie,
 } as const;
 
 export const tagVisibilities = {
@@ -718,45 +1036,83 @@ export const tagVisibilities = {
   "shiny skin": visibleType.all,
 
   // Outfit
-  "gold trim shirt": visibleType.shirt,
-  "gold trim skirt": visibleType.skirt,
+  ...allDistinguishableOutfitVisibilities,
+  shirt: visibleType.shirt,
+  ...allShirtColorVisibilities,
+  skirt: visibleType.skirt,
+  ...allSkirtColorVisibilities,
+  panties: visibleType.panties,
+  ...allPantiesColorVisibilities,
+  bowtie: visibleType.bowtie,
+  ...allBowtieColorVisibilities,
+  bikini: visibleType.dress,
+  ...allBikiniColorVisibilities,
+  "school swimsuit": visibleType.dress,
+  ...allOnePieceSwimsuitColorVisibilities,
+  jacket: visibleType.shirt,
+  ...allJacketColorVisibilities,
+  dress: visibleType.dress,
+  ...allDressColorVisibilities,
+  sweater: visibleType.shirt,
+  ...allSweaterColorVisibilities,
+  "sweater vest": visibleType.shirt,
+  ...allSweaterVestColorVisibilities,
+  gloves: visibleType["wrist cuffs"],
+  ...allGlovesColorVisibilities,
+  thighhighs: visibleType.thighhighs,
+  ...allThighhighsColorVisibilities,
+  socks: visibleType.foot,
+  ...allSocksColorVisibilities,
+  collar: visibleType.collar,
+  ...allCollarColorVisibilities,
+  ...allSleevesColorVisibilities,
+  belt: visibleType.skirt,
+  ...allBeltColorVisibilities,
+  vest: visibleType.shirt,
+  ...allVestColorVisibilities,
+  ascot: visibleType.bowtie,
+  ...allAscotColorVisibilities,
+  leotard: visibleType.dress,
+  ...allLeotardColorVisibilities,
+  neckerchief: visibleType.bowtie,
+  ...allNeckerchiefColorVisibilities,
+  "sailor collar": visibleType.collar,
+  ...allSailorCollarColorVisibilities,
+  serafuku: visibleType.shirt,
+  ...allSerafukuColorVisibilities,
+  camisole: visibleType.shirt,
+  ...allCamisoleColorVisibilities,
+  shorts: visibleType.skirt,
+  ...allShortsColorVisibilities,
+  buruma: visibleType.skirt,
+  ...allBurumaColorVisibilities,
+  necktie: visibleType.bowtie,
+  ...allNecktieColorVisibilities,
+
+  "ribbed sweater": visibleType.shirt,
+  "striped sweater": visibleType.shirt,
+  "plaid sweater": visibleType.shirt,
+  "polka dot sweater": visibleType.shirt,
+  "argyle sweater": visibleType.shirt,
+  "argyle sweater vest": visibleType.shirt,
   "cleavage cutout": visibleType.cleavage,
   "navel cutout": visibleType.navel,
   "neck ribbon": visibleType.bowtie,
   underbust: visibleType.underbust,
-  bowtie: visibleType.bowtie,
-  ...allBowtieColorVisibilities,
   buttons: visibleType.dress,
   jewelry: visibleType.all,
-  bikini: visibleType.dress,
-  ...allBikiniColorVisibilities,
   "frilled bikini": visibleType.dress,
   "print bikini": visibleType.dress,
   "o-ring bikini": visibleType.dress,
   "micro bikini": visibleType.dress,
-  "school swimsuit": visibleType.dress,
-  ...allOnePieceSwimsuitColorVisibilities,
   "o-ring top": visibleType.cleavage,
   "o-ring bottom": visibleType.panties,
   "school uniform": visibleType.dress,
-  jacket: visibleType.shirt,
-  ...allJacketColorVisibilities,
   "sleeveless jacket": visibleType.shirt,
   "military jacket": visibleType.shirt,
-  dress: visibleType.dress,
-  ...allDressColorVisibilities,
   "two-tone dress": visibleType.dress,
-  "black collar": visibleType.collar,
-  "red collar": visibleType.collar,
   "long sleeves": visibleType.shoulder,
-  "white sleeves": visibleType.shoulder,
-  "black sleeves": visibleType.shoulder,
   "wide sleeves": visibleType.shoulder,
-  belt: visibleType.skirt,
-  "black belt": visibleType.skirt,
-  "white belt": visibleType.skirt,
-  "red belt": visibleType.skirt,
-  "pink belt": visibleType.skirt,
   "detached collar": visibleType.collar,
   "detached sleeves": visibleType["wrist cuffs"],
   maid: visibleType.all,
@@ -766,65 +1122,25 @@ export const tagVisibilities = {
   "frilled apron": visibleType.dress,
   "maid apron": visibleType.dress,
   "waist apron": visibleType.skirt,
-  shirt: visibleType.shirt,
-  "aqua shirt": visibleType.shirt,
-  "black shirt": visibleType.shirt,
-  "blue shirt": visibleType.shirt,
-  "brown shirt": visibleType.shirt,
-  "green shirt": visibleType.shirt,
-  "grey shirt": visibleType.shirt,
-  "orange shirt": visibleType.shirt,
-  "pink shirt": visibleType.shirt,
-  "purple shirt": visibleType.shirt,
-  "red shirt": visibleType.shirt,
-  "white shirt": visibleType.shirt,
-  "yellow shirt": visibleType.shirt,
   "collared shirt": visibleType.shirt,
-  vest: visibleType.shirt,
-  "green vest": visibleType.shirt,
-  "yellow vest": visibleType.shirt,
-  "blue vest": visibleType.shirt,
-  "black vest": visibleType.shirt,
   "off shoulder": visibleType.shirt,
   "off-shoulder dress": visibleType.dress,
   "off-shoulder sweater": visibleType.shirt,
-  sweater: visibleType.shirt,
-  "red sweater": visibleType.shirt,
   "sweater dress": visibleType.dress,
   "office lady": visibleType.all,
   choker: visibleType.collar,
   strap: visibleType.all,
-  gloves: visibleType["wrist cuffs"],
-  "black gloves": visibleType["wrist cuffs"],
   "fingerless gloves": visibleType["wrist cuffs"],
   "infinite stratos academy school uniform": visibleType.all,
   "lycoris uniform": visibleType.all,
   "pleated dress": visibleType.dress,
   "bikini skirt": visibleType.skirt,
-  skirt: visibleType.skirt,
-  "aqua skirt": visibleType.skirt,
-  "black skirt": visibleType.skirt,
-  "blue skirt": visibleType.skirt,
-  "brown skirt": visibleType.skirt,
-  "green skirt": visibleType.skirt,
-  "grey skirt": visibleType.skirt,
-  "orange skirt": visibleType.skirt,
-  "pink skirt": visibleType.skirt,
-  "purple skirt": visibleType.skirt,
-  "red skirt": visibleType.skirt,
-  "white skirt": visibleType.skirt,
-  "yellow skirt": visibleType.skirt,
   miniskirt: visibleType.skirt,
   "plaid skirt": visibleType.skirt,
   "pencil skirt": visibleType.skirt,
   "high-low skirt": visibleType.skirt,
   "red trim": visibleType.all,
   pantyhose: visibleType.thighhighs,
-  thighhighs: visibleType.thighhighs,
-  "black thighhighs": visibleType.thighhighs,
-  socks: visibleType.foot,
-  "white socks": visibleType.foot,
-  "black socks": visibleType.foot,
   shoes: visibleType.foot,
   loafers: visibleType.foot,
   boots: visibleType.foot,
@@ -832,31 +1148,13 @@ export const tagVisibilities = {
   "underwear only": visibleType.dress,
   lingerie: visibleType.dress,
   bra: visibleType.bra,
-  panties: visibleType.panties,
-  "aqua panties": visibleType.panties,
-  "black panties": visibleType.panties,
-  "blue panties": visibleType.panties,
-  "brown panties": visibleType.panties,
-  "green panties": visibleType.panties,
-  "grey panties": visibleType.panties,
-  "orange panties": visibleType.panties,
-  "pink panties": visibleType.panties,
-  "purple panties": visibleType.panties,
-  "red panties": visibleType.panties,
-  "white panties": visibleType.panties,
-  "yellow panties": visibleType.panties,
   "crotch seam": visibleType.cameltoe,
   "lace panties": visibleType.panties,
   "tokiwadai school uniform": visibleType.all,
-  "sweater vest": visibleType.shirt,
-  "brown sweater vest": visibleType.shirt,
-  "yellow sweater vest": visibleType.shirt,
   "short sleeves": visibleType.shoulder,
-  "white gloves": visibleType["wrist cuffs"],
   "elbow gloves": visibleType.shoulder,
   "pleated skirt": visibleType.skirt,
   "frilled skirt": visibleType.skirt,
-  "white thighhighs": visibleType.thighhighs,
   sleeveless: visibleType.shoulder,
   "sleeveless shirt": visibleType.shirt,
   "sleeveless dress": visibleType.dress,
@@ -865,31 +1163,18 @@ export const tagVisibilities = {
   blazer: visibleType.shirt,
   suit: visibleType.shirt,
   "business suit": visibleType.shirt,
-  "pinstripe pattern": visibleType.shirt, // TODO: Separate to `pinstripe pattern shirt` and `pinstripe pattern skirt` .
   pumps: visibleType.foot,
   "open clothes": visibleType.shirt, // Visible from back. Assume when all fours.
   "open jacket": visibleType.shirt, // Visible from back. Assume when all fours.
   "open shirt": visibleType.shirt,
   pirate: visibleType.all,
   "pirate hat": visibleType.hair,
-  ascot: visibleType.bowtie,
   "thigh boots": visibleType.foot,
   "playboy bunny": visibleType.dress,
   "rabbit ears": visibleType.hair,
   "fake animal ears": visibleType.hair,
   "latex leotard": visibleType.dress,
   "wrist cuffs": visibleType["wrist cuffs"],
-  leotard: visibleType.dress,
-  "red leotard": visibleType.dress,
-  "pink leotard": visibleType.dress,
-  "orange leotard": visibleType.dress,
-  "yellow leotard": visibleType.dress,
-  "green leotard": visibleType.dress,
-  "blue leotard": visibleType.dress,
-  "purple leotard": visibleType.dress,
-  "black leotard": visibleType.dress,
-  "white leotard": visibleType.dress,
-  "brown leotard": visibleType.dress,
   "rabbit tail": visibleType.shortTail,
   "magical girl": visibleType.dress,
   cloak: visibleType.dress,
@@ -901,11 +1186,6 @@ export const tagVisibilities = {
   "black footwear": visibleType.foot,
   "cross-laced footwear": visibleType.foot,
   "panties under pantyhose": visibleType.panties,
-  serafuku: visibleType.dress,
-  "sailor collar": visibleType.collar,
-  "blue sailor collar": visibleType.collar,
-  neckerchief: visibleType.bowtie,
-  "red neckerchief": visibleType.bowtie,
   "crop top": visibleType.shirt,
   "crop top overhang": visibleType.cleavage,
   "cropped shirt": visibleType.shirt,
@@ -913,22 +1193,9 @@ export const tagVisibilities = {
   "dress shirt": visibleType.shirt,
   "no bra": visibleType.bra,
   bottomless: visibleType.skirt,
-  camisole: visibleType.shirt,
-  "red camisole": visibleType.shirt,
-  "blue camisole": visibleType.shirt,
-  "green camisole": visibleType.shirt,
-  "yellow camisole": visibleType.shirt,
-  "orange camisole": visibleType.shirt,
-  "aqua camisole": visibleType.shirt,
-  "white camisole": visibleType.shirt,
-  "black camisole": visibleType.shirt,
-  "pink camisole": visibleType.shirt,
-  "purple camisole": visibleType.shirt,
-  shorts: visibleType.skirt,
   "denim shorts": visibleType.skirt,
   "gym uniform": visibleType.dress,
   "gym shirt": visibleType.shirt,
-  buruma: visibleType.skirt,
   sweat: visibleType.all,
   necklace: visibleType.bowtie,
   "wedding dress": visibleType.dress,
@@ -947,8 +1214,6 @@ export const tagVisibilities = {
   "first high school uniform": visibleType.dress,
   "collared dress": visibleType.dress,
   "pencil dress": visibleType.dress,
-  necktie: visibleType.bowtie,
-  "black necktie": visibleType.bowtie,
   "short necktie": visibleType.bowtie,
   "cropped jacket": visibleType.shirt,
   miko: visibleType.dress,
