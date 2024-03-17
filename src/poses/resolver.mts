@@ -347,7 +347,7 @@ export const poseTable = {
   },
   "from-above": {
     "full-body-lying": {
-      entries: [`from above`, `full body`, `lying`],
+      entries: [`from above`, `full body`, `lying`, `on back`],
       visibility: {
         frontHead: true,
         sideHead: true,
@@ -379,7 +379,7 @@ export const poseTable = {
       },
     },
     "lying-on-bed": {
-      entries: [`from above`, `lying`, `on bed`],
+      entries: [`from above`, `lying`, `on bed`, `on back`],
       visibility: {
         frontHead: true,
         sideHead: true,

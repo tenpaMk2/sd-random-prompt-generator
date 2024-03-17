@@ -56,7 +56,7 @@ export const backgroundTable = {
       entries: [`outdoors`, `ocean`, `wet`, `partially submerged`],
       removeShoes: false,
     },
-    "bed-sheet": { entries: [`indoors`, `bed sheet`], removeShoes: true },
+    "bed-sheet": { entries: [`bed sheet`], removeShoes: true }, // `bed sheet` should not be set with `indoors`.
   },
 } as const satisfies {
   [k in BackgroundType]: {
