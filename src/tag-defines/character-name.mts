@@ -61,5 +61,6 @@ export const allCharacterName = [
   `uehara ayaka`,
   `gina boyd`,
   `tachibana satomi`,
+  `eina tulle`,
 ] as const satisfies readonly string[];
 export type CharacterNameTag = (typeof allCharacterName)[number];

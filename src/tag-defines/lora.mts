@@ -424,6 +424,56 @@ const allLoras = [
     outfitTriggerTags: [],
     creator: `wiz_`,
   },
+  {
+    loraName: `eina-danmachi`,
+    recommendedWeight: 0.8,
+    url: new URL(`https://civitai.com/models/342415/eina-tulle-danmachi`),
+    characterTriggerWordsTags: [], // `eina tulle` is common trigger words.
+    outfitTriggerTags: [],
+    creator: `eft`,
+  },
+  {
+    loraName: `haruhime-danmachi`,
+    recommendedWeight: 0.8,
+    url: new URL(
+      `https://civitai.com/models/342409/haruhime-sanjouno-danmachi`,
+    ),
+    characterTriggerWordsTags: [`haruhime sanjouno`],
+    outfitTriggerTags: [],
+    creator: `eft`,
+  },
+  {
+    loraName: `lili-danmachi`,
+    recommendedWeight: 0.8,
+    url: new URL(`https://civitai.com/models/342407/liliruca-arde-danmachi`),
+    characterTriggerWordsTags: [], // `liliruca arde` is common trigger words.
+    outfitTriggerTags: [],
+    creator: `eft`,
+  },
+  {
+    loraName: `ryuu-danmachi`,
+    recommendedWeight: 0.8,
+    url: new URL(`https://civitai.com/models/342406/ryuu-lion-danmachi`),
+    characterTriggerWordsTags: [`ryuu lion`],
+    outfitTriggerTags: [],
+    creator: `eft`,
+  },
+  {
+    loraName: `ais-danmachi`,
+    recommendedWeight: 0.8,
+    url: new URL(`https://civitai.com/models/339169/ais-wallenstein-danmachi`),
+    characterTriggerWordsTags: [`ais wallenstein`],
+    outfitTriggerTags: [],
+    creator: `eft`,
+  },
+  {
+    loraName: `hestia-danmachi`,
+    recommendedWeight: 0.8,
+    url: new URL(`https://civitai.com/models/339164/hestia-danmachi`),
+    characterTriggerWordsTags: [`hestia`],
+    outfitTriggerTags: [],
+    creator: `eft`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];
