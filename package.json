@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc --noEmit --module nodenext --moduleResolution nodenext src/index.mts",
+    "tscout": "tsc --outDir output/ --module nodenext --moduleResolution nodenext src/index.mts",
     "exe": "npx tsx src/index.mts"
   },
   "author": "tenpaMk2 <wavyroom@gmail.com> (https://github.com/tenpaMk2)",
