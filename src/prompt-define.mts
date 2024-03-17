@@ -78,23 +78,19 @@ export class Pattern<T extends Tag | LoraNameTag> {
       this.probability = probability ?? 1.0;
     }
 
-    const uniques = tokens.reduce(
-      (previous, current) => {
-        if (current.type === `lora`) return [...previous, current];
+    const uniques = tokens.reduce((previous, current) => {
+      if (current.type === `lora`)
+        return previous.set(`Lora💩${current.tag}` as T, current); // Avoid duplication of Tag and LoraNameTag.
+      if (!previous.has(current.tag)) return previous.set(current.tag, current);
 
-        const found = previous.find((t) => t.tag === current.tag);
-        if (!found) {
-          // Not duplicated.
-          return [...previous, current];
-        }
+      const existing = previous.get(current.tag)!;
+      if (existing.weight < current.weight)
+        return previous.set(current.tag, current);
 
-        const excluded = previous.filter((t) => t !== found);
-        const winner = current.weight < found.weight ? found : current;
-        return [...excluded, winner];
-      },
-      [] as typeof tokens,
-    );
-    this.tokens = uniques;
+      return previous;
+    }, new Map<T, Token<T>>());
+
+    this.tokens = [...uniques.values()];
     this.probability = probability ?? 1.0;
   }
 
@@ -141,22 +137,21 @@ export class Pattern<T extends Tag | LoraNameTag> {
       return this.tokens.map((token) => token.toString()).join(`, `);
     }
 
-    const uniques = resolvedTokens.reduce(
-      (previous, current) => {
-        const found = previous.find((t) => t.tag === current.tag);
-        if (!found) {
-          // Not duplicated.
-          return [...previous, current];
-        }
+    const uniques = resolvedTokens.reduce((previous, current) => {
+      if (current.type === `lora`)
+        return previous.set(`Lora💩${current.tag}` as T, current); // Avoid duplication of Tag and LoraNameTag.
+      if (!previous.has(current.tag)) return previous.set(current.tag, current);
 
-        const excluded = previous.filter((t) => t !== found);
-        const winner = current.weight < found.weight ? found : current;
-        return [...excluded, winner];
-      },
-      [] as typeof resolvedTokens,
-    );
+      const existing = previous.get(current.tag)!;
+      if (existing.weight < current.weight)
+        return previous.set(current.tag, current);
 
-    return uniques.map(({ token }) => token.toString()).join(`, `);
+      return previous;
+    }, new Map<(typeof resolvedTokens)[number]["tag"], (typeof resolvedTokens)[number]>());
+
+    return [...uniques.values()]
+      .map(({ token }) => token.toString())
+      .join(`, `);
   }
 
   toString() {
