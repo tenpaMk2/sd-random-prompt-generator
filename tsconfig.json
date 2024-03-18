@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "ESNext", /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "module": "NodeNext", /* Specify what module code is generated. */
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "strict": true
   },
   "include": [
     "src/**/*"
