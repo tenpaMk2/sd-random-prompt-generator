@@ -120,6 +120,23 @@ const revealingMiko = {
   ],
 } as const satisfies OutfitSetting;
 
+const sukumizuThighhighs = {
+  key: `sukumizu-thighhighs`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `colorful-backgrounds`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      probability: 3,
+      poses: [{ key: `lying-on-bed` }],
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const cheerleader = {
   key: `cheerleader`,
   backgrounds: [
@@ -136,16 +153,56 @@ const cheerleader = {
   ],
 } as const satisfies OutfitSetting;
 
+const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
+  ({
+    key:
+      variation === `pantyhose`
+        ? `sasuoni-eft-first-high-school-uniform-pantyhose`
+        : `sasuoni-eft-first-high-school-uniform-thighhighs`,
+    backgrounds: [
+      {
+        type: `from-horizontal`,
+        key: `indoors`,
+        poses: fromHorizontalPosesPreset.usual,
+      },
+      {
+        type: `from-below`,
+        key: `ceiling`,
+        poses: [{ key: `upper-body` }],
+      },
+      {
+        type: `from-above`,
+        key: `bed-sheet`,
+        poses: [{ key: `lying-on-bed` }],
+      },
+    ],
+  }) as const satisfies OutfitSetting;
+
 export const outfitsPreset = {
-  [testOutfit.key]: [testOutfit],
-  [bikini.key]: [bikini],
-  [microBikini.key]: [microBikini],
-  [maidBikini.key]: [maidBikini],
-  [revealingMiko.key]: [revealingMiko],
-  [cheerleader.key]: [cheerleader],
-  usual: [bikini, microBikini, maidBikini, revealingMiko, cheerleader],
+  "test-outfit": [testOutfit],
+  bikini: [bikini],
+  cheerleader: [cheerleader],
+  "maid-bikini": [maidBikini],
+  "micro-bikini": [microBikini],
+  "revealing-miko": [revealingMiko],
+  "sukumizu-thighhighs": [sukumizuThighhighs],
+  "sasuoni-eft-first-high-school-uniform-pantyhose": [
+    sasuoniFirstHighSchoolUniform(`pantyhose`),
+  ],
+  "sasuoni-eft-first-high-school-uniform-thighhighs": [
+    sasuoniFirstHighSchoolUniform(`thighhighs`),
+  ],
+  usual: [
+    // TODO: bug
+    bikini,
+    microBikini,
+    maidBikini,
+    revealingMiko,
+    sukumizuThighhighs,
+    cheerleader,
+  ],
 } as const satisfies {
-  [k in string]: OutfitSetting[];
+  [k in OutfitKey | `usual`]: OutfitSetting[];
 };
 
 export const charactersPreset = {
@@ -164,7 +221,7 @@ type BackgroundAndPoseKey =
   | `from-above-bed-sheet-lying-on-bed`
   | `from-above-bed-sheet-full-body-lying`;
 
-export const generateSetting = ({
+export const generateCharactersSetting = ({
   characterKeys,
   outfitKeys,
   backgroundAndPoseKeys,
@@ -172,7 +229,7 @@ export const generateSetting = ({
   characterKeys: CharacterKey[] | `all`;
   outfitKeys: OutfitKey[] | `usual`;
   backgroundAndPoseKeys?: BackgroundAndPoseKey[];
-}) => {
+}): CharacterSetting[] => {
   const cKeys =
     characterKeys === `all` ? getKeys(characterTable) : characterKeys;
   const characterSettings = cKeys.map((cKey) => {
@@ -180,33 +237,38 @@ export const generateSetting = ({
       return {
         key: cKey,
         outfits: [...outfitsPreset.usual],
-      };
+      } as const satisfies CharacterSetting;
 
     if (!backgroundAndPoseKeys) {
-      const outfits = outfitKeys.map((oKeys) => outfitsPreset[oKeys]);
+      const outfits = outfitKeys.map((oKeys) => outfitsPreset[oKeys]).flat();
 
       return {
         key: cKey,
         outfits,
-      };
+      } as const satisfies CharacterSetting;
     }
 
     const outfits = outfitKeys.map((oKey) => {
       const backgrounds = backgroundAndPoseKeys.map(
-        (backgroundAndPoseKey): BackgroundSetting<BackgroundType> => {
+        (
+          backgroundAndPoseKey,
+        ):
+          | BackgroundSetting<`from-horizontal`>
+          | BackgroundSetting<`from-below`>
+          | BackgroundSetting<`from-above`> => {
           switch (backgroundAndPoseKey) {
             case `from-above-bed-sheet-lying-on-bed`:
               return {
                 type: `from-above`,
                 key: `bed-sheet`,
                 poses: [{ key: `lying-on-bed` }],
-              };
+              } as const satisfies BackgroundSetting<`from-above`>;
             case `from-above-bed-sheet-full-body-lying`:
               return {
                 type: `from-above`,
                 key: `bed-sheet`,
                 poses: [{ key: `full-body-lying` }],
-              };
+              } as const satisfies BackgroundSetting<`from-above`>;
           }
         },
       );
@@ -214,13 +276,13 @@ export const generateSetting = ({
       return {
         key: oKey,
         backgrounds,
-      };
+      } as const satisfies OutfitSetting;
     });
 
     return {
       key: cKey,
       outfits,
-    };
+    } as const satisfies CharacterSetting;
   });
 
   return characterSettings;
