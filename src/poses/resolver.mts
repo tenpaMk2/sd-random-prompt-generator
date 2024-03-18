@@ -386,7 +386,7 @@ export const poseTable = {
     },
     "lying-on-bed": {
       entries: [
-        `from above`,
+        // `from above`,
         `lying`,
         `on bed`,
         `on back`,
