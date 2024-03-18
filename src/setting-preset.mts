@@ -132,7 +132,11 @@ const sukumizuThighhighs = {
       type: `from-above`,
       key: `steaming-bed-sheet-spoken-heart`,
       probability: 3,
-      poses: [{ key: `lying-on-bed` }],
+      poses: [
+        { key: `lying-on-bed` },
+        { key: `lying-on-bed-reaching-towards-viewer` },
+        { key: `lying-on-stomach` },
+      ],
     },
   ],
 } as const satisfies OutfitSetting;
