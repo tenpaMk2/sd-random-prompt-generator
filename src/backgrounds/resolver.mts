@@ -57,6 +57,17 @@ export const backgroundTable = {
       removeShoes: false,
     },
     "bed-sheet": { entries: [`bed sheet`], removeShoes: true }, // `bed sheet` should not be set with `indoors`.
+    "steaming-bed-sheet-spoken-heart": {
+      entries: [
+        `bed sheet`,
+        `sweat`,
+        `steam`,
+        `steaming body`,
+        `heart`,
+        `spoken heart`,
+      ],
+      removeShoes: true,
+    },
   },
 } as const satisfies {
   [k in BackgroundType]: {
