@@ -20,6 +20,7 @@ const fromHorizontalPosesPreset = {
     { key: `heart-hands` },
     { key: `cowboy-shot-from-side` },
     { key: `twisted-torso` },
+    { key: `all-fours` },
   ],
 } as const satisfies {
   [k in string]: PoseSetting<"from-horizontal">[];
@@ -223,7 +224,8 @@ export const charactersPreset = {
  */
 type BackgroundAndPoseKey =
   | `from-above-bed-sheet-lying-on-bed`
-  | `from-above-bed-sheet-full-body-lying`;
+  | `from-above-bed-sheet-full-body-lying`
+  | `from-horizontal-all-fours`;
 
 export const generateCharactersSetting = ({
   characterKeys,
@@ -273,6 +275,12 @@ export const generateCharactersSetting = ({
                 key: `bed-sheet`,
                 poses: [{ key: `full-body-lying` }],
               } as const satisfies BackgroundSetting<`from-above`>;
+            case `from-horizontal-all-fours`:
+              return {
+                type: `from-horizontal`,
+                key: `bed`,
+                poses: [{ key: `all-fours` }],
+              } as const satisfies BackgroundSetting<`from-horizontal`>;
           }
         },
       );

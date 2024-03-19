@@ -36,6 +36,10 @@ export const backgroundTable = {
       ],
       removeShoes: false,
     },
+    bed: {
+      entries: [`bed`],
+      removeShoes: true,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
