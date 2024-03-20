@@ -20,6 +20,7 @@ export const sukumizuThighhighs = () =>
       `shoulder blades`,
       `thighhighs`,
       `thighs skindentation`,
+      `skin tight`,
       `shiny skin`,
       `no shoes`,
     ],
