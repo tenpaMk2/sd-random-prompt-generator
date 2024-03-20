@@ -1,7 +1,29 @@
-import { parse } from "./parser.mjs";
+import { PatternCollection, PromptDefine } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
-import { TagLeaf, Token } from "./tag-tree.mjs";
-import assert from "node:assert";
+
+const outfit = new PromptDefine<Tag>([
+  [{ entries: [`red bikini`] }, { entries: [`blue panties`] }],
+]);
+const emotion = new PromptDefine<Tag>([
+  [{ entries: [`smile`] }, { entries: [`scowl`] }],
+]);
+const background = new PromptDefine<Tag>([
+  [{ entries: [`indoors`] }, { entries: [`outdoors`] }],
+]);
+
+const pc = PatternCollection.makeCombination([
+  outfit.convertToPatternCollection(),
+  emotion.convertToPatternCollection(),
+  background.convertToPatternCollection(),
+]);
+
+console.log(pc.toString());
+console.log(pc);
+
+// import { parse } from "./parser.mjs";
+// import { Tag } from "./tag-defines/all.mjs";
+// import { TagLeaf, Token } from "./tag-tree.mjs";
+// import assert from "node:assert";
 
 // const tokenTest1 = new SingleTagToken<EmotionTag>(`blush`);
 // assert(`${tokenTest1}` === `blush`, `SingleTagToken`);
@@ -76,47 +98,47 @@ import assert from "node:assert";
 // assert(!tagVisibilities[t8].foot, `DynamicPrompt`);
 // assert(!tagVisibilities[t8].upskirt, `DynamicPrompt`);
 
-const info = parse({
-  key: `test-chara-key`,
-  characterFeature: new TagLeaf({
-    tagEntries: [
-      `red eyes`,
-      { tag: `sparkling eyes`, weight: 1.5 },
-      `thick thighs`,
-    ],
-  }),
-  emotion: new TagLeaf({
-    tagEntries: [],
-    children: [
-      new TagLeaf({ tagEntries: [`smile`], probability: 3 }),
-      new TagLeaf({ tagEntries: [`scowl`] }),
-      new TagLeaf({ tagEntries: [`blush`, `embarrassed`] }),
-    ],
-  }),
-  situations: [
-    {
-      key: `test-situation-key`,
-      background: {
-        fromHorizontal: new TagLeaf({ tagEntries: [`beach`] }),
-        fromBelow: new TagLeaf({ tagEntries: [`beach`] }),
-        fromAbove: new TagLeaf({ tagEntries: [`beach`] }),
-        lying: new TagLeaf({ tagEntries: [`beach`] }),
-        clean: new TagLeaf({ tagEntries: [`beach`] }),
-      },
-      outfitAndExposure: new TagLeaf({
-        tagEntries: [`tokiwadai school uniform`, `skirt`, `socks`],
-      }),
-      upskirt: new TagLeaf({
-        tagEntries: [],
-      }),
-      whenRemoveShoes: {
-        excludeTags: [`socks`],
-        additionalFootTokensAfterRemoving: [new Token(`barefoot`)],
-      },
-    },
-  ],
-});
-assert(info[0].key === `test-situation-key`, `parse`);
+// const info = parse({
+//   key: `test-chara-key`,
+//   characterFeature: new TagLeaf({
+//     tagEntries: [
+//       `red eyes`,
+//       { tag: `sparkling eyes`, weight: 1.5 },
+//       `thick thighs`,
+//     ],
+//   }),
+//   emotion: new TagLeaf({
+//     tagEntries: [],
+//     children: [
+//       new TagLeaf({ tagEntries: [`smile`], probability: 3 }),
+//       new TagLeaf({ tagEntries: [`scowl`] }),
+//       new TagLeaf({ tagEntries: [`blush`, `embarrassed`] }),
+//     ],
+//   }),
+//   situations: [
+//     {
+//       key: `test-situation-key`,
+//       background: {
+//         fromHorizontal: new TagLeaf({ tagEntries: [`beach`] }),
+//         fromBelow: new TagLeaf({ tagEntries: [`beach`] }),
+//         fromAbove: new TagLeaf({ tagEntries: [`beach`] }),
+//         lying: new TagLeaf({ tagEntries: [`beach`] }),
+//         clean: new TagLeaf({ tagEntries: [`beach`] }),
+//       },
+//       outfitAndExposure: new TagLeaf({
+//         tagEntries: [`tokiwadai school uniform`, `skirt`, `socks`],
+//       }),
+//       upskirt: new TagLeaf({
+//         tagEntries: [],
+//       }),
+//       whenRemoveShoes: {
+//         excludeTags: [`socks`],
+//         additionalFootTokensAfterRemoving: [new Token(`barefoot`)],
+//       },
+//     },
+//   ],
+// });
+// assert(info[0].key === `test-situation-key`, `parse`);
 // assert(`${info[0].personCandidateInfos}` === `red eyes`, `parse`);
 // assert(`${info[0].sideHeadTokens}` === `red eyes`, `parse`);
 // assert(`${info[0].backHeadTokens}` === ``, `parse`);

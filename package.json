@@ -1,16 +1,19 @@
 {
   "name": "sd-random-prompt-generator",
-  "version": "0.1.0",
-  "description": "Generater random prompt (Dynamic prompts) for Stable Diffusion.",
+  "version": "2.0.0",
+  "description": "🖼 The image generator with random prompts via the API of Stable Diffusion web UI 🔧",
   "main": "index.js",
   "scripts": {
-    "exe": "node --loader ts-node/esm --nolazy -r ts-node/register/transpile-only src/index.mts"
+    "tsc": "tsc --noEmit --module nodenext --moduleResolution nodenext src/index.mts",
+    "tscout": "tsc --outDir output/ --module nodenext --moduleResolution nodenext src/index.mts",
+    "exe": "npx tsx src/index.mts"
   },
   "author": "tenpaMk2 <wavyroom@gmail.com> (https://github.com/tenpaMk2)",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^20.11.27",
     "prettier": "^3.1.1",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   }
 }

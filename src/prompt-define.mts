@@ -1,70 +1,70 @@
-import {
-  generateDynamicPrompt,
-  getCombinations,
-  getKeys,
-} from "./libs/utility.mjs";
 import { Tag } from "./tag-defines/all.mjs";
+import { EmotionTag } from "./tag-defines/emotion.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
-import { allOutfitWildcards } from "./tag-defines/outfit-and-exposure.mjs";
+import {
+  OutfitAndExposureTag,
+  allDistinguishableExposureTags,
+  allDistinguishableOutfitTags,
+} from "./tag-defines/outfit-and-exposure.mjs";
 
-export class SimpleToken<T extends Tag> {
+/**
+ * Token definition.
+ * This definition is used for both normal tags and lora tags.
+ */
+class Token<T extends Tag | LoraNameTag> {
   readonly tag: T;
   readonly weight: number;
-  constructor({ tag, weight }: { tag: T; weight?: number }) {
-    this.tag = tag;
-    this.weight = weight ?? 1.0;
-  }
-
-  toString() {
-    const wildcardKeys = getKeys(allOutfitWildcards);
-    const str = wildcardKeys.some((k) => k === this.tag)
-      ? generateDynamicPrompt(
-          allOutfitWildcards[this.tag as (typeof wildcardKeys)[number]],
-        )
-      : this.tag;
-
-    return this.weight === 1.0 ? str : `(${str}:${this.weight})`;
-  }
-}
-
-/**
- * For Lora token definition.
- * The weights can be specified as arrays and will be converted to dynamic prompt.
- */
-export class LoraToken {
-  readonly tag: LoraNameTag;
-  readonly weights: number[];
+  readonly type: `normal` | `lora`;
   constructor({
     tag,
-    weights,
+    weight,
+    type,
   }: {
-    tag: LoraNameTag;
-    weights?: number | number[];
+    tag: T;
+    weight?: number;
+    type?: `normal` | `lora`;
   }) {
     this.tag = tag;
-    this.weights = typeof weights === `number` ? [weights] : weights ?? [1.0];
+    this.weight = weight ?? 1.0;
+    this.type = type ?? `normal`;
 
     // Vadidation
-    for (const weight of this.weights) {
-      if (weight < 0) throw new Error(`Invalid weight: ${weight}`);
-    }
+    if (this.weight < 0) throw new Error(`Invalid weight: ${this.weight}`);
   }
 
   toString() {
-    if (this.weights.length === 1) {
-      return `<lora:${this.tag}:${this.weights[0]}>`;
-    } else {
-      return generateDynamicPrompt(
-        this.weights.map((w) => `<lora:${this.tag}:${w}>`),
-      );
+    switch (this.type) {
+      case `normal`:
+        // Resolve tag name if it's a distinguishable tag.
+        const tag =
+          allDistinguishableExposureTags[this.tag as any] ??
+          allDistinguishableOutfitTags[this.tag as any] ??
+          this.tag;
+
+        return this.weight === 1.0 ? tag : `${tag}:${this.weight}`;
+      case `lora`:
+        return `<lora:${this.tag}:${this.weight}>`;
     }
   }
 }
 
 /**
- * Candidate for `DynamicPromptToken` .
+ * Type of entries for normal token define.
  */
-export class Candidate<T extends Tag> {
+export type NormalEntry<T extends Tag> =
+  | T
+  | { tag: T; weight: number }
+  | { probability?: number; entries: NormalEntry<T>[] }[];
+
+/**
+ * Type of entries for Lora token define.
+ */
+export type LoraEntry = {
+  tag: LoraNameTag;
+  probabilityAndWeights: { probability: number; weight: number }[];
+};
+
+export class Pattern<T extends Tag | LoraNameTag> {
   readonly tokens: Token<T>[];
   readonly probability: number;
   constructor({
@@ -74,316 +74,329 @@ export class Candidate<T extends Tag> {
     tokens: Token<T>[];
     probability?: number;
   }) {
-    this.tokens = tokens;
-    this.probability = probability ?? 1.0;
-  }
-}
+    const isDuplicate =
+      new Set(tokens.map((t) => t.tag)).size !== tokens.length;
 
-export class DynamicPromptToken<T extends Tag> {
-  readonly candidates: Candidate<T>[];
-  constructor({ candidates }: { candidates: Candidate<T>[] }) {
-    this.candidates = candidates;
-  }
-
-  getTotalProbability() {
-    return this.candidates.reduce(
-      (acc, cur) => acc + cur.probability,
-      0,
-    ) as number;
-  }
-
-  toString() {
-    return `{${this.candidates.map((c) => c.tokens.join(`, `)).join(`|`)}}`;
-  }
-}
-
-/**
- * Type of entries.
- *
- * The `weight` cannot be specified in the DynamicPrompt. Instead, specify it in each Token.
- */
-export type Entry<T extends Tag> =
-  | T
-  | { tag: T; weight: number }
-  | SimpleToken<T>
-  | DynamicPromptToken<T>
-  | { probability?: number; entries: Entry<T>[] }[];
-
-type Token<T extends Tag> = SimpleToken<T> | DynamicPromptToken<T>;
-
-/**
- * Prompt define for easily defining tokens.
- */
-export class PromptDefine<T extends Tag> {
-  readonly tokens: Token<T>[];
-  constructor(entries: Entry<T>[]) {
-    this.tokens = this.parse(entries);
-  }
-
-  private parse(entries: Entry<T>[]): Token<T>[] {
-    const all = entries.map((entry) => {
-      if (entry instanceof SimpleToken) {
-        return entry;
-      } else if (entry instanceof DynamicPromptToken) {
-        return entry;
-      } else if (typeof entry === `string`) {
-        return new SimpleToken({ tag: entry });
-      } else if (`tag` in entry) {
-        return new SimpleToken(entry);
-      } else if (`length` in entry) {
-        const candidateEntries = entry.map(({ probability, entries }) => ({
-          tokens: this.parse(entries),
-          probability,
-        }));
-        const candidates = candidateEntries.map(
-          ({ tokens, probability }) => new Candidate({ tokens, probability }),
-        );
-        return new DynamicPromptToken({ candidates });
-      }
-      throw new Error(`Invalid entry: ${entry}`);
-    });
-
-    return all as Token<T>[];
-  }
-
-  private candidateToPatterns(candidate: Candidate<T>): Pattern<T>[] {
-    const ss = candidate.tokens.filter(
-      (token) => !(token instanceof DynamicPromptToken),
-    ) as SimpleToken<T>[];
-
-    const ds = candidate.tokens.filter(
-      (token) => token instanceof DynamicPromptToken,
-    ) as DynamicPromptToken<T>[];
-
-    if (ds.length === 0) {
-      return [
-        new Pattern({ simpleTokens: ss, probability: candidate.probability }),
-      ];
+    if (!isDuplicate) {
+      this.tokens = tokens;
+      this.probability = probability ?? 1.0;
     }
 
-    const patternsSet = ds.map((d) => this.dynamicPromptTokenToPatterns(d));
-    const combinedPatterns = getCombinations<Pattern<T>>(patternsSet).map(
-      (patterns) =>
-        patterns.reduce(
-          (acc, cur) =>
-            new Pattern({
-              simpleTokens: [...acc.simpleTokens, ...cur.simpleTokens],
-              probability: acc.probability * cur.probability,
-            }),
-        ),
-    );
+    const uniques = tokens.reduce((previous, current) => {
+      if (current.type === `lora`)
+        return previous.set(`Lora💩${current.tag}` as T, current); // Avoid duplication of Tag and LoraNameTag.
+      if (!previous.has(current.tag)) return previous.set(current.tag, current);
 
-    const addedSimpleTokens = combinedPatterns.map(
-      ({ simpleTokens, probability }) =>
-        new Pattern({
-          simpleTokens: [...ss, ...simpleTokens],
-          probability,
-        }),
-    );
+      const existing = previous.get(current.tag)!;
+      if (existing.weight < current.weight)
+        return previous.set(current.tag, current);
 
-    return addedSimpleTokens;
-  }
+      return previous;
+    }, new Map<T, Token<T>>());
 
-  private dynamicPromptTokenToPatterns(
-    dynamic: DynamicPromptToken<T>,
-  ): Pattern<T>[] {
-    const patterns = dynamic.candidates
-      .map((c) => this.candidateToPatterns(c))
-      .flat()
-      .map(
-        ({ simpleTokens, probability }) =>
-          new Pattern({
-            simpleTokens,
-            probability: probability / dynamic.getTotalProbability(),
-          }),
-      );
-    return patterns;
-  }
-
-  convertToPatternCollection() {
-    const rootCandidate = new Candidate({ tokens: this.tokens });
-    const patterns = this.candidateToPatterns(rootCandidate);
-    return new PatternCollection(patterns);
-  }
-}
-
-export class Pattern<T extends Tag> {
-  readonly simpleTokens: SimpleToken<T>[];
-  readonly probability: number;
-  constructor({
-    simpleTokens,
-    probability,
-  }: {
-    simpleTokens: SimpleToken<T>[];
-    probability?: number;
-  }) {
-    this.simpleTokens = simpleTokens;
+    this.tokens = [...uniques.values()];
     this.probability = probability ?? 1.0;
   }
 
-  toString() {
-    const prompt = this.simpleTokens.join(`, `);
-    const roundProbability = Math.round(this.probability * 1000000) / 1000000;
-    return roundProbability === 1 ? prompt : `${roundProbability}::${prompt}`;
-  }
-
-  filter(callbackfn: (value: SimpleToken<T>) => boolean) {
-    const filtered = this.simpleTokens.filter(callbackfn);
-    return new Pattern({
-      simpleTokens: filtered,
+  filter(callback: (token: Token<T>) => boolean) {
+    return new Pattern<T>({
+      tokens: this.tokens.filter(callback),
       probability: this.probability,
     });
   }
 
-  concat<U extends Tag>(items: SimpleToken<U>[]) {
-    const newTokens = [...this.simpleTokens, ...items];
-    const uniqueTokens = [
-      ...new Map(newTokens.map((token) => [token.tag, token])).values(),
-    ];
-
+  concat<U extends Tag>(items: Token<U>[]) {
     return new Pattern<T | U>({
-      simpleTokens: uniqueTokens,
+      tokens: [...this.tokens, ...items],
       probability: this.probability,
     });
+  }
+
+  toPrompt() {
+    const resolvedTokens = this.tokens.map((token) => {
+      switch (token.type) {
+        case `lora`:
+          return {
+            tag: token.tag,
+            weight: token.weight,
+            type: `lora`,
+            token,
+          } as const;
+        case `normal`:
+          return {
+            tag: (allDistinguishableExposureTags[token.tag as any] ??
+              allDistinguishableOutfitTags[token.tag as any] ??
+              token.tag) as T,
+            weight: token.weight,
+            type: `normal`,
+            token,
+          } as const;
+      }
+    });
+    const isDuplicate =
+      new Set(resolvedTokens.map((t) => t.tag)).size !== resolvedTokens.length;
+
+    if (!isDuplicate) {
+      return this.tokens.map((token) => token.toString()).join(`, `);
+    }
+
+    const uniques = resolvedTokens.reduce((previous, current) => {
+      if (current.type === `lora`)
+        return previous.set(`Lora💩${current.tag}` as T, current); // Avoid duplication of Tag and LoraNameTag.
+      if (!previous.has(current.tag)) return previous.set(current.tag, current);
+
+      const existing = previous.get(current.tag)!;
+      if (existing.weight < current.weight)
+        return previous.set(current.tag, current);
+
+      return previous;
+    }, new Map<(typeof resolvedTokens)[number]["tag"], (typeof resolvedTokens)[number]>());
+
+    return [...uniques.values()]
+      .map(({ token }) => token.toString())
+      .join(`, `);
+  }
+
+  toString() {
+    const roundedProbability = Math.round(this.probability * 1000000) / 1000000;
+    const padded = roundedProbability.toString().padEnd(10, `0`);
+    return `${padded}: ${this.toPrompt()}`;
   }
 }
 
-export class PatternCollection<T extends Tag> {
+export class PatternCollection<T extends Tag | LoraNameTag> {
   constructor(readonly patterns: Pattern<T>[]) {
     const totalProbability = patterns.reduce(
       (prev, current) => prev + current.probability,
       0,
     );
-    this.patterns = patterns.map(
-      ({ simpleTokens, probability }) =>
-        new Pattern<T>({
-          simpleTokens,
-          probability: probability / totalProbability,
-        }),
-    );
-  }
 
-  toString() {
-    return generateDynamicPrompt(
-      this.patterns.map((pattern) => pattern.toString()),
-    );
-  }
-
-  filter(callbackfn: (value: Pattern<T>) => boolean) {
-    const filtered = this.patterns.filter(callbackfn);
-    const totalProbability = filtered.reduce(
-      (prev, current) => prev + current.probability,
-      0,
-    );
-    const normalized = filtered.map(
-      ({ simpleTokens, probability }) =>
-        new Pattern({
-          simpleTokens,
-          probability: probability / totalProbability,
-        }),
-    );
-    return new PatternCollection(normalized);
-  }
-
-  map<U extends Tag>(callbackfn: (value: Pattern<T>) => Pattern<T | U>) {
-    const mapped = this.patterns.map(callbackfn);
-    const totalProbability = mapped.reduce(
-      (prev, current) => prev + current.probability,
-      0,
-    );
-    const normalized = mapped.map(
-      ({ simpleTokens, probability }) =>
-        new Pattern({
-          simpleTokens,
-          probability: probability / totalProbability,
-        }),
-    );
-    return new PatternCollection(normalized);
-  }
-
-  join<U extends Tag>(target: PatternCollection<U>, probability: number) {
-    if (probability < 0 || 1 < probability)
-      throw new Error(`Invalid probability: ${probability}`);
-
-    const multiply = (c: PatternCollection<T | U>, m: number) => {
-      const temp = c.patterns.map(
-        ({ simpleTokens, probability }) =>
-          new Pattern<T | U>({
-            simpleTokens,
-            probability: probability * m,
+    this.patterns = patterns
+      .filter(({ probability }) => probability !== 0)
+      .map(
+        ({ tokens, probability }) =>
+          new Pattern<T>({
+            tokens,
+            probability: probability / totalProbability,
           }),
       );
-      return temp;
-    };
-
-    const joinedPatterns = [
-      ...multiply(this, 1 - probability),
-      ...multiply(target, probability),
-    ];
-    return new PatternCollection<T | U>(joinedPatterns);
   }
 
-  static makeCombination<T extends Tag>(
+  static createLora(entries: LoraEntry | null) {
+    if (entries === null) {
+      return new PatternCollection<LoraNameTag>([]);
+    }
+
+    const patterns = entries.probabilityAndWeights.map(
+      ({ probability, weight }) =>
+        new Pattern<LoraNameTag>({
+          tokens: [new Token({ tag: entries.tag, weight, type: `lora` })],
+          probability,
+        }),
+    );
+    return new PatternCollection<LoraNameTag>(patterns);
+  }
+
+  static create<T extends Tag>(
+    entries: NormalEntry<T>[],
+  ): PatternCollection<T> {
+    const createPatternCollectionRecursively = (
+      entries: NormalEntry<T>[],
+    ): PatternCollection<T> => {
+      const pcs = entries.map((entry) => {
+        if (typeof entry === `string`) {
+          const pattern = new Pattern<T>({
+            tokens: [new Token({ tag: entry })],
+          });
+          return new PatternCollection<T>([pattern]);
+        } else if (`tag` in entry) {
+          const pattern = new Pattern<T>({
+            tokens: [new Token(entry)],
+          });
+          return new PatternCollection<T>([pattern]);
+        } else if (Array.isArray(entry)) {
+          const pairs = entry.map(({ probability, entries }) => {
+            const patternCollection =
+              createPatternCollectionRecursively(entries);
+            return {
+              probability: probability ?? 1,
+              patternCollection,
+            };
+          });
+
+          return PatternCollection.joinAll<T>(pairs);
+        } else {
+          throw new Error(`Invalid entry: ${entry}`);
+        }
+      });
+      return PatternCollection.combine<T>(pcs);
+    };
+
+    return createPatternCollectionRecursively(entries);
+  }
+
+  map(callback: (p: Pattern<T>) => Pattern<T>) {
+    return new PatternCollection<T>(this.patterns.map(callback));
+  }
+
+  combineWith<U extends Tag | LoraNameTag>(
+    patternCollection: PatternCollection<U>,
+  ) {
+    if (patternCollection.patterns.length === 0) return this;
+
+    const combination = this.patterns
+      .map((patternA) =>
+        patternCollection.patterns.map(
+          (patternB) =>
+            new Pattern<T | U>({
+              tokens: [...patternA.tokens, ...patternB.tokens],
+              probability: patternA.probability * patternB.probability,
+            }),
+        ),
+      )
+      .flat();
+    return new PatternCollection<T | U>(combination);
+  }
+
+  static combine<T extends Tag | LoraNameTag>(
     patternCollections: PatternCollection<T>[],
   ) {
-    const temp1 = patternCollections.reduce(
-      (previousCollection, currentCollection) => {
-        const temp2 = currentCollection.patterns
-          .map((currentPattern) => {
-            const temp3 = previousCollection.patterns.map((previousPattern) => {
-              const temp4 = new Pattern<T>({
-                simpleTokens: [
-                  ...currentPattern.simpleTokens,
-                  ...previousPattern.simpleTokens,
-                ],
-                probability:
-                  currentPattern.probability * previousPattern.probability,
-              });
-              return temp4;
-            });
-            return temp3;
-          })
-          .flat();
-        return new PatternCollection(temp2);
-      },
+    if (patternCollections.length === 0) return new PatternCollection<T>([]);
+
+    return patternCollections.reduce((previousCollection, currentCollection) =>
+      previousCollection.combineWith<T>(currentCollection),
     );
-    return temp1;
+  }
+
+  static joinAll<T extends Tag | LoraNameTag>(
+    pairs: { probability: number; patternCollection: PatternCollection<T> }[],
+  ) {
+    const totalProbability = pairs.reduce(
+      (prev, current) => prev + current.probability,
+      0,
+    );
+
+    const patterns = pairs
+      .map(({ probability, patternCollection }) => {
+        if (patternCollection.patterns.length === 0) {
+          return new Pattern<T>({
+            tokens: [],
+            probability: probability / totalProbability,
+          });
+        }
+
+        return patternCollection.patterns.map((p) => {
+          return new Pattern<T>({
+            tokens: p.tokens,
+            probability: (p.probability * probability) / totalProbability,
+          });
+        });
+      })
+      .flat();
+
+    return new PatternCollection<T>(patterns);
+  }
+
+  combineIf<U extends Tag>(
+    callback: (p: Pattern<T>) => boolean,
+    patternCollection: PatternCollection<U>,
+  ) {
+    const targetPatterns = this.patterns.filter(callback);
+    const targetPatternsProbability = targetPatterns.reduce(
+      (prev, current) => prev + current.probability,
+      0,
+    );
+    const targetPatternCollections = new PatternCollection<T>(targetPatterns);
+
+    const combined = targetPatternCollections.combineWith<U>(patternCollection);
+
+    if (targetPatterns.length === this.patterns.length) return combined; // When match all patterns.
+
+    const excludedPatterns = this.patterns.filter((p) => !callback(p));
+    const excludedPatternsProbabiility = 1 - targetPatternsProbability;
+    const excludedOnly = new PatternCollection<T>(excludedPatterns);
+
+    return PatternCollection.joinAll<T | U>([
+      { probability: targetPatternsProbability, patternCollection: combined },
+      {
+        probability: excludedPatternsProbabiility,
+        patternCollection: excludedOnly,
+      },
+    ]);
+  }
+
+  pickOnePrompt() {
+    if (this.patterns.length === 0) return new Pattern<T>({ tokens: [] });
+
+    const random = Math.random();
+    let sum = 0;
+    for (const pattern of this.patterns) {
+      sum += pattern.probability;
+      if (random <= sum) return pattern.toPrompt();
+    }
+    throw new Error(`Unexpected error: No item was picked.`);
+  }
+
+  pickAllPrompts() {
+    return this.patterns.map((p) => p.toPrompt());
   }
 }
 
-// const test1 = new PromptDefine([
-//   `smile`,
+// const pc1 = PatternCollection.createLora({
+//   tag: `mea-loveru`,
+//   probabilityAndWeights: [
+//     { probability: 1, weight: 0.8 },
+//     { probability: 3, weight: 0.6 },
+//   ],
+// });
+
+// console.log(pc1);
+
+// const pc2 = PatternCollection.create<OutfitAndExposureTag>([
 //   `bikini`,
 //   [
-//     { probability: 1, entries: [`red bikini`] },
-//     { probability: 2, entries: [`blue bikini`] },
-//   ],
-//   [
-//     { entries: [`off shoulder`] },
+//     { probability: 2, entries: [`red bikini`] },
+//     { probability: 3, entries: [`blue bikini`] },
 //     {
+//       probability: 1,
 //       entries: [
-//         `maid bikini`,
-//         [{ entries: [`maid headdress`] }, { entries: [`maid apron`] }],
+//         `skirt`,
+//         [
+//           { probability: 1, entries: [`micro bikini`] },
+//           { probability: 1, entries: [`crown`] },
+//         ],
 //       ],
 //     },
 //   ],
 // ]);
 
-// console.log(test1);
-// const test1Patterns = test1.convertToPatternCollection();
-// console.log(test1Patterns);
+// console.log(pc2);
 
-// const test2 = new PromptDefine([]);
+// const combineIf = pc2.combineIf<EmotionTag>(
+//   (p) => p.tokens.some(({ tag }) => tag === `micro bikini`),
+//   PatternCollection.create<EmotionTag>([
+//     `smile`,
+//     [
+//       { probability: 1, entries: [`!`] },
+//       { probability: 1, entries: [`?`] },
+//     ],
+//   ]),
+// );
 
-// console.log(test2);
-// const test2Patterns = test2.convertToPatternCollection();
-// console.log(test2Patterns);
+// console.log(combineIf);
 
-// const test3 = PatternCollection.makeCombination([
-//   test2Patterns,
-//   new PromptDefine([`smile`]).convertToPatternCollection(),
-// ]);
+// const combineIfEmpty = pc2.combineIf(
+//   (p) => p.tokens.some(({ tag }) => tag === `micro bikini`),
+//   PatternCollection.create<EmotionTag>([]),
+// );
 
-// console.log(test3);
+// console.log(combineIfEmpty);
+
+// const combineIfAllMatch = pc2.combineIf(
+//   (p) => p.tokens.some(({ tag }) => true),
+//   PatternCollection.create<EmotionTag>([`smile`]),
+// );
+
+// console.log(combineIfAllMatch);
 
 // console.log(`end`);

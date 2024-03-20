@@ -23,6 +23,7 @@ const allBackgroundTags = [
   `simple background`,
   `white background`,
   `pink background`,
+  `blue background`,
   `red background`,
   `heart background`,
   `heart`,
@@ -45,13 +46,9 @@ const allBackgroundTags = [
   `falling petals`,
   `petals`,
   `wedding`,
-  `christmas`,
-  `christmas tree`,
   `wet`,
-  `kitchen`,
-  `gym`,
-  `dumbbell`,
-  `onsen`,
+  `sweat`,
   `steam`,
+  `steaming body`,
 ] as const satisfies readonly string[];
 export type BackgroundTag = (typeof allBackgroundTags)[number];
