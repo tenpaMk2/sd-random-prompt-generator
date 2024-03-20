@@ -5,6 +5,8 @@ import { machineSetting } from "./setting.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
 
+// TODO: Rename to `parser` , `gatherer` , `builder` , `generator` .
+
 const generateEachImage = async (
   fixedPrompt: string,
   txt2imgBodyJson: Setting["txt2imgBodyJson"],
