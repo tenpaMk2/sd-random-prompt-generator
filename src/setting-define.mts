@@ -20,6 +20,9 @@ type VAE = (typeof allVAEs)[number];
 const allSamplers = [`Restart`] as const satisfies string[];
 type Sampler = (typeof allSamplers)[number];
 
+const allUpscalers = [`4x-AnimeSharp`] as const satisfies string[];
+type Upscaler = (typeof allUpscalers)[number];
+
 export type PoseSetting<T extends BackgroundType> = Readonly<{
   key: PoseKey[T];
   probability?: number;
@@ -82,7 +85,7 @@ export type Setting = Readonly<{
     denoising_strength: 0.3 | 0.4 | 0.5 | 0.6;
     enable_hr: boolean;
     hr_scale: 1.5 | 2 | 2.5;
-    hr_upscaler: "4x-AnimeSharp";
+    hr_upscaler: Upscaler;
     hr_second_pass_steps: 0 | 30;
   };
   characters: CharacterSetting[];
