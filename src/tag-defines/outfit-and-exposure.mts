@@ -624,6 +624,13 @@ const allOutfitTags = [
   `hakama skirt`,
   `hip vent`,
   `cheerleader`,
+  `cow print`,
+  `cow print bikini`,
+  `cow print gloves`,
+  `cow print thighhighs`,
+  `print gloves`,
+  `print thighhighs`,
+  `neck bell`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

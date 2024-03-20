@@ -1224,6 +1224,13 @@ export const tagVisibilities = {
   "hakama skirt": visibleType.skirt,
   "hip vent": visibleType["side hip"],
   cheerleader: visibleType.dress,
+  "cow print": visibleType.dress,
+  "cow print bikini": visibleType.dress,
+  "cow print gloves": visibleType["wrist cuffs"],
+  "cow print thighhighs": visibleType.thighhighs,
+  "print gloves": visibleType["wrist cuffs"],
+  "print thighhighs": visibleType.thighhighs,
+  "neck bell": visibleType.bowtie,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

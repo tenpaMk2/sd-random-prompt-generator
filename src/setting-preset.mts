@@ -1,4 +1,3 @@
-import { BackgroundType } from "./backgrounds/resolver.mjs";
 import { CharacterKey, characterTable } from "./characters/resolver.mjs";
 import { getKeys } from "./libs/utility.mjs";
 import { OutfitKey } from "./outfits/resolver.mjs";
@@ -68,6 +67,68 @@ const bikini = {
   ],
 } as const satisfies OutfitSetting;
 
+const cheerleader = {
+  key: `cheerleader`,
+  backgrounds: [
+    {
+      type: `from-below`,
+      key: `blue-sky-confetti`,
+      poses: [{ key: `cheering-with-pom-poms` }],
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: [{ key: `lying-on-bed` }],
+    },
+  ],
+} as const satisfies OutfitSetting;
+
+const cowPrintBikini = {
+  key: `cow-print-bikini`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `grass-blue-sky`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-heart-backgrounds`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-below`,
+      key: `blue-sky`,
+      poses: [{ key: `upper-body` }],
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: [
+        { key: `lying-on-bed` },
+        { key: `lying-on-bed-reaching-towards-viewer` },
+        { key: `lying-on-stomach` },
+      ],
+    },
+  ],
+} as const satisfies OutfitSetting;
+
+const maidBikini = {
+  key: `maid-bikini`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `cafe-window`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: [{ key: `lying-on-bed` }],
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const microBikini = {
   key: `micro-bikini`,
   backgrounds: [
@@ -79,22 +140,6 @@ const microBikini = {
     {
       type: `from-horizontal`,
       key: `ocean-beach`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }],
-    },
-  ],
-} as const satisfies OutfitSetting;
-
-const maidBikini = {
-  key: `maid-bikini`,
-  backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `cafe-window`,
       poses: fromHorizontalPosesPreset.usual,
     },
     {
@@ -142,22 +187,6 @@ const sukumizuThighhighs = {
   ],
 } as const satisfies OutfitSetting;
 
-const cheerleader = {
-  key: `cheerleader`,
-  backgrounds: [
-    {
-      type: `from-below`,
-      key: `blue-sky-confetti`,
-      poses: [{ key: `cheering-with-pom-poms` }],
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }],
-    },
-  ],
-} as const satisfies OutfitSetting;
-
 const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
   ({
     key:
@@ -187,6 +216,7 @@ export const outfitsPreset = {
   "test-outfit": [testOutfit],
   bikini: [bikini],
   cheerleader: [cheerleader],
+  "cow-print-bikini": [cowPrintBikini],
   "maid-bikini": [maidBikini],
   "micro-bikini": [microBikini],
   "revealing-miko": [revealingMiko],

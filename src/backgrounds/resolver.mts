@@ -36,9 +36,26 @@ export const backgroundTable = {
       ],
       removeShoes: false,
     },
+    "colorful-heart-backgrounds": {
+      entries: [
+        `simple background`,
+        `heart background`,
+        [
+          { entries: [`white background`] },
+          { entries: [`pink background`], probability: 3 },
+          { entries: [`blue background`] },
+          { entries: [`red background`] },
+        ],
+      ],
+      removeShoes: false,
+    },
     bed: {
       entries: [`bed`],
       removeShoes: true,
+    },
+    "grass-blue-sky": {
+      entries: [`outdoors`, `grass`, `blue sky`],
+      removeShoes: false,
     },
   },
   "from-below": {
