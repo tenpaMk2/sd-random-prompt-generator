@@ -231,6 +231,15 @@ npm run exe
 The tool builds prompts from your setting.
 Generate images and asynchronously exports prompts to `outputs` directory.
 
+The tool periodically checks progress.
+You will see something like the following in your terminal.
+
+```txt
+  10 s: [=========>          ]  49%
+  15 s: [===========>        ]  56%
+  17 s: [============>       ]  62%
+```
+
 ## 🔧 Define characters, outfits, backgrounds and poses as you like
 
 🚧 WIP 🚧
