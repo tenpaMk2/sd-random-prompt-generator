@@ -20,9 +20,9 @@ export const settings = [
     key: `all`,
     // TODO: Adaptive negative prompts architecture.
     // TODO: setting generator for all characters and the fix outfit.
-    fixedPrompt: `1girl, solo, masterpiece, best quality, megami magazine,\n`,
+    fixedPrompt: `1girl, solo, masterpiece, best quality,\n`,
     optionsBodyJson: {
-      sd_model_checkpoint: `vividorangemix_v10NSFW.safetensors [730dd31df7]`,
+      sd_model_checkpoint: `vividorangemix_v10.safetensors [ff4725f91c]`,
       sd_vae: `blessed2.vae.safetensors`,
     },
     txt2imgBodyJson: {
@@ -45,7 +45,7 @@ export const settings = [
         `danmachi-lili-eft`,
         `danmachi-ryu-eft`,
       ],
-      outfitKeys: [`sukumizu-thighhighs`],
+      outfitKeys: [`cow-print-bikini`],
     }),
   },
 ] as const satisfies Setting[];
