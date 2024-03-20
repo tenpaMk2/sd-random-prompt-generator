@@ -1,6 +1,6 @@
 {
   "name": "sd-random-prompt-generator",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "🖼 The image generator with random prompts via the API of Stable Diffusion web UI 🔧",
   "main": "index.js",
   "scripts": {
