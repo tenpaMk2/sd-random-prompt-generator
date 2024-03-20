@@ -57,6 +57,10 @@ export const backgroundTable = {
       entries: [`outdoors`, `grass`, `blue sky`],
       removeShoes: false,
     },
+    casino: {
+      entries: [`indoors`, `casino`, `playing card`],
+      removeShoes: false,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
@@ -88,6 +92,10 @@ export const backgroundTable = {
         `spoken heart`,
       ],
       removeShoes: true,
+    },
+    casino: {
+      entries: [`indoors`, `casino`, `playing card`],
+      removeShoes: false,
     },
   },
 } as const satisfies {

@@ -50,5 +50,6 @@ const allBackgroundTags = [
   `sweat`,
   `steam`,
   `steaming body`,
+  `playing card`,
 ] as const satisfies readonly string[];
 export type BackgroundTag = (typeof allBackgroundTags)[number];

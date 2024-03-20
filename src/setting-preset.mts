@@ -25,6 +25,17 @@ const fromHorizontalPosesPreset = {
   [k in string]: PoseSetting<"from-horizontal">[];
 };
 
+const fromAbovePosesPreset = {
+  usual: [
+    { key: `lying-on-bed` },
+    { key: `lying-on-bed-reaching-towards-viewer` },
+    { key: `lying-on-stomach` },
+    { key: `wariza` },
+  ],
+} as const satisfies {
+  [k in string]: PoseSetting<"from-above">[];
+};
+
 const testOutfit = {
   key: `test-outfit`,
   backgrounds: [
@@ -62,7 +73,7 @@ const bikini = {
     {
       type: `from-above`,
       key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }],
+      poses: fromAbovePosesPreset.usual,
     },
   ],
 } as const satisfies OutfitSetting;
@@ -78,7 +89,7 @@ const cheerleader = {
     {
       type: `from-above`,
       key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }],
+      poses: fromAbovePosesPreset.usual,
     },
   ],
 } as const satisfies OutfitSetting;
@@ -104,11 +115,7 @@ const cowPrintBikini = {
     {
       type: `from-above`,
       key: `bed-sheet`,
-      poses: [
-        { key: `lying-on-bed` },
-        { key: `lying-on-bed-reaching-towards-viewer` },
-        { key: `lying-on-stomach` },
-      ],
+      poses: fromAbovePosesPreset.usual,
     },
   ],
 } as const satisfies OutfitSetting;
@@ -124,7 +131,7 @@ const maidBikini = {
     {
       type: `from-above`,
       key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }],
+      poses: fromAbovePosesPreset.usual,
     },
   ],
 } as const satisfies OutfitSetting;
@@ -145,7 +152,33 @@ const microBikini = {
     {
       type: `from-above`,
       key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }],
+      poses: fromAbovePosesPreset.usual,
+    },
+  ],
+} as const satisfies OutfitSetting;
+
+const playboyBunny = {
+  key: `playboy-bunny`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `casino`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-heart-backgrounds`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-below`,
+      key: `ceiling`,
+      poses: [{ key: `upper-body` }],
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: fromAbovePosesPreset.usual,
     },
   ],
 } as const satisfies OutfitSetting;
@@ -161,7 +194,7 @@ const revealingMiko = {
     {
       type: `from-above`,
       key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }],
+      poses: fromAbovePosesPreset.usual,
     },
   ],
 } as const satisfies OutfitSetting;
@@ -178,11 +211,7 @@ const sukumizuThighhighs = {
       type: `from-above`,
       key: `steaming-bed-sheet-spoken-heart`,
       probability: 3,
-      poses: [
-        { key: `lying-on-bed` },
-        { key: `lying-on-bed-reaching-towards-viewer` },
-        { key: `lying-on-stomach` },
-      ],
+      poses: fromAbovePosesPreset.usual,
     },
   ],
 } as const satisfies OutfitSetting;
@@ -207,7 +236,7 @@ const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
       {
         type: `from-above`,
         key: `bed-sheet`,
-        poses: [{ key: `lying-on-bed` }],
+        poses: fromAbovePosesPreset.usual,
       },
     ],
   }) as const satisfies OutfitSetting;
@@ -219,6 +248,7 @@ export const outfitsPreset = {
   "cow-print-bikini": [cowPrintBikini],
   "maid-bikini": [maidBikini],
   "micro-bikini": [microBikini],
+  "playboy-bunny": [playboyBunny],
   "revealing-miko": [revealingMiko],
   "sukumizu-thighhighs": [sukumizuThighhighs],
   "sasuoni-eft-first-high-school-uniform-pantyhose": [
@@ -230,11 +260,13 @@ export const outfitsPreset = {
   usual: [
     // TODO: bug
     bikini,
-    microBikini,
+    cheerleader,
+    cowPrintBikini,
     maidBikini,
+    microBikini,
+    playboyBunny,
     revealingMiko,
     sukumizuThighhighs,
-    cheerleader,
   ],
 } as const satisfies {
   [k in OutfitKey | `usual`]: OutfitSetting[];
