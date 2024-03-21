@@ -54,6 +54,7 @@ const allPoseTags = [
   `reaching towards viewer`,
   `incoming hug`,
   `backlighting`,
+  `hands on lap`,
 ] as const satisfies readonly string[];
 export type PoseTag = (typeof allPoseTags)[number];
 

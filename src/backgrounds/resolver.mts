@@ -61,6 +61,10 @@ export const backgroundTable = {
       entries: [`indoors`, `casino`, `playing card`],
       removeShoes: false,
     },
+    city: {
+      entries: [`outdoors`, `city`, `day`],
+      removeShoes: false,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
@@ -72,6 +76,10 @@ export const backgroundTable = {
     "blue-sky": { entries: [`outdoors`, `blue sky`], removeShoes: false },
     "blue-sky-confetti": {
       entries: [`outdoors`, `blue sky`, `confetti`],
+      removeShoes: false,
+    },
+    city: {
+      entries: [`outdoors`, `city`],
       removeShoes: false,
     },
   },
@@ -95,6 +103,10 @@ export const backgroundTable = {
     },
     casino: {
       entries: [`indoors`, `casino`, `playing card`],
+      removeShoes: false,
+    },
+    "brick floor": {
+      entries: [`outdoors`, `brick floor`, `day`],
       removeShoes: false,
     },
   },
