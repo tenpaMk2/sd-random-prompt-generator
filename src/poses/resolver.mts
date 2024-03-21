@@ -274,7 +274,7 @@ export const poseTable = {
         `all fours`,
         `breasts`,
         `looking at viewer`,
-        [{ entries: [`backlighting`] }], // TODO: Bug. Need empty entries.
+        [{ entries: [`backlighting`] }, { entries: [] }],
       ],
       visibility: {
         frontHead: true,
