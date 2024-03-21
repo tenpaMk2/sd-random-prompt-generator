@@ -3,7 +3,7 @@ import {
   PoseSpecialVisibility,
   PoseUnderboobLevelOrder,
 } from "../poses/resolver.mjs";
-import { GenerationDatas } from "../prepare.mjs";
+import { CollectedDatas } from "../collector.mjs";
 import { Pattern, PatternCollection } from "../prompt-define.mjs";
 import { Tag } from "../tag-defines/all.mjs";
 import { BackgroundTag } from "../tag-defines/background.mjs";
@@ -69,7 +69,7 @@ const extractVisible = <T extends CharacterFeatureTag | OutfitAndExposureTag>(
   return new PatternCollection<T>(newPatterns);
 };
 
-const generateSpecialVisibilityPatternCollection = (
+const buildSpecialVisibility = (
   outfit: OutfitDefine["specialVisibility"],
   pose: PoseSpecialVisibility,
   {
@@ -183,12 +183,12 @@ const takeOffShoes = (
   return result;
 };
 
-const resolve = (
-  rootData: GenerationDatas[number],
-  characterData: GenerationDatas[number]["characters"][number],
-  outfitData: GenerationDatas[number]["characters"][number]["outfits"][number],
-  backgroundData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
-  poseData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
+const buildCore = (
+  rootData: CollectedDatas[number],
+  characterData: CollectedDatas[number]["characters"][number],
+  outfitData: CollectedDatas[number]["characters"][number]["outfits"][number],
+  backgroundData: CollectedDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
+  poseData: CollectedDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
 ) => {
   const loraCharacter = PatternCollection.createLora(
     characterData.character.lora,
@@ -257,7 +257,7 @@ const resolve = (
     poseVisibility,
   );
 
-  const specialVisibility = generateSpecialVisibilityPatternCollection(
+  const specialVisibility = buildSpecialVisibility(
     outfitData.outfit.specialVisibility,
     poseData.pose.specialVisibility,
     {
@@ -287,16 +287,16 @@ const resolve = (
   ]);
 };
 
-const generatePosePatternCollection = (
-  generationData: GenerationDatas[number],
-  characterData: GenerationDatas[number]["characters"][number],
-  outfitData: GenerationDatas[number]["characters"][number]["outfits"][number],
-  backgroundData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
-  poseData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
+const buildPose = (
+  generationData: CollectedDatas[number],
+  characterData: CollectedDatas[number]["characters"][number],
+  outfitData: CollectedDatas[number]["characters"][number]["outfits"][number],
+  backgroundData: CollectedDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
+  poseData: CollectedDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number]["poses"][number],
 ) => ({
   key: poseData.key,
   probability: poseData.probability,
-  patternCollection: resolve(
+  patternCollection: buildCore(
     generationData,
     characterData,
     outfitData,
@@ -306,20 +306,14 @@ const generatePosePatternCollection = (
   children: [],
 });
 
-const generateBackgroundPatternCollection = (
-  generationData: GenerationDatas[number],
-  characterData: GenerationDatas[number]["characters"][number],
-  outfitData: GenerationDatas[number]["characters"][number]["outfits"][number],
-  backgroundData: GenerationDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
+const buildBackground = (
+  rootData: CollectedDatas[number],
+  characterData: CollectedDatas[number]["characters"][number],
+  outfitData: CollectedDatas[number]["characters"][number]["outfits"][number],
+  backgroundData: CollectedDatas[number]["characters"][number]["outfits"][number]["backgrounds"][number],
 ) => {
   const poses = backgroundData.poses.map((pose) =>
-    generatePosePatternCollection(
-      generationData,
-      characterData,
-      outfitData,
-      backgroundData,
-      pose,
-    ),
+    buildPose(rootData, characterData, outfitData, backgroundData, pose),
   );
 
   const backgroundPatternCollection = PatternCollection.joinAll(
@@ -337,18 +331,13 @@ const generateBackgroundPatternCollection = (
   };
 };
 
-const generateOutfitPatternCollection = (
-  generationData: GenerationDatas[number],
-  characterData: GenerationDatas[number]["characters"][number],
-  outfitData: GenerationDatas[number]["characters"][number]["outfits"][number],
+const buildOutfit = (
+  rootData: CollectedDatas[number],
+  characterData: CollectedDatas[number]["characters"][number],
+  outfitData: CollectedDatas[number]["characters"][number]["outfits"][number],
 ) => {
   const backgrounds = outfitData.backgrounds.map((backgroundData) =>
-    generateBackgroundPatternCollection(
-      generationData,
-      characterData,
-      outfitData,
-      backgroundData,
-    ),
+    buildBackground(rootData, characterData, outfitData, backgroundData),
   );
 
   const outfitPatternCollection = PatternCollection.joinAll(
@@ -366,12 +355,12 @@ const generateOutfitPatternCollection = (
   };
 };
 
-const generateCharacterPatternCollection = (
-  generationData: GenerationDatas[number],
-  characterData: GenerationDatas[number]["characters"][number],
+const buildCharacter = (
+  rootData: CollectedDatas[number],
+  characterData: CollectedDatas[number]["characters"][number],
 ) => {
   const outfits = characterData.outfits.map((outfitData) =>
-    generateOutfitPatternCollection(generationData, characterData, outfitData),
+    buildOutfit(rootData, characterData, outfitData),
   );
 
   const characterPatternCollection = PatternCollection.joinAll(
@@ -389,11 +378,9 @@ const generateCharacterPatternCollection = (
   };
 };
 
-const generateRootPatternCollection = (
-  generationData: GenerationDatas[number],
-) => {
-  const characters = generationData.characters.map((characterData) =>
-    generateCharacterPatternCollection(generationData, characterData),
+const buildRoot = (rootData: CollectedDatas[number]) => {
+  const characters = rootData.characters.map((characterData) =>
+    buildCharacter(rootData, characterData),
   );
 
   const rootPatternCollection = PatternCollection.joinAll(
@@ -404,15 +391,14 @@ const generateRootPatternCollection = (
   );
 
   return {
-    key: generationData.key,
-    probability: generationData.probability,
-    fixedPrompt: generationData.fixedPrompt,
-    optionsBodyJson: generationData.optionsBodyJson,
-    txt2imgBodyJson: generationData.txt2imgBodyJson,
+    key: rootData.key,
+    probability: rootData.probability,
+    fixedPrompt: rootData.fixedPrompt,
+    optionsBodyJson: rootData.optionsBodyJson,
+    txt2imgBodyJson: rootData.txt2imgBodyJson,
     patternCollection: rootPatternCollection,
     children: characters,
   };
 };
 
-export const generatePatterns = (generationDatas: GenerationDatas) =>
-  generationDatas.map(generateRootPatternCollection);
+export const build = (rootDatas: CollectedDatas) => rootDatas.map(buildRoot);

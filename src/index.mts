@@ -1,27 +1,27 @@
 import { join } from "node:path";
 import { exportPrompts } from "./exporter.mjs";
-import { generatePatterns } from "./prompt-generators/common.mjs";
-import { prepare } from "./prepare.mjs";
+import { build } from "./prompt-generators/common.mjs";
+import { collect } from "./collector.mjs";
 import { settings } from "./setting.mjs";
 import { exportAsCSV } from "./tag-defines/visibility.mjs";
-import { generateImage } from "./image-generator.mjs";
+import { generate } from "./generator.mjs";
 
-console.time(`Prompt generation`);
+console.time(`Prompt build`);
 
-const generationDatas = prepare(settings);
+const collectedDatas = collect(settings);
+
+console.log(collectedDatas);
+
+const generationDatas = build(collectedDatas);
 
 console.log(generationDatas);
-
-const p = generatePatterns(generationDatas);
-
-console.log(p);
-console.timeEnd(`Prompt generation`);
+console.timeEnd(`Prompt build`);
 
 // Export and generate image asynchronously at the same time.
 const promises = [
-  exportPrompts(p),
+  exportPrompts(generationDatas),
   exportAsCSV(join("outputs", "visibility.csv")),
-  generateImage(p),
+  generate(generationDatas),
 ];
 await Promise.all(promises);
 

@@ -4,7 +4,7 @@ import { outfitTable } from "./outfits/resolver.mjs";
 import { poseTable } from "./poses/resolver.mjs";
 import { BackgroundSetting, Setting } from "./setting-define.mjs";
 
-const generateFromHorizontalPose = ({
+const collectFromHorizontalPose = ({
   key,
   probability,
 }: BackgroundSetting<"from-horizontal">["poses"][number]) => ({
@@ -13,7 +13,7 @@ const generateFromHorizontalPose = ({
   pose: poseTable["from-horizontal"][key],
 });
 
-const generateFromBelowPose = ({
+const collectFromBelowPose = ({
   key,
   probability,
 }: BackgroundSetting<"from-below">["poses"][number]) => ({
@@ -22,7 +22,7 @@ const generateFromBelowPose = ({
   pose: poseTable["from-below"][key],
 });
 
-const generateFromAbovePose = ({
+const collectFromAbovePose = ({
   key,
   probability,
 }: BackgroundSetting<"from-above">["poses"][number]) => ({
@@ -31,7 +31,7 @@ const generateFromAbovePose = ({
   pose: poseTable["from-above"][key],
 });
 
-const generateBackground = ({
+const collectBackground = ({
   key,
   type,
   probability,
@@ -43,26 +43,26 @@ const generateBackground = ({
         key: `from-horizontal-${key}`,
         probability: probability ?? 1,
         background: backgroundTable["from-horizontal"][key],
-        poses: poses.map(generateFromHorizontalPose),
+        poses: poses.map(collectFromHorizontalPose),
       };
     case "from-below":
       return {
         key: `from-below-${key}`,
         probability: probability ?? 1,
         background: backgroundTable["from-below"][key],
-        poses: poses.map(generateFromBelowPose),
+        poses: poses.map(collectFromBelowPose),
       };
     case "from-above":
       return {
         key: `from-above-${key}`,
         probability: probability ?? 1,
         background: backgroundTable["from-above"][key],
-        poses: poses.map(generateFromAbovePose),
+        poses: poses.map(collectFromAbovePose),
       };
   }
 };
 
-const generateOutfit = ({
+const collectOutfit = ({
   key,
   probability,
   backgrounds,
@@ -70,10 +70,10 @@ const generateOutfit = ({
   key,
   probability: probability ?? 1,
   outfit: outfitTable[key],
-  backgrounds: backgrounds.map(generateBackground),
+  backgrounds: backgrounds.map(collectBackground),
 });
 
-const generateCharacter = ({
+const collectCharacter = ({
   key,
   probability,
   outfits,
@@ -81,10 +81,10 @@ const generateCharacter = ({
   key,
   probability: probability ?? 1,
   character: characterTable[key],
-  outfits: outfits.map(generateOutfit),
+  outfits: outfits.map(collectOutfit),
 });
 
-export const prepare = (settings: Setting[]) =>
+export const collect = (settings: Setting[]) =>
   settings.map(
     ({
       key,
@@ -99,8 +99,8 @@ export const prepare = (settings: Setting[]) =>
       fixedPrompt,
       optionsBodyJson,
       txt2imgBodyJson,
-      characters: characters.map(generateCharacter),
+      characters: characters.map(collectCharacter),
     }),
   );
 
-export type GenerationDatas = ReturnType<typeof prepare>;
+export type CollectedDatas = ReturnType<typeof collect>;

@@ -1,4 +1,4 @@
-import { generatePatterns } from "./prompt-generators/common.mjs";
+import { build } from "./prompt-generators/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Setting } from "./setting-define.mjs";
 import { machineSetting } from "./setting.mjs";
@@ -52,9 +52,7 @@ const generateEachImage = async (
   console.log(infoJson);
 };
 
-const generateRoot = async (
-  root: ReturnType<typeof generatePatterns>[number],
-) => {
+const generateRoot = async (root: ReturnType<typeof build>[number]) => {
   const json = {
     outdir_txt2img_samples: "outputs/",
     do_not_show_images: true,
@@ -112,9 +110,7 @@ const startStatusPolling = () =>
     displayProgress(json.progress, json.eta_relative);
   }, 10000);
 
-export const generateImage = async (
-  settings: ReturnType<typeof generatePatterns>,
-) => {
+export const generate = async (settings: ReturnType<typeof build>) => {
   console.log("Generating images...");
 
   const intervalID = startStatusPolling();

@@ -1,6 +1,6 @@
 import { mkdir, rm } from "node:fs/promises";
 import { join } from "node:path";
-import { generatePatterns } from "./prompt-generators/common.mjs";
+import { build } from "./prompt-generators/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
@@ -67,13 +67,16 @@ const exportRecursively = async (
 };
 
 export const exportPrompts = async (
-  patternDatas: ReturnType<typeof generatePatterns>,
+  generationDatas: ReturnType<typeof build>,
 ) => {
   const outputsDir = `outputs` as const;
   await rm(outputsDir, { recursive: true, force: true });
 
-  for (const patternData of patternDatas) {
-    await exportRecursively(patternData, join(outputsDir, patternData.key));
+  for (const generationData of generationDatas) {
+    await exportRecursively(
+      generationData,
+      join(outputsDir, generationData.key),
+    );
   }
 
   return;
