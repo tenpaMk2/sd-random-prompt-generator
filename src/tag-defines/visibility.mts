@@ -233,6 +233,11 @@ export const visibleType = {
     ...invisible,
     sideHipAndThigh: true,
   },
+  "center frills": {
+    ...invisible,
+    frontBreast: true,
+    frontMidriff: true,
+  },
 } as const satisfies { [k: string]: Visibility };
 
 const allEyesColorVisibilities = {
@@ -1120,6 +1125,7 @@ export const tagVisibilities = {
   maid: visibleType.all,
   "maid bikini": visibleType.dress,
   frills: visibleType.all,
+  "center frills": visibleType["center frills"],
   apron: visibleType.dress,
   "frilled apron": visibleType.dress,
   "maid apron": visibleType.dress,
@@ -1131,6 +1137,7 @@ export const tagVisibilities = {
   "sweater dress": visibleType.dress,
   "office lady": visibleType.all,
   choker: visibleType.collar,
+  "ribbon choker": visibleType.collar,
   strap: visibleType.all,
   "fingerless gloves": visibleType["wrist cuffs"],
   "infinite stratos academy school uniform": visibleType.all,
@@ -1196,6 +1203,8 @@ export const tagVisibilities = {
   "no bra": visibleType.bra,
   bottomless: visibleType.skirt,
   "denim shorts": visibleType.skirt,
+  "bike shorts": visibleType.skirt,
+  denim: visibleType.skirt,
   "gym uniform": visibleType.dress,
   "gym shirt": visibleType.shirt,
   sweat: visibleType.all,
