@@ -43,7 +43,7 @@ See [the doc](https://github.com/hnmr293/sd-webui-cutoff) .
 I strongly recommend to use this extension.
 But, if you don't need it, comment out the following codes.
 
-- `src/image-generator.mts`
+- `src/generator.mts`
   - `generateEachImage()`
 
 ```ts
