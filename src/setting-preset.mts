@@ -19,7 +19,7 @@ const fromHorizontalPosesPreset = {
     { key: `heart-hands` },
     { key: `cowboy-shot-from-side` },
     { key: `twisted-torso` },
-    { key: `all-fours` },
+    { key: `all-fours` }, // TODO: Separate from usual poses. Or redefine as `all-fours-on-bed` .
   ],
 } as const satisfies {
   [k in string]: PoseSetting<"from-horizontal">[];
