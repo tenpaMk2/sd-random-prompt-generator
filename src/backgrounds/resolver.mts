@@ -65,6 +65,10 @@ export const backgroundTable = {
       entries: [`outdoors`, `city`, `day`],
       removeShoes: false,
     },
+    wedding: {
+      entries: [`wedding`, `petals`, `white background`, `falling petals`],
+      removeShoes: false,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
@@ -80,6 +84,10 @@ export const backgroundTable = {
     },
     city: {
       entries: [`outdoors`, `city`],
+      removeShoes: false,
+    },
+    wedding: {
+      entries: [`wedding`, `petals`, `white background`, `falling petals`],
       removeShoes: false,
     },
   },
@@ -107,6 +115,10 @@ export const backgroundTable = {
     },
     "brick floor": {
       entries: [`outdoors`, `brick floor`, `day`],
+      removeShoes: false,
+    },
+    wedding: {
+      entries: [`wedding`, `petals`, `white background`, `falling petals`],
       removeShoes: false,
     },
   },

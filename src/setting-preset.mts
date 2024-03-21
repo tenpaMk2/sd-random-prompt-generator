@@ -78,6 +78,37 @@ const bikini = {
   ],
 } as const satisfies OutfitSetting;
 
+const bridalLingerie = {
+  key: `bridal-lingerie`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `wedding`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-heart-backgrounds`,
+      poses: [{ key: `holding-bouquet` }],
+    },
+    {
+      type: `from-below`,
+      key: `wedding`,
+      poses: [{ key: `holding-bouquet` }],
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `wedding`,
+      poses: [{ key: `holding-bouquet` }, { key: `wariza` }],
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const camisoleDenimShorts = {
   key: `camisole-denim-shorts`,
   backgrounds: [
@@ -275,6 +306,7 @@ const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
 export const outfitsPreset = {
   "test-outfit": [testOutfit],
   bikini: [bikini],
+  "bridal-lingerie": [bridalLingerie],
   "camisole-denim-shorts": [camisoleDenimShorts],
   cheerleader: [cheerleader],
   "cow-print-bikini": [cowPrintBikini],
