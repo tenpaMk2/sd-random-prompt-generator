@@ -19,7 +19,6 @@ export const settings = [
   {
     key: `all`,
     // TODO: Adaptive negative prompts architecture.
-    // TODO: setting generator for all characters and the fix outfit.
     fixedPrompt: `1girl, solo, masterpiece, best quality,\n`,
     optionsBodyJson: {
       sd_model_checkpoint: `vividorangemix_v10.safetensors [ff4725f91c]`,
