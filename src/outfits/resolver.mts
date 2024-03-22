@@ -10,6 +10,7 @@ import { maidBikini } from "./common/maid-bikini.mjs";
 import { microBikini } from "./common/micro-bikini.mjs";
 import { playboyBunny } from "./common/playboy-bunny.mjs";
 import { revealingMiko } from "./common/revealing-miko.mjs";
+import { santaBikini } from "./common/santa-bikini.mjs";
 import { sukumizuThighhighs } from "./common/sukumizu-thighhighs.mjs";
 import { testOutfit } from "./common/test-outfit.mjs";
 import { sasuoniEftFirstHighSchoolUniform } from "./sasuoni-eft/first-high-school-uniform.mjs";
@@ -109,6 +110,7 @@ export const outfitTable = {
   "micro-bikini": microBikini(),
   "playboy-bunny": playboyBunny(),
   "revealing-miko": revealingMiko(),
+  "santa-bikini": santaBikini(),
   "sukumizu-thighhighs": sukumizuThighhighs(),
   "sasuoni-eft-first-high-school-uniform-pantyhose":
     sasuoniEftFirstHighSchoolUniform(`pantyhose`),

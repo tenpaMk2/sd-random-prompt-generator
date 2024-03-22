@@ -19,18 +19,17 @@ const fromHorizontalPosesPreset = {
     { key: `heart-hands` },
     { key: `cowboy-shot-from-side` },
     { key: `twisted-torso` },
-    { key: `all-fours` }, // TODO: Separate from usual poses. Or redefine as `all-fours-on-bed` .
   ],
 } as const satisfies {
   [k in string]: PoseSetting<"from-horizontal">[];
 };
 
 const fromAbovePosesPreset = {
-  usual: [
+  usual: [{ key: `wariza` }],
+  onBed: [
     { key: `lying-on-bed` },
     { key: `lying-on-bed-reaching-towards-viewer` },
     { key: `lying-on-stomach` },
-    { key: `wariza` },
   ],
 } as const satisfies {
   [k in string]: PoseSetting<"from-above">[];
@@ -261,6 +260,37 @@ const revealingMiko = {
   ],
 } as const satisfies OutfitSetting;
 
+const santaBikini = {
+  key: `santa-bikini`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `christmas`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `christmas`,
+      poses: [{ key: `all-fours` }],
+    },
+    {
+      type: `from-above`,
+      key: `christmas`,
+      poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: fromAbovePosesPreset.onBed,
+    },
+    {
+      type: `from-below`,
+      key: `christmas`,
+      poses: [{ key: `upper-body` }],
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const sukumizuThighhighs = {
   key: `sukumizu-thighhighs`,
   backgrounds: [
@@ -314,6 +344,7 @@ export const outfitsPreset = {
   "micro-bikini": [microBikini],
   "playboy-bunny": [playboyBunny],
   "revealing-miko": [revealingMiko],
+  "santa-bikini": [santaBikini],
   "sukumizu-thighhighs": [sukumizuThighhighs],
   "sasuoni-eft-first-high-school-uniform-pantyhose": [
     sasuoniFirstHighSchoolUniform(`pantyhose`),

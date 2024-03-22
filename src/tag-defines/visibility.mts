@@ -75,6 +75,12 @@ export const visibleType = {
     sideHead: true,
     backHead: true,
   },
+  hat: {
+    ...invisible,
+    frontHead: true,
+    sideHead: true,
+    backHead: true,
+  },
   glasses: {
     ...invisible,
     frontHead: true,
@@ -1177,7 +1183,7 @@ export const tagVisibilities = {
   "open jacket": visibleType.shirt, // Visible from back. Assume when all fours.
   "open shirt": visibleType.shirt,
   pirate: visibleType.all,
-  "pirate hat": visibleType.hair,
+  "pirate hat": visibleType.hat,
   "thigh boots": visibleType.foot,
   "playboy bunny": visibleType.dress,
   "rabbit ears": visibleType.hair,
@@ -1240,6 +1246,12 @@ export const tagVisibilities = {
   "print gloves": visibleType["wrist cuffs"],
   "print thighhighs": visibleType.thighhighs,
   "neck bell": visibleType.bowtie,
+  "santa costume": visibleType.all,
+  "santa hat": visibleType.hat,
+  "santa bikini": visibleType.dress,
+  "fur collar": visibleType.collar,
+  "fur-trimmed bikini": visibleType.dress,
+  "fur-trimmed headwear": visibleType.hat,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

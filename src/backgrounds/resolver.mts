@@ -69,6 +69,10 @@ export const backgroundTable = {
       entries: [`wedding`, `petals`, `white background`, `falling petals`],
       removeShoes: false,
     },
+    christmas: {
+      entries: [`indoors`, `christmas`, `christmas tree`],
+      removeShoes: true,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
@@ -89,6 +93,10 @@ export const backgroundTable = {
     wedding: {
       entries: [`wedding`, `petals`, `white background`, `falling petals`],
       removeShoes: false,
+    },
+    christmas: {
+      entries: [`indoors`, `christmas`, `christmas tree`],
+      removeShoes: true,
     },
   },
   "from-above": {
@@ -120,6 +128,10 @@ export const backgroundTable = {
     wedding: {
       entries: [`wedding`, `petals`, `white background`, `falling petals`],
       removeShoes: false,
+    },
+    christmas: {
+      entries: [`indoors`, `christmas`, `christmas present`],
+      removeShoes: true,
     },
   },
 } as const satisfies {
