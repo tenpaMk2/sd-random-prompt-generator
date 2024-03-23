@@ -201,7 +201,7 @@ export const poseTable = {
       specialVisibility: specialVisibilityPreset.frontUpperBodyShotArmDown,
     },
     "cowboy-shot-from-side": {
-      entries: [`cowboy shot`, `from side`, `looking ahead`],
+      entries: [`cowboy shot`, `from side`, `looking ahead`, `profile`],
       visibility: {
         frontHead: true,
         sideHead: true,
