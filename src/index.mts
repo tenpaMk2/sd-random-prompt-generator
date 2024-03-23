@@ -1,6 +1,6 @@
 import { join } from "node:path";
 import { exportPrompts } from "./exporter.mjs";
-import { build } from "./prompt-generators/common.mjs";
+import { build } from "./builders/common.mjs";
 import { collect } from "./collector.mjs";
 import { settings } from "./setting.mjs";
 import { exportAsCSV } from "./tag-defines/visibility.mjs";
