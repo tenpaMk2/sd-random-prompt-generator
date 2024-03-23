@@ -1,4 +1,4 @@
-import { build } from "./prompt-generators/common.mjs";
+import { build } from "./builders/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Setting } from "./setting-define.mjs";
 import { machineSetting } from "./setting.mjs";
