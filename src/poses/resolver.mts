@@ -346,7 +346,7 @@ export const poseTable = {
   },
   "from-below": {
     "upper-body": {
-      entries: [`upper body`],
+      entries: [`from below`, `upper body`],
       visibility: {
         frontHead: true,
         sideHead: true,
