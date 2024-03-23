@@ -29,6 +29,7 @@ export const settings = [
       sampler_name: `Restart`,
       width: 512,
       height: 768,
+      cfg_scale: 5,
       denoising_strength: 0.4,
       enable_hr: true,
       hr_scale: 2.5,

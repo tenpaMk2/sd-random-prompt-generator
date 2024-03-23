@@ -82,6 +82,7 @@ export type Setting = Readonly<{
     sampler_name: Sampler;
     width: 512 | 768;
     height: 512 | 768;
+    cfg_scale: 2 | 3 | 4 | 5 | 6 | 7;
     denoising_strength: 0.3 | 0.4 | 0.5 | 0.6;
     enable_hr: boolean;
     hr_scale: 1.5 | 2 | 2.5;

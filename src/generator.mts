@@ -15,7 +15,6 @@ const generateEachImage = async (
     seed: -1,
     batch_size: 1,
     steps: 40,
-    cfg_scale: 5,
     send_images: false,
     save_images: true,
     alwayson_scripts: {
