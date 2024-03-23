@@ -20,6 +20,11 @@ const fromHorizontalPosesPreset = {
     { key: `cowboy-shot-from-side` },
     { key: `twisted-torso` },
   ],
+  onFloor: [
+    { key: `all-fours` },
+    { key: `all-fours-from-behind` },
+    { key: `kneeling` },
+  ],
 } as const satisfies {
   [k in string]: PoseSetting<"from-horizontal">[];
 };
@@ -68,6 +73,11 @@ const bikini = {
       type: `from-horizontal`,
       key: `ocean-beach`,
       poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-heart-backgrounds`,
+      poses: fromHorizontalPosesPreset.onFloor,
     },
     {
       type: `from-above`,
@@ -414,7 +424,9 @@ export const charactersPreset = {
 type BackgroundAndPoseKey =
   | `from-above-bed-sheet-lying-on-bed`
   | `from-above-bed-sheet-full-body-lying`
-  | `from-horizontal-all-fours`;
+  | `from-horizontal-all-fours`
+  | `from-horizontal-all-fours-from-behind`
+  | `from-horizontal-kneeling`;
 
 export const generateCharactersSetting = ({
   characterKeys,
@@ -469,6 +481,18 @@ export const generateCharactersSetting = ({
                 type: `from-horizontal`,
                 key: `bed`,
                 poses: [{ key: `all-fours` }],
+              } as const satisfies BackgroundSetting<`from-horizontal`>;
+            case `from-horizontal-all-fours-from-behind`:
+              return {
+                type: `from-horizontal`,
+                key: `bed`,
+                poses: [{ key: `all-fours-from-behind` }],
+              } as const satisfies BackgroundSetting<`from-horizontal`>;
+            case `from-horizontal-kneeling`:
+              return {
+                type: `from-horizontal`,
+                key: `colorful-heart-backgrounds`,
+                poses: [{ key: `kneeling` }],
               } as const satisfies BackgroundSetting<`from-horizontal`>;
           }
         },
