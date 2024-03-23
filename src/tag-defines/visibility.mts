@@ -1252,6 +1252,8 @@ export const tagVisibilities = {
   "fur collar": visibleType.collar,
   "fur-trimmed bikini": visibleType.dress,
   "fur-trimmed headwear": visibleType.hat,
+  casual: visibleType.dress,
+  "t-shirt": visibleType.shirt,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

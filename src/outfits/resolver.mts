@@ -4,6 +4,7 @@ import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
 import { bikini } from "./common/bikini.mjs";
 import { bridalLingerie } from "./common/bridal-lingerie.mjs";
 import { camisoleDenimShorts } from "./common/camisole-denim-shorts.mjs";
+import { casualMiniskirt } from "./common/casual-miniskirt.mjs";
 import { cheerleader } from "./common/cheerleader.mjs";
 import { cowPrintBikini } from "./common/cow-print-bikini.mjs";
 import { maidBikini } from "./common/maid-bikini.mjs";
@@ -104,6 +105,7 @@ export const outfitTable = {
   bikini: bikini(),
   "bridal-lingerie": bridalLingerie(),
   "camisole-denim-shorts": camisoleDenimShorts(),
+  "casual-miniskirt": casualMiniskirt(),
   cheerleader: cheerleader(),
   "cow-print-bikini": cowPrintBikini(),
   "maid-bikini": maidBikini(),

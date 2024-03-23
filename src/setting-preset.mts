@@ -139,6 +139,37 @@ const camisoleDenimShorts = {
   ],
 } as const satisfies OutfitSetting;
 
+const casualMiniskirt = {
+  key: `casual-miniskirt`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `city`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-heart-backgrounds`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-below`,
+      key: `city`,
+      poses: [{ key: `upper-body` }],
+    },
+    {
+      type: `from-above`,
+      key: `bed-sheet`,
+      poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `brick floor`,
+      poses: [{ key: `wariza` }],
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const cheerleader = {
   key: `cheerleader`,
   backgrounds: [
@@ -338,6 +369,7 @@ export const outfitsPreset = {
   bikini: [bikini],
   "bridal-lingerie": [bridalLingerie],
   "camisole-denim-shorts": [camisoleDenimShorts],
+  "casual-miniskirt": [casualMiniskirt],
   cheerleader: [cheerleader],
   "cow-print-bikini": [cowPrintBikini],
   "maid-bikini": [maidBikini],
