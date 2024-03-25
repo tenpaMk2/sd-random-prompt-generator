@@ -262,6 +262,8 @@ const allEyesColorVisibilities = {
 } as const;
 
 const allHairColorVisibilities = {
+  "multicolored hair": visibleType.hair,
+  "streaked hair": visibleType.hair,
   "aqua hair": visibleType.hair,
   "black hair": visibleType.hair,
   "blonde hair": visibleType.hair,

@@ -474,6 +474,15 @@ const allLoras = [
     outfitTriggerTags: [],
     creator: `eft`,
   },
+  {
+    // TODO: Add Lora type `SD1.5` or `Pony` .
+    loraName: `akoya_matama-pony-v1`,
+    recommendedWeight: 0.8,
+    url: new URL(`https://civitai.com/models/351800?modelVersionId=393514`),
+    characterTriggerWordsTags: [`akoya matama`],
+    outfitTriggerTags: [],
+    creator: `NoteKaga`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];

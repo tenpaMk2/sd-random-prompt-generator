@@ -16,6 +16,8 @@ const allEyesColorTags = [
 ] as const satisfies readonly string[];
 
 const allHairColorTags = [
+  `multicolored hair`,
+  `streaked hair`,
   `aqua hair`,
   `black hair`,
   `blonde hair`,

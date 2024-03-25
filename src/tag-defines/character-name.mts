@@ -67,5 +67,7 @@ export const allCharacterName = [
   `ryu lion`,
   `aiz wallenstein`,
   `hestia \\(danmachi\\)`,
+  `akoya matama`,
+  `loco musica`,
 ] as const satisfies readonly string[];
 export type CharacterNameTag = (typeof allCharacterName)[number];
