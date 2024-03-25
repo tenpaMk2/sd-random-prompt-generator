@@ -14,7 +14,6 @@ const generateEachImage = async (
     prompt: fixedPrompt + patternCollection.pickOnePrompt(),
     seed: -1,
     batch_size: 1,
-    steps: 25, // TODO: Move to setting.
     send_images: false,
     save_images: true,
     alwayson_scripts: {

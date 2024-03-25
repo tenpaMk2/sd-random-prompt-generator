@@ -81,6 +81,7 @@ export type Setting = Readonly<{
   txt2imgBodyJson: {
     negative_prompt: string;
     sampler_name: Sampler;
+    steps: number;
     width: 512 | 768 | 864 | 1152 | 1360;
     height: 512 | 768 | 864 | 1152 | 1360;
     cfg_scale: 2 | 3 | 4 | 5 | 6 | 7;

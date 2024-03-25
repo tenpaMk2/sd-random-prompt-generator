@@ -26,6 +26,7 @@ export const settings = [
     txt2imgBodyJson: {
       negative_prompt: `cameltoe`,
       sampler_name: `Euler a`,
+      steps: 25,
       width: 864,
       height: 1152,
       cfg_scale: 5,
