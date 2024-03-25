@@ -4,6 +4,7 @@ import { HeadOutfitTags } from "./head-outfit.mjs";
 export const allDistinguishableExposureTags = {
   "breasts skindentation": `skindentation`,
   "thighs skindentation": `skindentation`,
+  "front neck star tattoo": `star tattoo`,
 } as const satisfies { [k in string]: string };
 
 export const allDistinguishableOutfitTags = {
@@ -434,6 +435,36 @@ const allNecktieColorTags = [
   `yellow necktie`,
 ] as const satisfies string[];
 
+const allHatColorTags = [
+  `aqua hat`,
+  `black hat`,
+  `blue hat`,
+  `brown hat`,
+  `green hat`,
+  `grey hat`,
+  `orange hat`,
+  `pink hat`,
+  `purple hat`,
+  `red hat`,
+  `white hat`,
+  `yellow hat`,
+] as const satisfies string[];
+
+const allFootwearColorTags = [
+  `aqua footwear`,
+  `black footwear`,
+  `blue footwear`,
+  `brown footwear`,
+  `green footwear`,
+  `grey footwear`,
+  `orange footwear`,
+  `pink footwear`,
+  `purple footwear`,
+  `red footwear`,
+  `white footwear`,
+  `yellow footwear`,
+] as const satisfies string[];
+
 const allOutfitTags = [
   ...getKeys(allDistinguishableOutfitTags),
   `shirt`,
@@ -487,6 +518,11 @@ const allOutfitTags = [
   ...allBurumaColorTags,
   `necktie`,
   ...allNecktieColorTags,
+  `hat`,
+  ...allHatColorTags,
+  `boots`,
+  `shoes`,
+  ...allFootwearColorTags,
 
   `ribbed sweater`,
   `striped sweater`,
@@ -542,9 +578,7 @@ const allOutfitTags = [
   `pencil skirt`,
   `high-low skirt`,
   `pantyhose`,
-  `shoes`,
   `loafers`,
-  `boots`,
   `sneakers`,
   `underwear`,
   `underwear only`,
@@ -571,6 +605,7 @@ const allOutfitTags = [
   `open shirt`,
   `pirate`,
   `pirate hat`,
+  `knee boots`,
   `thigh boots`,
   `playboy bunny`,
   `rabbit ears`,
@@ -585,7 +620,6 @@ const allOutfitTags = [
   `hood up`,
   `hooded cloak`,
   `bodystocking`,
-  `black footwear`,
   `cross-laced footwear`,
   `panties under pantyhose`,
   `crop top`,
@@ -644,6 +678,9 @@ const allOutfitTags = [
   `fur-trimmed headwear`,
   `casual`,
   `t-shirt`,
+  `cabbie hat`,
+  `bikini top only`,
+  `high-waist skirt`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

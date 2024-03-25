@@ -215,6 +215,15 @@ export const visibleType = {
     sideHipAndThigh: true,
     backHipAndThigh: true,
   },
+  "high-waist skirt": {
+    ...invisible,
+    frontMidriff: true,
+    sideMidriff: true,
+    backMidriff: true,
+    frontHipAndThigh: true,
+    sideHipAndThigh: true,
+    backHipAndThigh: true,
+  },
   "wrist cuffs": {
     ...invisible,
     wristAndHand: true,
@@ -794,6 +803,37 @@ const allNecktieColorVisibilities = {
   "yellow necktie": visibleType.bowtie,
 } as const;
 
+const allHatColorVisibilities = {
+  "aqua hat": visibleType.hat,
+  "black hat": visibleType.hat,
+  "blue hat": visibleType.hat,
+  "brown hat": visibleType.hat,
+  "green hat": visibleType.hat,
+  "grey hat": visibleType.hat,
+  "orange hat": visibleType.hat,
+  "pink hat": visibleType.hat,
+  "purple hat": visibleType.hat,
+  "red hat": visibleType.hat,
+  "white hat": visibleType.hat,
+  "yellow hat": visibleType.hat,
+} as const;
+
+// TODO: Separate color thigh boots from following defines.
+const allFootwearColorVisibilities = {
+  "aqua footwear": visibleType.foot,
+  "black footwear": visibleType.foot,
+  "blue footwear": visibleType.foot,
+  "brown footwear": visibleType.foot,
+  "green footwear": visibleType.foot,
+  "grey footwear": visibleType.foot,
+  "orange footwear": visibleType.foot,
+  "pink footwear": visibleType.foot,
+  "purple footwear": visibleType.foot,
+  "red footwear": visibleType.foot,
+  "white footwear": visibleType.foot,
+  "yellow footwear": visibleType.foot,
+} as const;
+
 export const tagVisibilities = {
   // Head feature
   ...allEyesColorVisibilities,
@@ -1028,6 +1068,8 @@ export const tagVisibilities = {
   // Exposure
   "breasts skindentation": visibleType["breasts skindentation"],
   "thighs skindentation": visibleType.thighs,
+  "front neck star tattoo": visibleType.bowtie,
+
   collarbone: visibleType.bowtie,
   "bare shoulders": visibleType.shoulder,
   "bare arms": visibleType.shoulder,
@@ -1103,6 +1145,11 @@ export const tagVisibilities = {
   ...allBurumaColorVisibilities,
   necktie: visibleType.bowtie,
   ...allNecktieColorVisibilities,
+  hat: visibleType.hat,
+  ...allHatColorVisibilities,
+  boots: visibleType.foot,
+  shoes: visibleType.foot,
+  ...allFootwearColorVisibilities,
 
   "ribbed sweater": visibleType.shirt,
   "striped sweater": visibleType.shirt,
@@ -1157,9 +1204,7 @@ export const tagVisibilities = {
   "pencil skirt": visibleType.skirt,
   "high-low skirt": visibleType.skirt,
   pantyhose: visibleType.thighhighs,
-  shoes: visibleType.foot,
   loafers: visibleType.foot,
-  boots: visibleType.foot,
   sneakers: visibleType.foot,
   underwear: visibleType.dress,
   "underwear only": visibleType.dress,
@@ -1186,7 +1231,8 @@ export const tagVisibilities = {
   "open shirt": visibleType.shirt,
   pirate: visibleType.all,
   "pirate hat": visibleType.hat,
-  "thigh boots": visibleType.foot,
+  "knee boots": visibleType.foot,
+  "thigh boots": visibleType.foot, // TODO: fixme
   "playboy bunny": visibleType.dress,
   "rabbit ears": visibleType.hair,
   "fake animal ears": visibleType.hair,
@@ -1256,6 +1302,9 @@ export const tagVisibilities = {
   "fur-trimmed headwear": visibleType.hat,
   casual: visibleType.dress,
   "t-shirt": visibleType.shirt,
+  "cabbie hat": visibleType.hat,
+  "bikini top only": visibleType.shirt,
+  "high-waist skirt": visibleType["high-waist skirt"],
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };
