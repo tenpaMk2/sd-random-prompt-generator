@@ -85,7 +85,11 @@ export type Setting = Readonly<{
     width: 512 | 768 | 864 | 1152 | 1360;
     height: 512 | 768 | 864 | 1152 | 1360;
     cfg_scale: 2 | 3 | 4 | 5 | 6 | 7;
-    denoising_strength: 0.3 | 0.4 | 0.5 | 0.6;
+    /**
+     * The denoising strength.
+     * Recommended values are `0.2` for Pony, `0.4` for SD1.5.
+     */
+    denoising_strength: 0.0 | 0.1 | 0.2 | 0.3 | 0.4 | 0.5 | 0.6;
     enable_hr: boolean;
     hr_scale: 1.5 | 2 | 2.5;
     hr_upscaler: Upscaler;
