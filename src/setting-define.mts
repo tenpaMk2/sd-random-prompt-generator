@@ -8,6 +8,7 @@ const allCheckpoints = [
   `vividorangemix_v10NSFW.safetensors [730dd31df7]`,
   `calicomix_v75.safetensors [c5fc303196]`,
   `calicomixFlatani_v10.safetensors [053eb3f26a]`,
+  `ebara_pony_1.bakedVAE.safetensors [b6ce8a2bf8]`,
 ] as const satisfies string[];
 type Checkpoint = (typeof allCheckpoints)[number];
 
@@ -17,7 +18,7 @@ const allVAEs = [
 ] as const satisfies string[];
 type VAE = (typeof allVAEs)[number];
 
-const allSamplers = [`Restart`] as const satisfies string[];
+const allSamplers = [`Restart`, `Euler a`] as const satisfies string[];
 type Sampler = (typeof allSamplers)[number];
 
 const allUpscalers = [`4x-AnimeSharp`] as const satisfies string[];
@@ -80,8 +81,8 @@ export type Setting = Readonly<{
   txt2imgBodyJson: {
     negative_prompt: string;
     sampler_name: Sampler;
-    width: 512 | 768;
-    height: 512 | 768;
+    width: 512 | 768 | 864 | 1152 | 1360;
+    height: 512 | 768 | 864 | 1152 | 1360;
     cfg_scale: 2 | 3 | 4 | 5 | 6 | 7;
     denoising_strength: 0.3 | 0.4 | 0.5 | 0.6;
     enable_hr: boolean;
