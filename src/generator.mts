@@ -14,22 +14,22 @@ const generateEachImage = async (
     prompt: fixedPrompt + patternCollection.pickOnePrompt(),
     seed: -1,
     batch_size: 1,
-    steps: 40,
+    steps: 25, // TODO: Move to setting.
     send_images: false,
     save_images: true,
     alwayson_scripts: {
-      cutoff: {
-        args: [
-          true,
-          "red,pink,orange,yellow,green,blue,purple,black,white,brown,grey,blonde",
-          1.5,
-          false,
-          false,
-          "",
-          "Lerp",
-          true,
-        ],
-      },
+      // cutoff: {
+      //   args: [
+      //     true,
+      //     "red,pink,orange,yellow,green,blue,purple,black,white,brown,grey,blonde",
+      //     1.5,
+      //     false,
+      //     false,
+      //     "",
+      //     "Lerp",
+      //     true,
+      //   ],
+      // },
     },
     ...txt2imgBodyJson,
   };

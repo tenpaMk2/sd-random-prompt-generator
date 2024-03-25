@@ -18,34 +18,26 @@ export const machineSetting = {
 export const settings = [
   {
     key: `all`,
-    // TODO: Adaptive negative prompts architecture.
-    fixedPrompt: `1girl, solo, masterpiece, best quality,\n`,
+    fixedPrompt: `score_9, score_8_up, score_7_up, rating_questionable, 1girl, solo,\n`,
     optionsBodyJson: {
-      sd_model_checkpoint: `vividorangemix_v10.safetensors [ff4725f91c]`,
-      sd_vae: `blessed2.vae.safetensors`,
+      sd_model_checkpoint: `ebara_pony_1.bakedVAE.safetensors [b6ce8a2bf8]`,
+      sd_vae: `None`,
     },
     txt2imgBodyJson: {
-      negative_prompt: `verybadimagenegative_v1.3, (cameltoe:1.5)`,
-      sampler_name: `Restart`,
-      width: 512,
-      height: 768,
+      negative_prompt: `cameltoe`,
+      sampler_name: `Euler a`,
+      width: 864,
+      height: 1152,
       cfg_scale: 5,
       denoising_strength: 0.4,
       enable_hr: true,
-      hr_scale: 2.5,
+      hr_scale: 2,
       hr_upscaler: "4x-AnimeSharp",
-      hr_second_pass_steps: 30,
+      hr_second_pass_steps: 0,
     },
     characters: generateCharactersSetting({
-      characterKeys: [
-        `danmachi-aiz-eft`,
-        `danmachi-eina-eft`,
-        `danmachi-haruhime-eft`,
-        `danmachi-hestia-eft`,
-        `danmachi-lili-eft`,
-        `danmachi-ryu-eft`,
-      ],
-      outfitKeys: [`cow-print-bikini`],
+      characterKeys: [`mahoako-matama-notekaga`],
+      outfitKeys: `usual`,
     }),
   },
 ] as const satisfies Setting[];
