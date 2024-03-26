@@ -30,7 +30,7 @@ export const settings = [
       width: 864,
       height: 1152,
       cfg_scale: 5,
-      denoising_strength: 0.4,
+      denoising_strength: 0.2,
       enable_hr: true,
       hr_scale: 2,
       hr_upscaler: "4x-AnimeSharp",
