@@ -253,6 +253,10 @@ export const visibleType = {
     frontBreast: true,
     frontMidriff: true,
   },
+  "side-tie bikini bottom": {
+    ...invisible,
+    sideHipAndThigh: true,
+  },
 } as const satisfies { [k: string]: Visibility };
 
 const allEyesColorVisibilities = {
@@ -1167,6 +1171,14 @@ export const tagVisibilities = {
   "print bikini": visibleType.dress,
   "o-ring bikini": visibleType.dress,
   "micro bikini": visibleType.dress,
+  "argyle bikini": visibleType.dress,
+  "checkered bikini": visibleType.dress,
+  "plaid bikini": visibleType.dress,
+  "polka dot bikini": visibleType.dress,
+  "striped bikini": visibleType.dress,
+  "front-tie bikini top": visibleType.bowtie,
+  "side-tie bikini bottom": visibleType["side-tie bikini bottom"],
+  sarong: visibleType.skirt,
   "o-ring top": visibleType.cleavage,
   "o-ring bottom": visibleType.panties,
   "school uniform": visibleType.dress,
