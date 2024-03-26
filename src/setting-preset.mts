@@ -24,6 +24,7 @@ const fromHorizontalPosesPreset = {
     { key: `all-fours` },
     { key: `all-fours-from-behind` },
     { key: `kneeling` },
+    { key: `the-pose-head-rest` },
   ],
 } as const satisfies {
   [k in string]: PoseSetting<"from-horizontal">[];
@@ -82,13 +83,28 @@ const bikini = {
     },
     {
       type: `from-horizontal`,
+      key: `ocean-beach`,
+      poses: fromHorizontalPosesPreset.onFloor,
+    },
+    {
+      type: `from-horizontal`,
       key: `colorful-heart-backgrounds`,
       poses: fromHorizontalPosesPreset.onFloor,
     },
     {
+      type: `from-below`,
+      key: `blue-sky`,
+      poses: fromBelowPosesPreset.usual,
+    },
+    {
       type: `from-above`,
-      key: `bed-sheet`,
+      key: `steaming-bed-sheet-spoken-heart`,
       poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      poses: fromAbovePosesPreset.onBed,
     },
   ],
 } as const satisfies OutfitSetting;
