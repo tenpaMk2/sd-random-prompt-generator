@@ -1,5 +1,7 @@
 import { OutfitDefine } from "../resolver.mjs";
 
+// TODO: Add skirt version.
+
 export const santaBikini = () =>
   ({
     lora: null,
