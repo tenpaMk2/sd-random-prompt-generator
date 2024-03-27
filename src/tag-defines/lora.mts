@@ -483,6 +483,16 @@ const allLoras = [
     outfitTriggerTags: [],
     creator: `NoteKaga`,
   },
+  {
+    loraName: `ichijou_hotaru-pony-v1`,
+    recommendedWeight: 1.0,
+    url: new URL(
+      `https://civitai.com/models/78552/sdxlsd15-ichijou-hotaru-or-non-non-biyori`,
+    ),
+    characterTriggerWordsTags: [`ichijou hotaru`],
+    outfitTriggerTags: [],
+    creator: `NoteKaga`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];

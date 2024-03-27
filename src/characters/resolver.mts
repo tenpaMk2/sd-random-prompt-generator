@@ -31,6 +31,7 @@ import { madomagiYachiyoEft } from "./madomagi/madomagi-yachiyo-eft.mjs";
 import { mahoakoMatamaNotekaga } from "./mahoako/mahoako-matama-notekaga.mjs";
 import { newGameAobaNarugo1992 } from "./new-game/new-game-aoba-narugo1992.mjs";
 import { newGameHifumiNarugo1992 } from "./new-game/new-game-hifumi-narugo1992.mjs";
+import { nonNonBiyoriHotaruNotekaga } from "./non-non-biyori/non-non-biyori-hotaru-notekaga.mjs";
 import { reZeroEmiliaEft } from "./re-zero/re-zero-emilia-eft.mjs";
 import { reZeroRamEft } from "./re-zero/re-zero-ram-eft.mjs";
 import { reZeroRemEft } from "./re-zero/re-zero-rem-eft.mjs";
@@ -116,6 +117,7 @@ export const characterTable = {
   "mahoako-matama-notekaga": mahoakoMatamaNotekaga(),
   "new-game-aoba-narugo1992": newGameAobaNarugo1992(),
   "new-game-hifumi-narugo1992": newGameHifumiNarugo1992(),
+  "non-non-biyori-hotaru-notekaga": nonNonBiyoriHotaruNotekaga(),
   "re-zero-emilia-eft": reZeroEmiliaEft(),
   "re-zero-ram-eft": reZeroRamEft(),
   "re-zero-rem-eft": reZeroRemEft(),
