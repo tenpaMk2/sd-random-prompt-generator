@@ -1,9 +1,5 @@
 import { GlobalSetting, MachineSetting, Setting } from "./setting-define.mjs";
-import {
-  charactersPreset,
-  generateCharactersSetting,
-  outfitsPreset,
-} from "./setting-preset.mjs";
+import { generateCharactersSetting } from "./setting-presets/utility.mjs";
 
 export const globalSetting = {
   promptExportingBatchSize: 1000,
