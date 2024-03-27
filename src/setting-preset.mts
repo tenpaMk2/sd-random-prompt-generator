@@ -218,6 +218,37 @@ const cheerleader = {
   ],
 } as const satisfies OutfitSetting;
 
+const chinaDress = {
+  key: `china-dress`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `colorful-backgrounds`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-backgrounds`,
+      poses: fromHorizontalPosesPreset.onFloor,
+    },
+    {
+      type: `from-below`,
+      key: `blue-sky`,
+      poses: fromBelowPosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      poses: fromAbovePosesPreset.onBed,
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const cowPrintBikini = {
   key: `cow-print-bikini`,
   backgrounds: [
@@ -434,6 +465,7 @@ export const outfitsPreset = {
   "camisole-denim-shorts": [camisoleDenimShorts],
   "casual-miniskirt": [casualMiniskirt],
   cheerleader: [cheerleader],
+  "china-dress": [chinaDress],
   "cow-print-bikini": [cowPrintBikini],
   "maid-bikini": [maidBikini],
   "micro-bikini": [microBikini],
@@ -450,13 +482,17 @@ export const outfitsPreset = {
   ],
   usual: [
     bikini,
+    bridalLingerie,
     camisoleDenimShorts,
+    casualMiniskirt,
     cheerleader,
+    chinaDress,
     cowPrintBikini,
     maidBikini,
     microBikini,
     playboyBunny,
     revealingMiko,
+    santaBikini,
     sukumizuThighhighs,
   ],
 } as const satisfies {

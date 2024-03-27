@@ -1317,6 +1317,15 @@ export const tagVisibilities = {
   "cabbie hat": visibleType.hat,
   "bikini top only": visibleType.shirt,
   "high-waist skirt": visibleType["high-waist skirt"],
+  "china dress": visibleType.dress,
+  "chinese clothes": visibleType.dress,
+  "print dress": visibleType.dress,
+  "dragon print": visibleType.dress,
+  "floral print": visibleType.dress,
+  "cherry blossom print": visibleType.dress,
+  "short dress": visibleType.dress,
+  "side slit": visibleType["side hip"],
+  "pelvic curtain": visibleType.skirt,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

@@ -689,6 +689,15 @@ const allOutfitTags = [
   `cabbie hat`,
   `bikini top only`,
   `high-waist skirt`,
+  `china dress`,
+  `chinese clothes`,
+  `print dress`,
+  `dragon print`,
+  `floral print`,
+  `cherry blossom print`,
+  `short dress`,
+  `side slit`,
+  `pelvic curtain`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
