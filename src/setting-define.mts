@@ -10,13 +10,13 @@ const allCheckpoints = [
   `calicomixFlatani_v10.safetensors [053eb3f26a]`,
   `ebara_pony_1.bakedVAE.safetensors [b6ce8a2bf8]`,
 ] as const satisfies string[];
-type Checkpoint = (typeof allCheckpoints)[number];
+export type Checkpoint = (typeof allCheckpoints)[number];
 
 const allVAEs = [
   `None`,
   `blessed2.vae.safetensors`,
 ] as const satisfies string[];
-type VAE = (typeof allVAEs)[number];
+export type VAE = (typeof allVAEs)[number];
 
 const allSamplers = [`Restart`, `Euler a`] as const satisfies string[];
 type Sampler = (typeof allSamplers)[number];
@@ -75,15 +75,31 @@ export type Setting = Readonly<{
   probability?: number;
   fixedPrompt: string;
   optionsBodyJson: {
+    /**
+     * Checkpoint (model).
+     * Recommend to use preset values from `checkpointAndVAEPreset`.
+     */
     sd_model_checkpoint: Checkpoint;
+    /**
+     * VAE.
+     * Recommend to use preset values from `checkpointAndVAEPreset`.
+     */
     sd_vae: VAE;
   };
   txt2imgBodyJson: {
     negative_prompt: string;
     sampler_name: Sampler;
     steps: number;
-    width: 512 | 768 | 864 | 1152 | 1360; // TODO: Redefine as the pair of width and height.
-    height: 512 | 768 | 864 | 1152 | 1360;
+    /**
+     * Image width.
+     * Recommend to use preset values from `imageResolutionPreset`.
+     */
+    width: number;
+    /**
+     * Image height.
+     * Recommend to use preset values from `imageResolutionPreset`.
+     */
+    height: number;
     cfg_scale: 2 | 3 | 4 | 5 | 6 | 7;
     /**
      * The denoising strength.

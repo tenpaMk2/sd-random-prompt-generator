@@ -1,4 +1,8 @@
 import { GlobalSetting, MachineSetting, Setting } from "./setting-define.mjs";
+import {
+  checkpointAndVAEPreset,
+  imageResolutionPreset,
+} from "./setting-presets/root.mjs";
 import { generateCharactersSetting } from "./setting-presets/utility.mjs";
 
 export const globalSetting = {
@@ -16,15 +20,13 @@ export const settings = [
     key: `all`,
     fixedPrompt: `score_9, score_8_up, score_7_up, rating_questionable, 1girl, solo,\n`,
     optionsBodyJson: {
-      sd_model_checkpoint: `ebara_pony_1.bakedVAE.safetensors [b6ce8a2bf8]`,
-      sd_vae: `None`,
+      ...checkpointAndVAEPreset.sdxl.ebaraPony,
     },
     txt2imgBodyJson: {
       negative_prompt: `cameltoe`,
       sampler_name: `Euler a`,
       steps: 25,
-      width: 864,
-      height: 1152,
+      ...imageResolutionPreset.sdxl.portrait,
       cfg_scale: 5,
       denoising_strength: 0.2,
       enable_hr: true,
