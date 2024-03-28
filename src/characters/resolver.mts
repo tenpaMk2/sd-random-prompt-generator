@@ -12,6 +12,7 @@ import { danmachiAizEft } from "./danmachi/danmachi-aiz-eft.mjs";
 import { danmachiEinaEft } from "./danmachi/danmachi-eina-eft.mjs";
 import { danmachiHaruhimeEft } from "./danmachi/danmachi-haruhime-eft.mjs";
 import { danmachiHestiaEft } from "./danmachi/danmachi-hestia-eft.mjs";
+import { danmachiHestiaNochekaiser } from "./danmachi/danmachi-hestia-nochekaiser.mjs";
 import { danmachiLiliEft } from "./danmachi/danmachi-lili-eft.mjs";
 import { danmachiRyuEft } from "./danmachi/danmachi-ryu-eft.mjs";
 import { dumbbellAkemiWiz } from "./dumbbell/dumbbell-akemi-wiz.mjs";
@@ -98,6 +99,7 @@ export const characterTable = {
   "danmachi-eina-eft": danmachiEinaEft(),
   "danmachi-haruhime-eft": danmachiHaruhimeEft(),
   "danmachi-hestia-eft": danmachiHestiaEft(),
+  "danmachi-hestia-nochekaiser": danmachiHestiaNochekaiser(),
   "danmachi-lili-eft": danmachiLiliEft(),
   "danmachi-ryu-eft": danmachiRyuEft(),
   "dumbbell-akemi-wiz": dumbbellAkemiWiz(),

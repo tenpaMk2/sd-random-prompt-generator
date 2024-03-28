@@ -15,6 +15,7 @@ import { revealingMiko } from "./common/revealing-miko.mjs";
 import { santaBikini } from "./common/santa-bikini.mjs";
 import { sukumizuThighhighs } from "./common/sukumizu-thighhighs.mjs";
 import { testOutfit } from "./common/test-outfit.mjs";
+import { danmachiNochekaiserHestia } from "./danmachi-nochekaiser/hestia.mjs";
 import { mahoakoNotekagaLocomusica } from "./mahoako-notekaga/locomusica.mjs";
 import { sasuoniEftFirstHighSchoolUniform } from "./sasuoni-eft/first-high-school-uniform.mjs";
 
@@ -117,6 +118,7 @@ export const outfitTable = {
   "revealing-miko": revealingMiko(),
   "santa-bikini": santaBikini(),
   "sukumizu-thighhighs": sukumizuThighhighs(),
+  "danmachi-nochekaiser-hestia": danmachiNochekaiserHestia(),
   "mahoako-notekaga-locomusica": mahoakoNotekagaLocomusica(),
   "sasuoni-eft-first-high-school-uniform-pantyhose":
     sasuoniEftFirstHighSchoolUniform(`pantyhose`),

@@ -1326,6 +1326,7 @@ export const tagVisibilities = {
   "short dress": visibleType.dress,
   "side slit": visibleType["side hip"],
   "pelvic curtain": visibleType.skirt,
+  "rei no himo": visibleType.bra,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

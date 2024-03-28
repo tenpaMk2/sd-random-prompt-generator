@@ -493,6 +493,16 @@ const allLoras = [
     outfitTriggerTags: [],
     creator: `NoteKaga`,
   },
+  {
+    loraName: `danmachi-hestia-ponyxl-lora-nochekaiser`,
+    recommendedWeight: 1.0,
+    url: new URL(
+      `https://civitai.com/models/361913/hestia-is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-danmachi?modelVersionId=404426`,
+    ),
+    characterTriggerWordsTags: [`hestia`],
+    outfitTriggerTags: [],
+    creator: `NoteKaga`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];

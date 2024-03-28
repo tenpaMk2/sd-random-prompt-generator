@@ -361,6 +361,37 @@ const sukumizuThighhighs = {
   ],
 } as const satisfies OutfitSetting;
 
+const danmachiNochekaiserHestia = {
+  key: `danmachi-nochekaiser-hestia`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `colorful-backgrounds`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-backgrounds`,
+      poses: fromHorizontalPosesPreset.onFloor,
+    },
+    {
+      type: `from-below`,
+      key: `blue-sky`,
+      poses: fromBelowPosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      poses: fromAbovePosesPreset.onBed,
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const mahoakoNotekagaLocomusica = {
   key: `mahoako-notekaga-locomusica`,
   backgrounds: [
@@ -432,6 +463,7 @@ export const outfitsPreset = {
   "revealing-miko": [revealingMiko],
   "santa-bikini": [santaBikini],
   "sukumizu-thighhighs": [sukumizuThighhighs],
+  "danmachi-nochekaiser-hestia": [danmachiNochekaiserHestia],
   "mahoako-notekaga-locomusica": [mahoakoNotekagaLocomusica],
   "sasuoni-eft-first-high-school-uniform-pantyhose": [
     sasuoniFirstHighSchoolUniform(`pantyhose`),
