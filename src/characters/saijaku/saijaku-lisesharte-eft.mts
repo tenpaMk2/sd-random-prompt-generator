@@ -19,6 +19,7 @@ export const saijakuLisesharteEft = () =>
       `hair between eyes`,
       `hair ribbon`,
       `black hair ribbon`,
+      // TODO: `stomach tattoo`
     ],
     breastSize: `large breasts`,
     fang: false,
