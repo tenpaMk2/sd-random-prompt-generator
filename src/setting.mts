@@ -23,10 +23,10 @@ export const settings = [
       ...checkpointAndVAEPreset.sdxl.ebaraPony,
     },
     txt2imgBodyJson: {
-      negative_prompt: `cameltoe`,
+      negative_prompt: `cameltoe, empty eyes, realistic`,
       sampler_name: `Euler a`,
       steps: 25,
-      ...imageResolutionPreset.sdxl.portrait,
+      ...imageResolutionPreset.sdxl.landscape,
       cfg_scale: 5,
       denoising_strength: 0.2,
       enable_hr: true,
@@ -35,8 +35,8 @@ export const settings = [
       hr_second_pass_steps: 0,
     },
     characters: generateCharactersSetting({
-      characterKeys: [`mahoako-matama-notekaga`],
-      outfitKeys: `usual`,
+      characterKeys: [`prisma-illya-chloe-beast-am7coffeelove`],
+      outfitKeys: [`prisma-illya-chloe-beast`],
     }),
   },
 ] as const satisfies Setting[];
