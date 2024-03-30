@@ -423,6 +423,37 @@ const mahoakoNotekagaLocomusica = {
   ],
 } as const satisfies OutfitSetting;
 
+const prismaIllyaAm7CoffeeloveChloeBeast = {
+  key: `prisma-illya-chloe-beast`,
+  backgrounds: [
+    {
+      type: `from-horizontal`,
+      key: `colorful-backgrounds`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `colorful-backgrounds`,
+      poses: fromHorizontalPosesPreset.onFloor,
+    },
+    {
+      type: `from-below`,
+      key: `blue-sky`,
+      poses: fromBelowPosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-above`,
+      key: `steaming-bed-sheet-spoken-heart`,
+      poses: fromAbovePosesPreset.onBed,
+    },
+  ],
+} as const satisfies OutfitSetting;
+
 const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
   ({
     key:
@@ -465,6 +496,7 @@ export const outfitsPreset = {
   "sukumizu-thighhighs": [sukumizuThighhighs],
   "danmachi-nochekaiser-hestia": [danmachiNochekaiserHestia],
   "mahoako-notekaga-locomusica": [mahoakoNotekagaLocomusica],
+  "prisma-illya-chloe-beast": [prismaIllyaAm7CoffeeloveChloeBeast],
   "sasuoni-eft-first-high-school-uniform-pantyhose": [
     sasuoniFirstHighSchoolUniform(`pantyhose`),
   ],

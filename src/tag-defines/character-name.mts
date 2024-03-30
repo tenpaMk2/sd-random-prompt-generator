@@ -70,5 +70,11 @@ export const allCharacterName = [
   `akoya matama`,
   `loco musica`,
   `ichijou hotaru`,
+  `illyasviel von einzbern`,
+  `chloe von einzbern`,
+  `miyu edelfelt`,
+  `illyasviel von einzbern \\(beast style\\)`,
+  `chloe von einzbern \\(beast style\\)`,
+  `miyu edelfelt \\(beast style\\)`,
 ] as const satisfies readonly string[];
 export type CharacterNameTag = (typeof allCharacterName)[number];

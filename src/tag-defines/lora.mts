@@ -503,6 +503,16 @@ const allLoras = [
     outfitTriggerTags: [],
     creator: `NoteKaga`,
   },
+  {
+    loraName: `clobeasts_pony`,
+    recommendedWeight: 1.0,
+    url: new URL(
+      `https://civitai.com/models/309537/chloe-von-einzbernbeast-style?modelVersionId=347422`,
+    ),
+    characterTriggerWordsTags: [],
+    outfitTriggerTags: [`zzcloaa`],
+    creator: `am7coffeelove`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];
