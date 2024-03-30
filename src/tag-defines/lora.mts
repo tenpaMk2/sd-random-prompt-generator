@@ -1,3 +1,5 @@
+import { BaseModel } from "../setting-define.mjs";
+
 type LoraDefine = Readonly<{
   /**
    * Lora name.
@@ -9,6 +11,11 @@ type LoraDefine = Readonly<{
    * Choose value from the range specied in the lora description or sample images.
    */
   recommendedWeight: number;
+  /**
+   * Supported base models.
+   * If you try to this lora with unsupported model, the tool will throw error.
+   */
+  supportedBaseModels: BaseModel[];
   /**
    * URL.
    */
@@ -31,10 +38,11 @@ type LoraDefine = Readonly<{
   creator: string;
 }>;
 
-const allLoras = [
+export const allLoras = [
   {
     loraName: `nishikigi_chisato_v1`,
     recommendedWeight: 0.75,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/235178/nishikigi-chisato-lycoris-recoil`,
     ),
@@ -45,6 +53,7 @@ const allLoras = [
   {
     loraName: `shokuhou_misaki_v2`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/19948/shokuhou-misaki-toaru-kagaku-no-railgun`,
     ),
@@ -55,6 +64,7 @@ const allLoras = [
   {
     loraName: `OGT_Cecilia_Alcott-v1`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/250377/cecilia-alcott-or-infinite-stratos`,
     ),
@@ -65,6 +75,7 @@ const allLoras = [
   {
     loraName: `AmagiBrilliantPark_SentoIsuzu`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/55673/sento-isuzu-or-amagi-brilliant-park`,
     ),
@@ -83,6 +94,7 @@ const allLoras = [
   {
     loraName: `suzukaze_aoba_newgame`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/227219/suzukaze-aoba-new-game`),
     characterTriggerWordsTags: [`suzukaze_aoba_newgame`],
     outfitTriggerTags: [],
@@ -91,6 +103,7 @@ const allLoras = [
   {
     loraName: `takimoto_hifumi_newgame`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/227280/takimoto-hifumi-new-game`),
     characterTriggerWordsTags: [`takimoto_hifumi_newgame`],
     outfitTriggerTags: [],
@@ -99,6 +112,7 @@ const allLoras = [
   {
     loraName: `momo-loveru`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/258472/momo-belia-deviluke-to-love-ru`,
     ),
@@ -109,6 +123,7 @@ const allLoras = [
   {
     loraName: `mea-loveru`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/258474/mea-kurosaki-to-love-ru`),
     characterTriggerWordsTags: [`mea kurosaki`],
     outfitTriggerTags: [],
@@ -117,6 +132,7 @@ const allLoras = [
   {
     loraName: `lala-loveru`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/258475/lala-satalin-deviluke-to-love-ru`,
     ),
@@ -127,6 +143,7 @@ const allLoras = [
   {
     loraName: `haruna-loveru`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/258480/haruna-sairenji-to-love-ru`,
     ),
@@ -137,6 +154,7 @@ const allLoras = [
   {
     loraName: `yami-loveru`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/258473/konjiki-no-yami-to-love-ru`,
     ),
@@ -147,6 +165,7 @@ const allLoras = [
   {
     loraName: `yui-loveru`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/258476/yui-kotegawa-to-love-ru`),
     characterTriggerWordsTags: [`yui kotegawa`],
     outfitTriggerTags: [],
@@ -155,6 +174,7 @@ const allLoras = [
   {
     loraName: `nana-loveru`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/258477/nana-astar-deviluke-to-love-ru`,
     ),
@@ -165,6 +185,7 @@ const allLoras = [
   {
     loraName: `iroha-madomagi-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/271627/iroha-tamaki-magia-record`),
     characterTriggerWordsTags: [`iroha tamaki`],
     outfitTriggerTags: [],
@@ -173,6 +194,7 @@ const allLoras = [
   {
     loraName: `yachiyo-madomagi-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/271624/yachiyo-nanami-magia-record`,
     ),
@@ -183,6 +205,7 @@ const allLoras = [
   {
     loraName: `madoka-madomagi-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/269404/madoka-kaname-mahou-shoujo-madokamagica`,
     ),
@@ -193,6 +216,7 @@ const allLoras = [
   {
     loraName: `sayaka-madomagi-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/269414/sayaka-miki-mahou-shoujo-madokamagica`,
     ),
@@ -203,6 +227,7 @@ const allLoras = [
   {
     loraName: `mami-madomagi-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/269417/mami-tomoe-mahou-shoujo-madokamagica`,
     ),
@@ -213,6 +238,7 @@ const allLoras = [
   {
     loraName: `kyouko-madomagi-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/269411/kyouko-sakura-mahou-shoujo-madokamagica`,
     ),
@@ -223,6 +249,7 @@ const allLoras = [
   {
     loraName: `homura-madomagi-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/269407/homura-akemi-mahou-shoujo-madokamagica`,
     ),
@@ -233,6 +260,7 @@ const allLoras = [
   {
     loraName: `miyuki-mahouka`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/298306/miyuki-shiba-mahouka-koukou-no-rettousei`,
     ),
@@ -243,6 +271,7 @@ const allLoras = [
   {
     loraName: `mayumi-mahouka`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/298307/mayumi-saegusa-mahouka-koukou-no-rettousei`,
     ),
@@ -253,6 +282,7 @@ const allLoras = [
   {
     loraName: `honoka-mahouka`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/298315/honoka-mitsui-mahouka-koukou-no-rettousei`,
     ),
@@ -263,6 +293,7 @@ const allLoras = [
   {
     loraName: `erika-mahouka`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/298310/erika-chiba-mahouka-koukou-no-rettousei`,
     ),
@@ -273,6 +304,7 @@ const allLoras = [
   {
     loraName: `shizuku-mahouka`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/298313/shizuku-kitayama-mahouka-koukou-no-rettousei`,
     ),
@@ -283,6 +315,7 @@ const allLoras = [
   {
     loraName: `chisato-lycoreco-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/226036/chisato-nishikigi-lycoris-recoil`,
     ),
@@ -293,6 +326,7 @@ const allLoras = [
   {
     loraName: `takina-lycoreco-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/226041/takina-inoue-lycoris-recoil`,
     ),
@@ -303,6 +337,7 @@ const allLoras = [
   {
     loraName: `rem-rezero-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/216918/rem-rezero`),
     characterTriggerWordsTags: [`rem`],
     outfitTriggerTags: [],
@@ -311,6 +346,7 @@ const allLoras = [
   {
     loraName: `ram-rezero-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/216920/ram-rezero`),
     characterTriggerWordsTags: [`ram`],
     outfitTriggerTags: [],
@@ -319,6 +355,7 @@ const allLoras = [
   {
     loraName: `emilia-rezero-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/216916/emilia-rezero`),
     characterTriggerWordsTags: [`emilia`],
     outfitTriggerTags: [],
@@ -327,6 +364,7 @@ const allLoras = [
   {
     loraName: `lisesharte-bahamut-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/191377/lisesharte-atismata-saijaku-muhai-no-bahamut`,
     ),
@@ -337,6 +375,7 @@ const allLoras = [
   {
     loraName: `philuffy-bahamut-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/191372/philuffy-aingram-saijaku-muhai-no-bahamut`,
     ),
@@ -347,6 +386,7 @@ const allLoras = [
   {
     loraName: `krulcifer-bahamut-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/191382/krulcifer-einfolk-saijaku-muhai-no-bahamut`,
     ),
@@ -357,6 +397,7 @@ const allLoras = [
   {
     loraName: `celistia-bahamut-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/191380/celistia-ralgris-saijaku-muhai-no-bahamut`,
     ),
@@ -367,6 +408,7 @@ const allLoras = [
   {
     loraName: `yoruka-bahamut-01`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/191383/yoruka-kirihime-saijaku-muhai-no-bahamut`,
     ),
@@ -377,6 +419,7 @@ const allLoras = [
   {
     loraName: `eft_dumbell_blonde`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/315195/hibiki-sakura-how-heavy-are-the-dumbbells-you-lift-dumbbell-nan-kilo-moteru-anime-design`,
     ),
@@ -387,6 +430,7 @@ const allLoras = [
   {
     loraName: `eft_dumbell_black`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/315196/akemi-souryuuin-how-heavy-are-the-dumbbells-you-lift-dumbbell-nan-kilo-moteru-anime-design`,
     ),
@@ -397,6 +441,7 @@ const allLoras = [
   {
     loraName: `eft_dumbell_bun`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/315191/ayaka-uehara-how-heavy-are-the-dumbbells-you-lift-dumbbell-nan-kilo-moteru-anime-design`,
     ),
@@ -407,6 +452,7 @@ const allLoras = [
   {
     loraName: `eft_dumbell_white`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/315188/gina-boyd-how-heavy-are-the-dumbbells-you-lift-dumbbell-nan-kilo-moteru-anime-design`,
     ),
@@ -417,6 +463,7 @@ const allLoras = [
   {
     loraName: `eft_dumbell_short`,
     recommendedWeight: 0.7,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/315183/satomi-tachibana-how-heavy-are-the-dumbbells-you-lift-dumbbell-nan-kilo-moteru-anime-design`,
     ),
@@ -427,6 +474,7 @@ const allLoras = [
   {
     loraName: `eina-danmachi`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/342415/eina-tulle-danmachi`),
     characterTriggerWordsTags: [], // `eina tulle` is common trigger words.
     outfitTriggerTags: [],
@@ -435,6 +483,7 @@ const allLoras = [
   {
     loraName: `haruhime-danmachi`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(
       `https://civitai.com/models/342409/haruhime-sanjouno-danmachi`,
     ),
@@ -445,6 +494,7 @@ const allLoras = [
   {
     loraName: `lili-danmachi`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/342407/liliruca-arde-danmachi`),
     characterTriggerWordsTags: [], // `liliruca arde` is common trigger words.
     outfitTriggerTags: [],
@@ -453,6 +503,7 @@ const allLoras = [
   {
     loraName: `ryuu-danmachi`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/342406/ryuu-lion-danmachi`),
     characterTriggerWordsTags: [`ryuu lion`],
     outfitTriggerTags: [],
@@ -461,6 +512,7 @@ const allLoras = [
   {
     loraName: `ais-danmachi`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/339169/ais-wallenstein-danmachi`),
     characterTriggerWordsTags: [`ais wallenstein`],
     outfitTriggerTags: [],
@@ -469,15 +521,16 @@ const allLoras = [
   {
     loraName: `hestia-danmachi`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`SD1.5`],
     url: new URL(`https://civitai.com/models/339164/hestia-danmachi`),
     characterTriggerWordsTags: [`hestia`],
     outfitTriggerTags: [],
     creator: `eft`,
   },
   {
-    // TODO: Add Lora type `SD1.5` or `Pony` .
     loraName: `akoya_matama-pony-v1`,
     recommendedWeight: 0.8,
+    supportedBaseModels: [`Pony`],
     url: new URL(`https://civitai.com/models/351800?modelVersionId=393514`),
     characterTriggerWordsTags: [`akoya matama`],
     outfitTriggerTags: [],
@@ -486,6 +539,7 @@ const allLoras = [
   {
     loraName: `ichijou_hotaru-pony-v1`,
     recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
     url: new URL(
       `https://civitai.com/models/78552/sdxlsd15-ichijou-hotaru-or-non-non-biyori`,
     ),
@@ -496,6 +550,7 @@ const allLoras = [
   {
     loraName: `danmachi-hestia-ponyxl-lora-nochekaiser`,
     recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
     url: new URL(
       `https://civitai.com/models/361913/hestia-is-it-wrong-to-try-to-pick-up-girls-in-a-dungeon-danmachi?modelVersionId=404426`,
     ),
@@ -506,6 +561,7 @@ const allLoras = [
   {
     loraName: `clobeasts_pony`,
     recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
     url: new URL(
       `https://civitai.com/models/309537/chloe-von-einzbernbeast-style?modelVersionId=347422`,
     ),

@@ -5,8 +5,11 @@ import { collect } from "./collector.mjs";
 import { settings } from "./setting.mjs";
 import { exportAsCSV } from "./tag-defines/visibility.mjs";
 import { generate } from "./generator.mjs";
+import { validateSettings } from "./validator.mjs";
 
 console.time(`Prompt build`);
+
+validateSettings(settings);
 
 const collectedDatas = collect(settings);
 

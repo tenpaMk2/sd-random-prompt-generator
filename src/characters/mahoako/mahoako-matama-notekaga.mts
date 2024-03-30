@@ -1,8 +1,6 @@
 import { emotionPreset } from "../emotion-preset.mjs";
 import { CharacterDefine } from "../resolver.mjs";
 
-// TODO: Separate SD1.5 and Pony.
-
 export const mahoakoMatamaNotekaga = () =>
   ({
     lora: {

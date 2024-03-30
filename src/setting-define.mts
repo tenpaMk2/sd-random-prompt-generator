@@ -3,13 +3,27 @@ import { CharacterKey } from "./characters/resolver.mjs";
 import { OutfitKey } from "./outfits/resolver.mjs";
 import { PoseKey } from "./poses/resolver.mjs";
 
-const allCheckpoints = [
-  `vividorangemix_v10.safetensors [ff4725f91c]`,
-  `vividorangemix_v10NSFW.safetensors [730dd31df7]`,
-  `calicomix_v75.safetensors [c5fc303196]`,
-  `calicomixFlatani_v10.safetensors [053eb3f26a]`,
-  `ebara_pony_1.bakedVAE.safetensors [b6ce8a2bf8]`,
-] as const satisfies string[];
+export type BaseModel = `SD1.5` | `Pony` | `Animagine`;
+
+export const allCheckpoints = [
+  {
+    nameHash: `vividorangemix_v10.safetensors [ff4725f91c]`,
+    baseModel: `SD1.5`,
+  },
+  {
+    nameHash: `vividorangemix_v10NSFW.safetensors [730dd31df7]`,
+    baseModel: `SD1.5`,
+  },
+  { nameHash: `calicomix_v75.safetensors [c5fc303196]`, baseModel: `SD1.5` },
+  {
+    nameHash: `calicomixFlatani_v10.safetensors [053eb3f26a]`,
+    baseModel: `SD1.5`,
+  },
+  {
+    nameHash: `ebara_pony_1.bakedVAE.safetensors [b6ce8a2bf8]`,
+    baseModel: `Pony`,
+  },
+] as const satisfies { nameHash: string; baseModel: BaseModel }[];
 export type Checkpoint = (typeof allCheckpoints)[number];
 
 const allVAEs = [
@@ -79,7 +93,7 @@ export type Setting = Readonly<{
      * Checkpoint (model).
      * Recommend to use preset values from `checkpointAndVAEPreset`.
      */
-    sd_model_checkpoint: Checkpoint;
+    sd_model_checkpoint: Checkpoint["nameHash"];
     /**
      * VAE.
      * Recommend to use preset values from `checkpointAndVAEPreset`.

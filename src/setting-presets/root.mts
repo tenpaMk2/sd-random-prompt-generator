@@ -28,7 +28,7 @@ export const checkpointAndVAEPreset = {
 } as const satisfies {
   [k in `sd1` | `sdxl`]: {
     [k in string]: {
-      sd_model_checkpoint: Checkpoint;
+      sd_model_checkpoint: Checkpoint["nameHash"];
       sd_vae: VAE;
     };
   };
