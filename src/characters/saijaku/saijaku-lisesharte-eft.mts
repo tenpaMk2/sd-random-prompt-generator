@@ -18,7 +18,7 @@ export const saijakuLisesharteEft = () =>
       `side ponytail`,
       `hair between eyes`,
       `hair ribbon`,
-      `black ribbon`,
+      `black hair ribbon`,
     ],
     breastSize: `large breasts`,
     fang: false,

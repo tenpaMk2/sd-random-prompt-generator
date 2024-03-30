@@ -20,7 +20,7 @@ export const saijakuKrulciferEft = () =>
       `hair between eyes`,
       `sidelocks`,
       `hair ribbon`,
-      `black ribbon`,
+      `black hair ribbon`,
     ],
     breastSize: `small breasts`,
     fang: false,

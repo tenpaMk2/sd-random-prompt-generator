@@ -23,7 +23,7 @@ export const reZeroEmiliaEft = () =>
       `x hair ornament`,
       `hair flower`,
       `hair ribbon`,
-      `purple ribbon`,
+      `purple hair ribbon`,
       `pointy ears`,
       `elf`,
     ],

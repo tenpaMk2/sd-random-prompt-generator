@@ -228,6 +228,13 @@ export const visibleType = {
     ...invisible,
     wristAndHand: true,
   },
+  "elbow gloves": {
+    ...invisible,
+    frontBreast: true,
+    sideBreast: true,
+    backBreast: true,
+    wristAndHand: true,
+  },
   thighhighs: {
     ...invisible,
     frontHipAndThigh: true,
@@ -383,6 +390,18 @@ const allDistinguishableHeadOutfitVisibilities = {
   "red hair bow": visibleType.hair,
   "white hair bow": visibleType.hair,
   "yellow hair bow": visibleType.hair,
+  "aqua hair ribbon": visibleType.hair,
+  "black hair ribbon": visibleType.hair,
+  "blue hair ribbon": visibleType.hair,
+  "brown hair ribbon": visibleType.hair,
+  "green hair ribbon": visibleType.hair,
+  "grey hair ribbon": visibleType.hair,
+  "orange hair ribbon": visibleType.hair,
+  "pink hair ribbon": visibleType.hair,
+  "purple hair ribbon": visibleType.hair,
+  "red hair ribbon": visibleType.hair,
+  "white hair ribbon": visibleType.hair,
+  "yellow hair ribbon": visibleType.hair,
   "jingle bell hair ornament": visibleType.hair,
 } as const;
 
@@ -424,21 +443,6 @@ const allHairBowColorVisibilities = {
   "black bow": visibleType.hair,
   "grey bow": visibleType.hair,
   "white bow": visibleType.hair,
-} as const;
-
-const allHairRibbonColorVisibilities = {
-  "red ribbon": visibleType.hair,
-  "pink ribbon": visibleType.hair,
-  "orange ribbon": visibleType.hair,
-  "brown ribbon": visibleType.hair,
-  "yellow ribbon": visibleType.hair,
-  "green ribbon": visibleType.hair,
-  "aqua ribbon": visibleType.hair,
-  "blue ribbon": visibleType.hair,
-  "purple ribbon": visibleType.hair,
-  "black ribbon": visibleType.hair,
-  "grey ribbon": visibleType.hair,
-  "white ribbon": visibleType.hair,
 } as const;
 
 const allHairbandColorVisibilities = {
@@ -1046,7 +1050,6 @@ export const tagVisibilities = {
   "hair bow": visibleType.hair,
   ...allHairBowColorVisibilities,
   "hair ribbon": visibleType.hair,
-  ...allHairRibbonColorVisibilities,
   hairband: visibleType.hair,
   ...allHairbandColorVisibilities,
   "heart-shaped eyewear": visibleType.glasses,
@@ -1284,7 +1287,7 @@ export const tagVisibilities = {
   "lace panties": visibleType.panties,
   "tokiwadai school uniform": visibleType.all,
   "short sleeves": visibleType.shoulder,
-  "elbow gloves": visibleType.shoulder,
+  "elbow gloves": visibleType["elbow gloves"],
   "pleated skirt": visibleType.skirt,
   "frilled skirt": visibleType.skirt,
   sleeveless: visibleType.shoulder,
@@ -1390,6 +1393,10 @@ export const tagVisibilities = {
   armlet: visibleType.armlet,
   "paw gloves": visibleType["wrist cuffs"],
   "paw shoes": visibleType.foot,
+  "official alternate costume": visibleType.all,
+  "fur-trimmed collar": visibleType.collar,
+  "center opening": visibleType["center frills"],
+  "fur-trimmed gloves": visibleType["elbow gloves"],
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

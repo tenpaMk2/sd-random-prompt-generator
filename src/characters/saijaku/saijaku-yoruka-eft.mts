@@ -22,7 +22,7 @@ export const saijakuYorukaEft = () =>
       `sidelocks`,
       `low tied sidelocks`,
       `hair ribbon`,
-      `red ribbon`,
+      `red hair ribbon`,
       `thick thighs`,
       `wide hips`,
     ],

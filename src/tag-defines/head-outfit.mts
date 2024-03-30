@@ -13,6 +13,18 @@ export const allDistinguishableHeadOutfitTags = {
   "red hair bow": `red bow`,
   "white hair bow": `white bow`,
   "yellow hair bow": `yellow bow`,
+  "aqua hair ribbon": `aqua ribbon`,
+  "black hair ribbon": `black ribbon`,
+  "blue hair ribbon": `blue ribbon`,
+  "brown hair ribbon": `brown ribbon`,
+  "green hair ribbon": `green ribbon`,
+  "grey hair ribbon": `grey ribbon`,
+  "orange hair ribbon": `orange ribbon`,
+  "pink hair ribbon": `pink ribbon`,
+  "purple hair ribbon": `purple ribbon`,
+  "red hair ribbon": `red ribbon`,
+  "white hair ribbon": `white ribbon`,
+  "yellow hair ribbon": `yellow ribbon`,
   "jingle bell hair ornament": `jingle bell`,
 } as const satisfies { [k in string]: string };
 
@@ -56,21 +68,6 @@ const allHairBowColorTags = [
   `white bow`,
 ] as const satisfies readonly string[];
 
-const allHairRibbonColorTags = [
-  `red ribbon`,
-  `pink ribbon`,
-  `orange ribbon`,
-  `brown ribbon`,
-  `yellow ribbon`,
-  `green ribbon`,
-  `aqua ribbon`,
-  `blue ribbon`,
-  `purple ribbon`,
-  `black ribbon`,
-  `grey ribbon`,
-  `white ribbon`,
-] as const satisfies readonly string[];
-
 const allHairbandColorTags = [
   `red hairband`,
   `pink hairband`,
@@ -95,7 +92,6 @@ const allHeadOutfitTags = [
   `hair bow`,
   ...allHairBowColorTags,
   `hair ribbon`,
-  ...allHairRibbonColorTags,
   `hairband`,
   ...allHairbandColorTags,
 

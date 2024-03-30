@@ -706,6 +706,10 @@ const allOutfitTags = [
   `armlet`,
   `paw gloves`,
   `paw shoes`,
+  `official alternate costume`,
+  `fur-trimmed collar`,
+  `center opening`,
+  `fur-trimmed gloves`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
