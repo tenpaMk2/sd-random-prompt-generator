@@ -1,4 +1,32 @@
+import { getKeys } from "../libs/utility.mjs";
 import { HeadOutfitTags as HeadOutfitTag } from "./head-outfit.mjs";
+
+export const allDistinguishableBodyFeatureTags = {
+  "aqua short tail": `aqua tail`,
+  "black short tail": `black tail`,
+  "blue short tail": `blue tail`,
+  "brown short tail": `brown tail`,
+  "green short tail": `green tail`,
+  "grey short tail": `grey tail`,
+  "orange short tail": `orange tail`,
+  "pink short tail": `pink tail`,
+  "purple short tail": `purple tail`,
+  "red short tail": `red tail`,
+  "white short tail": `white tail`,
+  "yellow short tail": `yellow tail`,
+  "aqua long tail": `aqua tail`,
+  "black long tail": `black tail`,
+  "blue long tail": `blue tail`,
+  "brown long tail": `brown tail`,
+  "green long tail": `green tail`,
+  "grey long tail": `grey tail`,
+  "orange long tail": `orange tail`,
+  "pink long tail": `pink tail`,
+  "purple long tail": `purple tail`,
+  "red long tail": `red tail`,
+  "white long tail": `white tail`,
+  "yellow long tail": `yellow tail`,
+} as const satisfies { [k in string]: string };
 
 const allEyesColorTags = [
   `aqua eyes`,
@@ -176,6 +204,7 @@ const allHeadFeatureTags = [
   `hair up`,
   `facial mark`,
   `animal ears`,
+  `fake animal ears`,
   `cat ears`,
   `dog ears`,
   `fox ears`,
@@ -198,6 +227,7 @@ export const allBreastSizeTags = [
 export type BreastSizeTag = (typeof allBreastSizeTags)[number];
 
 const allBodyFeatureTags = [
+  ...getKeys(allDistinguishableBodyFeatureTags),
   `tail`,
   `cat tail`,
   `dog tail`,
@@ -215,6 +245,9 @@ const allBodyFeatureTags = [
   `toned`,
   `gyaru`,
   `tan`,
+  `dark skin`,
+  `dark-skinned female`,
+  `stomach tattoo`,
 ] as const satisfies readonly string[];
 type BodyFeatureTag = (typeof allBodyFeatureTags)[number];
 

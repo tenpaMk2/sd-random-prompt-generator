@@ -1,11 +1,15 @@
 import { Tag } from "./tag-defines/all.mjs";
+import { allDistinguishableBodyFeatureTags } from "./tag-defines/character-feature.mjs";
 import { EmotionTag } from "./tag-defines/emotion.mjs";
+import { allDistinguishableHeadOutfitTags } from "./tag-defines/head-outfit.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
 import {
   OutfitAndExposureTag,
   allDistinguishableExposureTags,
   allDistinguishableOutfitTags,
 } from "./tag-defines/outfit-and-exposure.mjs";
+
+type DistinguishableTags = Readonly<{ [k in string]: string }>;
 
 /**
  * Token definition.
@@ -37,8 +41,12 @@ class Token<T extends Tag | LoraNameTag> {
       case `normal`:
         // Resolve tag name if it's a distinguishable tag.
         const tag =
-          allDistinguishableExposureTags[this.tag as any] ??
-          allDistinguishableOutfitTags[this.tag as any] ??
+          (allDistinguishableHeadOutfitTags as DistinguishableTags)[this.tag] ??
+          (allDistinguishableBodyFeatureTags as DistinguishableTags)[
+            this.tag
+          ] ??
+          (allDistinguishableExposureTags as DistinguishableTags)[this.tag] ??
+          (allDistinguishableOutfitTags as DistinguishableTags)[this.tag] ??
           this.tag;
 
         return this.weight === 1.0 ? tag : `${tag}:${this.weight}`;
@@ -124,8 +132,18 @@ export class Pattern<T extends Tag | LoraNameTag> {
           } as const;
         case `normal`:
           return {
-            tag: (allDistinguishableExposureTags[token.tag as any] ??
-              allDistinguishableOutfitTags[token.tag as any] ??
+            tag: ((allDistinguishableHeadOutfitTags as DistinguishableTags)[
+              token.tag
+            ] ??
+              (allDistinguishableBodyFeatureTags as DistinguishableTags)[
+                token.tag
+              ] ??
+              (allDistinguishableExposureTags as DistinguishableTags)[
+                token.tag
+              ] ??
+              (allDistinguishableOutfitTags as DistinguishableTags)[
+                token.tag
+              ] ??
               token.tag) as T,
             weight: token.weight,
             type: `normal`,

@@ -257,6 +257,12 @@ export const visibleType = {
     ...invisible,
     sideHipAndThigh: true,
   },
+  armlet: {
+    ...invisible,
+    frontBreast: true,
+    sideBreast: true,
+    backBreast: true,
+  },
 } as const satisfies { [k: string]: Visibility };
 
 const allEyesColorVisibilities = {
@@ -337,6 +343,49 @@ const allBreastSizeVisibilities = {
   "huge breasts": visibleType.breasts,
 } as const;
 
+const allDistinguishableBodyFeatureVisibilities = {
+  "aqua short tail": visibleType.shortTail,
+  "black short tail": visibleType.shortTail,
+  "blue short tail": visibleType.shortTail,
+  "brown short tail": visibleType.shortTail,
+  "green short tail": visibleType.shortTail,
+  "grey short tail": visibleType.shortTail,
+  "orange short tail": visibleType.shortTail,
+  "pink short tail": visibleType.shortTail,
+  "purple short tail": visibleType.shortTail,
+  "red short tail": visibleType.shortTail,
+  "white short tail": visibleType.shortTail,
+  "yellow short tail": visibleType.shortTail,
+  "aqua long tail": visibleType.longTail,
+  "black long tail": visibleType.longTail,
+  "blue long tail": visibleType.longTail,
+  "brown long tail": visibleType.longTail,
+  "green long tail": visibleType.longTail,
+  "grey long tail": visibleType.longTail,
+  "orange long tail": visibleType.longTail,
+  "pink long tail": visibleType.longTail,
+  "purple long tail": visibleType.longTail,
+  "red long tail": visibleType.longTail,
+  "white long tail": visibleType.longTail,
+  "yellow long tail": visibleType.longTail,
+} as const;
+
+const allDistinguishableHeadOutfitVisibilities = {
+  "aqua hair bow": visibleType.hair,
+  "black hair bow": visibleType.hair,
+  "blue hair bow": visibleType.hair,
+  "brown hair bow": visibleType.hair,
+  "green hair bow": visibleType.hair,
+  "grey hair bow": visibleType.hair,
+  "orange hair bow": visibleType.hair,
+  "pink hair bow": visibleType.hair,
+  "purple hair bow": visibleType.hair,
+  "red hair bow": visibleType.hair,
+  "white hair bow": visibleType.hair,
+  "yellow hair bow": visibleType.hair,
+  "jingle bell hair ornament": visibleType.hair,
+} as const;
+
 const allEyewearColorVisibilities = {
   "aqua-framed eyewear": visibleType.glasses,
   "black-framed eyewear": visibleType.glasses,
@@ -407,6 +456,12 @@ const allHairbandColorVisibilities = {
   "white hairband": visibleType.hair,
 } as const;
 
+const allDistinguishableExposureVisibilities = {
+  "breasts skindentation": visibleType["breasts skindentation"],
+  "thighs skindentation": visibleType.thighs,
+  "front neck star tattoo": visibleType.bowtie,
+} as const;
+
 const allDistinguishableOutfitVisibilities = {
   "gold trim shirt": visibleType.shirt,
   "gold trim skirt": visibleType.skirt,
@@ -414,6 +469,7 @@ const allDistinguishableOutfitVisibilities = {
   "red trim skirt": visibleType.skirt,
   "pinstripe pattern shirt": visibleType.shirt,
   "pinstripe pattern skirt": visibleType.skirt,
+  "navel o-ring": visibleType.navel,
 } as const;
 
 const allShirtColorVisibilities = {
@@ -959,6 +1015,7 @@ export const tagVisibilities = {
   ...allBreastSizeVisibilities,
 
   // Body feature
+  ...allDistinguishableBodyFeatureVisibilities,
   tail: visibleType.shortTail,
   "cat tail": visibleType.longTail,
   "dog tail": visibleType.longTail,
@@ -976,12 +1033,22 @@ export const tagVisibilities = {
   toned: visibleType.all,
   gyaru: visibleType.all,
   tan: visibleType.all,
+  "dark skin": visibleType.all,
+  "dark-skinned female": visibleType.all,
+  "stomach tattoo": visibleType.navel,
 
   // Head outfit
+  ...allDistinguishableHeadOutfitVisibilities,
   glasses: visibleType.glasses,
   ...allEyewearColorVisibilities,
   "tinted eyewear": visibleType.glasses,
   ...allTintedEyewearColorVisibilities,
+  "hair bow": visibleType.hair,
+  ...allHairBowColorVisibilities,
+  "hair ribbon": visibleType.hair,
+  ...allHairRibbonColorVisibilities,
+  hairband: visibleType.hair,
+  ...allHairbandColorVisibilities,
   "heart-shaped eyewear": visibleType.glasses,
   "star-shaped eyewear": visibleType.glasses,
   "teardrop-framed glasses": visibleType.glasses,
@@ -1052,12 +1119,6 @@ export const tagVisibilities = {
   "maid headdress": visibleType.hair,
   veil: visibleType.hair,
   headband: visibleType.hair,
-  "hair bow": visibleType.hair,
-  ...allHairBowColorVisibilities,
-  "hair ribbon": visibleType.hair,
-  ...allHairRibbonColorVisibilities,
-  hairband: visibleType.hair,
-  ...allHairbandColorVisibilities,
   "bow hairband": visibleType.hair,
   "frilled hairband": visibleType.hair,
   "lace-trimmed hairband": visibleType.hair,
@@ -1070,10 +1131,7 @@ export const tagVisibilities = {
   "flower knot": visibleType.hair,
 
   // Exposure
-  "breasts skindentation": visibleType["breasts skindentation"],
-  "thighs skindentation": visibleType.thighs,
-  "front neck star tattoo": visibleType.bowtie,
-
+  ...allDistinguishableExposureVisibilities,
   collarbone: visibleType.bowtie,
   "bare shoulders": visibleType.shoulder,
   "bare arms": visibleType.shoulder,
@@ -1311,6 +1369,7 @@ export const tagVisibilities = {
   "santa bikini": visibleType.dress,
   "fur collar": visibleType.collar,
   "fur-trimmed bikini": visibleType.dress,
+  "fur-trimmed skirt": visibleType.skirt,
   "fur-trimmed headwear": visibleType.hat,
   casual: visibleType.dress,
   "t-shirt": visibleType.shirt,
@@ -1327,6 +1386,10 @@ export const tagVisibilities = {
   "side slit": visibleType["side hip"],
   "pelvic curtain": visibleType.skirt,
   "rei no himo": visibleType.bra,
+  "animal collar": visibleType.collar,
+  armlet: visibleType.armlet,
+  "paw gloves": visibleType["wrist cuffs"],
+  "paw shoes": visibleType.foot,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

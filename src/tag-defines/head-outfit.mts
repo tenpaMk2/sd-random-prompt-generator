@@ -1,3 +1,21 @@
+import { getKeys } from "../libs/utility.mjs";
+
+export const allDistinguishableHeadOutfitTags = {
+  "aqua hair bow": `aqua bow`,
+  "black hair bow": `black bow`,
+  "blue hair bow": `blue bow`,
+  "brown hair bow": `brown bow`,
+  "green hair bow": `green bow`,
+  "grey hair bow": `grey bow`,
+  "orange hair bow": `orange bow`,
+  "pink hair bow": `pink bow`,
+  "purple hair bow": `purple bow`,
+  "red hair bow": `red bow`,
+  "white hair bow": `white bow`,
+  "yellow hair bow": `yellow bow`,
+  "jingle bell hair ornament": `jingle bell`,
+} as const satisfies { [k in string]: string };
+
 const allEyewearColorTags = [
   `aqua-framed eyewear`,
   `black-framed eyewear`,
@@ -69,10 +87,18 @@ const allHairbandColorTags = [
 ] as const satisfies readonly string[];
 
 const allHeadOutfitTags = [
+  ...getKeys(allDistinguishableHeadOutfitTags),
   `glasses`,
   ...allEyewearColorTags,
   `tinted eyewear`,
   ...allTintedEyewearColorTags,
+  `hair bow`,
+  ...allHairBowColorTags,
+  `hair ribbon`,
+  ...allHairRibbonColorTags,
+  `hairband`,
+  ...allHairbandColorTags,
+
   `heart-shaped eyewear`,
   `star-shaped eyewear`,
   `teardrop-framed glasses`,
@@ -143,12 +169,6 @@ const allHeadOutfitTags = [
   `maid headdress`,
   `veil`,
   `headband`,
-  `hair bow`,
-  ...allHairBowColorTags,
-  `hair ribbon`,
-  ...allHairRibbonColorTags,
-  `hairband`,
-  ...allHairbandColorTags,
   `bow hairband`,
   `frilled hairband`,
   `lace-trimmed hairband`,

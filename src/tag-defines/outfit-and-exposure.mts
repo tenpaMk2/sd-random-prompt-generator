@@ -14,6 +14,7 @@ export const allDistinguishableOutfitTags = {
   "red trim skirt": `red trim`,
   "pinstripe pattern shirt": `pinstripe pattern`,
   "pinstripe pattern skirt": `pinstripe pattern`,
+  "navel o-ring": `o-ring`,
   // TODO: `red neck ribbon` → `red ribbon`
 } as const satisfies { [k in string]: string };
 
@@ -621,6 +622,7 @@ const allOutfitTags = [
   `latex leotard`,
   `wrist cuffs`,
   `rabbit tail`,
+  `dog tail`,
   `magical girl`,
   `cloak`,
   `white cloak`,
@@ -683,6 +685,7 @@ const allOutfitTags = [
   `fur collar`,
   // `fur trim`,
   `fur-trimmed bikini`,
+  `fur-trimmed skirt`,
   `fur-trimmed headwear`,
   `casual`,
   `t-shirt`,
@@ -699,41 +702,11 @@ const allOutfitTags = [
   `side slit`,
   `pelvic curtain`,
   `rei no himo`,
+  `animal collar`,
+  `armlet`,
+  `paw gloves`,
+  `paw shoes`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
 export type OutfitAndExposureTag = HeadOutfitTags | ExposureTag | OutfitTag;
-
-// export const allOutdoorFootwearTags = [
-//   `shoes`,
-//   `colored shoe soles`,
-//   `aqua footwear`,
-//   `black footwear`,
-//   `blue footwear`,
-//   `brown footwear`,
-//   `green footwear`,
-//   `grey footwear`,
-//   `orange footwear`,
-//   `pink footwear`,
-//   `purple footwear`,
-//   `red footwear`,
-//   `white footwear`,
-//   `yellow footwear`,
-//   `flats`,
-//   `high heels`,
-//   `loafers`,
-//   `mary janes`,
-//   `oxfords`,
-//   `pointy footwear`,
-//   `rudder footwear`,
-//   `slippers`,
-//   `sneakers`,
-//   `high tops`,
-//   `toeless footwear`,
-//   `uwabaki`,
-//   `winged footwear`,
-//   `footwear bow`,
-//   `footwear ribbon`,
-//   `shoe soles`,
-// ] as const satisfies string[];
-// type OutdoorFootwearTag = (typeof allOutdoorFootwearTags)[number];
