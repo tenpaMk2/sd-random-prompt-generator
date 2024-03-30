@@ -11,7 +11,7 @@ export const prismaIllyaChloeBeastAm7coffeelove = () =>
     seriesNameEntries: [`fate/kaleid liner prisma illya`],
     characterNameEntries: [
       `chloe von einzbern`,
-      `illyasviel von einzbern \\(beast style\\)`,
+      `chloe von einzbern \\(beast style\\)`,
     ],
     characterFeatureEntries: [
       `orange eyes`,
