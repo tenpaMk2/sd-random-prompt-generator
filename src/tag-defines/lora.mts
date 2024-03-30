@@ -569,6 +569,26 @@ export const allLoras = [
     outfitTriggerTags: [`zzcloaa`],
     creator: `am7coffeelove`,
   },
+  {
+    loraName: `illyabeasts_Ponyv2`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(`https://civitai.com/models/309396?modelVersionId=347749`),
+    characterTriggerWordsTags: [],
+    outfitTriggerTags: [`zzillaaa`],
+    creator: `am7coffeelove`,
+  },
+  {
+    loraName: `miubeasts_ponyv1`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/309561/miyu-edelfeltbeast-style?modelVersionId=347442`,
+    ),
+    characterTriggerWordsTags: [],
+    outfitTriggerTags: [`zzmiuaa`],
+    creator: `am7coffeelove`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];

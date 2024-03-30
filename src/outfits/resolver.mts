@@ -18,6 +18,7 @@ import { testOutfit } from "./common/test-outfit.mjs";
 import { danmachiNochekaiserHestia } from "./danmachi-nochekaiser/hestia.mjs";
 import { mahoakoNotekagaLocomusica } from "./mahoako-notekaga/locomusica.mjs";
 import { prismaIllyaAm7CoffeeloveChloeBeast } from "./prisma-illya-am7coffeelove/chloe-beast.mjs";
+import { prismaIllyaAm7CoffeeloveIllyaBeast } from "./prisma-illya-am7coffeelove/illya-beast.mjs";
 import { sasuoniEftFirstHighSchoolUniform } from "./sasuoni-eft/first-high-school-uniform.mjs";
 
 /**
@@ -122,6 +123,7 @@ export const outfitTable = {
   "danmachi-nochekaiser-hestia": danmachiNochekaiserHestia(),
   "mahoako-notekaga-locomusica": mahoakoNotekagaLocomusica(),
   "prisma-illya-chloe-beast": prismaIllyaAm7CoffeeloveChloeBeast(),
+  "prisma-illya-illya-beast": prismaIllyaAm7CoffeeloveIllyaBeast(),
   "sasuoni-eft-first-high-school-uniform-pantyhose":
     sasuoniEftFirstHighSchoolUniform(`pantyhose`),
   "sasuoni-eft-first-high-school-uniform-thighhighs":
