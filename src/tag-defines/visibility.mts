@@ -1302,7 +1302,7 @@ export const tagVisibilities = {
   pirate: visibleType.all,
   "pirate hat": visibleType.hat,
   "knee boots": visibleType.foot,
-  "thigh boots": visibleType.foot, // TODO: fixme
+  "thigh boots": visibleType.thighhighs,
   "playboy bunny": visibleType.dress,
   "rabbit ears": visibleType.hair,
   "fake animal ears": visibleType.hair,
