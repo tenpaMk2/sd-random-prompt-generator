@@ -41,6 +41,7 @@ export const fromHorizontalPosesPreset = {
     { key: `from-side-looking-ahead` },
     { key: `hands-on-own-hips` },
     { key: `heart-hands` },
+    { key: `paw-pose` },
     { key: `portrait` },
     { key: `twisted-torso` },
     { key: `v` },
@@ -49,7 +50,6 @@ export const fromHorizontalPosesPreset = {
     { key: `all-fours-from-behind` },
     { key: `all-fours` },
     { key: `kneeling-spread-legs` },
-    { key: `paw-pose` },
     { key: `the-pose-head-rest` },
   ],
   onBed: [
