@@ -358,6 +358,8 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
   pickAllPrompts() {
     return this.patterns.map((p) => p.toPrompt());
   }
+
+  // TODO: Fix dynamic prompts has no probability.
 }
 
 // const pc1 = PatternCollection.createLora({
