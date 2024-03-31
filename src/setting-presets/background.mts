@@ -10,12 +10,7 @@ export const backgroundsPreset = {
     {
       type: `from-above`,
       key: `ocean-partially-submerged`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `ocean-partially-submerged`,
-      poses: fromAbovePosesPreset.onFloor,
+      poses: [...fromAbovePosesPreset.usual, ...fromAbovePosesPreset.onFloor],
     },
     {
       type: `from-below`,
@@ -30,12 +25,10 @@ export const backgroundsPreset = {
     {
       type: `from-horizontal`,
       key: `ocean-beach`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `ocean-beach`,
-      poses: fromHorizontalPosesPreset.onFloor,
+      poses: [
+        ...fromHorizontalPosesPreset.usual,
+        ...fromHorizontalPosesPreset.onFloor,
+      ],
     },
   ],
   steamingBedSheetSpokenHeart: [
@@ -56,12 +49,7 @@ export const backgroundsPreset = {
     {
       type: `from-above`,
       key: `colorful-heart-backgrounds`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `colorful-heart-backgrounds`,
-      poses: fromAbovePosesPreset.onFloor,
+      poses: [...fromAbovePosesPreset.usual, ...fromAbovePosesPreset.onFloor],
     },
     {
       type: `from-below`,
@@ -71,12 +59,10 @@ export const backgroundsPreset = {
     {
       type: `from-horizontal`,
       key: `colorful-heart-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-heart-backgrounds`,
-      poses: fromHorizontalPosesPreset.onFloor,
+      poses: [
+        ...fromHorizontalPosesPreset.usual,
+        ...fromHorizontalPosesPreset.onFloor,
+      ],
     },
   ],
   wedding: [
@@ -100,12 +86,7 @@ export const backgroundsPreset = {
     {
       type: `from-above`,
       key: `brick floor`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `brick floor`,
-      poses: fromAbovePosesPreset.onFloor,
+      poses: [...fromAbovePosesPreset.usual, ...fromAbovePosesPreset.onFloor],
     },
     {
       type: `from-below`,
@@ -129,22 +110,15 @@ export const backgroundsPreset = {
     {
       type: `from-above`,
       key: `grass`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `grass`,
-      poses: fromAbovePosesPreset.onFloor,
+      poses: [...fromAbovePosesPreset.usual, ...fromAbovePosesPreset.onFloor],
     },
     {
       type: `from-horizontal`,
       key: `grass-blue-sky`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `grass-blue-sky`,
-      poses: fromHorizontalPosesPreset.onFloor,
+      poses: [
+        ...fromHorizontalPosesPreset.usual,
+        ...fromHorizontalPosesPreset.onFloor,
+      ],
     },
   ],
   blueSky: [
@@ -187,12 +161,7 @@ export const backgroundsPreset = {
     {
       type: `from-above`,
       key: `christmas`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `christmas`,
-      poses: fromAbovePosesPreset.onFloor,
+      poses: [...fromAbovePosesPreset.usual, ...fromAbovePosesPreset.onFloor],
     },
     {
       type: `from-below`,
@@ -202,7 +171,10 @@ export const backgroundsPreset = {
     {
       type: `from-horizontal`,
       key: `christmas`,
-      poses: fromHorizontalPosesPreset.usual,
+      poses: [
+        ...fromHorizontalPosesPreset.usual,
+        ...fromHorizontalPosesPreset.onFloor,
+      ],
     },
     {
       type: `from-horizontal`,
