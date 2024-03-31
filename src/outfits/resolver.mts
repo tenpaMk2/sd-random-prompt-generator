@@ -89,7 +89,7 @@ export type OutfitDefine = Readonly<{
   /**
    * Outfit and exposure defines in the skirt for when `upskirt` is specified.
    */
-  upskirtEntries: NormalEntry<OutfitAndExposureTag>[];
+  upskirtEntries: NormalEntry<OutfitAndExposureTag>[]; // TODO: Reconsider as `null` .
   /**
    * Outfit and exposure defines at foot for when footwear should be removed.
    */
