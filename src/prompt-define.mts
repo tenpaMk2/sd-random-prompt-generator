@@ -343,6 +343,10 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
     ]);
   }
 
+  isEmpty() {
+    return this.patterns.length === 0;
+  }
+
   pickOnePrompt() {
     if (this.patterns.length === 0) return new Pattern<T>({ tokens: [] });
 

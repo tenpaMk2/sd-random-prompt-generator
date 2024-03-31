@@ -137,7 +137,7 @@ const buildSpecialVisibility = (
     pushSpecial(`thigh gap`);
   }
 
-  if (pose.upskirt) {
+  if (pose.upskirt && !upskirtPatternCollection.isEmpty()) {
     pushSpecial(`upskirt`);
 
     const pantyshotAdded = upskirtPatternCollection.combineIf<SpecialTag>(
