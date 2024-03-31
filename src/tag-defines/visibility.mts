@@ -974,6 +974,7 @@ export const tagVisibilities = {
   "asymmetrical bangs": visibleType.hair,
   "bangs pinned back": visibleType.hair,
   "blunt bangs": visibleType.hair,
+  "center-flap bangs": visibleType.face,
   "crossed bangs": visibleType.hair,
   "diagonal bangs": visibleType.hair,
   "dyed bangs": visibleType.hair,

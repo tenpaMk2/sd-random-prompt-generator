@@ -173,6 +173,7 @@ const allHeadFeatureTags = [
   `asymmetrical bangs`,
   `bangs pinned back`,
   `blunt bangs`,
+  `center-flap bangs`,
   `crossed bangs`,
   `diagonal bangs`,
   `dyed bangs`,
