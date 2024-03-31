@@ -17,6 +17,7 @@ export const prismaIllyaAm7CoffeeloveChloeBeast = () =>
       `navel`,
       `armlet`,
       `paw gloves`,
+      `animal hands`,
       `paw shoes`,
       `thigh strap`,
       `thighhighs`,

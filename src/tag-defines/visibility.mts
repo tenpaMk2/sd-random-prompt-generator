@@ -1392,6 +1392,7 @@ export const tagVisibilities = {
   "animal collar": visibleType.collar,
   armlet: visibleType.armlet,
   "paw gloves": visibleType["wrist cuffs"],
+  "animal hands": visibleType["wrist cuffs"],
   "paw shoes": visibleType.foot,
   "official alternate costume": visibleType.all,
   "fur-trimmed collar": visibleType.collar,

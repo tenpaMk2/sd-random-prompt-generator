@@ -705,6 +705,7 @@ const allOutfitTags = [
   `animal collar`,
   `armlet`,
   `paw gloves`,
+  `animal hands`,
   `paw shoes`,
   `official alternate costume`,
   `fur-trimmed collar`,

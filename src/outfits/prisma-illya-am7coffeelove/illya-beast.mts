@@ -14,6 +14,7 @@ export const prismaIllyaAm7CoffeeloveIllyaBeast = () =>
       `elbow gloves`,
       `black gloves`,
       `paw gloves`,
+      `animal hands`,
       `fur-trimmed gloves`,
       `thighhighs`,
       `black thighhighs`,
