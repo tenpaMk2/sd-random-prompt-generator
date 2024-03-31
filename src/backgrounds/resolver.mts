@@ -90,6 +90,19 @@ export const backgroundTable = {
       entries: [`outdoors`, `city`],
       removeShoes: false,
     },
+    "colorful-heart-backgrounds": {
+      entries: [
+        `simple background`,
+        `heart background`,
+        [
+          { entries: [`white background`] },
+          { entries: [`pink background`], probability: 3 },
+          { entries: [`blue background`] },
+          { entries: [`red background`] },
+        ],
+      ],
+      removeShoes: false,
+    },
     wedding: {
       entries: [`wedding`, `petals`, `white background`, `falling petals`],
       removeShoes: false,
@@ -116,6 +129,23 @@ export const backgroundTable = {
         `spoken heart`,
       ],
       removeShoes: true,
+    },
+    "colorful-heart-backgrounds": {
+      entries: [
+        `simple background`,
+        `heart background`,
+        [
+          { entries: [`white background`] },
+          { entries: [`pink background`], probability: 3 },
+          { entries: [`blue background`] },
+          { entries: [`red background`] },
+        ],
+      ],
+      removeShoes: false,
+    },
+    grass: {
+      entries: [`outdoors`, `grass`],
+      removeShoes: false,
     },
     casino: {
       entries: [`indoors`, `casino`, `playing card`],

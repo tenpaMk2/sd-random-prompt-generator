@@ -8,7 +8,7 @@ import { outfitsPreset } from "./outfit.mjs";
 export const charactersPreset = {
   all: getKeys(characterTable).map((key) => ({
     key,
-    outfits: [...outfitsPreset.usual],
+    outfits: [...outfitsPreset.cosplay],
   })),
 } as const satisfies {
   [k in string]: CharacterSetting[];

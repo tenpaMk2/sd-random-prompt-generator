@@ -14,9 +14,9 @@ import { outfitsPreset } from "./outfit.mjs";
 type BackgroundAndPoseKey =
   | `from-above-bed-sheet-lying-on-bed`
   | `from-above-bed-sheet-full-body-lying`
-  | `from-horizontal-all-fours`
-  | `from-horizontal-all-fours-from-behind`
-  | `from-horizontal-kneeling`;
+  | `bed-all-fours-from-behind`
+  | `bed-all-fours`
+  | `colorful-heart-backgrounds-kneeling`;
 
 export const generateCharactersSetting = ({
   characterKeys,
@@ -24,16 +24,16 @@ export const generateCharactersSetting = ({
   backgroundAndPoseKeys,
 }: {
   characterKeys: CharacterKey[] | `all`;
-  outfitKeys: OutfitKey[] | `usual`;
+  outfitKeys: OutfitKey[] | `cosplay`;
   backgroundAndPoseKeys?: BackgroundAndPoseKey[];
 }): CharacterSetting[] => {
   const cKeys =
     characterKeys === `all` ? getKeys(characterTable) : characterKeys;
   const characterSettings = cKeys.map((cKey) => {
-    if (outfitKeys === `usual`)
+    if (outfitKeys === `cosplay`)
       return {
         key: cKey,
-        outfits: [...outfitsPreset.usual],
+        outfits: [...outfitsPreset.cosplay],
       } as const satisfies CharacterSetting;
 
     if (!backgroundAndPoseKeys) {
@@ -50,9 +50,9 @@ export const generateCharactersSetting = ({
         (
           backgroundAndPoseKey,
         ):
-          | BackgroundSetting<`from-horizontal`>
+          | BackgroundSetting<`from-above`>
           | BackgroundSetting<`from-below`>
-          | BackgroundSetting<`from-above`> => {
+          | BackgroundSetting<`from-horizontal`> => {
           switch (backgroundAndPoseKey) {
             case `from-above-bed-sheet-lying-on-bed`:
               return {
@@ -66,23 +66,23 @@ export const generateCharactersSetting = ({
                 key: `bed-sheet`,
                 poses: [{ key: `full-body-lying` }],
               } as const satisfies BackgroundSetting<`from-above`>;
-            case `from-horizontal-all-fours`:
+            case `bed-all-fours`:
               return {
                 type: `from-horizontal`,
                 key: `bed`,
                 poses: [{ key: `all-fours` }],
               } as const satisfies BackgroundSetting<`from-horizontal`>;
-            case `from-horizontal-all-fours-from-behind`:
+            case `bed-all-fours-from-behind`:
               return {
                 type: `from-horizontal`,
                 key: `bed`,
                 poses: [{ key: `all-fours-from-behind` }],
               } as const satisfies BackgroundSetting<`from-horizontal`>;
-            case `from-horizontal-kneeling`:
+            case `colorful-heart-backgrounds-kneeling`:
               return {
                 type: `from-horizontal`,
                 key: `colorful-heart-backgrounds`,
-                poses: [{ key: `kneeling` }],
+                poses: [{ key: `kneeling-spread-legs` }],
               } as const satisfies BackgroundSetting<`from-horizontal`>;
           }
         },

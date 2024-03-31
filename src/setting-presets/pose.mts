@@ -1,40 +1,49 @@
 import { PoseSetting } from "../setting-define.mjs";
 
-export const fromHorizontalPosesPreset = {
-  usual: [
-    { key: `portrait` },
-    { key: `contrapposto` },
-    { key: `hands-on-own-hips` },
-    { key: `v` },
-    { key: `double-v` },
-    { key: `arms-up` },
-    { key: `heart-hands` },
-    { key: `cowboy-shot-from-side` },
-    { key: `twisted-torso` },
-  ],
+export const fromAbovePosesPreset = {
+  usual: [{ key: `wariza` }],
   onFloor: [
-    { key: `all-fours` },
-    { key: `all-fours-from-behind` },
-    { key: `kneeling` },
-    { key: `the-pose-head-rest` },
+    // { key: `full-body-lying` },
+    { key: `lying-on-stomach` },
   ],
+  onBed: [
+    { key: `lying-on-bed` },
+    { key: `lying-on-bed-reaching-towards-viewer` },
+    // TODO: on stomach on bed
+  ],
+  wedding: [{ key: `holding-bouquet` }],
 } as const satisfies {
-  [k in string]: PoseSetting<"from-horizontal">[];
+  [k in string]: PoseSetting<"from-above">[];
 };
 
 export const fromBelowPosesPreset = {
   usual: [{ key: `upper-body` }],
+  cheering: [{ key: `cheering-with-pom-poms` }],
+  wedding: [{ key: `holding-bouquet` }],
 } as const satisfies {
   [k in string]: PoseSetting<"from-below">[];
 };
 
-export const fromAbovePosesPreset = {
-  usual: [{ key: `wariza` }],
-  onBed: [
-    { key: `lying-on-bed` },
-    { key: `lying-on-bed-reaching-towards-viewer` },
-    { key: `lying-on-stomach` },
+export const fromHorizontalPosesPreset = {
+  usual: [
+    { key: `arms-up` },
+    { key: `contrapposto` },
+    { key: `double-v` },
+    { key: `from-side-looking-ahead` },
+    { key: `hands-on-own-hips` },
+    { key: `heart-hands` },
+    { key: `portrait` },
+    { key: `twisted-torso` },
+    { key: `v` },
   ],
+  onFloor: [
+    { key: `all-fours-from-behind` },
+    { key: `all-fours` },
+    { key: `kneeling-spread-legs` },
+    { key: `the-pose-head-rest` },
+  ],
+  wedding: [{ key: `holding-bouquet` }],
+  // TODO: skirt
 } as const satisfies {
-  [k in string]: PoseSetting<"from-above">[];
+  [k in string]: PoseSetting<"from-horizontal">[];
 };

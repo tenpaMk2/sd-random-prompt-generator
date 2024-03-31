@@ -1,10 +1,6 @@
 import { OutfitKey } from "../outfits/resolver.mjs";
 import { OutfitSetting } from "../setting-define.mjs";
-import {
-  fromAbovePosesPreset,
-  fromBelowPosesPreset,
-  fromHorizontalPosesPreset,
-} from "./pose.mjs";
+import { backgroundsPreset } from "./background.mjs";
 
 const testOutfit = {
   key: `test-outfit`,
@@ -30,459 +26,156 @@ const testOutfit = {
 const bikini = {
   key: `bikini`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `ocean`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `ocean-beach`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `ocean-beach`,
-      poses: fromHorizontalPosesPreset.onFloor,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-heart-backgrounds`,
-      poses: fromHorizontalPosesPreset.onFloor,
-    },
-    {
-      type: `from-below`,
-      key: `blue-sky`,
-      poses: fromBelowPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.onBed,
-    },
+    ...backgroundsPreset.oceanBeach,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const bridalLingerie = {
   key: `bridal-lingerie`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `wedding`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-heart-backgrounds`,
-      poses: [{ key: `holding-bouquet` }],
-    },
-    {
-      type: `from-below`,
-      key: `wedding`,
-      poses: [{ key: `holding-bouquet` }],
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `wedding`,
-      poses: [{ key: `holding-bouquet` }, { key: `wariza` }],
-    },
+    ...backgroundsPreset.wedding,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const camisoleDenimShorts = {
   key: `camisole-denim-shorts`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `city`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-heart-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-below`,
-      key: `city`,
-      poses: [{ key: `upper-body` }],
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `brick floor`,
-      poses: [{ key: `wariza` }],
-    },
+    ...backgroundsPreset.city,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const casualMiniskirt = {
   key: `casual-miniskirt`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `city`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-heart-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-below`,
-      key: `city`,
-      poses: [{ key: `upper-body` }],
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `brick floor`,
-      poses: [{ key: `wariza` }],
-    },
+    ...backgroundsPreset.city,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const cheerleader = {
   key: `cheerleader`,
   backgrounds: [
-    {
-      type: `from-below`,
-      key: `blue-sky-confetti`,
-      poses: [{ key: `cheering-with-pom-poms` }],
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
+    ...backgroundsPreset.blueSkyConfettiCheering.map((x) => ({
+      ...x,
+      probability: 3,
+    })),
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const chinaDress = {
   key: `china-dress`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.onFloor,
-    },
-    {
-      type: `from-below`,
-      key: `blue-sky`,
-      poses: fromBelowPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.onBed,
-    },
+    ...backgroundsPreset.blueSky,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const cowPrintBikini = {
   key: `cow-print-bikini`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `grass-blue-sky`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-heart-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-below`,
-      key: `blue-sky`,
-      poses: [{ key: `upper-body` }],
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
+    ...backgroundsPreset.blueSky,
+    ...backgroundsPreset.grass,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const maidBikini = {
   key: `maid-bikini`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `cafe-window`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
+    ...backgroundsPreset.cafe,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const microBikini = {
   key: `micro-bikini`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `ocean`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `ocean-beach`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
+    ...backgroundsPreset.oceanBeach,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const playboyBunny = {
   key: `playboy-bunny`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `casino`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-heart-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-below`,
-      key: `ceiling`,
-      poses: [{ key: `upper-body` }],
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
+    ...backgroundsPreset.casino,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const revealingMiko = {
   key: `revealing-miko`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.usual,
-    },
+    ...backgroundsPreset.blueSky,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const santaBikini = {
   key: `santa-bikini`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `christmas`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `christmas`,
-      poses: [{ key: `all-fours` }],
-    },
-    {
-      type: `from-above`,
-      key: `christmas`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `bed-sheet`,
-      poses: fromAbovePosesPreset.onBed,
-    },
-    {
-      type: `from-below`,
-      key: `christmas`,
-      poses: [{ key: `upper-body` }],
-    },
+    ...backgroundsPreset.christmas,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const sukumizuThighhighs = {
   key: `sukumizu-thighhighs`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      probability: 3,
-      poses: fromAbovePosesPreset.usual,
-    },
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const danmachiNochekaiserHestia = {
   key: `danmachi-nochekaiser-hestia`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.onFloor,
-    },
-    {
-      type: `from-below`,
-      key: `blue-sky`,
-      poses: fromBelowPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.onBed,
-    },
+    ...backgroundsPreset.blueSky,
+    ...backgroundsPreset.grass,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const mahoakoNotekagaLocomusica = {
   key: `mahoako-notekaga-locomusica`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.onFloor,
-    },
-    {
-      type: `from-below`,
-      key: `blue-sky`,
-      poses: fromBelowPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.onBed,
-    },
+    ...backgroundsPreset.city,
+    ...backgroundsPreset.blueSky,
+    ...backgroundsPreset.grass,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const prismaIllyaAm7CoffeeloveChloeBeast = {
   key: `prisma-illya-chloe-beast`,
   backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.onFloor,
-    },
-    {
-      type: `from-below`,
-      key: `blue-sky`,
-      poses: fromBelowPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.onBed,
-    },
+    ...backgroundsPreset.blueSky,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
 
 const prismaIllyaAm7CoffeeloveIllyaBeast = {
   key: `prisma-illya-illya-beast`,
-  backgrounds: [
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.usual,
-    },
-    {
-      type: `from-horizontal`,
-      key: `colorful-backgrounds`,
-      poses: fromHorizontalPosesPreset.onFloor,
-    },
-    {
-      type: `from-below`,
-      key: `blue-sky`,
-      poses: fromBelowPosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.usual,
-    },
-    {
-      type: `from-above`,
-      key: `steaming-bed-sheet-spoken-heart`,
-      poses: fromAbovePosesPreset.onBed,
-    },
-  ],
+  backgrounds: prismaIllyaAm7CoffeeloveChloeBeast.backgrounds,
 } as const satisfies OutfitSetting;
 
 const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
@@ -492,21 +185,9 @@ const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
         ? `sasuoni-eft-first-high-school-uniform-pantyhose`
         : `sasuoni-eft-first-high-school-uniform-thighhighs`,
     backgrounds: [
-      {
-        type: `from-horizontal`,
-        key: `indoors`,
-        poses: fromHorizontalPosesPreset.usual,
-      },
-      {
-        type: `from-below`,
-        key: `ceiling`,
-        poses: [{ key: `upper-body` }],
-      },
-      {
-        type: `from-above`,
-        key: `bed-sheet`,
-        poses: fromAbovePosesPreset.usual,
-      },
+      ...backgroundsPreset.blueSky,
+      ...backgroundsPreset.steamingBedSheetSpokenHeart,
+      ...backgroundsPreset.colorfulHeartBackgrounds,
     ],
   }) as const satisfies OutfitSetting;
 
@@ -535,7 +216,7 @@ export const outfitsPreset = {
   "sasuoni-eft-first-high-school-uniform-thighhighs": [
     sasuoniFirstHighSchoolUniform(`thighhighs`),
   ],
-  usual: [
+  cosplay: [
     bikini,
     bridalLingerie,
     camisoleDenimShorts,
@@ -551,5 +232,5 @@ export const outfitsPreset = {
     sukumizuThighhighs,
   ],
 } as const satisfies {
-  [k in OutfitKey | `usual`]: OutfitSetting[];
+  [k in OutfitKey | `cosplay`]: OutfitSetting[];
 };
