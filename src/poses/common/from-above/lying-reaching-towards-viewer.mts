@@ -1,7 +1,13 @@
 import { PoseDefine } from "../../resolver.mjs";
 
-export const fromAboveLyingOnBed = {
-  entries: [`lying`, `on bed`, `on back`, `looking at viewer`],
+export const fromAboveLyingReachingTowardsViewer = {
+  entries: [
+    `lying`,
+    `on back`,
+    `reaching towards viewer`,
+    `incoming hug`,
+    `looking at viewer`,
+  ],
   visibility: {
     frontHead: true,
     sideHead: true,
@@ -32,5 +38,3 @@ export const fromAboveLyingOnBed = {
     upskirt: false,
   },
 } as const satisfies PoseDefine;
-
-// TODO: Overwrite

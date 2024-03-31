@@ -53,6 +53,10 @@ export const backgroundTable = {
       entries: [`bed`],
       removeShoes: true,
     },
+    "bed-sheet-window": {
+      entries: [`indoors`, `bed sheet`, `window`],
+      removeShoes: true,
+    },
     "grass-blue-sky": {
       entries: [`outdoors`, `grass`, `blue sky`],
       removeShoes: false,

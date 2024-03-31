@@ -5,6 +5,8 @@ import { PoseTag } from "../tag-defines/pose.mjs";
 import { Visibility } from "../tag-defines/visibility.mjs";
 import { fromAboveFullBodyLying } from "./common/from-above/full-body-lying.mjs";
 import { fromAboveLyingOnStomach } from "./common/from-above/lying-on-stomach.mjs";
+import { fromAboveLyingReachingTowardsViewer } from "./common/from-above/lying-reaching-towards-viewer.mjs";
+import { fromAboveLying } from "./common/from-above/lying.mjs";
 import { fromAboveWariza } from "./common/from-above/wariza.mjs";
 import { fromBelowUpperBody } from "./common/from-below/upper-body.mjs";
 import { fromHorizontalAllFours } from "./common/from-horizontal/all-fours.mjs";
@@ -20,11 +22,16 @@ import { fromHorizontalThePoseHeadRest } from "./common/from-horizontal/the-pose
 import { fromHorizontalTwistedTorso } from "./common/from-horizontal/twisted-torso.mjs";
 import { fromHorizontalV } from "./common/from-horizontal/v.mjs";
 import { fromAboveHoldingBouquet } from "./special/from-above/holding-bouquet.mjs";
-import { fromAboveLyingOnBedReachingTowardsViewer } from "./special/from-above/lying-on-bed-reaching-towards-viewer.mjs";
-import { fromAboveLyingOnBed } from "./special/from-above/lying-on-bed.mjs";
+import { fromAboveOnBedLyingOnStomach } from "./special/from-above/on-bed-lying-on-stomach.mjs";
+import { fromAboveOnBedLyingReachingTowardsViewer } from "./special/from-above/on-bed-lying-reaching-towards-viewer.mjs";
+import { fromAboveOnBedLying } from "./special/from-above/on-bed-lying.mjs";
+import { fromAboveOnBedWariza } from "./special/from-above/on-bed-wariza.mjs";
 import { fromBelowCheeringWithPomPoms } from "./special/from-below/cheering-with-pom-poms.mjs";
 import { fromBelowHoldingBouquet } from "./special/from-below/holding-bouquet.mjs";
 import { fromHorizontalHoldingBouquet } from "./special/from-horizontal/holding-bouquet.mjs";
+import { fromHorizontalOnBedAllFoursFromBehind } from "./special/from-horizontal/on-bed-all-fours-from-behind.mjs";
+import { fromHorizontalOnBedAllFours } from "./special/from-horizontal/on-bed-all-fours.mjs";
+import { fromHorizontalOnBedThePoseHeadRest } from "./special/from-horizontal/on-bed-the-pose-head-rest.mjs";
 
 export type PoseSpecialVisibility = Omit<
   OutfitDefine["specialVisibility"],
@@ -53,11 +60,15 @@ export const poseTable = {
   "from-above": {
     "full-body-lying": fromAboveFullBodyLying,
     "lying-on-stomach": fromAboveLyingOnStomach,
+    "lying-reaching-towards-viewer": fromAboveLyingReachingTowardsViewer,
+    lying: fromAboveLying,
     wariza: fromAboveWariza,
     "holding-bouquet": fromAboveHoldingBouquet,
-    "lying-on-bed-reaching-towards-viewer":
-      fromAboveLyingOnBedReachingTowardsViewer,
-    "lying-on-bed": fromAboveLyingOnBed,
+    "on-bed-lying-on-stomach": fromAboveOnBedLyingOnStomach,
+    "on-bed-lying-reaching-towards-viewer":
+      fromAboveOnBedLyingReachingTowardsViewer,
+    "on-bed-lying": fromAboveOnBedLying,
+    "on-bed-wariza": fromAboveOnBedWariza,
   },
   "from-below": {
     "upper-body": fromBelowUpperBody,
@@ -79,6 +90,10 @@ export const poseTable = {
     "twisted-torso": fromHorizontalTwistedTorso,
     v: fromHorizontalV,
     "holding-bouquet": fromHorizontalHoldingBouquet,
+    "on-bed-all-fours-from-behind": fromHorizontalOnBedAllFoursFromBehind,
+    "on-bed-all-fours": fromHorizontalOnBedAllFours,
+    "on-bed-kneeling-spread-legs": fromHorizontalKneelingSpreadLegs,
+    "on-bed-the-pose-head-rest": fromHorizontalOnBedThePoseHeadRest,
   },
 } as const satisfies {
   [k in BackgroundType]: {

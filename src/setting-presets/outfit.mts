@@ -18,7 +18,7 @@ const testOutfit = {
     {
       type: `from-above`,
       key: `bed-sheet`,
-      poses: [{ key: `lying-on-bed` }, { key: `full-body-lying` }],
+      poses: [{ key: `on-bed-lying` }, { key: `on-bed-lying-on-stomach` }],
     },
   ],
 } as const satisfies OutfitSetting;
@@ -28,6 +28,7 @@ const bikini = {
   backgrounds: [
     ...backgroundsPreset.oceanBeach,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -37,6 +38,7 @@ const bridalLingerie = {
   backgrounds: [
     ...backgroundsPreset.wedding,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -46,6 +48,7 @@ const camisoleDenimShorts = {
   backgrounds: [
     ...backgroundsPreset.city,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -55,6 +58,7 @@ const casualMiniskirt = {
   backgrounds: [
     ...backgroundsPreset.city,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -67,6 +71,7 @@ const cheerleader = {
       probability: 3,
     })),
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -76,6 +81,7 @@ const chinaDress = {
   backgrounds: [
     ...backgroundsPreset.blueSky,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -86,6 +92,7 @@ const cowPrintBikini = {
     ...backgroundsPreset.blueSky,
     ...backgroundsPreset.grass,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -95,6 +102,7 @@ const maidBikini = {
   backgrounds: [
     ...backgroundsPreset.cafe,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -104,6 +112,7 @@ const microBikini = {
   backgrounds: [
     ...backgroundsPreset.oceanBeach,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -113,6 +122,7 @@ const playboyBunny = {
   backgrounds: [
     ...backgroundsPreset.casino,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -122,6 +132,7 @@ const revealingMiko = {
   backgrounds: [
     ...backgroundsPreset.blueSky,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -131,6 +142,7 @@ const santaBikini = {
   backgrounds: [
     ...backgroundsPreset.christmas,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -139,6 +151,7 @@ const sukumizuThighhighs = {
   key: `sukumizu-thighhighs`,
   backgrounds: [
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -149,6 +162,7 @@ const danmachiNochekaiserHestia = {
     ...backgroundsPreset.blueSky,
     ...backgroundsPreset.grass,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -160,6 +174,7 @@ const mahoakoNotekagaLocomusica = {
     ...backgroundsPreset.blueSky,
     ...backgroundsPreset.grass,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -169,6 +184,7 @@ const prismaIllyaAm7CoffeeloveChloeBeast = {
   backgrounds: [
     ...backgroundsPreset.blueSky,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
 } as const satisfies OutfitSetting;
@@ -187,6 +203,7 @@ const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
     backgrounds: [
       ...backgroundsPreset.blueSky,
       ...backgroundsPreset.steamingBedSheetSpokenHeart,
+      ...backgroundsPreset.bedSheetWindow,
       ...backgroundsPreset.colorfulHeartBackgrounds,
     ],
   }) as const satisfies OutfitSetting;

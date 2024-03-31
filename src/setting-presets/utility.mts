@@ -58,7 +58,7 @@ export const generateCharactersSetting = ({
               return {
                 type: `from-above`,
                 key: `bed-sheet`,
-                poses: [{ key: `lying-on-bed` }],
+                poses: [{ key: `on-bed-lying` }],
               } as const satisfies BackgroundSetting<`from-above`>;
             case `from-above-bed-sheet-full-body-lying`:
               return {

@@ -45,6 +45,13 @@ export const backgroundsPreset = {
       poses: fromAbovePosesPreset.onBed,
     },
   ],
+  bedSheetWindow: [
+    {
+      type: `from-horizontal`,
+      key: `bed-sheet-window`,
+      poses: fromHorizontalPosesPreset.onBed,
+    },
+  ],
   colorfulHeartBackgrounds: [
     {
       type: `from-above`,

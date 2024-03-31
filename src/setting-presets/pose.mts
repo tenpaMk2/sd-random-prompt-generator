@@ -1,15 +1,19 @@
 import { PoseSetting } from "../setting-define.mjs";
 
 export const fromAbovePosesPreset = {
-  usual: [{ key: `wariza` }],
+  usual: [{ key: `wariza` }], // TODO: temporary
   onFloor: [
-    // { key: `full-body-lying` },
+    // { key: `full-body-lying` }, // Exlude because not good image.
     { key: `lying-on-stomach` },
+    { key: `lying-reaching-towards-viewer` },
+    { key: `lying` },
+    { key: `wariza` },
   ],
   onBed: [
-    { key: `lying-on-bed` },
-    { key: `lying-on-bed-reaching-towards-viewer` },
-    // TODO: on stomach on bed
+    { key: `on-bed-lying-on-stomach` },
+    { key: `on-bed-lying-reaching-towards-viewer` },
+    { key: `on-bed-lying` },
+    { key: `on-bed-wariza` },
   ],
   wedding: [{ key: `holding-bouquet` }],
 } as const satisfies {
@@ -41,6 +45,12 @@ export const fromHorizontalPosesPreset = {
     { key: `all-fours` },
     { key: `kneeling-spread-legs` },
     { key: `the-pose-head-rest` },
+  ],
+  onBed: [
+    { key: `on-bed-all-fours-from-behind` },
+    { key: `on-bed-all-fours` },
+    { key: `on-bed-kneeling-spread-legs` },
+    { key: `on-bed-the-pose-head-rest` },
   ],
   wedding: [{ key: `holding-bouquet` }],
   // TODO: skirt
