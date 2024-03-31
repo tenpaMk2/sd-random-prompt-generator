@@ -8,6 +8,8 @@ import { fromAboveLyingOnStomach } from "./common/from-above/lying-on-stomach.mj
 import { fromAboveLyingReachingTowardsViewer } from "./common/from-above/lying-reaching-towards-viewer.mjs";
 import { fromAboveLying } from "./common/from-above/lying.mjs";
 import { fromAboveWariza } from "./common/from-above/wariza.mjs";
+import { fromBelowArmsUp } from "./common/from-below/arms-up.mjs";
+import { fromBelowSquatting } from "./common/from-below/squatting.mjs";
 import { fromBelowUpperBody } from "./common/from-below/upper-body.mjs";
 import { fromHorizontalAllFours } from "./common/from-horizontal/all-fours.mjs";
 import { fromHorizontalArmsUp } from "./common/from-horizontal/arms-up.mjs";
@@ -71,6 +73,8 @@ export const poseTable = {
     "on-bed-wariza": fromAboveOnBedWariza,
   },
   "from-below": {
+    "arms-up": fromBelowArmsUp,
+    squatting: fromBelowSquatting,
     "upper-body": fromBelowUpperBody,
     "cheering-with-pom-poms": fromBelowCheeringWithPomPoms,
     "holding-bouquet": fromBelowHoldingBouquet,

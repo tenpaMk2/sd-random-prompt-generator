@@ -21,7 +21,7 @@ export const fromAbovePosesPreset = {
 };
 
 export const fromBelowPosesPreset = {
-  usual: [{ key: `upper-body` }],
+  usual: [{ key: `arms-up` }, { key: `squatting` }, { key: `upper-body` }],
   cheering: [{ key: `cheering-with-pom-poms` }],
   wedding: [{ key: `holding-bouquet` }],
 } as const satisfies {
