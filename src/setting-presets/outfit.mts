@@ -235,6 +235,11 @@ const prismaIllyaAm7CoffeeloveIllyaBeast = {
   backgrounds: prismaIllyaAm7CoffeeloveChloeBeast.backgrounds,
 } as const satisfies OutfitSetting;
 
+const prismaIllyaAm7CoffeeloveMiyuBeast = {
+  key: `prisma-illya-miyu-beast`,
+  backgrounds: prismaIllyaAm7CoffeeloveChloeBeast.backgrounds,
+} as const satisfies OutfitSetting;
+
 const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
   ({
     key:
@@ -268,6 +273,7 @@ export const outfitsPreset = {
   "mahoako-notekaga-locomusica": [mahoakoNotekagaLocomusica],
   "prisma-illya-chloe-beast": [prismaIllyaAm7CoffeeloveChloeBeast],
   "prisma-illya-illya-beast": [prismaIllyaAm7CoffeeloveIllyaBeast],
+  "prisma-illya-miyu-beast": [prismaIllyaAm7CoffeeloveMiyuBeast],
   "sasuoni-eft-first-high-school-uniform-pantyhose": [
     sasuoniFirstHighSchoolUniform(`pantyhose`),
   ],

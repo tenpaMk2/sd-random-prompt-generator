@@ -35,6 +35,7 @@ import { newGameHifumiNarugo1992 } from "./new-game/new-game-hifumi-narugo1992.m
 import { nonNonBiyoriHotaruNotekaga } from "./non-non-biyori/non-non-biyori-hotaru-notekaga.mjs";
 import { prismaIllyaChloeBeastAm7coffeelove } from "./prisma-illya/prisma-illya-chloe-beast-am7coffeelove.mjs";
 import { prismaIllyaIllyaBeastAm7coffeelove } from "./prisma-illya/prisma-illya-illya-beast-am7coffeelove.mjs";
+import { prismaIllyaMiyuBeastAm7coffeelove } from "./prisma-illya/prisma-illya-miyu-beast-am7coffeelove.mjs";
 import { reZeroEmiliaEft } from "./re-zero/re-zero-emilia-eft.mjs";
 import { reZeroRamEft } from "./re-zero/re-zero-ram-eft.mjs";
 import { reZeroRemEft } from "./re-zero/re-zero-rem-eft.mjs";
@@ -126,6 +127,7 @@ export const characterTable = {
     prismaIllyaChloeBeastAm7coffeelove(),
   "prisma-illya-illya-beast-am7coffeelove":
     prismaIllyaIllyaBeastAm7coffeelove(),
+  "prisma-illya-miyu-beast-am7coffeelove": prismaIllyaMiyuBeastAm7coffeelove(),
   "re-zero-emilia-eft": reZeroEmiliaEft(),
   "re-zero-ram-eft": reZeroRamEft(),
   "re-zero-rem-eft": reZeroRemEft(),

@@ -474,6 +474,19 @@ const allDistinguishableOutfitVisibilities = {
   "pinstripe pattern shirt": visibleType.shirt,
   "pinstripe pattern skirt": visibleType.skirt,
   "navel o-ring": visibleType.navel,
+  "neck jingle bell": visibleType.bowtie,
+  "aqua neck ribbon": visibleType.bowtie,
+  "black neck ribbon": visibleType.bowtie,
+  "blue neck ribbon": visibleType.bowtie,
+  "brown neck ribbon": visibleType.bowtie,
+  "green neck ribbon": visibleType.bowtie,
+  "grey neck ribbon": visibleType.bowtie,
+  "orange neck ribbon": visibleType.bowtie,
+  "pink neck ribbon": visibleType.bowtie,
+  "purple neck ribbon": visibleType.bowtie,
+  "red neck ribbon": visibleType.bowtie,
+  "white neck ribbon": visibleType.bowtie,
+  "yellow neck ribbon": visibleType.bowtie,
 } as const;
 
 const allShirtColorVisibilities = {
@@ -1399,6 +1412,8 @@ export const tagVisibilities = {
   "fur-trimmed collar": visibleType.collar,
   "center opening": visibleType["center frills"],
   "fur-trimmed gloves": visibleType["elbow gloves"],
+  "tight clothes": visibleType.shirt,
+  "no pants": visibleType.panties,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

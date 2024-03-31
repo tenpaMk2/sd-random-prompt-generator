@@ -76,5 +76,12 @@ export const allCharacterName = [
   `illyasviel von einzbern \\(beast style\\)`,
   `chloe von einzbern \\(beast style\\)`,
   `miyu edelfelt \\(beast style\\)`,
+  `alpha \\(kage no jitsuryokusha ni naritakute!\\)`,
+  `beta \\(kage no jitsuryokusha ni naritakute!\\)`,
+  `gamma \\(kage no jitsuryokusha ni naritakute!\\)`,
+  `delta \\(kage no jitsuryokusha ni naritakute!\\)`,
+  `epsilon \\(kage no jitsuryokusha ni naritakute!\\)`,
+  `zeta \\(kage no jitsuryokusha ni naritakute!\\)`,
+  `eta \\(kage no jitsuryokusha ni naritakute!\\)`,
 ] as const satisfies readonly string[];
 export type CharacterNameTag = (typeof allCharacterName)[number];

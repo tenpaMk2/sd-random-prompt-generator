@@ -15,7 +15,19 @@ export const allDistinguishableOutfitTags = {
   "pinstripe pattern shirt": `pinstripe pattern`,
   "pinstripe pattern skirt": `pinstripe pattern`,
   "navel o-ring": `o-ring`,
-  // TODO: `red neck ribbon` → `red ribbon`
+  "neck jingle bell": `jingle bell`,
+  "aqua neck ribbon": `aqua ribbon`,
+  "black neck ribbon": `black ribbon`,
+  "blue neck ribbon": `blue ribbon`,
+  "brown neck ribbon": `brown ribbon`,
+  "green neck ribbon": `green ribbon`,
+  "grey neck ribbon": `grey ribbon`,
+  "orange neck ribbon": `orange ribbon`,
+  "pink neck ribbon": `pink ribbon`,
+  "purple neck ribbon": `purple ribbon`,
+  "red neck ribbon": `red ribbon`,
+  "white neck ribbon": `white ribbon`,
+  "yellow neck ribbon": `yellow ribbon`,
 } as const satisfies { [k in string]: string };
 
 const allExposureTags = [
@@ -711,6 +723,8 @@ const allOutfitTags = [
   `fur-trimmed collar`,
   `center opening`,
   `fur-trimmed gloves`,
+  `tight clothes`,
+  `no pants`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
