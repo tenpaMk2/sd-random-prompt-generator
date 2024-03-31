@@ -3,19 +3,32 @@ import { PoseKey } from "../poses/resolver.mjs";
 import { OutfitSetting } from "../setting-define.mjs";
 import { backgroundsPreset } from "./background.mjs";
 
-const createOnePosePreset = (
+const adjustProbabilityOfPose = (
   backgrounds: OutfitSetting["backgrounds"],
   pose:
     | PoseKey["from-above"]
     | PoseKey["from-below"]
     | PoseKey["from-horizontal"],
+  probabilityBaseMultiplier: number,
 ) =>
   backgrounds.map(
-    (x) =>
+    (background) =>
       ({
-        ...x,
-        poses: x.poses.filter((p) => p.key === pose),
-      }) as typeof x,
+        ...background,
+        poses: background.poses.map((p) => {
+          if (p.key !== pose) return p;
+
+          const totalProbability = background.poses.reduce(
+            (acc, p) => acc + (p.probability ?? 1),
+            0,
+          );
+
+          return {
+            ...p,
+            probability: totalProbability * probabilityBaseMultiplier,
+          };
+        }),
+      }) as typeof background,
   );
 
 const testOutfit = {
@@ -198,19 +211,21 @@ const mahoakoNotekagaLocomusica = {
 const prismaIllyaAm7CoffeeloveChloeBeast = {
   key: `prisma-illya-chloe-beast`,
   backgrounds: [
-    ...backgroundsPreset.blueSky,
-    ...backgroundsPreset.steamingBedSheetSpokenHeart,
-    ...backgroundsPreset.bedSheetWindow,
-    ...backgroundsPreset.colorfulHeartBackgrounds,
-    ...createOnePosePreset(backgroundsPreset.blueSky, `paw-pose`),
-    ...createOnePosePreset(
+    ...adjustProbabilityOfPose(backgroundsPreset.blueSky, `paw-pose`, 0.5),
+    ...adjustProbabilityOfPose(
       backgroundsPreset.steamingBedSheetSpokenHeart,
       `paw-pose`,
+      0.5,
     ),
-    ...createOnePosePreset(backgroundsPreset.bedSheetWindow, `paw-pose`),
-    ...createOnePosePreset(
+    ...adjustProbabilityOfPose(
+      backgroundsPreset.bedSheetWindow,
+      `paw-pose`,
+      0.5,
+    ),
+    ...adjustProbabilityOfPose(
       backgroundsPreset.colorfulHeartBackgrounds,
       `paw-pose`,
+      0.5,
     ),
   ],
 } as const satisfies OutfitSetting;
