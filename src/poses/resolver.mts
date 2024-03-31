@@ -7,8 +7,10 @@ import { fromAboveFullBodyLying } from "./common/from-above/full-body-lying.mjs"
 import { fromAboveLyingOnStomach } from "./common/from-above/lying-on-stomach.mjs";
 import { fromAboveLyingReachingTowardsViewer } from "./common/from-above/lying-reaching-towards-viewer.mjs";
 import { fromAboveLying } from "./common/from-above/lying.mjs";
+import { fromAbovePawPose } from "./common/from-above/paw-pose.mjs";
 import { fromAboveWariza } from "./common/from-above/wariza.mjs";
 import { fromBelowArmsUp } from "./common/from-below/arms-up.mjs";
+import { fromBelowPawPose } from "./common/from-below/paw-pose.mjs";
 import { fromBelowSquatting } from "./common/from-below/squatting.mjs";
 import { fromBelowUpperBody } from "./common/from-below/upper-body.mjs";
 import { fromHorizontalAllFours } from "./common/from-horizontal/all-fours.mjs";
@@ -19,6 +21,7 @@ import { fromHorizontalFromSideLookingAhead } from "./common/from-horizontal/fro
 import { fromHorizontalHandsOnOwnHips } from "./common/from-horizontal/hands-on-own-hips.mjs";
 import { fromHorizontalHeartHands } from "./common/from-horizontal/heart-hands.mjs";
 import { fromHorizontalKneelingSpreadLegs } from "./common/from-horizontal/kneeling-spread-legs.mjs";
+import { fromHorizontalPawPose } from "./common/from-horizontal/paw-pose.mjs";
 import { fromHorizontalPortrait } from "./common/from-horizontal/portrait.mjs";
 import { fromHorizontalThePoseHeadRest } from "./common/from-horizontal/the-pose-head-rest.mjs";
 import { fromHorizontalTwistedTorso } from "./common/from-horizontal/twisted-torso.mjs";
@@ -64,6 +67,7 @@ export const poseTable = {
     "lying-on-stomach": fromAboveLyingOnStomach,
     "lying-reaching-towards-viewer": fromAboveLyingReachingTowardsViewer,
     lying: fromAboveLying,
+    "paw-pose": fromAbovePawPose,
     wariza: fromAboveWariza,
     "holding-bouquet": fromAboveHoldingBouquet,
     "on-bed-lying-on-stomach": fromAboveOnBedLyingOnStomach,
@@ -74,6 +78,7 @@ export const poseTable = {
   },
   "from-below": {
     "arms-up": fromBelowArmsUp,
+    "paw-pose": fromBelowPawPose,
     squatting: fromBelowSquatting,
     "upper-body": fromBelowUpperBody,
     "cheering-with-pom-poms": fromBelowCheeringWithPomPoms,
@@ -89,6 +94,7 @@ export const poseTable = {
     "hands-on-own-hips": fromHorizontalHandsOnOwnHips,
     "heart-hands": fromHorizontalHeartHands,
     "kneeling-spread-legs": fromHorizontalKneelingSpreadLegs,
+    "paw-pose": fromHorizontalPawPose,
     portrait: fromHorizontalPortrait,
     "the-pose-head-rest": fromHorizontalThePoseHeadRest,
     "twisted-torso": fromHorizontalTwistedTorso,

@@ -59,6 +59,11 @@ export const backgroundsPreset = {
       poses: fromAbovePosesPreset.usual,
     },
     {
+      type: `from-above`,
+      key: `colorful-heart-backgrounds`,
+      poses: fromAbovePosesPreset.onFloor,
+    },
+    {
       type: `from-below`,
       key: `colorful-heart-backgrounds`,
       poses: fromBelowPosesPreset.usual,

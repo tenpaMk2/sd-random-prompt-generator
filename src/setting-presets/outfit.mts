@@ -1,6 +1,22 @@
 import { OutfitKey } from "../outfits/resolver.mjs";
+import { PoseKey } from "../poses/resolver.mjs";
 import { OutfitSetting } from "../setting-define.mjs";
 import { backgroundsPreset } from "./background.mjs";
+
+const createOnePosePreset = (
+  backgrounds: OutfitSetting["backgrounds"],
+  pose:
+    | PoseKey["from-above"]
+    | PoseKey["from-below"]
+    | PoseKey["from-horizontal"],
+) =>
+  backgrounds.map(
+    (x) =>
+      ({
+        ...x,
+        poses: x.poses.filter((p) => p.key === pose),
+      }) as typeof x,
+  );
 
 const testOutfit = {
   key: `test-outfit`,
@@ -186,6 +202,16 @@ const prismaIllyaAm7CoffeeloveChloeBeast = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...createOnePosePreset(backgroundsPreset.blueSky, `paw-pose`),
+    ...createOnePosePreset(
+      backgroundsPreset.steamingBedSheetSpokenHeart,
+      `paw-pose`,
+    ),
+    ...createOnePosePreset(backgroundsPreset.bedSheetWindow, `paw-pose`),
+    ...createOnePosePreset(
+      backgroundsPreset.colorfulHeartBackgrounds,
+      `paw-pose`,
+    ),
   ],
 } as const satisfies OutfitSetting;
 

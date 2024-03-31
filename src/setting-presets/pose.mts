@@ -1,7 +1,7 @@
 import { PoseSetting } from "../setting-define.mjs";
 
 export const fromAbovePosesPreset = {
-  usual: [{ key: `wariza` }], // TODO: temporary
+  usual: [{ key: `paw-pose` }],
   onFloor: [
     // { key: `full-body-lying` }, // Exlude because not good image.
     { key: `lying-on-stomach` },
@@ -21,7 +21,12 @@ export const fromAbovePosesPreset = {
 };
 
 export const fromBelowPosesPreset = {
-  usual: [{ key: `arms-up` }, { key: `squatting` }, { key: `upper-body` }],
+  usual: [
+    { key: `arms-up` },
+    { key: `paw-pose` },
+    { key: `squatting` },
+    { key: `upper-body` },
+  ],
   cheering: [{ key: `cheering-with-pom-poms` }],
   wedding: [{ key: `holding-bouquet` }],
 } as const satisfies {
@@ -44,6 +49,7 @@ export const fromHorizontalPosesPreset = {
     { key: `all-fours-from-behind` },
     { key: `all-fours` },
     { key: `kneeling-spread-legs` },
+    { key: `paw-pose` },
     { key: `the-pose-head-rest` },
   ],
   onBed: [
