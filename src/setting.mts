@@ -16,32 +16,41 @@ export const machineSetting = {
   port: 7860,
 } as const satisfies MachineSetting;
 
-export const settings = [
-  {
-    key: `basic`,
-    fixedPrompt: `score_9, score_8_up, score_7_up, rating_questionable, 1girl, solo,\n`,
-    batchGeneration: 10,
-    optionsBodyJson: {
-      ...checkpointAndVAEPreset.sdxl.ebaraPony,
-    },
-    txt2imgBodyJson: {
-      negative_prompt: `cameltoe, empty eyes, realistic`,
-      sampler_name: `Euler a`,
-      steps: 25,
-      ...imageResolutionPreset.sdxl.landscape,
-      cfg_scale: 5,
-      denoising_strength: 0.2,
-      enable_hr: true,
-      hr_scale: 2,
-      hr_upscaler: "4x-AnimeSharp",
-      hr_second_pass_steps: 0,
-    },
-    characters: generateCharactersSetting({
-      characterKeys: [`kagejitsu-beta-nochekaiser`],
-      outfitKeys: [`kagejitsu-nochekaiser-shadow-garden`],
-    }),
+const portrait = {
+  key: `portrait`,
+  fixedPrompt: `score_9, score_8_up, score_7_up, rating_questionable, 1girl, solo,\n`,
+  batchGeneration: 20,
+  optionsBodyJson: {
+    ...checkpointAndVAEPreset.sdxl.ebaraPony,
   },
-] as const satisfies Setting[];
+  txt2imgBodyJson: {
+    negative_prompt: `cameltoe, empty eyes, realistic`,
+    sampler_name: `Euler a`,
+    steps: 25,
+    ...imageResolutionPreset.sdxl.portrait,
+    cfg_scale: 5,
+    denoising_strength: 0.2,
+    enable_hr: true,
+    hr_scale: 2,
+    hr_upscaler: "4x-AnimeSharp",
+    hr_second_pass_steps: 0,
+  },
+  characters: generateCharactersSetting({
+    characterKeys: [`kagejitsu-alpha-nochekaiser`],
+    outfitKeys: [`kagejitsu-nochekaiser-shadow-garden-alpha`],
+  }),
+} as const satisfies Setting;
+
+const landscape = {
+  ...portrait,
+  key: `landscape`,
+  txt2imgBodyJson: {
+    ...portrait.txt2imgBodyJson,
+    ...imageResolutionPreset.sdxl.landscape,
+  },
+} as const satisfies Setting;
+
+export const settings = [portrait, landscape] as const satisfies Setting[];
 
 console.assert(
   settings.some((s) => 0 < s.batchGeneration),
