@@ -24,18 +24,12 @@ export const generateCharactersSetting = ({
   backgroundAndPoseKeys,
 }: {
   characterKeys: CharacterKey[] | `all`;
-  outfitKeys: OutfitKey[] | `cosplay`;
+  outfitKeys: (OutfitKey | `cosplay`)[];
   backgroundAndPoseKeys?: BackgroundAndPoseKey[];
 }): CharacterSetting[] => {
   const cKeys =
     characterKeys === `all` ? getKeys(characterTable) : characterKeys;
   const characterSettings = cKeys.map((cKey) => {
-    if (outfitKeys === `cosplay`)
-      return {
-        key: cKey,
-        outfits: [...outfitsPreset.cosplay],
-      } as const satisfies CharacterSetting;
-
     if (!backgroundAndPoseKeys) {
       const outfits = outfitKeys.map((oKeys) => outfitsPreset[oKeys]).flat();
 
@@ -45,7 +39,12 @@ export const generateCharactersSetting = ({
       } as const satisfies CharacterSetting;
     }
 
-    const outfits = outfitKeys.map((oKey) => {
+    const outfitKeysWithoutCosplay = outfitKeys
+      .map((oKey) => outfitsPreset[oKey].map((o) => o.key))
+      .flat();
+    const uniqueOutfitKeys = [...new Set(outfitKeysWithoutCosplay)];
+
+    const outfits = uniqueOutfitKeys.map((oKey) => {
       const backgrounds = backgroundAndPoseKeys.map(
         (
           backgroundAndPoseKey,
