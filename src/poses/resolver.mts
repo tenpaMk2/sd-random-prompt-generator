@@ -4,6 +4,7 @@ import { NormalEntry } from "../prompt-define.mjs";
 import { PoseTag } from "../tag-defines/pose.mjs";
 import { Visibility } from "../tag-defines/visibility.mjs";
 import { fromAboveFullBodyLying } from "./common/from-above/full-body-lying.mjs";
+import { fromAboveHandsOnOwnChest } from "./common/from-above/hands-on-own-chests.mjs";
 import { fromAboveLyingOnStomach } from "./common/from-above/lying-on-stomach.mjs";
 import { fromAboveLyingReachingTowardsViewer } from "./common/from-above/lying-reaching-towards-viewer.mjs";
 import { fromAboveLying } from "./common/from-above/lying.mjs";
@@ -64,6 +65,7 @@ export type PoseDefine = {
 export const poseTable = {
   "from-above": {
     "full-body-lying": fromAboveFullBodyLying,
+    "hands-on-own-chest": fromAboveHandsOnOwnChest,
     "lying-on-stomach": fromAboveLyingOnStomach,
     "lying-reaching-towards-viewer": fromAboveLyingReachingTowardsViewer,
     lying: fromAboveLying,
