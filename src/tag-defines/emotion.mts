@@ -35,10 +35,3 @@ const allEmotionTags = [
   `v-shaped eyebrows`,
 ] as const satisfies readonly string[];
 export type EmotionTag = (typeof allEmotionTags)[number];
-
-const allProfileTags = [`profile`] as const satisfies readonly string[];
-export type ProfileTag = (typeof allProfileTags)[number];
-
-export const profileExcludeTags = [
-  `one eye closed`,
-] as const satisfies EmotionTag[];

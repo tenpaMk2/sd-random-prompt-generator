@@ -1,7 +1,7 @@
 import { BackgroundTag } from "./background.mjs";
 import { BreastSizeTag, CharacterFeatureTag } from "./character-feature.mjs";
 import { CharacterNameTag } from "./character-name.mjs";
-import { EmotionTag, ProfileTag } from "./emotion.mjs";
+import { EmotionTag } from "./emotion.mjs";
 import {
   LoraCharacterTriggerWordsTag,
   LoraOutfitTriggerWordsTag,
@@ -20,7 +20,6 @@ export type PersonTag =
   | BreastSizeTag
   | OutfitAndExposureTag
   | EmotionTag
-  | ProfileTag
   | PoseTag
   | SpecialTag;
 
