@@ -9,7 +9,7 @@ export const kagejitsuAlphaNochekaiser = () =>
     },
     loraCharacterTriggerWordEntries: [`alpha`],
     seriesNameEntries: [`kage no jitsuryokusha ni naritakute!`],
-    characterNameEntries: [`beta \\(kage no jitsuryokusha ni naritakute!\\)`],
+    characterNameEntries: [`alpha \\(kage no jitsuryokusha ni naritakute!\\)`],
     characterFeatureEntries: [
       `blue eyes`,
       `tsurime`,
