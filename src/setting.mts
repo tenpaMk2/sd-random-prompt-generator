@@ -18,7 +18,7 @@ export const machineSetting = {
 
 export const settings = [
   {
-    key: `all`,
+    key: `basic`,
     fixedPrompt: `score_9, score_8_up, score_7_up, rating_questionable, 1girl, solo,\n`,
     batchGeneration: 10,
     optionsBodyJson: {
