@@ -123,7 +123,10 @@ export const outfitTable = {
   "santa-bikini": santaBikini(),
   "sukumizu-thighhighs": sukumizuThighhighs(),
   "danmachi-nochekaiser-hestia": danmachiHestia(`nochekaiser`),
-  "kagejitsu-nochekaiser-shadow-garden": kagejitsuShadowGarden(`nochekaiser`),
+  "kagejitsu-nochekaiser-shadow-garden-alpha":
+    kagejitsuShadowGarden(`nochekaiser-alpha`),
+  "kagejitsu-nochekaiser-shadow-garden-beta":
+    kagejitsuShadowGarden(`nochekaiser-beta`),
   "mahoako-notekaga-locomusica": mahoakoLocomusica(`notekaga`),
   "prisma-illya-chloe-beast": prismaIllyaChloeBeast(`am7coffeelove`),
   "prisma-illya-illya-beast": prismaIllyaIllyaBeast(`am7coffeelove`),

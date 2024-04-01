@@ -21,6 +21,7 @@ import { dumbbellGinaWiz } from "./dumbbell/dumbbell-gina-wiz.mjs";
 import { dumbbellHibikiWiz } from "./dumbbell/dumbbell-hibiki-wiz.mjs";
 import { dumbbellSatomiWiz } from "./dumbbell/dumbbell-satomi-wiz.mjs";
 import { isCeciliaOgTurles } from "./is/is-cecilia-og-turles.mjs";
+import { kagejitsuAlphaNochekaiser } from "./kagejitsu/kagejitsu-alpha-nochekaiser.mjs";
 import { kagejitsuBetaNochekaiser } from "./kagejitsu/kagejitsu-beta-nochekaiser.mjs";
 import { lycorisRecoilChisatoEft } from "./lycoris-recoil/lycoris-recoil-chisato-eft.mjs";
 import { lycorisRecoilTakinaEft } from "./lycoris-recoil/lycoris-recoil-takina-eft.mjs";
@@ -112,6 +113,7 @@ export const characterTable = {
   "dumbbell-hibiki-wiz": dumbbellHibikiWiz(),
   "dumbbell-satomi-wiz": dumbbellSatomiWiz(),
   "is-cecilia-og-turles": isCeciliaOgTurles(),
+  "kagejitsu-alpha-nochekaiser": kagejitsuAlphaNochekaiser(),
   "kagejitsu-beta-nochekaiser": kagejitsuBetaNochekaiser(),
   "lycoris-recoil-chisato-eft": lycorisRecoilChisatoEft(),
   "lycoris-recoil-takina-eft": lycorisRecoilTakinaEft(),

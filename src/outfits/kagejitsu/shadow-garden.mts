@@ -1,6 +1,8 @@
 import { OutfitDefine } from "../resolver.mjs";
 
-export const kagejitsuShadowGarden = (variation: `nochekaiser`) =>
+export const kagejitsuShadowGarden = (
+  variation: `nochekaiser-alpha` | `nochekaiser-beta`,
+) =>
   ({
     lora: null,
     loraOutfitTriggerWordEntries: [],
@@ -10,7 +12,7 @@ export const kagejitsuShadowGarden = (variation: `nochekaiser`) =>
       `black bodysuit`,
       `gold trim bodysuit`,
       `cleavage cutout`,
-      `armor`,
+      ...(variation === `nochekaiser-beta` ? ([`armor`] as const) : []),
       `gloves`,
       `black gloves`,
       `black footwear`,

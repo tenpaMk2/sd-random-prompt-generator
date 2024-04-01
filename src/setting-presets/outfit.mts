@@ -196,14 +196,19 @@ const danmachiNochekaiserHestia = {
   ],
 } as const satisfies OutfitSetting;
 
-const kagejitsuNochekaiserShadowGarden = {
-  key: `kagejitsu-nochekaiser-shadow-garden`,
+const kagejitsuNochekaiserShadowGardenAlpha = {
+  key: `kagejitsu-nochekaiser-shadow-garden-alpha`,
   backgrounds: [
     ...backgroundsPreset.nightRooftop,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
   ],
+} as const satisfies OutfitSetting;
+
+const kagejitsuNochekaiserShadowGardenBeta = {
+  ...kagejitsuNochekaiserShadowGardenAlpha,
+  key: `kagejitsu-nochekaiser-shadow-garden-beta`,
 } as const satisfies OutfitSetting;
 
 const mahoakoNotekagaLocomusica = {
@@ -280,7 +285,12 @@ export const outfitsPreset = {
   "santa-bikini": [santaBikini],
   "sukumizu-thighhighs": [sukumizuThighhighs],
   "danmachi-nochekaiser-hestia": [danmachiNochekaiserHestia],
-  "kagejitsu-nochekaiser-shadow-garden": [kagejitsuNochekaiserShadowGarden],
+  "kagejitsu-nochekaiser-shadow-garden-alpha": [
+    kagejitsuNochekaiserShadowGardenAlpha,
+  ],
+  "kagejitsu-nochekaiser-shadow-garden-beta": [
+    kagejitsuNochekaiserShadowGardenBeta,
+  ],
   "mahoako-notekaga-locomusica": [mahoakoNotekagaLocomusica],
   "prisma-illya-chloe-beast": [prismaIllyaAm7CoffeeloveChloeBeast],
   "prisma-illya-illya-beast": [prismaIllyaAm7CoffeeloveIllyaBeast],
