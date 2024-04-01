@@ -196,6 +196,16 @@ const danmachiNochekaiserHestia = {
   ],
 } as const satisfies OutfitSetting;
 
+const kagejitsuNochekaiserShadowGarden = {
+  key: `kagejitsu-nochekaiser-shadow-garden`,
+  backgrounds: [
+    ...backgroundsPreset.nightRooftop,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
+  ],
+} as const satisfies OutfitSetting;
+
 const mahoakoNotekagaLocomusica = {
   key: `mahoako-notekaga-locomusica`,
   backgrounds: [
@@ -270,6 +280,7 @@ export const outfitsPreset = {
   "santa-bikini": [santaBikini],
   "sukumizu-thighhighs": [sukumizuThighhighs],
   "danmachi-nochekaiser-hestia": [danmachiNochekaiserHestia],
+  "kagejitsu-nochekaiser-shadow-garden": [kagejitsuNochekaiserShadowGarden],
   "mahoako-notekaga-locomusica": [mahoakoNotekagaLocomusica],
   "prisma-illya-chloe-beast": [prismaIllyaAm7CoffeeloveChloeBeast],
   "prisma-illya-illya-beast": [prismaIllyaAm7CoffeeloveIllyaBeast],

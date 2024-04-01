@@ -16,6 +16,7 @@ import { santaBikini } from "./common/santa-bikini.mjs";
 import { sukumizuThighhighs } from "./common/sukumizu-thighhighs.mjs";
 import { testOutfit } from "./common/test-outfit.mjs";
 import { danmachiNochekaiserHestia } from "./danmachi-nochekaiser/hestia.mjs";
+import { kagejitsuNochekaiserShadowGarden } from "./kagejitsu-nochekaiser/shadow-garden.mjs";
 import { mahoakoNotekagaLocomusica } from "./mahoako-notekaga/locomusica.mjs";
 import { prismaIllyaAm7CoffeeloveChloeBeast } from "./prisma-illya-am7coffeelove/chloe-beast.mjs";
 import { prismaIllyaAm7CoffeeloveIllyaBeast } from "./prisma-illya-am7coffeelove/illya-beast.mjs";
@@ -122,6 +123,7 @@ export const outfitTable = {
   "santa-bikini": santaBikini(),
   "sukumizu-thighhighs": sukumizuThighhighs(),
   "danmachi-nochekaiser-hestia": danmachiNochekaiserHestia(),
+  "kagejitsu-nochekaiser-shadow-garden": kagejitsuNochekaiserShadowGarden(),
   "mahoako-notekaga-locomusica": mahoakoNotekagaLocomusica(),
   "prisma-illya-chloe-beast": prismaIllyaAm7CoffeeloveChloeBeast(),
   "prisma-illya-illya-beast": prismaIllyaAm7CoffeeloveIllyaBeast(),

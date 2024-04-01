@@ -128,6 +128,23 @@ export const backgroundsPreset = {
       poses: fromBelowPosesPreset.usual,
     },
   ],
+  nightRooftop: [
+    {
+      type: `from-above`,
+      key: `night-rooftop`,
+      poses: fromAbovePosesPreset.usual,
+    },
+    {
+      type: `from-below`,
+      key: `night-sky`,
+      poses: fromBelowPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `night-rooftop`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+  ],
   cafe: [
     {
       type: `from-above`,

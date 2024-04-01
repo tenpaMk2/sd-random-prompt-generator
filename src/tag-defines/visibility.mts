@@ -469,6 +469,7 @@ const allDistinguishableExposureVisibilities = {
 const allDistinguishableOutfitVisibilities = {
   "gold trim shirt": visibleType.shirt,
   "gold trim skirt": visibleType.skirt,
+  "gold trim bodysuit": visibleType.all,
   "red trim shirt": visibleType.shirt,
   "red trim skirt": visibleType.skirt,
   "pinstripe pattern shirt": visibleType.shirt,
@@ -911,6 +912,21 @@ const allFootwearColorVisibilities = {
   "yellow footwear": visibleType.foot,
 } as const;
 
+const allBodysuitColorVisibilities = {
+  "aqua bodysuit": visibleType.all,
+  "black bodysuit": visibleType.all,
+  "blue bodysuit": visibleType.all,
+  "brown bodysuit": visibleType.all,
+  "green bodysuit": visibleType.all,
+  "grey bodysuit": visibleType.all,
+  "orange bodysuit": visibleType.all,
+  "pink bodysuit": visibleType.all,
+  "purple bodysuit": visibleType.all,
+  "red bodysuit": visibleType.all,
+  "white bodysuit": visibleType.all,
+  "yellow bodysuit": visibleType.all,
+} as const;
+
 export const tagVisibilities = {
   // Head feature
   ...allEyesColorVisibilities,
@@ -1229,6 +1245,8 @@ export const tagVisibilities = {
   boots: visibleType.foot,
   shoes: visibleType.foot,
   ...allFootwearColorVisibilities,
+  bodysuit: visibleType.all,
+  ...allBodysuitColorVisibilities,
 
   "ribbed sweater": visibleType.shirt,
   "striped sweater": visibleType.shirt,
@@ -1414,6 +1432,7 @@ export const tagVisibilities = {
   "fur-trimmed gloves": visibleType["elbow gloves"],
   "tight clothes": visibleType.shirt,
   "no pants": visibleType.panties,
+  armor: visibleType.dress,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

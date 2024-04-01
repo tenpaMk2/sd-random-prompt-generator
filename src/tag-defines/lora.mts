@@ -589,6 +589,28 @@ export const allLoras = [
     outfitTriggerTags: [`zzmiuaa`],
     creator: `am7coffeelove`,
   },
+  {
+    loraName: `shadow-beta-ponyxl-lora-nochekaiser`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/364066/beta-the-eminence-in-shadow-kage-no-jitsuryokusha-ni-naritakute-commission?modelVersionId=406805`,
+    ),
+    characterTriggerWordsTags: [`beta`],
+    outfitTriggerTags: [],
+    creator: `nochekaiser881`,
+  },
+  {
+    loraName: `shadow-alpha-ponyxl-lora-nochekaiser`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/364060/alpha-the-eminence-in-shadow-kage-no-jitsuryokusha-ni-naritakute-commission?modelVersionId=406796`,
+    ),
+    characterTriggerWordsTags: [`alpha`],
+    outfitTriggerTags: [],
+    creator: `nochekaiser881`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];

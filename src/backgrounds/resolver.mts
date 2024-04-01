@@ -77,6 +77,10 @@ export const backgroundTable = {
       entries: [`indoors`, `christmas`, `christmas tree`],
       removeShoes: true,
     },
+    "night-rooftop": {
+      entries: [`outdoors`, `cityscape`, `city lights`, `rooftop`, `night sky`],
+      removeShoes: false,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
@@ -88,6 +92,10 @@ export const backgroundTable = {
     "blue-sky": { entries: [`outdoors`, `blue sky`], removeShoes: false },
     "blue-sky-confetti": {
       entries: [`outdoors`, `blue sky`, `confetti`],
+      removeShoes: false,
+    },
+    "night-sky": {
+      entries: [`outdoors`, `night sky`, `moon`],
       removeShoes: false,
     },
     city: {
@@ -166,6 +174,10 @@ export const backgroundTable = {
     christmas: {
       entries: [`indoors`, `christmas`, `christmas present`],
       removeShoes: true,
+    },
+    "night-rooftop": {
+      entries: [`outdoors`, `cityscape`, `city lights`, `rooftop`],
+      removeShoes: false,
     },
   },
 } as const satisfies {

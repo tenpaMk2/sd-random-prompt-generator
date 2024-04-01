@@ -10,6 +10,7 @@ export const allDistinguishableExposureTags = {
 export const allDistinguishableOutfitTags = {
   "gold trim shirt": `gold trim`,
   "gold trim skirt": `gold trim`,
+  "gold trim bodysuit": `gold trim`,
   "red trim shirt": `red trim`,
   "red trim skirt": `red trim`,
   "pinstripe pattern shirt": `pinstripe pattern`,
@@ -478,6 +479,21 @@ const allFootwearColorTags = [
   `yellow footwear`,
 ] as const satisfies string[];
 
+const allBodysuitColorTags = [
+  `aqua bodysuit`,
+  `black bodysuit`,
+  `blue bodysuit`,
+  `brown bodysuit`,
+  `green bodysuit`,
+  `grey bodysuit`,
+  `orange bodysuit`,
+  `pink bodysuit`,
+  `purple bodysuit`,
+  `red bodysuit`,
+  `white bodysuit`,
+  `yellow bodysuit`,
+] as const satisfies string[];
+
 const allOutfitTags = [
   ...getKeys(allDistinguishableOutfitTags),
   `shirt`,
@@ -536,6 +552,8 @@ const allOutfitTags = [
   `boots`,
   `shoes`,
   ...allFootwearColorTags,
+  `bodysuit`,
+  ...allBodysuitColorTags,
 
   `ribbed sweater`,
   `striped sweater`,
@@ -725,6 +743,7 @@ const allOutfitTags = [
   `fur-trimmed gloves`,
   `tight clothes`,
   `no pants`,
+  `armor`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 
