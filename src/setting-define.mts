@@ -77,6 +77,12 @@ export type GlobalSetting = Readonly<{
    * The maximum number of random prompts to be exported.
    */
   maxExportingRandomPrompts: number;
+
+  /**
+   * If `true`, the generation continues forever.
+   * After the last setting is generated, the first setting is used.
+   */
+  generateForever: boolean;
 }>;
 
 export type MachineSetting = Readonly<{
@@ -88,6 +94,12 @@ export type Setting = Readonly<{
   key: string; // Generation name.
   probability?: number;
   fixedPrompt: string;
+  /**
+   * The number of generations using the same setting.
+   * After this number of times an image is generated, the next setting is used to start the generation.
+   * Don't confuse with the batch size and batch count in Stable Diffusion web UI.
+   */
+  batchGeneration: number;
   optionsBodyJson: {
     /**
      * Checkpoint (model).

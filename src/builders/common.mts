@@ -394,6 +394,7 @@ const buildRoot = (rootData: CollectedDatas[number]) => {
     key: rootData.key,
     probability: rootData.probability,
     fixedPrompt: rootData.fixedPrompt,
+    batchGeneration: rootData.batchGeneration,
     optionsBodyJson: rootData.optionsBodyJson,
     txt2imgBodyJson: rootData.txt2imgBodyJson,
     patternCollection: rootPatternCollection,

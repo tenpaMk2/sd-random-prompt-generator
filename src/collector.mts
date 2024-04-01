@@ -89,14 +89,16 @@ export const collect = (settings: Setting[]) =>
     ({
       key,
       probability,
-      characters,
       fixedPrompt,
+      batchGeneration,
       optionsBodyJson,
       txt2imgBodyJson,
+      characters,
     }) => ({
       key,
       probability: probability ?? 1,
       fixedPrompt,
+      batchGeneration,
       optionsBodyJson,
       txt2imgBodyJson,
       characters: characters.map(collectCharacter),

@@ -1,7 +1,7 @@
 import { build } from "./builders/common.mjs";
 import { PatternCollection } from "./prompt-define.mjs";
 import { Setting } from "./setting-define.mjs";
-import { machineSetting } from "./setting.mjs";
+import { globalSetting, machineSetting } from "./setting.mjs";
 import { Tag } from "./tag-defines/all.mjs";
 import { LoraNameTag } from "./tag-defines/lora.mjs";
 
@@ -70,8 +70,7 @@ const generateRoot = async (root: ReturnType<typeof build>[number]) => {
   // console.table(await optionsResponse.json());
   // console.timeEnd("Option setting elapsed time");
 
-  // for (let i = 0; i < 1000; i++) {
-  while (true) {
+  for (let i = 0; i < root.batchGeneration; i++) {
     // console.time("Each generation elapsed time");
     await generateEachImage(
       root.fixedPrompt,
@@ -110,8 +109,10 @@ export const generate = async (settings: ReturnType<typeof build>) => {
   console.log("Generating images...");
 
   const intervalID = startStatusPolling();
-  for (const setting of settings) {
-    await generateRoot(setting);
-  }
+  do {
+    for (const setting of settings) {
+      await generateRoot(setting);
+    }
+  } while (globalSetting.generateForever);
   clearInterval(intervalID);
 };
