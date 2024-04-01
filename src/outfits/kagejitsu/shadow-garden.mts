@@ -1,6 +1,6 @@
 import { OutfitDefine } from "../resolver.mjs";
 
-export const kagejitsuNochekaiserShadowGarden = () =>
+export const kagejitsuShadowGarden = (variation: `nochekaiser`) =>
   ({
     lora: null,
     loraOutfitTriggerWordEntries: [],

@@ -15,13 +15,13 @@ import { revealingMiko } from "./common/revealing-miko.mjs";
 import { santaBikini } from "./common/santa-bikini.mjs";
 import { sukumizuThighhighs } from "./common/sukumizu-thighhighs.mjs";
 import { testOutfit } from "./common/test-outfit.mjs";
-import { danmachiNochekaiserHestia } from "./danmachi-nochekaiser/hestia.mjs";
-import { kagejitsuNochekaiserShadowGarden } from "./kagejitsu-nochekaiser/shadow-garden.mjs";
-import { mahoakoNotekagaLocomusica } from "./mahoako-notekaga/locomusica.mjs";
-import { prismaIllyaAm7CoffeeloveChloeBeast } from "./prisma-illya-am7coffeelove/chloe-beast.mjs";
-import { prismaIllyaAm7CoffeeloveIllyaBeast } from "./prisma-illya-am7coffeelove/illya-beast.mjs";
-import { prismaIllyaAm7CoffeeloveMiyuBeast } from "./prisma-illya-am7coffeelove/miyu-beast.mjs";
-import { sasuoniEftFirstHighSchoolUniform } from "./sasuoni-eft/first-high-school-uniform.mjs";
+import { danmachiHestia } from "./danmachi/hestia.mjs";
+import { kagejitsuShadowGarden } from "./kagejitsu/shadow-garden.mjs";
+import { mahoakoLocomusica } from "./mahoako/locomusica.mjs";
+import { prismaIllyaChloeBeast } from "./prisma-illya/chloe-beast.mjs";
+import { prismaIllyaIllyaBeast } from "./prisma-illya/illya-beast.mjs";
+import { prismaIllyaMiyuBeast } from "./prisma-illya/miyu-beast.mjs";
+import { sasuoniFirstHighSchoolUniform } from "./sasuoni/first-high-school-uniform.mjs";
 
 /**
  * Outfit define.
@@ -122,16 +122,16 @@ export const outfitTable = {
   "revealing-miko": revealingMiko(),
   "santa-bikini": santaBikini(),
   "sukumizu-thighhighs": sukumizuThighhighs(),
-  "danmachi-nochekaiser-hestia": danmachiNochekaiserHestia(),
-  "kagejitsu-nochekaiser-shadow-garden": kagejitsuNochekaiserShadowGarden(),
-  "mahoako-notekaga-locomusica": mahoakoNotekagaLocomusica(),
-  "prisma-illya-chloe-beast": prismaIllyaAm7CoffeeloveChloeBeast(),
-  "prisma-illya-illya-beast": prismaIllyaAm7CoffeeloveIllyaBeast(),
-  "prisma-illya-miyu-beast": prismaIllyaAm7CoffeeloveMiyuBeast(),
+  "danmachi-nochekaiser-hestia": danmachiHestia(`nochekaiser`),
+  "kagejitsu-nochekaiser-shadow-garden": kagejitsuShadowGarden(`nochekaiser`),
+  "mahoako-notekaga-locomusica": mahoakoLocomusica(`notekaga`),
+  "prisma-illya-chloe-beast": prismaIllyaChloeBeast(`am7coffeelove`),
+  "prisma-illya-illya-beast": prismaIllyaIllyaBeast(`am7coffeelove`),
+  "prisma-illya-miyu-beast": prismaIllyaMiyuBeast(`am7coffeelove`),
   "sasuoni-eft-first-high-school-uniform-pantyhose":
-    sasuoniEftFirstHighSchoolUniform(`pantyhose`),
+    sasuoniFirstHighSchoolUniform(`eft-pantyhose`),
   "sasuoni-eft-first-high-school-uniform-thighhighs":
-    sasuoniEftFirstHighSchoolUniform(`thighhighs`),
+    sasuoniFirstHighSchoolUniform(`eft-thighhighs`),
 } as const satisfies {
   [k: string]: OutfitDefine;
 };

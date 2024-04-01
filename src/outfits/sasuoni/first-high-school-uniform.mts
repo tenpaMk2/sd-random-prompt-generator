@@ -1,8 +1,8 @@
 import { upskirtPreset } from "../common/upskirt-preset.mjs";
 import { OutfitDefine } from "../resolver.mjs";
 
-export const sasuoniEftFirstHighSchoolUniform = (
-  variation: `pantyhose` | `thighhighs`,
+export const sasuoniFirstHighSchoolUniform = (
+  variation: `eft-pantyhose` | `eft-thighhighs`,
 ) =>
   ({
     lora: null,
@@ -21,7 +21,7 @@ export const sasuoniEftFirstHighSchoolUniform = (
       `cropped jacket`,
       `open jacket`,
       `long sleeves`,
-      variation === `pantyhose` ? `pantyhose` : `thighhighs`,
+      variation === `eft-pantyhose` ? `pantyhose` : `thighhighs`,
       `boots`,
       `black footwear`,
     ],
@@ -39,7 +39,7 @@ export const sasuoniEftFirstHighSchoolUniform = (
 
     liftType: `dress`,
     upskirtEntries:
-      variation === `pantyhose`
+      variation === `eft-pantyhose`
         ? upskirtPreset.pantiesUnderPantyhose
         : upskirtPreset.colorfulPanties,
     whenRemoveShoes: {

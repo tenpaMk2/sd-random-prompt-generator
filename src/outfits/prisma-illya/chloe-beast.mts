@@ -1,27 +1,27 @@
 import { upskirtPreset } from "../common/upskirt-preset.mjs";
 import { OutfitDefine } from "../resolver.mjs";
 
-export const prismaIllyaAm7CoffeeloveIllyaBeast = () =>
+export const prismaIllyaChloeBeast = (variation: `am7coffeelove`) =>
   ({
     lora: null,
-    loraOutfitTriggerWordEntries: [`zzillaaa`],
+    loraOutfitTriggerWordEntries: [`zzcloaa`],
     outfitAndExposureEntries: [
-      // TODO: Reconsider moving ears from the character define to here.
-      `official alternate costume`,
-      `fur-trimmed collar`,
-      `black leotard`,
-      `center opening`,
-      `elbow gloves`,
-      `black gloves`,
+      `animal collar`,
+      `belt`,
+      `red belt`,
+      `navel o-ring`,
+      `black skirt`,
+      `miniskirt`,
+      `pleated skirt`,
+      `fur-trimmed skirt`,
+      `navel`,
+      `armlet`,
       `paw gloves`,
       `animal hands`,
-      `fur-trimmed gloves`,
+      `paw shoes`,
+      `thigh strap`,
       `thighhighs`,
       `black thighhighs`,
-      `thighs skindentation`,
-      `bare shoulders`,
-      `shoulder blades`,
-      `navel`,
       `butt crack`,
     ],
     specialVisibility: {
@@ -36,6 +36,6 @@ export const prismaIllyaAm7CoffeeloveIllyaBeast = () =>
       insideOfThighs: true,
     },
     liftType: `skirt`,
-    upskirtEntries: [],
+    upskirtEntries: upskirtPreset.redPanties,
     whenRemoveShoes: null,
   }) as const satisfies OutfitDefine;
