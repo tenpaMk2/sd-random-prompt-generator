@@ -45,7 +45,7 @@ const generateEachImage = async (
   );
   const resultJson = await generationResponse.json();
   const infoJson = JSON.parse(resultJson.info);
-  console.log(infoJson);
+  console.log(infoJson.infotexts);
 };
 
 const generateRoot = async (root: ReturnType<typeof build>[number]) => {

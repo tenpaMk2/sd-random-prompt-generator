@@ -13,8 +13,6 @@ validateSettings(settings);
 
 const collectedDatas = collect(settings);
 
-console.log(collectedDatas);
-
 const generationDatas = build(collectedDatas);
 
 console.log(generationDatas);
