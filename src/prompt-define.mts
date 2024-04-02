@@ -78,10 +78,22 @@ export class Pattern<T extends Tag | LoraNameTag> {
   constructor({
     tokens,
     probability,
+    asSymlink,
   }: {
     tokens: Token<T>[];
     probability?: number;
+    /**
+     * Create without deep copy of tokens. No duplication check.
+     * It's efficient for times and memories.
+     */
+    asSymlink?: boolean;
   }) {
+    if (asSymlink) {
+      this.tokens = tokens;
+      this.probability = probability ?? 1.0;
+      return;
+    }
+
     const isDuplicate =
       new Set(tokens.map((t) => t.tag)).size !== tokens.length;
 
@@ -301,6 +313,7 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
           return new Pattern<T>({
             tokens: [],
             probability: probability / totalProbability,
+            asSymlink: true,
           });
         }
 
@@ -308,6 +321,7 @@ export class PatternCollection<T extends Tag | LoraNameTag> {
           return new Pattern<T>({
             tokens: p.tokens,
             probability: (p.probability * probability) / totalProbability,
+            asSymlink: true,
           });
         });
       })
