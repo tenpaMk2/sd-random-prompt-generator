@@ -7,6 +7,7 @@ import { exportAsCSV } from "./tag-defines/visibility.mjs";
 import { generate } from "./generator.mjs";
 import { validateSettings } from "./validator.mjs";
 
+console.log(`Prompt build`);
 console.time(`Prompt build`);
 
 validateSettings(settings);

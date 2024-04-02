@@ -323,6 +323,7 @@ const buildBackground = (
     })),
   );
 
+  console.log(`Build done: background: ${backgroundData.key}`);
   return {
     key: backgroundData.key,
     probability: backgroundData.probability,
@@ -347,6 +348,7 @@ const buildOutfit = (
     })),
   );
 
+  console.log(`Build done: outfit: ${outfitData.key}`);
   return {
     key: outfitData.key,
     probability: outfitData.probability,
@@ -370,6 +372,7 @@ const buildCharacter = (
     })),
   );
 
+  console.log(`Build done: character: ${characterData.key}`);
   return {
     key: characterData.key,
     probability: characterData.probability,
@@ -390,6 +393,7 @@ const buildRoot = (rootData: CollectedDatas[number]) => {
     })),
   );
 
+  console.log(`Build done: root: ${rootData.key}`);
   return {
     key: rootData.key,
     probability: rootData.probability,
