@@ -4,6 +4,7 @@ import { NormalEntry } from "../prompt-define.mjs";
 import { PoseTag } from "../tag-defines/pose.mjs";
 import { Visibility } from "../tag-defines/visibility.mjs";
 import { fromAboveFullBodyLying } from "./common/from-above/full-body-lying.mjs";
+import { fromAboveGrabbingOwnBreasts } from "./common/from-above/grabbing-own-breasts.mjs";
 import { fromAboveHandsOnOwnChest } from "./common/from-above/hands-on-own-chests.mjs";
 import { fromAboveLyingOnStomach } from "./common/from-above/lying-on-stomach.mjs";
 import { fromAboveLyingReachingTowardsViewer } from "./common/from-above/lying-reaching-towards-viewer.mjs";
@@ -11,6 +12,8 @@ import { fromAboveLying } from "./common/from-above/lying.mjs";
 import { fromAbovePawPose } from "./common/from-above/paw-pose.mjs";
 import { fromAboveWariza } from "./common/from-above/wariza.mjs";
 import { fromBelowArmsUp } from "./common/from-below/arms-up.mjs";
+import { fromBelowFromSideProfile } from "./common/from-below/from-side-profile.mjs";
+import { fromBelowFromSide } from "./common/from-below/from-side.mjs";
 import { fromBelowPawPose } from "./common/from-below/paw-pose.mjs";
 import { fromBelowSquatting } from "./common/from-below/squatting.mjs";
 import { fromBelowUpperBody } from "./common/from-below/upper-body.mjs";
@@ -65,6 +68,7 @@ export type PoseDefine = {
 export const poseTable = {
   "from-above": {
     "full-body-lying": fromAboveFullBodyLying,
+    "grabbing-own-breasts": fromAboveGrabbingOwnBreasts,
     "hands-on-own-chest": fromAboveHandsOnOwnChest,
     "lying-on-stomach": fromAboveLyingOnStomach,
     "lying-reaching-towards-viewer": fromAboveLyingReachingTowardsViewer,
@@ -80,6 +84,8 @@ export const poseTable = {
   },
   "from-below": {
     "arms-up": fromBelowArmsUp,
+    "from-side": fromBelowFromSide,
+    "from-side-profile": fromBelowFromSideProfile,
     "paw-pose": fromBelowPawPose,
     squatting: fromBelowSquatting,
     "upper-body": fromBelowUpperBody,
