@@ -88,6 +88,7 @@ export class Pattern<T extends Tag | LoraNameTag> {
     if (!isDuplicate) {
       this.tokens = tokens;
       this.probability = probability ?? 1.0;
+      return;
     }
 
     const uniques = tokens.reduce((previous, current) => {
