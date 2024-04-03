@@ -83,5 +83,10 @@ export const allCharacterName = [
   `epsilon \\(kage no jitsuryokusha ni naritakute!\\)`,
   `zeta \\(kage no jitsuryokusha ni naritakute!\\)`,
   `eta \\(kage no jitsuryokusha ni naritakute!\\)`,
+  `shinomiya kaguya`,
+  `hayasaka ai`,
+  `iino miko`,
+  `fujiwara chika`,
+  `shirogane kei`,
 ] as const satisfies readonly string[];
 export type CharacterNameTag = (typeof allCharacterName)[number];

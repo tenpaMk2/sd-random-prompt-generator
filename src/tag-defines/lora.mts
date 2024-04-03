@@ -611,6 +611,39 @@ export const allLoras = [
     outfitTriggerTags: [],
     creator: `nochekaiser881`,
   },
+  {
+    loraName: `kaguya-shinomiya-ponyxl-lora-nochekaiser`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/353048/kaguya-shinomiya-kaguya-sama-love-is-war?modelVersionId=394808`,
+    ),
+    characterTriggerWordsTags: [`kaguya shinomiya`],
+    outfitTriggerTags: [],
+    creator: `nochekaiser881`,
+  },
+  {
+    loraName: `ai-hayasaka-ponyxl-lora-nochekaiser`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/353023/ai-hayasaka-kaguya-sama-love-is-war?modelVersionId=394781`,
+    ),
+    characterTriggerWordsTags: [`ai hayasaka`],
+    outfitTriggerTags: [],
+    creator: `nochekaiser881`,
+  },
+  {
+    loraName: `miko-iino-ponyxl-lora-nochekaiser`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/354194/miko-iino-kaguya-sama-love-is-war?modelVersionId=396066`,
+    ),
+    characterTriggerWordsTags: [`miko iino`],
+    outfitTriggerTags: [],
+    creator: `nochekaiser881`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];

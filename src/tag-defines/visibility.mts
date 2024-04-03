@@ -1041,7 +1041,6 @@ export const tagVisibilities = {
   fang: visibleType.hair,
   "pointy ears": visibleType.hair,
   forehead: visibleType.face,
-  "tress ribbon": visibleType.hair,
   "mole under eye": visibleType.face,
   "asymmetrical hair": visibleType.hair,
 
@@ -1162,6 +1161,8 @@ export const tagVisibilities = {
   earrings: visibleType.hair,
   "gold earrings": visibleType.hair,
   "flower knot": visibleType.hair,
+  "tress ribbon": visibleType.hair,
+  "hair tie": visibleType.hair,
 
   // Exposure
   ...allDistinguishableExposureVisibilities,
