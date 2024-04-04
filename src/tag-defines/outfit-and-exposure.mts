@@ -634,6 +634,8 @@ const allOutfitTags = [
   `pencil skirt`,
   `high-low skirt`,
   `pantyhose`,
+  `black pantyhose`,
+  `white pantyhose`,
   `loafers`,
   `sneakers`,
   `underwear`,

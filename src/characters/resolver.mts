@@ -24,6 +24,7 @@ import { isCeciliaOgTurles } from "./is/is-cecilia-og-turles.mjs";
 import { kagejitsuAlphaNochekaiser } from "./kagejitsu/kagejitsu-alpha-nochekaiser.mjs";
 import { kagejitsuBetaNochekaiser } from "./kagejitsu/kagejitsu-beta-nochekaiser.mjs";
 import { kaguyaSamaAiNochekaiser } from "./kaguya-sama/kaguya-sama-ai-nochekaiser.mjs";
+import { kaguyaSamaChikaNochekaiser } from "./kaguya-sama/kaguya-sama-chika-nochekaiser.mjs";
 import { kaguyaSamaKaguyaNochekaiser } from "./kaguya-sama/kaguya-sama-kaguya-nochekaiser.mjs";
 import { kaguyaSamaMikoNochekaiser } from "./kaguya-sama/kaguya-sama-miko-nochekaiser.mjs";
 import { lycorisRecoilChisatoEft } from "./lycoris-recoil/lycoris-recoil-chisato-eft.mjs";
@@ -119,6 +120,7 @@ export const characterTable = {
   "kagejitsu-alpha-nochekaiser": kagejitsuAlphaNochekaiser(),
   "kagejitsu-beta-nochekaiser": kagejitsuBetaNochekaiser(),
   "kaguya-sama-ai-nochekaiser": kaguyaSamaAiNochekaiser(),
+  "kaguya-sama-chika-nochekaiser": kaguyaSamaChikaNochekaiser(),
   "kaguya-sama-kaguya-nochekaiser": kaguyaSamaKaguyaNochekaiser(),
   "kaguya-sama-miko-nochekaiser": kaguyaSamaMikoNochekaiser(),
   "lycoris-recoil-chisato-eft": lycorisRecoilChisatoEft(),

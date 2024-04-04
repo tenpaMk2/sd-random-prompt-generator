@@ -3,7 +3,6 @@ import { upskirtPreset } from "../common/upskirt-preset.mjs";
 import { OutfitDefine } from "../resolver.mjs";
 
 const additional = {
-  "nochekaiser-kaguya": [],
   "nochekaiser-ai": [
     `short dress`,
     `cardigan`,
@@ -11,12 +10,21 @@ const additional = {
     `clothes around waist`,
     `sweater around waist`,
     `cardigan around waist`,
+    `socks`,
+    `black socks`,
   ],
-  "nochekaiser-miko": [`armband`, `yellow armband`],
+  "nochekaiser-chika": [`socks`, `white socks`],
+  "nochekaiser-kaguya": [`socks`, `black socks`],
+  "nochekaiser-miko": [
+    `armband`,
+    `yellow armband`,
+    `pantyhose`,
+    `black pantyhose`,
+  ],
 } as const satisfies { [k in string]: OutfitAndExposureTag[] };
 
 export const kaguyaSamaShuuchiinAcademySchoolUniform = (
-  variation: `nochekaiser-kaguya` | `nochekaiser-ai` | `nochekaiser-miko`,
+  variation: keyof typeof additional,
 ) =>
   ({
     lora: null,
@@ -32,8 +40,6 @@ export const kaguyaSamaShuuchiinAcademySchoolUniform = (
       `collarbone`,
       `neck ribbon`,
       `red neck ribbon`,
-      `socks`,
-      `black socks`,
       `loafers`,
       `short dress`,
       ...additional[variation],
@@ -50,7 +56,10 @@ export const kaguyaSamaShuuchiinAcademySchoolUniform = (
       insideOfThighs: false,
     },
     liftType: `dress`,
-    upskirtEntries: upskirtPreset.colorfulPanties,
+    upskirtEntries:
+      variation === `nochekaiser-miko`
+        ? upskirtPreset.pantiesUnderPantyhose
+        : upskirtPreset.colorfulPanties,
     whenRemoveShoes: {
       excludeTags: [`loafers`],
       additionalFootEntriesAfterRemoving: [`no shoes`],

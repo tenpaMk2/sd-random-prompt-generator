@@ -128,10 +128,12 @@ export const outfitTable = {
     kagejitsuShadowGarden(`nochekaiser-alpha`),
   "kagejitsu-nochekaiser-shadow-garden-beta":
     kagejitsuShadowGarden(`nochekaiser-beta`),
-  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya":
-    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-kaguya`),
   "kaguya-sama-shuuchiin-academy-school-uniform-ai":
     kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-ai`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-chika":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-chika`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-kaguya`),
   "kaguya-sama-shuuchiin-academy-school-uniform-miko":
     kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-miko`),
   "mahoako-notekaga-locomusica": mahoakoLocomusica(`notekaga`),

@@ -1327,6 +1327,8 @@ export const tagVisibilities = {
   "pencil skirt": visibleType.skirt,
   "high-low skirt": visibleType.skirt,
   pantyhose: visibleType.thighhighs,
+  "black pantyhose": visibleType.thighhighs,
+  "white pantyhose": visibleType.thighhighs,
   loafers: visibleType.foot,
   sneakers: visibleType.foot,
   underwear: visibleType.dress,

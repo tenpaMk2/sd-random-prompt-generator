@@ -211,8 +211,8 @@ const kagejitsuNochekaiserShadowGardenBeta = {
   key: `kagejitsu-nochekaiser-shadow-garden-beta`,
 } as const satisfies OutfitSetting;
 
-const kaguyaSamaShuuchiinAcademySchoolUniformKaguya = {
-  key: `kaguya-sama-shuuchiin-academy-school-uniform-kaguya`,
+const kaguyaSamaShuuchiinAcademySchoolUniformAi = {
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-ai`,
   backgrounds: [
     ...backgroundsPreset.classroom,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
@@ -221,13 +221,18 @@ const kaguyaSamaShuuchiinAcademySchoolUniformKaguya = {
   ],
 } as const satisfies OutfitSetting;
 
-const kaguyaSamaShuuchiinAcademySchoolUniformAi = {
-  ...kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
-  key: `kaguya-sama-shuuchiin-academy-school-uniform-ai`,
+const kaguyaSamaShuuchiinAcademySchoolUniformChika = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-chika`,
+} as const satisfies OutfitSetting;
+
+const kaguyaSamaShuuchiinAcademySchoolUniformKaguya = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-kaguya`,
 } as const satisfies OutfitSetting;
 
 const kaguyaSamaShuuchiinAcademySchoolUniformMiko = {
-  ...kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAi,
   key: `kaguya-sama-shuuchiin-academy-school-uniform-miko`,
 } as const satisfies OutfitSetting;
 
@@ -311,11 +316,14 @@ export const outfitsPreset = {
   "kagejitsu-nochekaiser-shadow-garden-beta": [
     kagejitsuNochekaiserShadowGardenBeta,
   ],
-  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya": [
-    kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
-  ],
   "kaguya-sama-shuuchiin-academy-school-uniform-ai": [
     kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-chika": [
+    kaguyaSamaShuuchiinAcademySchoolUniformChika,
+  ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya": [
+    kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
   ],
   "kaguya-sama-shuuchiin-academy-school-uniform-miko": [
     kaguyaSamaShuuchiinAcademySchoolUniformMiko,

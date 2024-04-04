@@ -644,6 +644,17 @@ export const allLoras = [
     outfitTriggerTags: [],
     creator: `nochekaiser881`,
   },
+  {
+    loraName: `chika-fujiwara-s3-ponyxl-lora-nochekaiser`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/336863/chika-fujiwara-kaguya-sama-love-is-war`,
+    ),
+    characterTriggerWordsTags: [`chika fujiwara`],
+    outfitTriggerTags: [],
+    creator: `nochekaiser881`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];
