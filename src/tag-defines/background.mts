@@ -58,5 +58,8 @@ const allBackgroundTags = [
   `city lights`,
   `rooftop`,
   `moon`,
+  `chalkboard`,
+  `school desk`,
+  `school chair`,
 ] as const satisfies readonly string[];
 export type BackgroundTag = (typeof allBackgroundTags)[number];

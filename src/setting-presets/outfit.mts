@@ -211,6 +211,26 @@ const kagejitsuNochekaiserShadowGardenBeta = {
   key: `kagejitsu-nochekaiser-shadow-garden-beta`,
 } as const satisfies OutfitSetting;
 
+const kaguyaSamaShuuchiinAcademySchoolUniformKaguya = {
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-kaguya`,
+  backgrounds: [
+    ...backgroundsPreset.classroom,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
+  ],
+} as const satisfies OutfitSetting;
+
+const kaguyaSamaShuuchiinAcademySchoolUniformAi = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-ai`,
+} as const satisfies OutfitSetting;
+
+const kaguyaSamaShuuchiinAcademySchoolUniformMiko = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-miko`,
+} as const satisfies OutfitSetting;
+
 const mahoakoNotekagaLocomusica = {
   key: `mahoako-notekaga-locomusica`,
   backgrounds: [
@@ -290,6 +310,15 @@ export const outfitsPreset = {
   ],
   "kagejitsu-nochekaiser-shadow-garden-beta": [
     kagejitsuNochekaiserShadowGardenBeta,
+  ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya": [
+    kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
+  ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-ai": [
+    kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-miko": [
+    kaguyaSamaShuuchiinAcademySchoolUniformMiko,
   ],
   "mahoako-notekaga-locomusica": [mahoakoNotekagaLocomusica],
   "prisma-illya-chloe-beast": [prismaIllyaAm7CoffeeloveChloeBeast],

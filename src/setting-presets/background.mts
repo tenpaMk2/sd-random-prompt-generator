@@ -199,6 +199,28 @@ export const backgroundsPreset = {
       poses: fromHorizontalPosesPreset.onFloor,
     },
   ],
+  classroom: [
+    {
+      type: `from-above`,
+      key: `classroom-floor`,
+      poses: [...fromAbovePosesPreset.usual, ...fromAbovePosesPreset.onFloor],
+    },
+    {
+      type: `from-below`,
+      key: `classroom-window`,
+      poses: fromBelowPosesPreset.usual,
+    },
+    {
+      type: `from-below`,
+      key: `classroom-chalkboard`,
+      poses: fromBelowPosesPreset.usual,
+    },
+    {
+      type: `from-horizontal`,
+      key: `classroom-window`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+  ],
 } as const satisfies {
   [k in string]: (
     | BackgroundSetting<"from-above">

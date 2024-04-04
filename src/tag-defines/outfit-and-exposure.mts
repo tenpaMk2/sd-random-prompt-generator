@@ -494,6 +494,21 @@ const allBodysuitColorTags = [
   `yellow bodysuit`,
 ] as const satisfies string[];
 
+const allArmbandColorTags = [
+  `aqua armband`,
+  `black armband`,
+  `blue armband`,
+  `brown armband`,
+  `green armband`,
+  `grey armband`,
+  `orange armband`,
+  `pink armband`,
+  `purple armband`,
+  `red armband`,
+  `white armband`,
+  `yellow armband`,
+] as const satisfies string[];
+
 const allOutfitTags = [
   ...getKeys(allDistinguishableOutfitTags),
   `shirt`,
@@ -554,6 +569,8 @@ const allOutfitTags = [
   ...allFootwearColorTags,
   `bodysuit`,
   ...allBodysuitColorTags,
+  `armband`,
+  ...allArmbandColorTags,
 
   `ribbed sweater`,
   `striped sweater`,
@@ -744,6 +761,11 @@ const allOutfitTags = [
   `tight clothes`,
   `no pants`,
   `armor`,
+  `shuuchiin academy school uniform`,
+  `cardigan`,
+  `clothes around waist`,
+  `sweater around waist`,
+  `cardigan around waist`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

@@ -17,6 +17,7 @@ import { sukumizuThighhighs } from "./common/sukumizu-thighhighs.mjs";
 import { testOutfit } from "./common/test-outfit.mjs";
 import { danmachiHestia } from "./danmachi/hestia.mjs";
 import { kagejitsuShadowGarden } from "./kagejitsu/shadow-garden.mjs";
+import { kaguyaSamaShuuchiinAcademySchoolUniform } from "./kaguya-sama/shuuchiin-academy-school-uniform.mjs";
 import { mahoakoLocomusica } from "./mahoako/locomusica.mjs";
 import { prismaIllyaChloeBeast } from "./prisma-illya/chloe-beast.mjs";
 import { prismaIllyaIllyaBeast } from "./prisma-illya/illya-beast.mjs";
@@ -127,6 +128,12 @@ export const outfitTable = {
     kagejitsuShadowGarden(`nochekaiser-alpha`),
   "kagejitsu-nochekaiser-shadow-garden-beta":
     kagejitsuShadowGarden(`nochekaiser-beta`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-kaguya`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-ai":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-ai`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-miko":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-miko`),
   "mahoako-notekaga-locomusica": mahoakoLocomusica(`notekaga`),
   "prisma-illya-chloe-beast": prismaIllyaChloeBeast(`am7coffeelove`),
   "prisma-illya-illya-beast": prismaIllyaIllyaBeast(`am7coffeelove`),

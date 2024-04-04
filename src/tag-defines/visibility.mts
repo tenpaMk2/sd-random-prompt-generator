@@ -927,6 +927,21 @@ const allBodysuitColorVisibilities = {
   "yellow bodysuit": visibleType.all,
 } as const;
 
+const allArmbandColorVisibilities = {
+  "aqua armband": visibleType.armlet,
+  "black armband": visibleType.armlet,
+  "blue armband": visibleType.armlet,
+  "brown armband": visibleType.armlet,
+  "green armband": visibleType.armlet,
+  "grey armband": visibleType.armlet,
+  "orange armband": visibleType.armlet,
+  "pink armband": visibleType.armlet,
+  "purple armband": visibleType.armlet,
+  "red armband": visibleType.armlet,
+  "white armband": visibleType.armlet,
+  "yellow armband": visibleType.armlet,
+} as const;
+
 export const tagVisibilities = {
   // Head feature
   ...allEyesColorVisibilities,
@@ -1248,6 +1263,8 @@ export const tagVisibilities = {
   ...allFootwearColorVisibilities,
   bodysuit: visibleType.all,
   ...allBodysuitColorVisibilities,
+  armband: visibleType.armlet,
+  ...allArmbandColorVisibilities,
 
   "ribbed sweater": visibleType.shirt,
   "striped sweater": visibleType.shirt,
@@ -1434,6 +1451,11 @@ export const tagVisibilities = {
   "tight clothes": visibleType.shirt,
   "no pants": visibleType.panties,
   armor: visibleType.dress,
+  "shuuchiin academy school uniform": visibleType.dress,
+  cardigan: visibleType.shirt,
+  "clothes around waist": visibleType["high-waist skirt"],
+  "sweater around waist": visibleType["high-waist skirt"],
+  "cardigan around waist": visibleType["high-waist skirt"],
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

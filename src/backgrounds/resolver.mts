@@ -81,6 +81,10 @@ export const backgroundTable = {
       entries: [`outdoors`, `cityscape`, `city lights`, `rooftop`, `night sky`],
       removeShoes: false,
     },
+    "classroom-window": {
+      entries: [`indoors`, `classroom`, `window`, `school desk`],
+      removeShoes: false,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },
@@ -122,6 +126,14 @@ export const backgroundTable = {
     christmas: {
       entries: [`indoors`, `christmas`, `christmas tree`],
       removeShoes: true,
+    },
+    "classroom-chalkboard": {
+      entries: [`indoors`, `classroom`, `chalkboard`],
+      removeShoes: false,
+    },
+    "classroom-window": {
+      entries: [`indoors`, `classroom`, `window`, `school chair`],
+      removeShoes: false,
     },
   },
   "from-above": {
@@ -177,6 +189,10 @@ export const backgroundTable = {
     },
     "night-rooftop": {
       entries: [`outdoors`, `cityscape`, `city lights`, `rooftop`],
+      removeShoes: false,
+    },
+    "classroom-floor": {
+      entries: [`indoors`, `classroom`, `wooden floor`],
       removeShoes: false,
     },
   },
