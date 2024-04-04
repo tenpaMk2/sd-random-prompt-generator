@@ -2,8 +2,11 @@ import { PoseSetting } from "../setting-define.mjs";
 
 export const fromAbovePosesPreset = {
   usual: [
+    { key: `from-side-looking-ahead` },
     { key: `grabbing-own-breasts` },
     { key: `paw-pose` },
+    { key: `shushing` },
+    { key: `standing` },
     { key: `hands-on-own-chest` },
   ],
   onFloor: [
