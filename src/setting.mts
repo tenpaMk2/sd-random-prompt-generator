@@ -35,10 +35,24 @@ const portrait = {
     hr_upscaler: "4x-AnimeSharp",
     hr_second_pass_steps: 0,
   },
-  characters: generateCharactersSetting({
-    characterKeys: [`kagejitsu-alpha-nochekaiser`],
-    outfitKeys: [`kagejitsu-nochekaiser-shadow-garden-alpha`],
-  }),
+  characters: [
+    ...generateCharactersSetting({
+      characterKeys: [`kaguya-sama-kaguya-nochekaiser`],
+      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-kaguya`],
+    }),
+    ...generateCharactersSetting({
+      characterKeys: [`kaguya-sama-ai-nochekaiser`],
+      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-ai`],
+    }),
+    ...generateCharactersSetting({
+      characterKeys: [`kaguya-sama-miko-nochekaiser`],
+      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-miko`],
+    }),
+    ...generateCharactersSetting({
+      characterKeys: [`kaguya-sama-chika-nochekaiser`],
+      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-chika`],
+    }),
+  ],
 } as const satisfies Setting;
 
 const landscape = {
