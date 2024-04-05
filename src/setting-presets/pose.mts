@@ -68,6 +68,7 @@ export const fromHorizontalPosesPreset = {
     { key: `on-bed-the-pose-head-rest` },
   ],
   wedding: [{ key: `holding-bouquet` }],
+  singing: [{ key: `singing` }, { key: `singing-from-side` }],
   // TODO: skirt
 } as const satisfies {
   [k in string]: PoseSetting<"from-horizontal">[];

@@ -6,6 +6,7 @@ import {
   CharacterSetting,
   OutfitSetting,
 } from "../setting-define.mjs";
+import { backgroundsPreset } from "./background.mjs";
 import { outfitsPreset } from "./outfit.mjs";
 
 /**
@@ -16,7 +17,8 @@ type BackgroundAndPoseKey =
   | `from-above-bed-sheet-full-body-lying`
   | `bed-all-fours-from-behind`
   | `bed-all-fours`
-  | `colorful-heart-backgrounds-kneeling`;
+  | `colorful-heart-backgrounds-kneeling`
+  | `karaoke`;
 
 export const generateCharactersSetting = ({
   characterKeys,
@@ -83,6 +85,8 @@ export const generateCharactersSetting = ({
                 key: `colorful-heart-backgrounds`,
                 poses: [{ key: `kneeling-spread-legs` }],
               } as const satisfies BackgroundSetting<`from-horizontal`>;
+            case `karaoke`:
+              return backgroundsPreset["karaoke-box"][0]; // TODO: Support array.
           }
         },
       );

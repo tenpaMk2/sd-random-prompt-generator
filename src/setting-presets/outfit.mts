@@ -79,6 +79,7 @@ const camisoleDenimShorts = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 
@@ -89,6 +90,7 @@ const casualMiniskirt = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 
@@ -143,6 +145,7 @@ const microBikini = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 
@@ -153,6 +156,7 @@ const playboyBunny = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 
@@ -193,6 +197,7 @@ const danmachiNochekaiserHestia = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 
@@ -203,6 +208,7 @@ const kagejitsuNochekaiserShadowGardenAlpha = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 
@@ -218,6 +224,7 @@ const kaguyaSamaShuuchiinAcademySchoolUniformAi = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 
@@ -245,6 +252,7 @@ const mahoakoNotekagaLocomusica = {
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
     ...backgroundsPreset.bedSheetWindow,
     ...backgroundsPreset.colorfulHeartBackgrounds,
+    ...backgroundsPreset["karaoke-box"],
   ],
 } as const satisfies OutfitSetting;
 

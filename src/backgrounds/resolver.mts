@@ -85,6 +85,10 @@ export const backgroundTable = {
       entries: [`indoors`, `classroom`, `window`, `school desk`],
       removeShoes: false,
     },
+    "karaoke-box": {
+      entries: [`indoors`, `karaoke`, `karaoke-box`, `couch`],
+      removeShoes: false,
+    },
   },
   "from-below": {
     indoors: { entries: [`indoors`], removeShoes: false },

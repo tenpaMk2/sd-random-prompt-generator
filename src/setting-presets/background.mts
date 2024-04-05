@@ -221,6 +221,13 @@ export const backgroundsPreset = {
       poses: fromHorizontalPosesPreset.usual,
     },
   ],
+  "karaoke-box": [
+    {
+      type: `from-horizontal`,
+      key: `karaoke-box`,
+      poses: fromHorizontalPosesPreset.singing,
+    },
+  ],
 } as const satisfies {
   [k in string]: (
     | BackgroundSetting<"from-above">

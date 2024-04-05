@@ -30,6 +30,8 @@ import { fromHorizontalHeartHands } from "./common/from-horizontal/heart-hands.m
 import { fromHorizontalKneelingSpreadLegs } from "./common/from-horizontal/kneeling-spread-legs.mjs";
 import { fromHorizontalPawPose } from "./common/from-horizontal/paw-pose.mjs";
 import { fromHorizontalPortrait } from "./common/from-horizontal/portrait.mjs";
+import { fromHorizontalSingingFromSide } from "./common/from-horizontal/singing-from-side.mjs";
+import { fromHorizontalSinging } from "./common/from-horizontal/singing.mjs";
 import { fromHorizontalThePoseHeadRest } from "./common/from-horizontal/the-pose-head-rest.mjs";
 import { fromHorizontalTwistedTorso } from "./common/from-horizontal/twisted-torso.mjs";
 import { fromHorizontalV } from "./common/from-horizontal/v.mjs";
@@ -110,6 +112,8 @@ export const poseTable = {
     "kneeling-spread-legs": fromHorizontalKneelingSpreadLegs,
     "paw-pose": fromHorizontalPawPose,
     portrait: fromHorizontalPortrait,
+    "singing-from-side": fromHorizontalSingingFromSide,
+    singing: fromHorizontalSinging,
     "the-pose-head-rest": fromHorizontalThePoseHeadRest,
     "twisted-torso": fromHorizontalTwistedTorso,
     v: fromHorizontalV,

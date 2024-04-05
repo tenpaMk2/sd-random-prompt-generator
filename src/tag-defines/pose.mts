@@ -72,5 +72,8 @@ const allPoseTags = [
   `shushing`,
   `index finger raised`,
   `standing`,
+  `singing`,
+  `microphone`,
+  `holding microphone`,
 ] as const satisfies readonly string[];
 export type PoseTag = (typeof allPoseTags)[number];
