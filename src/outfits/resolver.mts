@@ -22,6 +22,7 @@ import { mahoakoLocomusica } from "./mahoako/locomusica.mjs";
 import { prismaIllyaChloeBeast } from "./prisma-illya/chloe-beast.mjs";
 import { prismaIllyaIllyaBeast } from "./prisma-illya/illya-beast.mjs";
 import { prismaIllyaMiyuBeast } from "./prisma-illya/miyu-beast.mjs";
+import { pso2BikiniGene } from "./pso2/bikini-gene.mjs";
 import { sasuoniFirstHighSchoolUniform } from "./sasuoni/first-high-school-uniform.mjs";
 
 /**
@@ -140,6 +141,7 @@ export const outfitTable = {
   "prisma-illya-chloe-beast": prismaIllyaChloeBeast(`am7coffeelove`),
   "prisma-illya-illya-beast": prismaIllyaIllyaBeast(`am7coffeelove`),
   "prisma-illya-miyu-beast": prismaIllyaMiyuBeast(`am7coffeelove`),
+  "pso2-bikini-gene": pso2BikiniGene(),
   "sasuoni-eft-first-high-school-uniform-pantyhose":
     sasuoniFirstHighSchoolUniform(`eft-pantyhose`),
   "sasuoni-eft-first-high-school-uniform-thighhighs":

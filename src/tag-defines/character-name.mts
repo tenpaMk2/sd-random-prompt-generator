@@ -88,5 +88,6 @@ export const allCharacterName = [
   `iino miko`,
   `fujiwara chika`,
   `shirogane kei`,
+  `gene \\(pso2\\)`,
 ] as const satisfies readonly string[];
 export type CharacterNameTag = (typeof allCharacterName)[number];

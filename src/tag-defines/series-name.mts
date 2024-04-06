@@ -45,6 +45,7 @@ export const allSeriesName = [
   `dumbbell nan kilo moteru?`,
   `dungeon ni deai wo motomeru no wa machigatteiru darou ka`,
   `mahou shoujo ni akogarete`,
+  `phantasy star online 2`,
 ] as const satisfies readonly string[];
 
 export type SeriesNameTag = (typeof allSeriesName)[number];

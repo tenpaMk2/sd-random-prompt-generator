@@ -288,6 +288,16 @@ const prismaIllyaAm7CoffeeloveMiyuBeast = {
   backgrounds: prismaIllyaAm7CoffeeloveChloeBeast.backgrounds,
 } as const satisfies OutfitSetting;
 
+const pso2BikiniGene = {
+  key: `pso2-bikini-gene`,
+  backgrounds: [
+    ...backgroundsPreset.oceanBeach,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
+  ],
+} as const satisfies OutfitSetting;
+
 const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
   ({
     key:
@@ -340,6 +350,7 @@ export const outfitsPreset = {
   "prisma-illya-chloe-beast": [prismaIllyaAm7CoffeeloveChloeBeast],
   "prisma-illya-illya-beast": [prismaIllyaAm7CoffeeloveIllyaBeast],
   "prisma-illya-miyu-beast": [prismaIllyaAm7CoffeeloveMiyuBeast],
+  "pso2-bikini-gene": [pso2BikiniGene],
   "sasuoni-eft-first-high-school-uniform-pantyhose": [
     sasuoniFirstHighSchoolUniform(`pantyhose`),
   ],

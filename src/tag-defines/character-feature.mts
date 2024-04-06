@@ -45,6 +45,7 @@ const allEyesColorTags = [
 
 const allHairColorTags = [
   `multicolored hair`,
+  `two-tone hair`,
   `streaked hair`,
   `aqua hair`,
   `black hair`,

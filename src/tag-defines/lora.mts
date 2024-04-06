@@ -655,6 +655,17 @@ export const allLoras = [
     outfitTriggerTags: [],
     creator: `nochekaiser881`,
   },
+  {
+    loraName: `gene_bikini`,
+    recommendedWeight: 1.0,
+    supportedBaseModels: [`Pony`],
+    url: new URL(
+      `https://civitai.com/models/350357/gene-pso2?modelVersionId=422503`,
+    ),
+    characterTriggerWordsTags: [],
+    outfitTriggerTags: [],
+    creator: `overnerd`,
+  },
 ] as const satisfies readonly LoraDefine[];
 
 export type LoraNameTag = (typeof allLoras)[number]["loraName"];
