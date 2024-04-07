@@ -29,6 +29,19 @@ export const allDistinguishableOutfitTags = {
   "red neck ribbon": `red ribbon`,
   "white neck ribbon": `white ribbon`,
   "yellow neck ribbon": `yellow ribbon`,
+  "around waist cardigan": `cardigan`,
+  "aqua around waist cardigan": `aqua cardigan`,
+  "black around waist cardigan": `black cardigan`,
+  "blue around waist cardigan": `blue cardigan`,
+  "brown around waist cardigan": `brown cardigan`,
+  "green around waist cardigan": `green cardigan`,
+  "grey around waist cardigan": `grey cardigan`,
+  "orange around waist cardigan": `orange cardigan`,
+  "pink around waist cardigan": `pink cardigan`,
+  "purple around waist cardigan": `purple cardigan`,
+  "red around waist cardigan": `red cardigan`,
+  "white around waist cardigan": `white cardigan`,
+  "yellow around waist cardigan`,": `yellow cardigan`,
 } as const satisfies { [k in string]: string };
 
 const allExposureTags = [
@@ -509,6 +522,21 @@ const allArmbandColorTags = [
   `yellow armband`,
 ] as const satisfies string[];
 
+const allCardiganColorTags = [
+  `aqua cardigan`,
+  `black cardigan`,
+  `blue cardigan`,
+  `brown cardigan`,
+  `green cardigan`,
+  `grey cardigan`,
+  `orange cardigan`,
+  `pink cardigan`,
+  `purple cardigan`,
+  `red cardigan`,
+  `white cardigan`,
+  `yellow cardigan`,
+] as const satisfies string[];
+
 const allOutfitTags = [
   ...getKeys(allDistinguishableOutfitTags),
   `shirt`,
@@ -571,6 +599,8 @@ const allOutfitTags = [
   ...allBodysuitColorTags,
   `armband`,
   ...allArmbandColorTags,
+  `cardigan`,
+  ...allCardiganColorTags,
 
   `ribbed sweater`,
   `striped sweater`,
@@ -764,7 +794,6 @@ const allOutfitTags = [
   `no pants`,
   `armor`,
   `shuuchiin academy school uniform`,
-  `cardigan`,
   `clothes around waist`,
   `sweater around waist`,
   `cardigan around waist`,

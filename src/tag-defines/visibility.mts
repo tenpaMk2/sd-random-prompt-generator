@@ -489,6 +489,19 @@ const allDistinguishableOutfitVisibilities = {
   "red neck ribbon": visibleType.bowtie,
   "white neck ribbon": visibleType.bowtie,
   "yellow neck ribbon": visibleType.bowtie,
+  "around waist cardigan": visibleType.skirt,
+  "aqua around waist cardigan": visibleType.skirt,
+  "black around waist cardigan": visibleType.skirt,
+  "blue around waist cardigan": visibleType.skirt,
+  "brown around waist cardigan": visibleType.skirt,
+  "green around waist cardigan": visibleType.skirt,
+  "grey around waist cardigan": visibleType.skirt,
+  "orange around waist cardigan": visibleType.skirt,
+  "pink around waist cardigan": visibleType.skirt,
+  "purple around waist cardigan": visibleType.skirt,
+  "red around waist cardigan": visibleType.skirt,
+  "white around waist cardigan": visibleType.skirt,
+  "yellow around waist cardigan`,": visibleType.skirt,
 } as const;
 
 const allShirtColorVisibilities = {
@@ -943,6 +956,21 @@ const allArmbandColorVisibilities = {
   "yellow armband": visibleType.armlet,
 } as const;
 
+const allCardiganColorVisibilities = {
+  "aqua cardigan": visibleType.shirt,
+  "black cardigan": visibleType.shirt,
+  "blue cardigan": visibleType.shirt,
+  "brown cardigan": visibleType.shirt,
+  "green cardigan": visibleType.shirt,
+  "grey cardigan": visibleType.shirt,
+  "orange cardigan": visibleType.shirt,
+  "pink cardigan": visibleType.shirt,
+  "purple cardigan": visibleType.shirt,
+  "red cardigan": visibleType.shirt,
+  "white cardigan": visibleType.shirt,
+  "yellow cardigan": visibleType.shirt,
+} as const;
+
 export const tagVisibilities = {
   // Head feature
   ...allEyesColorVisibilities,
@@ -1266,6 +1294,8 @@ export const tagVisibilities = {
   ...allBodysuitColorVisibilities,
   armband: visibleType.armlet,
   ...allArmbandColorVisibilities,
+  cardigan: visibleType.shirt,
+  ...allCardiganColorVisibilities,
 
   "ribbed sweater": visibleType.shirt,
   "striped sweater": visibleType.shirt,
@@ -1455,7 +1485,6 @@ export const tagVisibilities = {
   "no pants": visibleType.panties,
   armor: visibleType.dress,
   "shuuchiin academy school uniform": visibleType.dress,
-  cardigan: visibleType.shirt,
   "clothes around waist": visibleType["high-waist skirt"],
   "sweater around waist": visibleType["high-waist skirt"],
   "cardigan around waist": visibleType["high-waist skirt"],

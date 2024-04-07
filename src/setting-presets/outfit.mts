@@ -217,8 +217,8 @@ const kagejitsuNochekaiserShadowGardenBeta = {
   key: `kagejitsu-nochekaiser-shadow-garden-beta`,
 } as const satisfies OutfitSetting;
 
-const kaguyaSamaShuuchiinAcademySchoolUniformAi = {
-  key: `kaguya-sama-shuuchiin-academy-school-uniform-ai`,
+const kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser = {
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-ai-nochekaiser`,
   backgrounds: [
     ...backgroundsPreset.classroom,
     ...backgroundsPreset.steamingBedSheetSpokenHeart,
@@ -228,18 +228,38 @@ const kaguyaSamaShuuchiinAcademySchoolUniformAi = {
   ],
 } as const satisfies OutfitSetting;
 
+const kaguyaSamaShuuchiinAcademySchoolUniformAi = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-ai`,
+} as const satisfies OutfitSetting;
+
+const kaguyaSamaShuuchiinAcademySchoolUniformChikaNochekaiser = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-chika-nochekaiser`,
+} as const satisfies OutfitSetting;
+
 const kaguyaSamaShuuchiinAcademySchoolUniformChika = {
-  ...kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
   key: `kaguya-sama-shuuchiin-academy-school-uniform-chika`,
 } as const satisfies OutfitSetting;
 
+const kaguyaSamaShuuchiinAcademySchoolUniformKaguyaNochekaiser = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-kaguya-nochekaiser`,
+} as const satisfies OutfitSetting;
+
 const kaguyaSamaShuuchiinAcademySchoolUniformKaguya = {
-  ...kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
   key: `kaguya-sama-shuuchiin-academy-school-uniform-kaguya`,
 } as const satisfies OutfitSetting;
 
+const kaguyaSamaShuuchiinAcademySchoolUniformMikoNochekaiser = {
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
+  key: `kaguya-sama-shuuchiin-academy-school-uniform-miko-nochekaiser`,
+} as const satisfies OutfitSetting;
+
 const kaguyaSamaShuuchiinAcademySchoolUniformMiko = {
-  ...kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  ...kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
   key: `kaguya-sama-shuuchiin-academy-school-uniform-miko`,
 } as const satisfies OutfitSetting;
 
@@ -334,14 +354,26 @@ export const outfitsPreset = {
   "kagejitsu-nochekaiser-shadow-garden-beta": [
     kagejitsuNochekaiserShadowGardenBeta,
   ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-ai-nochekaiser": [
+    kaguyaSamaShuuchiinAcademySchoolUniformAiNochekaiser,
+  ],
   "kaguya-sama-shuuchiin-academy-school-uniform-ai": [
     kaguyaSamaShuuchiinAcademySchoolUniformAi,
+  ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-chika-nochekaiser": [
+    kaguyaSamaShuuchiinAcademySchoolUniformChikaNochekaiser,
   ],
   "kaguya-sama-shuuchiin-academy-school-uniform-chika": [
     kaguyaSamaShuuchiinAcademySchoolUniformChika,
   ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya-nochekaiser": [
+    kaguyaSamaShuuchiinAcademySchoolUniformKaguyaNochekaiser,
+  ],
   "kaguya-sama-shuuchiin-academy-school-uniform-kaguya": [
     kaguyaSamaShuuchiinAcademySchoolUniformKaguya,
+  ],
+  "kaguya-sama-shuuchiin-academy-school-uniform-miko-nochekaiser": [
+    kaguyaSamaShuuchiinAcademySchoolUniformMikoNochekaiser,
   ],
   "kaguya-sama-shuuchiin-academy-school-uniform-miko": [
     kaguyaSamaShuuchiinAcademySchoolUniformMiko,

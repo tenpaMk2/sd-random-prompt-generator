@@ -129,14 +129,22 @@ export const outfitTable = {
     kagejitsuShadowGarden(`nochekaiser-alpha`),
   "kagejitsu-nochekaiser-shadow-garden-beta":
     kagejitsuShadowGarden(`nochekaiser-beta`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-ai-nochekaiser":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`ai-nochekaiser`),
   "kaguya-sama-shuuchiin-academy-school-uniform-ai":
-    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-ai`),
+    kaguyaSamaShuuchiinAcademySchoolUniform(`ai`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-chika-nochekaiser":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`chika-nochekaiser`),
   "kaguya-sama-shuuchiin-academy-school-uniform-chika":
-    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-chika`),
+    kaguyaSamaShuuchiinAcademySchoolUniform(`chika`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-kaguya-nochekaiser":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`kaguya-nochekaiser`),
   "kaguya-sama-shuuchiin-academy-school-uniform-kaguya":
-    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-kaguya`),
+    kaguyaSamaShuuchiinAcademySchoolUniform(`kaguya`),
+  "kaguya-sama-shuuchiin-academy-school-uniform-miko-nochekaiser":
+    kaguyaSamaShuuchiinAcademySchoolUniform(`miko-nochekaiser`),
   "kaguya-sama-shuuchiin-academy-school-uniform-miko":
-    kaguyaSamaShuuchiinAcademySchoolUniform(`nochekaiser-miko`),
+    kaguyaSamaShuuchiinAcademySchoolUniform(`miko`),
   "mahoako-notekaga-locomusica": mahoakoLocomusica(`notekaga`),
   "prisma-illya-chloe-beast": prismaIllyaChloeBeast(`am7coffeelove`),
   "prisma-illya-illya-beast": prismaIllyaIllyaBeast(`am7coffeelove`),

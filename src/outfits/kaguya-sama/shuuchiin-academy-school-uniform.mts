@@ -2,20 +2,57 @@ import { OutfitAndExposureTag } from "../../tag-defines/outfit-and-exposure.mjs"
 import { upskirtPreset } from "../common/upskirt-preset.mjs";
 import { OutfitDefine } from "../resolver.mjs";
 
-const additional = {
-  "nochekaiser-ai": [
-    `short dress`,
-    `cardigan`,
-    `sweater`,
-    `clothes around waist`,
-    `sweater around waist`,
-    `cardigan around waist`,
-    `socks`,
-    `black socks`,
+const normal = [
+  `shuuchiin academy school uniform`,
+  `school uniform`,
+  `dress`,
+  `black dress`,
+  `collared dress`,
+  `sailor collar`,
+  `white sailor collar`,
+  `collarbone`,
+  `neck ribbon`,
+  `red neck ribbon`,
+  `short dress`,
+  `loafers`,
+] as const satisfies OutfitAndExposureTag[];
+
+const gyaru = [
+  `shuuchiin academy school uniform`,
+  `school uniform`,
+  `collared shirt`,
+  `white shirt`,
+  `long sleeves`,
+  `collarbone`,
+  `clothes around waist`,
+  `around waist cardigan`,
+  `brown around waist cardigan`,
+  `cardigan around waist`,
+  `vest`,
+  `black vest`,
+  `skirt`,
+  `black skirt`,
+  `miniskirt`,
+  `socks`,
+  `black socks`,
+] as const satisfies OutfitAndExposureTag[];
+
+const outfitAndExposureEntries = {
+  "ai-nochekaiser": [...gyaru, `sweater around waist`],
+  ai: [...gyaru],
+  "chika-nochekaiser": [...normal, `socks`, `white socks`],
+  chika: [...normal, `socks`, `white socks`],
+  "kaguya-nochekaiser": [...normal, `socks`, `black socks`],
+  kaguya: [...normal, `socks`, `black socks`],
+  "miko-nochekaiser": [
+    ...normal,
+    `armband`,
+    `yellow armband`,
+    `pantyhose`,
+    `black pantyhose`,
   ],
-  "nochekaiser-chika": [`socks`, `white socks`],
-  "nochekaiser-kaguya": [`socks`, `black socks`],
-  "nochekaiser-miko": [
+  miko: [
+    ...normal,
     `armband`,
     `yellow armband`,
     `pantyhose`,
@@ -24,26 +61,12 @@ const additional = {
 } as const satisfies { [k in string]: OutfitAndExposureTag[] };
 
 export const kaguyaSamaShuuchiinAcademySchoolUniform = (
-  variation: keyof typeof additional,
+  variation: keyof typeof outfitAndExposureEntries,
 ) =>
   ({
     lora: null,
     loraOutfitTriggerWordEntries: [],
-    outfitAndExposureEntries: [
-      `shuuchiin academy school uniform`,
-      `school uniform`,
-      `dress`,
-      `black dress`,
-      `collared dress`,
-      `sailor collar`,
-      `white sailor collar`,
-      `collarbone`,
-      `neck ribbon`,
-      `red neck ribbon`,
-      `loafers`,
-      `short dress`,
-      ...additional[variation],
-    ],
+    outfitAndExposureEntries: outfitAndExposureEntries[variation],
     specialVisibility: {
       armpits: false,
       hangingBreasts: false,
@@ -56,10 +79,9 @@ export const kaguyaSamaShuuchiinAcademySchoolUniform = (
       insideOfThighs: false,
     },
     liftType: `dress`,
-    upskirtEntries:
-      variation === `nochekaiser-miko`
-        ? upskirtPreset.pantiesUnderPantyhose
-        : upskirtPreset.colorfulPanties,
+    upskirtEntries: [`miko`, `miko-nochekaiser`].some((x) => x === variation)
+      ? upskirtPreset.pantiesUnderPantyhose
+      : upskirtPreset.colorfulPanties,
     whenRemoveShoes: {
       excludeTags: [`loafers`],
       additionalFootEntriesAfterRemoving: [`no shoes`],
