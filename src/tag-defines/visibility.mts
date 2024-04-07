@@ -1366,6 +1366,7 @@ export const tagVisibilities = {
   "underwear only": visibleType.dress,
   lingerie: visibleType.dress,
   bra: visibleType.bra,
+  "lace-trimmed bra": visibleType.bra,
   "crotch seam": visibleType.cameltoe,
   "lace panties": visibleType.panties,
   "tokiwadai school uniform": visibleType.all,
@@ -1488,6 +1489,7 @@ export const tagVisibilities = {
   "clothes around waist": visibleType["high-waist skirt"],
   "sweater around waist": visibleType["high-waist skirt"],
   "cardigan around waist": visibleType["high-waist skirt"],
+  unbuttoned: visibleType["center frills"],
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };

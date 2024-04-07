@@ -246,6 +246,76 @@ const buildCore = (
     (key) => poseData.pose.visibility[key],
   );
 
+  // TODO: temp
+  if (poseData.key === `undressing-from-side`) {
+    const visibleFeatures = extractVisible<CharacterFeatureTag>(
+      characterFeature,
+      poseVisibility,
+    );
+
+    const outfitsOverride = PatternCollection.create<OutfitAndExposureTag>([
+      `underwear`,
+      `bra`,
+      `lace-trimmed bra`,
+      `collared shirt`,
+      `open clothes`,
+      `unbuttoned`,
+    ]);
+
+    const visibleOutfits = extractVisible<OutfitAndExposureTag>(
+      outfitsOverride,
+      poseVisibility,
+    );
+
+    const emotionsOverride = PatternCollection.create<EmotionTag>([
+      `blush`,
+      `half-closed eyes`,
+      `heavy breathing`,
+      [{ entries: [`smile`] }, { entries: [`expressionless`] }],
+    ]);
+
+    const upskirtOverride = PatternCollection.create<OutfitAndExposureTag>([]);
+
+    const specialVisibility = buildSpecialVisibility(
+      {
+        armpits: false,
+        hangingBreasts: false,
+        tautClothes: false,
+        cleavage: true,
+        sideboob: false,
+        backboob: false,
+        underboobLevel: `invisible`,
+        zettaiRyouiki: false,
+        insideOfThighs: false,
+      },
+      poseData.pose.specialVisibility,
+      {
+        breastSize: characterData.character.breastSize,
+        upskirtPatternCollection: upskirtOverride,
+        emotionPatternCollection: emotionsOverride,
+        backgroundPatternCollection: background,
+        visibleFeaturePatternCollection: visibleFeatures,
+        visibleOutfitPatternCollection: visibleOutfits,
+      },
+    );
+
+    return PatternCollection.combine<Tag | LoraNameTag>([
+      seriesName,
+      characterName,
+      loraCharacter,
+      loraCharacterTriggerWord,
+      visibleFeatures,
+      breastSize,
+      emotionsOverride,
+      loraOutfit,
+      loraOutfitTriggerWord,
+      visibleOutfits,
+      specialVisibility,
+      background,
+      pose,
+    ]);
+  }
+
   const visibleFeatures = extractVisible<CharacterFeatureTag>(
     characterFeature,
     poseVisibility,

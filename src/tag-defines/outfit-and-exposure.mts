@@ -672,6 +672,7 @@ const allOutfitTags = [
   `underwear only`,
   `lingerie`,
   `bra`,
+  `lace-trimmed bra`,
   `crotch seam`,
   `lace panties`,
   `tokiwadai school uniform`,
@@ -797,6 +798,7 @@ const allOutfitTags = [
   `clothes around waist`,
   `sweater around waist`,
   `cardigan around waist`,
+  `unbuttoned`,
 ] as const satisfies readonly string[];
 type OutfitTag = (typeof allOutfitTags)[number];
 

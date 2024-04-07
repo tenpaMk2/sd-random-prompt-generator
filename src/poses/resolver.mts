@@ -34,6 +34,7 @@ import { fromHorizontalSingingFromSide } from "./common/from-horizontal/singing-
 import { fromHorizontalSinging } from "./common/from-horizontal/singing.mjs";
 import { fromHorizontalThePoseHeadRest } from "./common/from-horizontal/the-pose-head-rest.mjs";
 import { fromHorizontalTwistedTorso } from "./common/from-horizontal/twisted-torso.mjs";
+import { fromHorizontalUndressingFromSide } from "./common/from-horizontal/undressing-from-side.mjs";
 import { fromHorizontalV } from "./common/from-horizontal/v.mjs";
 import { fromAboveHoldingBouquet } from "./special/from-above/holding-bouquet.mjs";
 import { fromAboveOnBedLyingOnStomach } from "./special/from-above/on-bed-lying-on-stomach.mjs";
@@ -122,6 +123,7 @@ export const poseTable = {
     "on-bed-all-fours": fromHorizontalOnBedAllFours,
     "on-bed-kneeling-spread-legs": fromHorizontalKneelingSpreadLegs,
     "on-bed-the-pose-head-rest": fromHorizontalOnBedThePoseHeadRest,
+    "undressing-from-side": fromHorizontalUndressingFromSide,
   },
 } as const satisfies {
   [k in BackgroundType]: {

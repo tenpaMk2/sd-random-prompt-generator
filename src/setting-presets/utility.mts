@@ -18,7 +18,8 @@ type BackgroundAndPoseKey =
   | `bed-all-fours-from-behind`
   | `bed-all-fours`
   | `colorful-heart-backgrounds-kneeling`
-  | `karaoke`;
+  | `karaoke`
+  | `undressing-from-side`;
 
 export const generateCharactersSetting = ({
   characterKeys,
@@ -87,6 +88,12 @@ export const generateCharactersSetting = ({
               } as const satisfies BackgroundSetting<`from-horizontal`>;
             case `karaoke`:
               return backgroundsPreset["karaoke-box"][0]; // TODO: Support array.
+            case `undressing-from-side`:
+              return {
+                type: `from-horizontal`,
+                key: `indoors`,
+                poses: [{ key: `undressing-from-side` }],
+              } as const satisfies BackgroundSetting<`from-horizontal`>;
           }
         },
       );
