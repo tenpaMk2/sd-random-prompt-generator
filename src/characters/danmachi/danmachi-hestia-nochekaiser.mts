@@ -4,7 +4,7 @@ import { CharacterDefine } from "../resolver.mjs";
 export const danmachiHestiaNochekaiser = () =>
   ({
     lora: {
-      tag: `hestia-danmachi`,
+      tag: `danmachi-hestia-ponyxl-lora-nochekaiser`,
       probabilityAndWeights: [{ probability: 1, weight: 0.8 }],
     },
     loraCharacterTriggerWordEntries: [`hestia`],
