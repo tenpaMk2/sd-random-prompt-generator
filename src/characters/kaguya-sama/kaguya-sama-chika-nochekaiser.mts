@@ -20,7 +20,7 @@ export const kaguyaSamaChikaNochekaiser = () =>
       `straight hair`,
       `blunt bangs`,
       `hair bow`,
-      `black bow`,
+      `black hair bow`,
       `thick thighs`,
     ],
     breastSize: `large breasts`,
