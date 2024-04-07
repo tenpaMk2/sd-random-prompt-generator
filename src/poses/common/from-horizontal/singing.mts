@@ -7,6 +7,7 @@ export const fromHorizontalSinging = {
     `looking at viewer`,
     `microphone`,
     `holding microphone`,
+    // TODO: `music note`
   ],
   visibility: {
     frontHead: true,
