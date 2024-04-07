@@ -111,6 +111,20 @@ export type Setting = Readonly<{
      * Recommend to use preset values from `checkpointAndVAEPreset`.
      */
     sd_vae: VAE;
+    /**
+     * Saved images format.
+     * Default is `png` .
+     */
+    samples_format?: `png` | `jpg` | `webp`;
+    /**
+     * Saved images quality of jpg. (Only for jpg format)
+     * Default is `80` .
+     */
+    jpeg_quality?: number;
+    /**
+     * Lossless compression of webp. (Only for webp format)
+     */
+    webp_lossless?: boolean;
   };
   txt2imgBodyJson: {
     negative_prompt: string;
