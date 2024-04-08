@@ -49,6 +49,10 @@ export const backgroundTable = {
       ],
       removeShoes: false,
     },
+    bedroom: {
+      entries: [`indoors`, `bedroom`, `lamp`, `blurry background`],
+      removeShoes: true,
+    },
     bed: {
       entries: [`bed`],
       removeShoes: true,

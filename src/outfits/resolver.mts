@@ -1,6 +1,7 @@
 import { NormalEntry, LoraEntry } from "../prompt-define.mjs";
 import { LoraOutfitTriggerWordsTag } from "../tag-defines/lora.mjs";
 import { OutfitAndExposureTag } from "../tag-defines/outfit-and-exposure.mjs";
+import { babydoll } from "./common/babydoll.mjs";
 import { bikini } from "./common/bikini.mjs";
 import { bridalLingerie } from "./common/bridal-lingerie.mjs";
 import { camisoleDenimShorts } from "./common/camisole-denim-shorts.mjs";
@@ -111,6 +112,7 @@ export type OutfitDefine = Readonly<{
 
 export const outfitTable = {
   "test-outfit": testOutfit(),
+  babydoll: babydoll(),
   bikini: bikini(),
   "bridal-lingerie": bridalLingerie(),
   "camisole-denim-shorts": camisoleDenimShorts(),

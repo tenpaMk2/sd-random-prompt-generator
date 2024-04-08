@@ -52,6 +52,15 @@ const testOutfit = {
   ],
 } as const satisfies OutfitSetting;
 
+const babydoll = {
+  key: `babydoll`,
+  backgrounds: [
+    ...backgroundsPreset.bedroom,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
+  ],
+} as const satisfies OutfitSetting;
+
 const bikini = {
   key: `bikini`,
   backgrounds: [
@@ -334,6 +343,7 @@ const sasuoniFirstHighSchoolUniform = (variation: `pantyhose` | `thighhighs`) =>
 
 export const outfitsPreset = {
   "test-outfit": [testOutfit],
+  babydoll: [babydoll],
   bikini: [bikini],
   "bridal-lingerie": [bridalLingerie],
   "camisole-denim-shorts": [camisoleDenimShorts],

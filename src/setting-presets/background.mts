@@ -31,6 +31,13 @@ export const backgroundsPreset = {
       ],
     },
   ],
+  bedroom: [
+    {
+      type: `from-horizontal`,
+      key: `bedroom`,
+      poses: fromHorizontalPosesPreset.usual,
+    },
+  ],
   steamingBedSheetSpokenHeart: [
     {
       type: `from-above`,

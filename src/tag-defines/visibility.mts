@@ -1490,6 +1490,7 @@ export const tagVisibilities = {
   "sweater around waist": visibleType["high-waist skirt"],
   "cardigan around waist": visibleType["high-waist skirt"],
   unbuttoned: visibleType["center frills"],
+  babydoll: visibleType.dress,
 } as const satisfies {
   [K in CharacterFeatureTag | OutfitAndExposureTag]: Visibility;
 };
