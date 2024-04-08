@@ -137,6 +137,17 @@ const cowPrintBikini = {
   ],
 } as const satisfies OutfitSetting;
 
+const gymUniform = {
+  key: `gym-uniform`,
+  backgrounds: [
+    ...backgroundsPreset.blueSky,
+    ...backgroundsPreset.steamingBedSheetSpokenHeart,
+    ...backgroundsPreset.bedSheetWindow,
+    ...backgroundsPreset.colorfulHeartBackgrounds,
+    // TODO: `sweat, wet`
+  ],
+} as const satisfies OutfitSetting;
+
 const maidBikini = {
   key: `maid-bikini`,
   backgrounds: [
@@ -351,6 +362,7 @@ export const outfitsPreset = {
   cheerleader: [cheerleader],
   "china-dress": [chinaDress],
   "cow-print-bikini": [cowPrintBikini],
+  "gym-uniform": [gymUniform],
   "maid-bikini": [maidBikini],
   "micro-bikini": [microBikini],
   "playboy-bunny": [playboyBunny],

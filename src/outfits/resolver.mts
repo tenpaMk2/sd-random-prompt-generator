@@ -9,6 +9,7 @@ import { casualMiniskirt } from "./common/casual-miniskirt.mjs";
 import { cheerleader } from "./common/cheerleader.mjs";
 import { chinaDress } from "./common/china-dress.mjs";
 import { cowPrintBikini } from "./common/cow-print-bikini.mjs";
+import { gymUniform } from "./common/gym-uniform.mjs";
 import { maidBikini } from "./common/maid-bikini.mjs";
 import { microBikini } from "./common/micro-bikini.mjs";
 import { playboyBunny } from "./common/playboy-bunny.mjs";
@@ -120,6 +121,7 @@ export const outfitTable = {
   cheerleader: cheerleader(),
   "china-dress": chinaDress(),
   "cow-print-bikini": cowPrintBikini(),
+  "gym-uniform": gymUniform(),
   "maid-bikini": maidBikini(),
   "micro-bikini": microBikini(),
   "playboy-bunny": playboyBunny(),
