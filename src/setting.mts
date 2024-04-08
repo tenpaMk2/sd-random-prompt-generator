@@ -37,20 +37,13 @@ const portrait = {
   },
   characters: [
     ...generateCharactersSetting({
-      characterKeys: [`kaguya-sama-kaguya-nochekaiser`],
-      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-kaguya`],
-    }),
-    ...generateCharactersSetting({
-      characterKeys: [`kaguya-sama-ai-nochekaiser`],
-      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-ai`],
-    }),
-    ...generateCharactersSetting({
-      characterKeys: [`kaguya-sama-miko-nochekaiser`],
-      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-miko`],
-    }),
-    ...generateCharactersSetting({
-      characterKeys: [`kaguya-sama-chika-nochekaiser`],
-      outfitKeys: [`kaguya-sama-shuuchiin-academy-school-uniform-chika`],
+      characterKeys: [
+        `kaguya-sama-ai`,
+        `kaguya-sama-chika`,
+        `kaguya-sama-kaguya`,
+        `kaguya-sama-miko`,
+      ],
+      outfitKeys: [`gym-uniform`],
     }),
   ],
 } as const satisfies Setting;
